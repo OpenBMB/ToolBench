@@ -136,7 +136,7 @@ def preprocess_multi(tool_data_path):
         for line in data_dicts:
             scratch_pad = ""
             tmp_list = []
-            goal = line['goal'].replace('\n','')
+            goal = line['query'].replace('\n','')
             prompt = rev1 + goal.replace('\n','') + rev2
             steps = line['steps']
             tool_obervs = []
@@ -181,20 +181,22 @@ def preprocess_multi(tool_data_path):
                 inner_prompt = inner_prompt.replace("{input}\n{agent_scratchpad}", '{\"goal\": '+goal_tool+'\"' + ',' + '"history context": "['+','.join(tool_obervs)[-500:]+']"}\n')
 
                 length_log = 0
-                for tool_log in step['tool_log']:
-                    if length_log == (len(step['tool_log'])-1):
-                        tmp_list.append([inner_prompt, tool_log[1]])
-                        prompt += ("\nSystem: "+step['observation'])
+                for tool_log in step['chains']:
+                    if length_log == (len(step['chains'])-1):
+                        tmp_list.append([inner_prompt, tool_log["observation"]])
+                        prompt += ("\nSystem: "+step['answer'])
                         prompt += "\nHuman: Determine which next command to use, and respond using the format specified above:"
-                        tool_obervs.append(step['observation'])
+                        tool_obervs.append(step['answer'])
                         break
-
-                    tmp_list.append([inner_prompt, tool_log[0][2]])
-
-                    inner_prompt += tool_log[0][2]
-                    inner_prompt += '\nObservation:'+'\n'.join(tool_log[1])
+                    thought = tool_log["thought"]
+                    action = tool_log["action"]
+                    action_input = tool_log["action_input"]
+                    chain = f"Thought: {thought}\nAction: {action}\nAction Input: {action_input}"
+                    tmp_list.append([inner_prompt, chain])
+                    inner_prompt += chain
+                    inner_prompt += ('\nObservation:'+tool_log["observation"])
                     inner_prompt += '\nThought:'
-                    scratch_pad += ('\n'.join(tool_log[1]) + f"Observation: {tool_log[0][2]}\n")
+                    scratch_pad += (tool_log["observation"] + f"Observation: {chain}\n")
                     length_log += 1
 
             for step_cnt, inp_out_pair in enumerate(tmp_list):
