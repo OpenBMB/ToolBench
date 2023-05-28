@@ -97,6 +97,48 @@ Generated Data:
 
 ```
 
+Multi-tool example:
+
+```
+Here is an example of using Bing_Search tool, and PPT tool in BMTools:
+
+{
+        "query": "Can you find me examples of successful renewable energy projects in Africa? Please compile a list of case studies with details on the technologies used, costs, and environmental impact.\n",
+        "steps": [
+            {
+                "assistant_reply": "{\n    \"thoughts\": {\n        \"text\": \"I think I should use the Bing_search command to look for successful renewable energy projects in Africa.\",\n        \"reasoning\": \"As an Assistant with legal background, I do not have enough knowledge to list out these projects. Therefore, I think it's a good idea to research and find some project examples on the internet. Bing_search is a suitable command for me since I can use it to perform searches on the internet.\"\n    },\n    \"command\": {\n        \"name\": \"Bing_search\",\n        \"args\": {\n            \"goal\": \"Find successful renewable energy projects in Africa\"\n        }\n    }\n}",
+                "chains": [
+                    {
+                        "thought": "I need to search for examples of successful renewable energy projects in Africa.",
+                        "action": "search_top3",
+                        "action_input": "{\"key_words\": \"successful renewable energy projects Africa\"}",
+                        "observation": "\"page: 1\\ntitle: This is the state of renewable energy in Africa right now\\nsummary: Africa. In 2020, 9% of all energy generated in Africa came from renewable sources, reports Statista. North Africa is the current leader on the continent in terms of renewable energy capacity. While Southern Africa is lagging behind, with just over 4,000 MW capacity.\\npage: 2\\ntitle: Lighting Up Africa: Bringing Renewable, Off-Grid Energy to Communities\\nsummary: Lighting Up Africa: Bringing Renewable, Off-Grid Energy to Communities. Photo credit: John Deyegbe/Resolution Ltd. This story is the first in a series to showcase the tools, approaches, evidence, and results of more than 300 projects in pursuit of climate-smart development under the Africa Climate Business Plan.\\npage: 3\\ntitle: The Renewable Energy Transition in Africa\\nsummary: Promote access to energy; De-risk and promoting private sector investments; Strengthen and modernise the grid; Support systemic innovation. The study also explores the transformational potential of the electricity sector in five Africa countries: Ghana, Ivory Coast, Morocco, Rwanda and South Africa.\\n\""
+                    },
+                    .....
+                ],
+                "answer": "Tool Bing_search returned: {'input': '{\"goal\": \"Find successful renewable energy projects in Africa\", \"history context\": \"[]\"}', 'output': 'The top 3 search results for \"successful renewable energy projects Africa\" do not provide specific information about successful renewable energy projects in Africa, but rather provide general information about the state of renewable energy in Africa and initiatives to promote it.'}"
+            },
+            .....
+            {
+                "assistant_reply": "{\n    \"thoughts\": {\n        \"text\": \"I think I should use the Slides Making command to create a presentation on renewable energy projects in Africa based on the information that we have collected so far.\",\n        \"reasoning\": \"Since I have not been able to find any specific information on successful renewable energy projects in Africa, I believe that creating a presentation using the information that we have collected so far might be a good idea. Slides Making is a suitable command for creating professional-looking presentations with text, paragraphs, and images, thereby allowing us to summarize and present the information that we have found in an effective manner.\"\n    },\n    \"command\": {\n        \"name\": \"Slides Making\",\n        \"args\": {\n            \"goal\": \"Create a presentation on renewable energy projects in Africa\"\n        }\n    }\n}",
+                "chains": [
+                    {
+                        "thought": "We need to create a pptx file with a specific theme first before adding content to it.",
+                        "action": "create_file",
+                        "action_input": "{\"theme\":\"green\"}",
+                        "observation": "\"created a ppt file.\""
+                    },
+                    ...
+                ],
+                "answer": "Tool Slides Making returned: {'input': '{\"goal\": \"Create a presentation on renewable energy projects in Africa\", \"history context\": \"[\\\\\"Tool Bing_search returned: {\\\\\\\\\\\\\"input\\\\\\\\\\\\\": \\\\\\\\\\\\\"{\"goal\": \"Find successful renewable energy projects in Africa\", \"history context\": \"[]\"}\\\\\\\\\\\\\", \\\\\\\\\\\\\"output\\\\\\\\\\\\\": \\\\\\\\\\\\\"The top 3 search results for \"successful renewable energy projects Africa\" do not provide specific information about successful renewable energy projects in Africa, but rather provide general information about the state of renewable energy in Africa and initiatives to promote it.\\\\\\\\\\\\\"}\\\\\"]\"}', 'output': 'The final pptx presentation can be found at the file path: /Users/ava/Downloads/BMTools-zzn0513_copy/cache/1684750606.0464199Renewable Energy Projects in Africa.pptx'}"
+            }
+        ]
+    },
+
+```
+
+
+
 
 Here is an example of the data creation process using BMTools:
 
