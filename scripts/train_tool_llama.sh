@@ -1,5 +1,5 @@
 export PYTHONPATH=./
-torchrun --nproc_per_node=4 --master_port=20001 toolfarm/train/train_mem.py \
+torchrun --nproc_per_node=4 --master_port=20001 toolbench/train/train_mem.py \
     --model_name_or_path huggyllama/llama-7b  \
     --data_path  data/processed/weather_processed.json \
     --bf16 True \
