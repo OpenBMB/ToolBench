@@ -54,17 +54,17 @@
 
 ToolBench contains both single-tool and multi-tool scenarios, below is the statistics for the single-tool scenario:
 
-| Tool           | Query num | Step num | Steps per query |
-|----------------|-----------|----------|----------------|
-| Weather        | 9827      | 23740    | 2.4            |
-| Chemical       | 8585      | 29916    | 3.5            |
-| Translation    | 10267     | 23011    | 2.2            |
-| Map            | 7305      | 23325    | 3.2            |
-| Stock          | 11805     | 32550    | 2.8            |
-| Meta analysis  | 2526      | 15725    | 6.2            |
-| Bing search    | 31089     | 102088   | 3.3            |
-| Wolfram        | 16130     | 56169    | 3.5            |
-| Database       | 1264      | 6347     | 5              |
+| Tool           | Query Num | Chains Num | Chains/Query |
+|----------------|-----------|------------|------------------|
+| Weather        | 9827      | 23740      | 2.4              |
+| Chemical       | 8585      | 29916      | 3.5              |
+| Translation    | 10267     | 23011      | 2.2              |
+| Map            | 7305      | 23325      | 3.2              |
+| Stock          | 11805     | 32550      | 2.8              |
+| Meta analysis  | 2526      | 15725      | 6.2              |
+| Bing search    | 31089     | 102088     | 3.3              |
+| Wolfram        | 16130     | 56169      | 3.5              |
+| Database       | 1264      | 6347       | 5                |
 
 
 ### Data Release
