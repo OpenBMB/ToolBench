@@ -32,7 +32,7 @@
 </div>
 
 ✨✨Features:
- - Both **single-tool** and **multi-tool** scenarios are supported in ToolBench. 
+ - Both **single-tool** and **multi-tool** scenarios are supported in ToolBench. The single-tool setting follows [LangChain](https://github.com/hwchase17/langchain) style (prompt), and the multi-tool setting follows the [AutoGPT](https://github.com/Significant-Gravitas/Auto-GPT) style (prompt).
  - ToolBench provides responses that not only include the final answer but also incorporate the model's **chain-of-thought process, tool execution, and tool execution results**. 
  - ToolBench embraces the complexity of real-world scenarios, enabling **multi-step** tool invocations.
  - Another notable advantage is the **diversity** of our API, which is designed for **real-world scenarios** such as weather information, search functionality, stock updates, and PowerPoint automation. 
