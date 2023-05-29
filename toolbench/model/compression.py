@@ -1,15 +1,9 @@
 import dataclasses
-import gc
-import glob
 import os
 
-from accelerate import init_empty_weights
-from accelerate.utils import set_module_tensor_to_device
 import torch
-from torch import Tensor
 import torch.nn as nn
 from torch.nn import functional as F
-from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig
 
 
@@ -34,67 +28,48 @@ class CLinear(nn.Module):
 
     def __init__(self, weight=None, bias=None, device=None):
         super().__init__()
-        if weight is None:
-            self.weight = None
-        elif isinstance(weight, Tensor):
-            self.weight = compress(weight.data.to(device), default_compression_config)
-        else:
-            self.weight = weight
+        self.weight = weight
         self.bias = bias
 
-    def forward(self, input: Tensor) -> Tensor:
-        weight = decompress(self.weight, default_compression_config)
-        return F.linear(input.to(weight.dtype), weight, self.bias)
+    def forward(self, input):
+        return F.linear(input.to(self.weight.dtype), self.weight, self.bias)
 
 
 def compress_module(module, target_device):
-    for attr_str in dir(module):
-        target_attr = getattr(module, attr_str)
-        if type(target_attr) == torch.nn.Linear:
+    for name, child in module.named_children():
+        if isinstance(child, nn.Linear):
             setattr(
                 module,
-                attr_str,
-                CLinear(target_attr.weight, target_attr.bias, target_device),
+                name,
+                CLinear(child.weight, child.bias, target_device),
             )
-    for name, child in module.named_children():
-        compress_module(child, target_device)
+            compress_module(child, target_device)
 
 
 def get_compressed_list(module, prefix=""):
     compressed_list = []
-    for attr_str in dir(module):
-        target_attr = getattr(module, attr_str)
-        if type(target_attr) == torch.nn.Linear:
-            full_name = (
-                f"{prefix}.{attr_str}.weight" if prefix else f"{attr_str}.weight"
-            )
-            compressed_list.append(full_name)
     for name, child in module.named_children():
-        child_prefix = f"{prefix}.{name}" if prefix else name
-        for each in get_compressed_list(child, child_prefix):
-            compressed_list.append(each)
+        if isinstance(child, nn.Linear):
+            full_name = f"{prefix}.{name}.weight" if prefix else f"{name}.weight"
+            compressed_list.append(full_name)
+            compressed_list.extend(
+                get_compressed_list(child, full_name)
+            )
     return compressed_list
 
 
 def apply_compressed_weight(module, compressed_state_dict, target_device, prefix=""):
-    for attr_str in dir(module):
-        target_attr = getattr(module, attr_str)
-        if type(target_attr) == torch.nn.Linear:
-            full_name = (
-                f"{prefix}.{attr_str}.weight" if prefix else f"{attr_str}.weight"
-            )
+    for name, child in module.named_children():
+        if isinstance(child, nn.Linear):
+            full_name = f"{prefix}.{name}.weight" if prefix else f"{name}.weight"
             setattr(
                 module,
-                attr_str,
+                name,
                 CLinear(
-                    compressed_state_dict[full_name], target_attr.bias, target_device
+                    compressed_state_dict[full_name], child.bias, target_device
                 ),
             )
-    for name, child in module.named_children():
-        child_prefix = f"{prefix}.{name}" if prefix else name
-        apply_compressed_weight(
-            child, compressed_state_dict, target_device, child_prefix
-        )
+            apply_compressed_weight(child, compressed_state_dict, target_device, full_name)
 
 
 def load_compress_model(model_path, device, torch_dtype):
@@ -103,16 +78,15 @@ def load_compress_model(model_path, device, torch_dtype):
     base_pattern = os.path.join(model_path, "pytorch_model-*.bin")
     files = glob.glob(base_pattern)
 
-    with init_empty_weights():
-        config = AutoConfig.from_pretrained(
-            model_path, low_cpu_mem_usage=True, torch_dtype=torch_dtype
-        )
-        model = AutoModelForCausalLM.from_config(config)
-        linear_weights = get_compressed_list(model)
+    config = AutoConfig.from_pretrained(
+        model_path, low_cpu_mem_usage=True, torch_dtype=torch_dtype
+    )
+    model = AutoModelForCausalLM.from_config(config)
+    linear_weights = get_compressed_list(model)
 
     compressed_state_dict = {}
 
-    for filename in tqdm(files):
+    for filename in files:
         tmp_state_dict = torch.load(filename)
         for name in tmp_state_dict:
             if name in linear_weights:
@@ -124,14 +98,11 @@ def load_compress_model(model_path, device, torch_dtype):
                 compressed_state_dict[name] = tmp_state_dict[name].to(device)
             tmp_state_dict[name] = None
             tensor = None
-            gc.collect()
             torch.cuda.empty_cache()
 
-    for name in model.state_dict():
+    for name, param in model.named_parameters():
         if name not in linear_weights:
-            set_module_tensor_to_device(
-                model, name, device, value=compressed_state_dict[name]
-            )
+            param.data = compressed_state_dict[name]
     apply_compressed_weight(model, compressed_state_dict, device)
 
     model.to(device)
@@ -161,7 +132,7 @@ def compress(tensor, config):
     )
 
     # Pad
-    pad_len = (group_size - original_shape[group_dim] % group_size) % group_size
+    pad_len = group_size - original_shape[group_dim] % group_size
     if pad_len != 0:
         pad_shape = (
             original_shape[:group_dim] + (pad_len,) + original_shape[group_dim + 1 :]
@@ -186,7 +157,7 @@ def compress(tensor, config):
 
         scale = B / (mx - mn)
         data = data - mn
-        data.mul_(scale)
+        data *= scale
 
         data = data.clamp_(0, B).round_().to(torch.uint8)
         return data, mn, scale, original_shape
@@ -211,10 +182,10 @@ def decompress(packed_data, config):
     else:
         data, mn, scale, original_shape = packed_data
         data = data / scale
-        data.add_(mn)
+        data += mn
 
     # Unpad
-    pad_len = (group_size - original_shape[group_dim] % group_size) % group_size
+    pad_len = group_size - original_shape[group_dim] % group_size
     if pad_len:
         padded_original_shape = (
             original_shape[:group_dim]
