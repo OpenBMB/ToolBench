@@ -175,15 +175,15 @@ Download our newly released tool data and put them under `data/original/`. For s
 ```bash
 python data/preprocess.py \
     --tool_mode single
-    --tool_data_path data/original/weather_10k.json \
-    --output_path data/processed/weather_processed.json
+    --tool_data_path data/original/weather_demo.json \
+    --output_path data/processed/weather_demo.json
 ```
 For multi tools data preprocessing, you can use:
 ```bash
 python data/preprocess.py \
     --tool_mode multi
-    --tool_data_path data/original/meta_file.json \
-    --output_path data/processed/meta_file_processed.json
+    --tool_data_path data/original/meta_file_demo.json \
+    --output_path data/processed/meta_file_demo.json
 ```
 
 ### Train
