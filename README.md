@@ -66,10 +66,17 @@ ToolBench contains both single-tool and multi-tool scenarios, below is the stati
 | Wolfram        | 16130     | 56169      | 3.5              |
 | Database       | 1264      | 6347       | 5                |
 
+Statistics for multi-tool scenario:
+
+| Scenario      | Tools                                                                          | Query num | Sub-Query num | Chains num | Chains per Query |
+|---------------|--------------------------------------------------------------------------------|-----------|---------------|------------|------------------|
+| Meta_file     | chemical-prop/meta_analysis/Slides Making/Wikipedia/file_operation/Bing_search | 331       | 1197          | 5899       | 17.8             |
+| Multi_film    | Wolfram/Film Search/Slides Making/Wikipedia/file_operation/Bing_search         | 795       | 2703          | 12445      | 15.7             |
+| Vacation_plan | google_places/wikipedia/weather/bing search                                    | 191       | 654           | 2742       | 14.4             |
 
 ### Data Release
 
-Please download our dataset using the following link: [Data](https://drive.google.com/drive/folders/1OaB-hM7eRiWi3TeqHij24VT9MAqgvC0H?usp=drive_link).
+For single tool data we release 1000 instances for each tool, and for multi tool data we release all the data. Please download our dataset using the following link: [Data](https://drive.google.com/drive/folders/1OaB-hM7eRiWi3TeqHij24VT9MAqgvC0H?usp=drive_link).
 
 ### Data Format
 Each line in the downloaded data file is a json dict containing the prompt templated for data creation, human instruction (query) for tool use, intermediate thoughts / tool executions loops, and the final answer. Below we show an example for single tool data generation.
