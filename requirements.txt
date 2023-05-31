@@ -17,3 +17,5 @@ torch==2.0.1
 transformers==4.28.1
 uvicorn==0.22.0
 wandb==0.15.2
+deepspeed==0.9.2
+peft==0.3.0
