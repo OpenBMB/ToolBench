@@ -5,11 +5,13 @@ from bmtools.agent.apitool import Tool
 from bmtools.agent.singletool import STQuestionAnswerer
 from bmtools import get_logger
 from bmtools.models.llama_model import LlamaModel
+from bmtools.models.lora_model import LoraModel
 
 logger = get_logger(__name__)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model_path', type=str, default="your_model_path/", required=True, help='tool-llama model path')
+parser.add_argument('--lora_path', type=str, default="", required=False, help='tool-llama lora model path')
 args = parser.parse_args()
 
 
@@ -139,9 +141,11 @@ if __name__ == "__main__":
         "weather": "http://127.0.0.1:8079/tools/weather/",
         "bing_search": "http://127.0.0.1:8079/tools/bing_search/",
     }
-
     tools = load_valid_tools(tools_mappings)
-    customllm = LlamaModel(args.model_path)
+    if args.lora_path == "":
+        customllm = LlamaModel(args.model_path)
+    else:
+        customllm = LoraModel(base_name_or_path=args.model_path, model_name_or_path=args.lora_path)
     qa =  MTQuestionAnswerer(all_tools=tools, customllm=customllm)
     agent = qa.build_runner()
     while True:

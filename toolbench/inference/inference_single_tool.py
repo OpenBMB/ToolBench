@@ -8,12 +8,14 @@ from bmtools.agent.apitool import RequestTool
 from bmtools.agent.executor import Executor
 from bmtools import get_logger
 from bmtools.models.llama_model import LlamaModel
+from bmtools.models.lora_model import LoraModel
 
 logger = get_logger(__name__)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--tool_name', type=str, default="weather", required=True, help='tool name')
 parser.add_argument('--model_path', type=str, default="your_model_path/", required=True, help='tool-llama model path')
+parser.add_argument('--lora_path', type=str, default="", required=False, help='tool-llama lora model path')
 args = parser.parse_args()
 
 
@@ -104,9 +106,10 @@ def main():
     else:
         tool_url = NAME2URL[args.tool_name]
     tools_name, tools_config = load_single_tools(args.tool_name, tool_url)
-    print(tools_name, tools_config)
-
-    customllm = LlamaModel(args.model_path)
+    if args.lora_path == "":
+        customllm = LlamaModel(args.model_path)
+    else:
+        customllm = LoraModel(base_name_or_path=args.model_path, model_name_or_path=args.lora_path)
     qa =  STQuestionAnswerer(llm_model=customllm)
     agent = qa.load_tools(tools_name, tools_config)
     

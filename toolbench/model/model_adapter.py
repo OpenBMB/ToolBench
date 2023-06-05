@@ -13,15 +13,12 @@ else:
 import psutil
 import torch
 from transformers import (
-    AutoConfig,
     AutoModel,
     AutoModelForCausalLM,
-    AutoModelForSeq2SeqLM,
     AutoTokenizer,
-    LlamaTokenizer,
     LlamaForCausalLM,
-    T5Tokenizer,
 )
+from peft import PeftModel
 
 from toolbench.tool_conversation import Conversation, get_conv_template
 from toolbench.model.compression import load_compress_model
@@ -97,6 +94,8 @@ def load_model(
     load_8bit: bool = False,
     cpu_offloading: bool = False,
     debug: bool = False,
+    lora: bool = False,
+    lora_base_model : str = "huggyllama/llama-7b"
 ):
     """Load a model from Hugging Face."""
 
@@ -108,7 +107,21 @@ def load_model(
         kwargs = {"torch_dtype": torch.float32}
     elif device == "cuda":
         kwargs = {"torch_dtype": torch.float16}
-        if num_gpus != 1:
+        if lora:
+            model = LlamaForCausalLM.from_pretrained(
+                lora_base_model,
+                load_in_8bit=load_8bit,
+                torch_dtype=torch.float16,
+                device_map="auto",
+            )
+            model = PeftModel.from_pretrained(
+                model,
+                model_path,
+                torch_dtype=torch.float16,
+            )
+        
+        elif num_gpus != 1:
+            
             kwargs["device_map"] = "auto"
             if max_gpu_memory is None:
                 kwargs[
@@ -147,9 +160,11 @@ def load_model(
             )
 
     # Load model
-    adapter = get_model_adapter(model_path)
-    model, tokenizer = adapter.load_model(model_path, kwargs)
-
+    if not lora:
+        adapter = get_model_adapter(model_path)
+        model, tokenizer = adapter.load_model(model_path, kwargs)
+    else:
+        tokenizer = AutoTokenizer.from_pretrained("huggyllama/llama-7b", use_fast=False)
     if device == "cuda" and num_gpus == 1 and not cpu_offloading:
         model.to(device)
 

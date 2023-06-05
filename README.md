@@ -157,13 +157,7 @@ Here is an example of the data creation process using BMTools:
 
 ## 🤖Model
 
-We release the delta weights of [ToolLLaMA](https://drive.google.com/drive/folders/1OaB-hM7eRiWi3TeqHij24VT9MAqgvC0H) 7b model trained on single-tool dataset (the multi-tool model is on the way). The model is trained on all the single-tool data in a multi-task fashion. Run the following conversion command to get ToolLLaMA weights. Replace `/path/to/*` with the real paths.
-```bash
-python toolbench/model/apply_delta.py \
-    --base-model-path /path/to/llama-7b \
-    --target-model-path /path/to/output/ToolLLaMA-7b/weights \
-    --delta-path /path/to/delta/weights
-```
+We release the 7b lora version of ToolLLaMA ([huggingface](https://huggingface.co/pooruss-lsh/tool-llama7b-single-tool-lora)) which is trained on the released single-tool dataset (the multi-tool model is on the way). The model is trained on the single-tool data in a multi-task fashion.
 
 ## 🚀Fine-tuning
 ### Install
@@ -257,7 +251,13 @@ python toolbench/inference/inference_single_tool.py \
     --tool_name weather \
     --model_path /path/to/ToolLLaMA/weights
 ```
-
+for lora:
+```bash
+python toolbench/inference/inference_single_tool.py \
+    --tool_name weather \
+    --model_path /path/to/llama/weights \
+    --lora_path /path/to/lora/weights
+```
 - For multi tools inference:
 ```bash
 python toolbench/inference/inference_multi_tools.py \
