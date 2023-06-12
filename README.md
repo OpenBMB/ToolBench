@@ -27,6 +27,8 @@
 
 🔨This project aims to construct **open-source, large-scale, high-quality** instruction tuning SFT data to facilitate the construction of powerful LLMs with general **tool-use** capability. We provide the dataset, the corresponding training and evaluation scripts, and a capable model ToolLLaMA fine-tuned on ToolBench.
 
+✨More details and our paper about ToolBench and ToolLLaMA are coming soon!
+
 <div align="center">
 <img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="400px">
 </div>
