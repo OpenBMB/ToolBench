@@ -157,7 +157,7 @@ Here is an example of using Bing_Search tool, and PPT tool in BMTools:
 
 ## 🤖Model
 
-我们发布了 ToolLLaMA 的 7b Lora 版本（[huggingface](https://huggingface.co/pooruss-lsh/tool-llama7b-single-tool-lora)），它是基于发布的单工具数据集进行训练的（多工具模型正在制作中）。该模型以多任务方式在单工具数据上进行训练。
+我们发布了 ToolLLaMA 的 7b Lora 版本，[单工具](https://huggingface.co/pooruss-lsh/tool-llama7b-single-tool-lora)以及[多工具](https://huggingface.co/pooruss-lsh/tool-llama7b-multi-tool-lora)，都是基于发布的工具数据集进行训练。模型都以多任务方式在单工具数据上进行训练。
 
 ## 🚀精调
 ### 安装

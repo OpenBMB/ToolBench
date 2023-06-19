@@ -159,7 +159,7 @@ Here is an example of the data creation process using BMTools:
 
 ## 🤖Model
 
-We release the 7b lora version of ToolLLaMA ([huggingface](https://huggingface.co/pooruss-lsh/tool-llama7b-single-tool-lora)) which is trained on the released single-tool dataset (the multi-tool model is on the way). The model is trained on the single-tool data in a multi-task fashion.
+We release the 7b lora version of ToolLLaMA, [single-tool model](https://huggingface.co/pooruss-lsh/tool-llama7b-single-tool-lora) and [multi-tool model](https://huggingface.co/pooruss-lsh/tool-llama7b-multi-tool-lora) which are both trained on the released dataset. The models are trained in a multi-task fashion.
 
 ## 🚀Fine-tuning
 ### Install
@@ -273,7 +273,9 @@ The general idea of ToolBench is to train a LLM in our supervised data which the
 Each sector of ToolBench has its own challenges and requires particular strategy designs. 
 
 ### Model Experiment
+
 - Machine Evaluation 
+
 We randomly sample 100 chain steps in each tool to build our machine evaluation testbed. On average, there are 27 final steps and 73 intermediate tool calling steps. We evaluate the final steps with Rouge-L and the intermediate steps with ExactMatch.
 
 | model_name                   | Downsampling | Beam size | Overall - Final Answer | Overall - Action | Overall - Input |
@@ -285,6 +287,7 @@ We randomly sample 100 chain steps in each tool to build our machine evaluation 
 | llama7b-finetuned            | 0.7          | 1         | 0.29                   | 0.74             | **0.56**        |
 
 - Human Evaluation
+
 We randomly sample 10 query in each of the following tools: Weather, Map, Stock, Translation, Chemical and WolframAlpha. We evaluate the pass rate of tool calling process, final answer, and the final answer comparison with chatgpt.
 
 | model_name                   | Downsampling | Beam size |  Tool Calling Process  |   Final Answer   |   Comparison   |
