@@ -165,7 +165,7 @@ We release the 7b lora version of ToolLLaMA, [single-tool model](https://hugging
 ### Install
 Clone this repository and navigate to the ToolLLaMA folder.
 ```bash
-git clone git@github.com:thuqinyj16/ToolLLaMA.git
+git clone git@github.com:OpenBMB/ToolBench.git
 cd ToolLLaMA
 ```
 Install Package (python>=3.9)

@@ -163,7 +163,7 @@ Here is an example of using Bing_Search tool, and PPT tool in BMTools:
 ### 安装
 克隆这个仓库并进入ToolLLaMA文件夹。
 ```bash
-git clone git@github.com:thuqinyj16/ToolLLaMA.git
+git clone git@github.com:OpenBMB/ToolBench.git
 cd ToolLLaMA
 ```
 安装包 (python>=3.9)

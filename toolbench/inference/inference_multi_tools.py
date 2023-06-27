@@ -1,11 +1,25 @@
 import argparse
 import os
 import requests
+import faiss
 from bmtools.agent.apitool import Tool
 from bmtools.agent.singletool import STQuestionAnswerer
 from bmtools import get_logger
 from bmtools.models.llama_model import LlamaModel
 from bmtools.models.lora_model import LoraModel
+from langchain.vectorstores import FAISS
+from langchain.docstore import InMemoryDocstore
+from langchain.embeddings import OpenAIEmbeddings
+from bmtools.agent.autogptmulti.agent import AutoGPT
+from langchain.chat_models import ChatOpenAI
+from langchain.schema import (
+    AIMessage,
+    ChatGeneration,
+    ChatMessage,
+    ChatResult,
+    HumanMessage,
+    SystemMessage,
+)
 
 logger = get_logger(__name__)
 
@@ -65,27 +79,10 @@ class MTQuestionAnswerer:
             self.tools_pool.append(tool)
         
     def build_runner(self, ):
-        from langchain.vectorstores import FAISS
-        from langchain.docstore import InMemoryDocstore
-        from langchain.embeddings import OpenAIEmbeddings
         embeddings_model = OpenAIEmbeddings()
-        import faiss
         embedding_size = 1536
         index = faiss.IndexFlatL2(embedding_size)
         vectorstore = FAISS(embeddings_model.embed_query, index, InMemoryDocstore({}), {})
-        
-        from autogptmulti.agent import AutoGPT
-        from langchain.chat_models import ChatOpenAI
-
-        from langchain.schema import (
-            AIMessage,
-            ChatGeneration,
-            ChatMessage,
-            ChatResult,
-            HumanMessage,
-            SystemMessage,
-        )
-
         customllm = self.llm
         class MyChatAI(ChatOpenAI):
             def _create_chat_result(self, response):
@@ -99,7 +96,16 @@ class MTQuestionAnswerer:
             
             def _generate(self, messages, stop):
                 message_dicts, params = self._create_message_dicts(messages, stop)
-                response = customllm(message_dicts)
+                
+                #TODO need to align prompts to training
+                prompt = ''
+                for prompt_dict in message_dicts:
+                    if prompt_dict["role"] == "system":
+                        prompt += ("System: " + prompt_dict["content"]) 
+                    else:
+                        prompt += ("Human: " + prompt_dict["content"])
+                
+                response = customllm(prompt)
                 response_dict = {
                     "choices": [{
                         "message": {
@@ -121,7 +127,6 @@ class MTQuestionAnswerer:
                     return SystemMessage(content=_dict["content"])
                 else:
                     return ChatMessage(content=_dict["content"], role=role)
-
 
         agent_executor = AutoGPT.from_llm_and_tools(
             ai_name="Jerry",
