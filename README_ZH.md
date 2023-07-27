@@ -86,7 +86,7 @@ ToolBench包含单工具和多工具场景。多工具场景可以进一步分�
 
 ## 🤖模型
 
-我们发布了7b Lora 版本的[ToolLLaMA](https://huggingface.co/pooruss/ToolLLaMA-7b-lora)，该版本是在发布的数据集上以多任务方式训练的。
+我们发布了7b Lora 版本的[ToolLLaMA](https://huggingface.co/pooruss/ToolLLaMA-7b-lora)，该版本是在发布的数据集上以多任务方式训练的。我们也发布在实验设置下训练的[tool retriever](https://huggingface.co/KunlunZhu/ToolBench_IR_bert_based_uncased/tree/main).
 ## 🚀精调
 ### 安装
 克隆这个仓库并进入ToolBench文件夹。

@@ -82,7 +82,7 @@ ToolBench contains both single-tool and multi-tool scenarios. The multi-tool sce
 
 ## 🤖Model
 
-We release the 7b lora version of [ToolLLaMA](https://huggingface.co/pooruss/ToolLLaMA-7b-lora) which is trained on the released dataset. The models are trained in a multi-task fashion.
+We release the 7b lora version of [ToolLLaMA](https://huggingface.co/pooruss/ToolLLaMA-7b-lora) which is trained on the released dataset. The models are trained in a multi-task fashion. We also release the [tool retriever](https://huggingface.co/KunlunZhu/ToolBench_IR_bert_based_uncased/tree/main) trained under our experimental setting.
 
 ## 🚀Fine-tuning
 ### Install
