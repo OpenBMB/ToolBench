@@ -29,8 +29,7 @@ def preprocess_rapidapi(tool_data_dir, method, output_file):
     def append_list(instances_list: list) -> list:
         return_list = []
         for instances in instances_list:
-            for instance in instances:
-                return_list.append(instance)
+            return_list.extend(instances)
         return return_list
 
     print(f"Preprocessing data from {tool_data_dir} into {output_file}")
