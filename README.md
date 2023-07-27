@@ -31,7 +31,7 @@
 ✨More details and our paper about ToolBench and ToolLLaMA are coming soon!
 
 <div align="center">
-<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="800px">
+<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="400px">
 </div>
 
 ✨✨Features:
@@ -44,7 +44,7 @@
 
 <br>
 <div align="center">
-<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111210433307750451/ToolLLaMA.png" width="800px">
+<img src="assets/overview.png" width="800px">
 </div>
 <br>
 
