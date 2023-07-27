@@ -181,6 +181,6 @@ if __name__ == "__main__":
         "api_name": "love_quote",
         "tool_input": '{}',
         "strip": "filter",
-        "rapidapi_key": "34e6e91265msh0157e1fc6794904p1f8a87jsn381998a1c4ee"
+        "rapidapi_key": ""
     })
     print(result)
