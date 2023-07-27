@@ -10,7 +10,7 @@ import random
 
 class DFS_tree_search(base_search_method):
 
-    def __init__(self,llm,io_func,process_id=0):
+    def __init__(self,llm,io_func,process_id=0, callbacks = None):
         super(DFS_tree_search, self).__init__()
         '''
         Depth-first search. Every time a child node is generated, choose the best multiple iterations to go.
@@ -19,6 +19,8 @@ class DFS_tree_search(base_search_method):
         self.llm = llm
         self.process_id=process_id
         self.restart()
+
+        self.callbacks = callbacks if callbacks is not None else []
     def restart(self):
         self.status = 0
         self.terminal_node = []
@@ -27,6 +29,18 @@ class DFS_tree_search(base_search_method):
         self.query_count = 0
         self.total_tokens = 0
 
+    def send_agent_chain_end(self, depth, agent_block_ids, chain_block_ids):
+        for i in range(len(self.callbacks)):
+            callback = self.callbacks[i]
+            callback.on_chain_end(
+                depth=depth,
+                block_id=chain_block_ids[i]
+            )
+            if i < len(agent_block_ids):
+                callback.on_agent_end(
+                    depth=depth,
+                    block_id=agent_block_ids[i]
+                )
     def to_json(self,answer=False,process=True):
 
         if process:
@@ -159,9 +173,25 @@ class DFS_tree_search(base_search_method):
                     temp_now_node.messages.append(diversity_message)
 
                     delete_former_diversity_message = True
-                    
+            # on_chain_start
+            now_depth = temp_now_node.get_depth() // 3
+            chain_block_ids = [callback.on_chain_start(
+                depth=now_depth,
+                inputs = temp_now_node.messages
+            ) for callback in self.callbacks]
+            agent_block_ids = []
             self.llm.change_messages(temp_now_node.messages)
+            # on_llm_start
+            [callback.on_llm_start(
+                depth=now_depth,
+                messages=temp_now_node.messages
+            ) for callback in self.callbacks]
             new_message,error_code,total_tokens = self.llm.parse(self.io_func.functions, process_id=self.process_id)
+            # on_llm_end
+            [callback.on_llm_end(
+                depth=now_depth,
+                response=new_message
+            ) for callback in self.callbacks]
             self.query_count += 1
             self.total_tokens += total_tokens
             if self.query_count >= max_query_count:
@@ -190,6 +220,12 @@ class DFS_tree_search(base_search_method):
                     temp_now_node.pruned = True
 
             if "function_call" in new_message.keys():
+                # on_agent_action
+                agent_block_ids = [callback.on_agent_action(
+                    depth=now_depth,
+                    action=new_message["function_call"]["name"],
+                    action_input=new_message["function_call"]["arguments"]
+                ) for callback in self.callbacks]
                 function_name = new_message["function_call"]["name"]
                 temp_node = tree_node()
                 temp_node.node_type = "Action"
@@ -210,7 +246,12 @@ class DFS_tree_search(base_search_method):
                 temp_node.node_type = "Action Input"
                 temp_node.description = function_input
                 child_io_state = deepcopy(temp_now_node.io_state)
-
+                # on_tool_start
+                [callback.on_tool_start(
+                    depth=now_depth,
+                    tool_name = temp_now_node.description,
+                    tool_input = function_input
+                ) for callback in self.callbacks]
                 observation, status = child_io_state.step(action_name=temp_now_node.description, action_input=function_input)
                 temp_node.observation = observation
                 temp_node.observation_code = status
@@ -222,7 +263,12 @@ class DFS_tree_search(base_search_method):
                 temp_now_node.children.append(temp_node)
                 temp_node.print(self.process_id)
                 temp_now_node = temp_node
-
+                # on_tool_end
+                [callback.on_tool_end(
+                    depth=now_depth,
+                    output=observation,
+                    status=status
+                ) for callback in self.callbacks]
                 if status != 0:
                     # 0 means normal return
                     # 1 means there is no corresponding api name
@@ -245,18 +291,20 @@ class DFS_tree_search(base_search_method):
                     "name": new_message["function_call"]["name"],
                     "content": temp_now_node.observation,
                 })
-
+            return_value = None
             if not with_filter:
                 result = self.DFS(temp_now_node,single_chain_max_step, tree_beam_size,max_query_count,answer,with_filter)
                 if len(self.terminal_node) >= answer:
-                    return 10000
+                    return_value = 10000
                 elif result > 1:
-                    return result - 1
+                    return_value = result-1
 
             else:
 
                 next_tree_split_nodes.append(temp_now_node)
-        
+            self.send_agent_chain_end(now_depth, agent_block_ids, chain_block_ids)
+            if return_value is not None:
+                return return_value
         '''
         Sort the generated next_tree_split_nodes nodes
         '''
