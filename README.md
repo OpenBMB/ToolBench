@@ -96,9 +96,10 @@ Install Package (python>=3.9)
 pip install -r requirements.txt
 ```
 
-### Data Preparation
-
-Download the [data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) and unzip it under ToolBench.
+Prepare the data and tool environment. Download the [data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) and unzip it under ToolBench:
+```bash
+tar -zxvf data.tar
+```
 
 
 ### Training Retriever
@@ -126,18 +127,7 @@ python toolbench/retrieval/train.py \
 ```
 
 ### Training ToolLLaMA
-Our training code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB), with the preprocessed data in our [data link](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J). We split the G1, G2 and G3 data into train, eval, test parts respectively and combine the train data for training. 
-
-You can also preprocess the data and split in your own way with this command:
-```bash
-export PYTHONPATH=./
-python preprocess/preprocess_toolllama_data.py \
-    --tool_data_dir data/answer/G1_answer \
-    --method DFS_woFilter_w2 \
-    --output_file data/answer/toolllama_G1_dfs.json
-```
-
-To train ToolLLaMA, use the following command:
+Our training code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB), with the preprocessed data in our [data link](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J):
 ```bash
 export PYTHONPATH=./
 torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.py \
@@ -168,7 +158,18 @@ torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.p
     --lazy_preprocess True \
     --report_to none
 ```
-And train with lora:
+
+You can also preprocess and split the data in your own way with this command:
+```bash
+export PYTHONPATH=./
+python preprocess/preprocess_toolllama_data.py \
+    --tool_data_dir data/answer/G1_answer \
+    --method DFS_woFilter_w2 \
+    --output_file data/answer/toolllama_G1_dfs.json
+```
+
+
+To train lora version:
 ```bash
 export PYTHONPATH=./
 deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
@@ -196,12 +197,10 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
     --lazy_preprocess True \    
     --deepspeed ds_configs/stage2.json \
     --report_to none
-
 ```
 
 
 ## Inference
-
 First prepare your rapidapi key:
 ```bash
 export RAPIDAPIKEY="your_rapidapi_key"
@@ -213,7 +212,7 @@ export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
     --tool_root_dir data/toolenv/tools/ \
     --backbone_model toolllama \
-    --model_path toolllama \
+    --model_path /path/to/your/toolllama \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
@@ -229,7 +228,7 @@ python toolbench/inference/qa_pipeline.py \
     --backbone_model toolllama \
     --model_path huggyllama/llama-7b \
     --lora \
-    --lora_path toolllama_lora \
+    --lora_path /path/to/your/toolllama_lora \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
@@ -243,12 +242,12 @@ export PYTHONPATH=./
 python toolbench/inference/qa_pipeline_open_domain.py \
     --tool_root_dir data/toolenv/tools/ \
     --corpus_tsv_path data/retrieval/G1/corpus.tsv \
-    --retrieval_model_path retrival_model \
+    --retrieval_model_path /path/to/your/retrival_model \
     --retrieved_api_nums 5 \
     --backbone_model toolllama \
     --model_path huggyllama/llama-7b \
     --lora \
-    --lora_path toolllama_lora \
+    --lora_path /path/to/your/toolllama_lora \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo_open_domain.json \
