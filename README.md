@@ -62,11 +62,11 @@
 | 3451      | 16464    | 12657         | 37204         | 4.1              |
 
 
-ToolBench contains both single-tool and multi-tool scenarios. The multi-tool scenarios can be further categorized into intra-category multi-tool and intra-collection multi-tool. We utilize DFSDT method for all scenarios to our data creation. Here is an example of the data creation and application process using BMTools:
+ToolBench contains both single-tool and multi-tool scenarios. The multi-tool scenarios can be further categorized into intra-category multi-tool and intra-collection multi-tool. We utilize DFSDT method for all scenarios to our data creation. Here is an illustration for the data creation process using DFSDT method:
 
 <div align="center">
 
-<img src="assets/meta0423.gif" width="700px">
+<img src="assets/answer_anno.png" width="800px">
 
 </div>
 
