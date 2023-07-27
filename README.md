@@ -91,8 +91,7 @@ pip install -r requirements.txt
 ```
 
 ### Training ToolLLaMA
-- data preparation
-Download our newly released tool data and put them under `data/toolllama/raw_answer/`. You can use the following command to process the data for fine-tuning.:
+- Data preparation: Download our newly released tool data and put them under `data/toolllama/raw_answer/`. You can use the following command to process the data for fine-tuning.:
 ```bash
 export PYTHONPATH=./
 export TOOL_DATA_DIR="data/toolllama/raw_answer/G1_demo/"
@@ -104,8 +103,7 @@ python data/preprocess_toolllama_data.py \
     --method $METHOD \
     --output_file $OUTPUT_FILE
 ```
-- training
-Our code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB):
+- Training: Our code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB):
 ```bash
 export PYTHONPATH=./
 torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.py \
@@ -165,8 +163,7 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
 ```
 
 ### Training Retriever
-- data preparation
-Download our newly released tool data and put them under `data/toolllama/raw_answer/`. You can use the following command to process the data for fine-tuning.:
+- Data preparation: Download our newly released tool data and put them under `data/toolllama/raw_answer/`. You can use the following command to process the data for fine-tuning.:
 ```bash
 export PYTHONPATH=./
 export QUERY_FILE="data/query/queryG1_demo.json"
@@ -180,8 +177,7 @@ python data/preprocess_retriever_data.py \
     --dataset_name $DATASET_NAME \
     --output_dir $OUTPUT_DIR
 ```
-- training
-Run the following commands to train the tool retriever:
+- Training: Run the following commands to train the tool retriever:
 ```bash
 export PYTHONPATH=./
 export DATA_DIR="data/retriever/G1_demo/"
@@ -205,7 +201,7 @@ python toolbench/retrieval/train.py \
 ### Tool Environment Preparation
 Download the tools environment file: `tools.tar` and `response_examples.tar` through google drive, unzip them and replace them with under `toolenv/tools` and `toolenv/response_examples`. Then run with the following commands (should prepare your rapidapi key first):
 ```bash
-export RAPIDAPIKEY="34e6e91265msh0157e1fc6794904p1f8a87jsn381998a1c4ee"
+export RAPIDAPIKEY=""
 export OUTPUT_DIR="data/pipeline_result/toolllama"
 export PYTHONPATH=./
 
@@ -223,7 +219,7 @@ python toolbench/inference/qa_pipeline.py \
 
 For **lora** version, run with:
 ```bash
-export RAPIDAPIKEY="34e6e91265msh0157e1fc6794904p1f8a87jsn381998a1c4ee"
+export RAPIDAPIKEY=""
 export OUTPUT_DIR="data/pipeline_result/toolllama_lora"
 export PYTHONPATH=./
 
@@ -243,7 +239,7 @@ python toolbench/inference/qa_pipeline.py \
 
 For lora version under **open-domain** setting, run with:
 ```bash
-export RAPIDAPIKEY="34e6e91265msh0157e1fc6794904p1f8a87jsn381998a1c4ee"
+export RAPIDAPIKEY=""
 export OUTPUT_DIR="data/pipeline_result/toolllama_lora_open_domain"
 export PYTHONPATH=./
 
@@ -284,14 +280,14 @@ More details about ToolEval can be found in our paper.
 
 In our main experiments, ToolLLaMA demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions.
 Below are the main results compared with ChatGPT and Text-Davinci-003.
-- Pass Rate:
+Pass Rate:
 | model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
 |------------------------|----------|----------|---------|----------|---------|----------|---------|
 | ChatGPT-DFSDT          | 89       | 78       | 84      | 58       | 51      | 57       | 69.6    |
 | Text-Davinci-003-DFSDT | 61       | 53       | 58      | 38       | 38      | 39       | 47.8    |
 | ToolLLaMA              | 75       | 68       | 80      | 56       | 47      | 40       | 61      |
 
--- Win Rate: (Reference model: ChatGPT-DFSDT)
+Win Rate: (Reference model: ChatGPT-DFSDT)
 | model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
 |------------------------|----------|----------|---------|----------|---------|----------|---------|
 | ChatGPT-DFSDT          | -        | -        | -       | -        | -       | -        | -       |
