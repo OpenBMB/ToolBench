@@ -115,7 +115,7 @@ python data/preprocess_retriever_data.py \
     --dataset_name G1 \
     --output_dir data/retrieval/G1
 ```
-- 使用以下命令训练retriever:
+- 使用以下命令训练Retriever:
 ```bash
 export PYTHONPATH=./
 python toolbench/retrieval/train.py \

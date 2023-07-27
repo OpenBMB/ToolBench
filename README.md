@@ -77,7 +77,7 @@ ToolBench contains both single-tool and multi-tool scenarios. The multi-tool sce
 - We split the G1, G2 and G3 data into train, eval and test parts respectively and combine the train data for training in our main experiments. `toolllama_G123_dfs_train.json` refers to the combined train data.
 - The tool environment related data is in `toolenv` directory.
 - We sample 100 instances from every test set. The `test_query_ids` directory contains query ids of the test instances in each test set.
-- The data used for tool retrieval is also included in the `retrieval` directory.
+- The data used for tool retrieval is included in the `retrieval` directory.
 
 
 ## 🤖Model
