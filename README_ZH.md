@@ -1,13 +1,14 @@
-1<div align= "center">
+<div align= "center">
     <h1> 🛠️ToolBench🤖</h1>
 </div>
 
 <div align="center">
 
-![Dialogues](https://img.shields.io/badge/Tool\_Num-29-red?style=flat-square)
-![Dialogues](https://img.shields.io/badge/API\_Num-86-red?style=flat-square)
-![Dialogues](https://img.shields.io/badge/Current\_Dataset\_Size-98K-red?style=flat-square)
-![Dialogues](https://img.shields.io/badge/Total\_API\_Call-312K-red?style=flat-square)
+![Dialogues](https://img.shields.io/badge/Tool\_Num-3451-red?style=flat-square)
+![Dialogues](https://img.shields.io/badge/API\_Num-16464-red?style=flat-square)
+![Dialogues](https://img.shields.io/badge/Current\_Dataset\_Size-12K-red?style=flat-square)
+![Dialogues](https://img.shields.io/badge/Total\_API\_Call-37K-red?style=flat-square)
+![Dialogues](https://img.shields.io/badge/Average\_Reasoning\_Traces-4.1-red?style=flat-square)
 ![Dialogues](https://img.shields.io/badge/Tool\_LLaMA-Released-green?style=flat-square)
 
 </div>
@@ -25,186 +26,127 @@
 </div>
 
 
-🔨本项目旨在构建**开源、大规模、高质量**的指令调优SFT数据，以促进构建具有通用**工具使用**能力的强大LLM。我们提供数据集，相应的训练和评估脚本，以及在ToolBench上进行了ToolLLaMA微调的可靠模型。
+🔨这个项目旨在构建**开源、大规模、高质量**的指令调整 SFT 数据，以促进构建具有通用工具使用能力的强大LLMs。我们的目标是赋予开源 LLMs 掌握成千上万多样的真实世界API能力。我们通过收集高质量的指令调整数据集来实现这一目标。该数据集使用最新的ChatGPT（gpt-3.5-turbo-16k）自动构建，该版本升级了增强的函数调用功能。我们提供数据集、相应的训练和评估脚本，以及在ToolBench上经过微调的强大模型ToolLLaMA。
+
+✨更多有关 ToolBench 的详细信息以及我们的论文即将发布！
 
 <div align="center">
 <img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="400px">
 </div>
 
-✨✨特点：
- - ToolBench 支持**单工具**和**多工具**场景。单工具设置遵循[LangChain](https://github.com/hwchase17/langchain)风格的提示模版，而多工具设置则遵循[AutoGPT](https://github.com/Significant-Gravitas/Auto-GPT)风格的提示模版。
- - ToolBench 提供的响应不仅包括最终答案，还融合了模型的**思维链路过程、工具执行和工具执行结果**。
- - ToolBench 接受现实世界场景的复杂性，支持**多步**工具调用。
- - 另一个显著优势是我们API的**多样性**，它专为诸如天气信息、搜索功能、股票更新和PowerPoint自动化等**现实世界场景**而设计。
- - 所有数据都是由OpenAI API自动生成并由我们进行筛选，整个数据创建过程易于扩展。
+✨✨特点:
+ - API收集: 我们从 RapidAPI 收集了 16464 个API。RapidAPI 是一个托管开发者提供的大规模真实世界API的平台。
+
+ - 指令生成: 我们生成了涉及单工具和多工具场景的指令。
+
+ - 答案标注: 我们设计了一种新颖的深度优先搜索决策树方法（DFSDT），以增强LLMs的规划和推理能力。这显著提高了标注效率，并成功地对那些不能用CoT或ReACT回答的复杂指令进行了标注。我们提供的回答不仅包括最终答案，还包括模型的推理过程、工具执行和工具执行结果。
+
+ - API Retriever: 我们整合了API检索模块，为ToolLLaMA提供了开放域的工具使用能力。
+
+ - 所有数据均由OpenAI API自动生成并由我们筛选，整个数据创建过程易于扩展。
 
 
 <br>
 <div align="center">
-<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111210433307750451/ToolLLaMA.png" width="800px">
+<img src="assets/overview.png" width="800px">
 </div>
 <br>
 
-*请注意，当前发布的数据仍然不是最终版本。我们正在进行广泛的后处理工作，以提高数据质量并增加对现实世界工具的覆盖范围。*
+*请注意，当前发布的数据仍然不是最终版本。我们正在进行数据的后期处理，以提高数据质量并增加真实世界工具的覆盖范围。*
 
-<!-- 💁‍♂️💁💁‍♀️**我们需要您的帮助!** 策划大规模的现实世界API及其相应的工具使用SFT数据并非易事，我们真诚邀请您加入我们，共同建设和完善ToolBench。我们将在最终论文中将所有参与者列为共同作者。如果您有兴趣，请联系并加入[我们](mailto:yujiaqin16@gmail.com)。 -->
+*[老版本](https://github.com/OpenBMB/ToolBench/tree/legacy)*
+<!-- 💁‍♂️💁💁‍♀️**We need your help!** Curating large-scale real-world APIs and their corresponding tool-use SFT data is not easy, we sincerely invite you to join us in building and refining ToolBench. We will list all participants as co-authors in the final paper. Please contact and join [us](mailto:yujiaqin16@gmail.com) if you're interested. -->
 
 ## 🗒️数据
 
-👐ToolBench仅供研究和教育目的，并不反映此数据集的创建者、所有者或贡献者的观点或意见。它在[CC BY NC 4.0 License](https://creativecommons.org/licenses/by-nc/4.0/)许可证下进行分发。
+👐ToolBench仅用于研究和教育目的，不应被视为反映此数据集的创作者、所有者或贡献者的观点或意见。该数据集以 CC BY NC 4.0许可证 进行分发。以下是数据集的统计信息:
 
-ToolBench包含单工具和多工具场景，以下是单工具场景的统计数据：
-
-| Tool           | Query Num | Chains Num | Chains/Query |
-|----------------|-----------|------------|------------------|
-| Weather        | 9827      | 23740      | 2.4              |
-| Chemical       | 8585      | 29916      | 3.5              |
-| Translation    | 10267     | 23011      | 2.2              |
-| Map            | 7305      | 23325      | 3.2              |
-| Stock          | 11805     | 32550      | 2.8              |
-| Meta analysis  | 2526      | 15725      | 6.2              |
-| Bing search    | 31089     | 102088     | 3.3              |
-| Wolfram        | 16130     | 56169      | 3.5              |
-| Database       | 1264      | 6347       | 5                |
-
-以下是多工具场景的统计数据：
-
-| Scenario      | Tools                                                                          | Query num | Sub-Query num | Chains num | Chains per Query |
-|---------------|--------------------------------------------------------------------------------|-----------|---------------|------------|------------------|
-| Meta_file     | chemical-prop/meta_analysis/Slides Making/Wikipedia/file_operation/Bing_search | 331       | 1197          | 5899       | 17.8             |
-| Multi_film    | Wolfram/Film Search/Slides Making/Wikipedia/file_operation/Bing_search         | 795       | 2703          | 12445      | 15.7             |
-| Vacation_plan | google_places/wikipedia/weather/bing search                                    | 191       | 654           | 2742       | 14.4             |
-
-### 数据发布
-对于单工具数据，我们发布了每个工具的1000个实例，而对于多工具数据，我们发布了全部数据。请使用以下链接下载我们的数据集：[数据](https://drive.google.com/drive/folders/1OaB-hM7eRiWi3TeqHij24VT9MAqgvC0H?usp=drive_link)。
-
-### 数据格式
-下载的数据文件中的每一行都是一个包含用于数据创建的模板化提示、人类指令（查询）用于工具使用、中间思考/工具执行循环以及最终答案的JSON字典。以下是单工具数据生成的示例：
-
-```
-Tool Descrition:
-BMTools Tool_name: translation
-Tool action: get_translation
-action_input: {"text": target texts, "tgt_lang": target language}
-
-Generated Data:
-{
-    "prompt": "Answer the following questions as best you can. Specifically, you have access to the following APIs:\n\nget_translation: . Your input should be a json (args json schema): {{\"text\" : string, \"tgt_lang\" : string, }} The Action to trigger this API should be get_translation and the input parameters should be a json dict string. Pay attention to the type of parameters.\n\nUse the following format:\n\nQuestion: the input question you must answer\nThought: you should always think about what to do\nAction: the action to take, should be one of [get_translation]\nAction Input: the input to the action\nObservation: the result of the action\n... (this Thought/Action/Action Input/Observation can repeat N times, max 7 times)\nThought: I now know the final answer\nFinal Answer: the final answer to the original input question\n\nBegin! Remember: (1) Follow the format, i.e,\nThought:\nAction:\nAction Input:\nObservation:\nFinal Answer:\n (2) Provide as much as useful information in your Final Answer. (3) Do not make up anything, and if your Observation has no link, DO NOT hallucihate one. (4) If you have enough information and want to stop the process, please use \nThought: I have got enough information\nFinal Answer: **your response. \n The Action: MUST be one of the following:get_translation\nQuestion: {input}\n Agent scratchpad (history actions):\n {agent_scratchpad}",
-    "query": "My intention is to convert the data provided in ما هي الأقسام الثلاثة للقوات المسلحة؟ into Arabic(ara).\n",
-    "chains": [
-        {
-            "thought": "I need to use the get_translation API to convert the text into Arabic.",
-            "action": "get_translation",
-            "action_input": "{\"text\": \"What are the three branches of the military?\", \"tgt_lang\": \"ara\"}",
-            "observation": "\"ما هي الفروع الثلاثة للجيش ؟\""
-        }
-    ],
-    "answer": "The translation of \"What are the three branches of the military?\" into Arabic is \"ما هي الفروع الثلاثة للجيش ؟\"."
-}
-
-```
-
-多工具示例：
-
-```
-Here is an example of using Bing_Search tool, and PPT tool in BMTools:
-
-{
-        "query": "Can you find me examples of successful renewable energy projects in Africa? Please compile a list of case studies with details on the technologies used, costs, and environmental impact.\n",
-        "steps": [
-            {
-                "assistant_reply": "{\n    \"thoughts\": {\n        \"text\": \"I think I should use the Bing_search command to look for successful renewable energy projects in Africa.\",\n        \"reasoning\": \"As an Assistant with legal background, I do not have enough knowledge to list out these projects. Therefore, I think it's a good idea to research and find some project examples on the internet. Bing_search is a suitable command for me since I can use it to perform searches on the internet.\"\n    },\n    \"command\": {\n        \"name\": \"Bing_search\",\n        \"args\": {\n            \"goal\": \"Find successful renewable energy projects in Africa\"\n        }\n    }\n}",
-                "chains": [
-                    {
-                        "thought": "I need to search for examples of successful renewable energy projects in Africa.",
-                        "action": "search_top3",
-                        "action_input": "{\"key_words\": \"successful renewable energy projects Africa\"}",
-                        "observation": "\"page: 1\\ntitle: This is the state of renewable energy in Africa right now\\nsummary: Africa. In 2020, 9% of all energy generated in Africa came from renewable sources, reports Statista. North Africa is the current leader on the continent in terms of renewable energy capacity. While Southern Africa is lagging behind, with just over 4,000 MW capacity.\\npage: 2\\ntitle: Lighting Up Africa: Bringing Renewable, Off-Grid Energy to Communities\\nsummary: Lighting Up Africa: Bringing Renewable, Off-Grid Energy to Communities. Photo credit: John Deyegbe/Resolution Ltd. This story is the first in a series to showcase the tools, approaches, evidence, and results of more than 300 projects in pursuit of climate-smart development under the Africa Climate Business Plan.\\npage: 3\\ntitle: The Renewable Energy Transition in Africa\\nsummary: Promote access to energy; De-risk and promoting private sector investments; Strengthen and modernise the grid; Support systemic innovation. The study also explores the transformational potential of the electricity sector in five Africa countries: Ghana, Ivory Coast, Morocco, Rwanda and South Africa.\\n\""
-                    },
-                    .....
-                ],
-                "answer": "Tool Bing_search returned: {'input': '{\"goal\": \"Find successful renewable energy projects in Africa\", \"history context\": \"[]\"}', 'output': 'The top 3 search results for \"successful renewable energy projects Africa\" do not provide specific information about successful renewable energy projects in Africa, but rather provide general information about the state of renewable energy in Africa and initiatives to promote it.'}"
-            },
-            .....
-            {
-                "assistant_reply": "{\n    \"thoughts\": {\n        \"text\": \"I think I should use the Slides Making command to create a presentation on renewable energy projects in Africa based on the information that we have collected so far.\",\n        \"reasoning\": \"Since I have not been able to find any specific information on successful renewable energy projects in Africa, I believe that creating a presentation using the information that we have collected so far might be a good idea. Slides Making is a suitable command for creating professional-looking presentations with text, paragraphs, and images, thereby allowing us to summarize and present the information that we have found in an effective manner.\"\n    },\n    \"command\": {\n        \"name\": \"Slides Making\",\n        \"args\": {\n            \"goal\": \"Create a presentation on renewable energy projects in Africa\"\n        }\n    }\n}",
-                "chains": [
-                    {
-                        "thought": "We need to create a pptx file with a specific theme first before adding content to it.",
-                        "action": "create_file",
-                        "action_input": "{\"theme\":\"green\"}",
-                        "observation": "\"created a ppt file.\""
-                    },
-                    ...
-                ],
-                "answer": "Tool Slides Making returned: {'input': '{\"goal\": \"Create a presentation on renewable energy projects in Africa\", \"history context\": \"[\\\\\"Tool Bing_search returned: {\\\\\\\\\\\\\"input\\\\\\\\\\\\\": \\\\\\\\\\\\\"{\"goal\": \"Find successful renewable energy projects in Africa\", \"history context\": \"[]\"}\\\\\\\\\\\\\", \\\\\\\\\\\\\"output\\\\\\\\\\\\\": \\\\\\\\\\\\\"The top 3 search results for \"successful renewable energy projects Africa\" do not provide specific information about successful renewable energy projects in Africa, but rather provide general information about the state of renewable energy in Africa and initiatives to promote it.\\\\\\\\\\\\\"}\\\\\"]\"}', 'output': 'The final pptx presentation can be found at the file path: /Users/ava/Downloads/BMTools-zzn0513_copy/cache/1684750606.0464199Renewable Energy Projects in Africa.pptx'}"
-            }
-        ]
-    },
-
-```
+| 工具数量 | API数量 | 实例数量 | 真实API调用数量 | 平均Reasoning步数 |
+|-----------|----------|---------------|---------------|------------------|
+| 3451      | 16464    | 12657         | 37204         | 4.1              |
 
 
-
-
-以下是使用BMTools进行数据创建过程的示例：
+ToolBench包含单工具和多工具场景。多工具场景可以进一步分为类别内多工具和集合内多工具。我们在数据创建过程中使用DFSDT方法。以下是使用DFSDT方法进行数据创建的说明：
 
 <div align="center">
 
-<img src="assets/meta0423.gif" width="700px">
+<img src="assets/answer_anno.png" width="800px">
 
 </div>
 
-## 🤖Model
+### 数据发布
 
-我们发布了 ToolLLaMA 的 7b Lora 版本，[单工具](https://huggingface.co/pooruss-lsh/tool-llama7b-single-tool-lora)以及[多工具](https://huggingface.co/pooruss-lsh/tool-llama7b-multi-tool-lora)，都是基于发布的工具数据集进行训练。模型都以多任务方式在单工具数据上进行训练。
+ 请使用以下链接下载我们的数据集：[数据](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)。
 
+ - `G1`，`G2`，`G3` 数据分别代表单工具数据，类别内多工具数据和集合内多工具数据。我们在 G1、G2 和 G3 数据内分别划分出训练集、验证集和测试集，并将训练集合并，作为我们的主要实验的训练数据。`toolllama_G123_dfs_train.json` 文件代表合并后的训练集数据。
+ - 与工具环境相关的数据位于 `toolenv` 目录下。
+ - 我们从每个测试集中抽样 100 个实例。`test_query_ids` 目录包含每个测试集中测试实例的query id。
+ - 用于工具检索的数据也包含在 `retrieval` 目录中。
+
+
+## 🤖模型
+
+我们发布了7b Lora 版本的[ToolLLaMA](https://huggingface.co/pooruss/ToolLLaMA-7b-lora)，该版本是在发布的数据集上以多任务方式训练的。
 ## 🚀精调
 ### 安装
-克隆这个仓库并进入ToolLLaMA文件夹。
+克隆这个仓库并进入ToolBench文件夹。
 ```bash
 git clone git@github.com:OpenBMB/ToolBench.git
-cd ToolLLaMA
+cd ToolBench
 ```
 安装包 (python>=3.9)
 ```bash
 pip install -r requirements.txt
 ```
 
-### 数据预处理
-请下载我们新发布的工具数据，并将其放置在 data/original/ 目录下。对于单工具数据的预处理，您可以使用以下命令来为精调准备数据：
-
+准备数据和工具环境。下载[数据](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)并解压到ToolBench目录下:
 ```bash
-python data/preprocess.py \
-    --tool_mode single
-    --tool_data_path data/original/weather_demo.json \
-    --output_path data/processed/weather_demo.json
-```
-对于多工具数据的预处理，您可以使用以下命令：
-```bash
-python data/preprocess.py \
-    --tool_mode multi
-    --tool_data_path data/original/meta_file_demo.json \
-    --output_path data/processed/meta_file_demo.json
+tar -zxvf data.tar
 ```
 
-### 训练
-我们的代码基于FastChat。您可以使用以下命令来使用 4 个 A100（40GB）训练 ToolLLaMA-7b：
+
+### 训练Retriever
+- 数据预处理:
 ```bash
 export PYTHONPATH=./
-torchrun --nproc_per_node=4 --master_port=20001 toolbench/train/train_mem.py \
+python data/preprocess_retriever_data.py \
+    --query_file data/instruction/G1_query.json \
+    --index_file data/test_query_ids/G1_instruction_test_query_ids.json \
+    --dataset_name G1 \
+    --output_dir data/retrieval/G1
+```
+- 使用以下命令训练retriever:
+```bash
+export PYTHONPATH=./
+python toolbench/retrieval/train.py \
+    --data_path data/retrieval/G1/ \
+    --model_name bert-base-uncased \
+    --output_path retrieval_model \
+    --num_epochs 5 \
+    --train_batch_size 32 \
+    --learning_rate 2e-5 \
+    --warmup_steps 500 \
+    --max_seq_length 256
+```
+
+### 训练ToolLLaMA
+我们的训练代码基于[FastChat](https://github.com/lm-sys/FastChat)开发.您可以使用以下命令用两张A100（80G）训练ToolLLaMA-7b, 训练数据是我们已经处理好的[数据](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J):
+```bash
+export PYTHONPATH=./
+torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.py \
     --model_name_or_path huggyllama/llama-7b  \
-    --data_path  data/processed/weather_processed.json \
+    --data_path  data/toolllama_G123_dfs_train.json \
+    --eval_data_path  data/toolllama_G123_dfs_eval.json \
+    --conv_template tool-llama-single-round \
     --bf16 True \
-    --output_dir output \
-    --num_train_epochs 3 \
+    --output_dir toolllama \
+    --num_train_epochs 2 \
     --per_device_train_batch_size 2 \
     --per_device_eval_batch_size 2 \
     --gradient_accumulation_steps 8 \
-    --evaluation_strategy "steps" \
-    --eval_steps 1500 \
-    --save_strategy "steps" \
-    --save_steps 1500 \
+    --evaluation_strategy "epoch" \
+    --prediction_loss_only \
+    --save_strategy "epoch" \
     --save_total_limit 8 \
     --learning_rate 5e-5 \
     --weight_decay 0. \
@@ -214,169 +156,177 @@ torchrun --nproc_per_node=4 --master_port=20001 toolbench/train/train_mem.py \
     --fsdp "full_shard auto_wrap" \
     --fsdp_transformer_layer_cls_to_wrap 'LlamaDecoderLayer' \
     --tf32 True \
-    --model_max_length 2048 \
+    --model_max_length 8192 \
     --gradient_checkpointing True \
-    --lazy_preprocess True
+    --lazy_preprocess True \
+    --report_to none
 ```
-训练lora版本：
+
+您也可以用以下命令用您自己的方式去预处理并划分数据:
 ```bash
 export PYTHONPATH=./
-deepspeed --master_port=20002 toolbench/train/train_lora.py \
+python preprocess/preprocess_toolllama_data.py \
+    --tool_data_dir data/answer/G1_answer \
+    --method DFS_woFilter_w2 \
+    --output_file data/answer/toolllama_G1_dfs.json
+```
+
+
+训练lora版本:
+```bash
+export PYTHONPATH=./
+deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
     --model_name_or_path huggyllama/llama-7b  \
-    --data_path  data/processed/weather_processed.json \
+    --data_path  data/toolllama_G123_dfs_train.json \
+    --eval_data_path  data/toolllama_G123_dfs_eval.json \
+    --conv_template tool-llama-single-round \
     --bf16 True \
-    --output_dir output \
-    --num_train_epochs 3 \
-    --per_device_train_batch_size 2 \
+    --output_dir toolllama_lora \
+    --num_train_epochs 5 \
+    --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 2 \
-    --gradient_accumulation_steps 8 \
-    --evaluation_strategy "steps" \
-    --eval_steps 1500 \
-    --save_strategy "steps" \
-    --save_steps 1500 \
+    --gradient_accumulation_steps 2 \
+    --evaluation_strategy "epoch" \
+    --prediction_loss_only \
+    --save_strategy "epoch" \
     --save_total_limit 8 \
     --learning_rate 5e-5 \
     --weight_decay 0. \
     --warmup_ratio 0.04 \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
-    --model_max_length 2048 \
+    --model_max_length 8192 \
     --gradient_checkpointing True \
-    --lazy_preprocess True \
-    --deepspeed ds_configs/stage2.json
+    --lazy_preprocess True \    
+    --deepspeed ds_configs/stage2.json \
+    --report_to none
 ```
 
-## 推理
 
-### 安装BMTools
-工具执行由[BMTools](https://github.com/OpenBMB/BMTools)支持。首先在当前目录下克隆BMTools并进行配置：
+## Inference
+首先准备您的rapidapi key:
 ```bash
-git clone git@github.com:OpenBMB/BMTools.git
-cd BMTools
-pip install --upgrade pip
-pip install -r requirements.txt
-python setup.py develop
-cd ..
+export RAPIDAPIKEY="your_rapidapi_key"
 ```
-接下来，在 secret_keys.sh 文件中添加您的API密钥，并启动本地工具：
+
+然后用以下命令做inference:
 ```bash
-source BMTools/secret_keys.sh
-python BMTools/host_local_tools.py
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model toolllama \
+    --model_path /path/to/your/toolllama \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/toolllama_dfs \
+    --rapidapi_key $RAPIDAPIKEY
 ```
 
-### 使用命令行界面进行推理
-准备API密钥和Python路径：
+**lora**版本的inference:
 ```bash
-source BMTools/secret_keys.sh
-export PYTHONPATH=BMTools
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model toolllama \
+    --model_path huggyllama/llama-7b \
+    --lora \
+    --lora_path /path/to/your/toolllama_lora \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/toolllama_lora_dfs \
+    --rapidapi_key $RAPIDAPIKEY
 ```
-下面的命令需要大约14GB的GPU内存用于ToolLLaMA-7B。请将 /path/to/ToolLLaMA/weights替换为您转换后的ToolLLaMA的weights的路径：
-- 单工具推理:
+
+lora版本的**开放域**, 用以下命令:
 ```bash
-python toolbench/inference/inference_single_tool.py \
-    --tool_name weather \
-    --model_path /path/to/ToolLLaMA/weights
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline_open_domain.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --corpus_tsv_path data/retrieval/G1/corpus.tsv \
+    --retrieval_model_path /path/to/your/retrival_model \
+    --retrieved_api_nums 5 \
+    --backbone_model toolllama \
+    --model_path huggyllama/llama-7b \
+    --lora \
+    --lora_path /path/to/your/toolllama_lora \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo_open_domain.json \
+    --output_answer_file data/answer/toolllama_lora_dfs_open_domain \
+    --rapidapi_key $RAPIDAPIKEY
 ```
-lora:
+
+
+## ToolEval
+
+通过在ToolBench上对LLaMA进行微调，我们得到了**ToolLLaMA**。考虑到人工评估非常耗时，我们借鉴[AlpacaEval](https://tatsu-lab.github.io/alpaca_eval/)开发了一个高效的机器自动评估**ToolEval**，其中包含两个评估指标：
+
+- **通过率**：计算在有限的OpenAI API调用次数内成功完成指令的比例。
+
+- **偏好**：通过比较给定指令的两个答案（动作序列）来衡量。我们预先定义了一组更好答案的标准，这些标准被组织成ChatGPT的提示。我们向评估器提供测试指令和两个候选答案，并获得其偏好。我们对每个答案对进行多次评估以提高系统的可靠性。然后，我们计算**优胜率**（被评估器选择为更优的百分比）和**标准差**（优胜率的标准误差）。有关详细信息，请参阅我们的论文。
+
+为了验证偏好指标的有效性，我们从三种不同方法（ChatGPT+ReACT、GPT4+ReACT和ChatGPT+DFSDT）中随机抽样获得600个测试指令的答案对。然后，我们邀请人工标注人员对它们进行人工偏好注释（每个答案对4个注释，总共2400个注释）。我们使用ChatGPT开发的自动评估器与人工标注者呈现出显著的**75.8%**相关性。我们还获得了不同人工标注者之间的一致性为**83.54%**，与我们的评估器和人类标注者之间的一致性为**80.21%**。
+
+有关ToolEval的更多细节，请参阅我们的论文。
+
+
+### Evaluation with ToolEval
+要在测试集（如G1-Inst.）上评估模型，可以执行以下命令：
+- 通过率:
 ```bash
-python toolbench/inference/inference_single_tool.py \
-    --tool_name weather \
-    --model_path /path/to/llama/weights \
-    --lora_path /path/to/lora/weights
+python toolbench/tooleval/pass_rate.py --answer_dir data/answer/toolllama_dfs/G1_instruction
 ```
-- 多工具推理:
+- 优胜率 (参考模型: ChatGPT-ReACT):
 ```bash
-python toolbench/inference/inference_multi_tools.py \
-    --model_path /path/to/ToolLLaMA/weights
+export OPENAI_KEY=""
+export REF_MODEL_DATA="data/answer/chatgpt_cot/G1_instruction"
+export REF_MODEL_METHOD="CoT"
+export TEST_MODEL_DATA="data/answer/toolllama_dfs/G1_instruction"
+export TEST_MODEL_METHOD="DFS"
+python ./toolbench/tooleval/convert_to_answer_format.py \
+    --method CoT \
+    --answer_dir $REF_MODEL_DATA \
+    --output ${REF_MODEL_DATA}_converted
+
+python ./toolbench/tooleval/convert_to_answer_format.py \
+    --method DFS \
+    --answer_dir $TEST_MODEL_DATA \
+    --output ${TEST_MODEL_DATA}_converted
+
+python ./toolbench/tooleval/automatic_eval_sample.py \
+    --output ${REF_MODEL_DATA}_converted \
+    --ref_output ${TEST_MODEL_DATA}_converted \
+    --method $REF_MODEL_METHOD \
+    --use_existed_output
 ```
 
+### Model Experiment
 
-## 评测
+在我们的主要实验中，ToolLLaMA展现了处理单一工具和复杂多工具指令的引人注目的能力。
+以下是与ChatGPT和Text-Davinci-003相比的主要结果。
 
-ToolBench的总体思想是用我们的监督数据训练一个语言模型（LLM），然后能在[BMTools](https://github.com/OpenBMB/BMTools)中支持。
-ToolBench的每个领域都有其自身的挑战，并需要特定的策略设计。
+**通过率**
+| model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
+|------------------------|----------|----------|---------|----------|---------|----------|---------|
+| ChatGPT-ReACT          | 66       | 56       | 62      | 22       | 28      | 30       | 44.0    |
+| ChatGPT-DFSDT          | **89**       | **78**       | **84**      | **58**       | **51**      | **57**       | **69.6**    |
+| Text-Davinci-003-DFSDT | 61       | 53       | 58      | 38       | 38      | 39       | 47.8    |
+| ToolLLaMA              | 75       | 68       | 80      | 56       | 47      | 40       | 61.0    |
 
-### 模型实验
-- 机器评测
-
-为构建我们的机器评估测试平台，我们从每个工具中随机抽样100个链路步骤。平均而言，其中有27个最终步骤和73个中间工具调用步骤。我们使用Rouge-L评估最终步骤，使用ExactMatch评估中间步骤。
-
-| model_name                   | Downsampling | Beam size | Overall - Final Answer | Overall - Action | Overall - Input |
-|------------------------------|--------------|-----------|------------------------|------------------|-----------------|
-| cpmbee-finetuned             | 0.05         | 1         | **0.55**               | 0.64             | 0.40            |
-| llama7b-finetuned            | 0.05         | 1         | 0.27                   | **0.77**         | 0.53            |
-| vicuna7b-finetuned           | 0.05         | 1         | 0.42                   | 0.53             | 0.40            |
-| llama7b-finetuned            | 0.5          | 1         | 0.35                   | 0.67             | 0.50            |
-| llama7b-finetuned            | 0.7          | 1         | 0.29                   | 0.74             | **0.56**        |
-
-- 人工评测
-
-我们在以下工具中随机抽样了每个工具中的10个查询：天气（Weather）、地图（Map）、股票（Stock）、翻译（Translation）、化学（Chemical）和WolframAlpha。我们评估工具调用过程的通过率、最终答案以及最终答案与ChatGPT的比较。
-
-| model_name                   | Downsampling | Beam size |  Tool Calling Process  |   Final Answer   |   Comparison   |
-|------------------------------|--------------|-----------|------------------------|------------------|----------------|
-| llama7b-finetuned            | 0.05         | 1         | **90%**                | **76.7%**        | 11.7%/60%/28.3%|
+**优胜率** (参考模型: ChatGPT-DFSDT)
+| model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
+|------------------------|----------|----------|---------|----------|---------|----------|---------|
+| Text-Davinci-003-DFSDT | 38       | 34       | 43      | 25       | 20      | 28       | 31.3    |
+| ToolLLaMA              | **50**       | 45       | 45      | **59**       | 48      | 46       | 48.8    |
 
 
-- ChatGPT评测
+## TODO
+- [ ] ToolLLaMA将达到GPT-4的工具使用能力。
+- [ ] 我们将训练一个ToolLLaMa-2。
 
-为了对LLaMA和ChatGPT的答案和工具链进行自动评估，我们使用ChatGPT进行评分。
-
-要运行ChatGPT评估代码，请执行以下步骤：
-```bash
-python toolbench/evaluation/evaluate_by_chatgpt.py
-```
-
-ChatGPT的评测提示模版设计如下：
-```
-You are a fair AI assistant for checking the quality of the answers of other two AI assistants. 
-
-    [Question] 
-
-    {data['query']}
-
-    [The Start of Assistant 1's Answer]
-
-    llama chains: {data['llama_chains']}
-    llama answer: {data['llama_answer']}
-
-    [The End of Assistant 1's Answer]
-
-    [The Start of Assistant 2's Answer]
-
-    chatgpt chains: {data['chatgpt_chains']}
-    chatgpt answer: {data['chatgpt_answer']}
-
-    [The End of Assistant 2's Answer] 
-
-    We would like to request your feedback on the performance of two AI assistants in response to the user question displayed above. 
-    Please first judge if the answer is correct based on the question, if an assistant gives a wrong answer, the score should be low.
-    Please rate the quality, correctness, helpfulness of their responses based on the question.
-    Each assistant receives an overall score on a scale of 1 to 10, where a higher score indicates better overall performance, your scores should be supported by reasonable reasons. 
-    Please first output a single line containing only two values indicating the scores for Assistant 1 and 2, respectively. 
-    The two scores are separated by a space. In the subsequent line, please provide a comprehensive explanation of your evaluation, avoiding any potential bias, and the order in which the responses were presented does not affect your judgement.
-    If the two assistants perform equally well, please output the same score for both of them.
-```
-
-
-以下是6个工具的15个案例的评估结果（较高的分数表示更好）。我们的ToolLLaMA在不同场景下与ChatGPT表现相当或更好。
-
-| Tool                            | ToolLLaMA Score         | ChatGPT Score         |
-| ------------------------------- | ------------------- | --------------------- |
-| baidu-translation               | 8.0                 | 8.0                   |
-| chemical-prop                   | 7.93                | 7.53                  |
-| bing-map                        | 7.93                | 7.64                  |
-| stock                           | 4.87                | 4.4                   |
-| weather                         | 7.20                | 7.47                  |
-| wolframalpha                    | 7.67                | 7.80                  |
-
-## 待办事项
-- [ ] 发布BMTools中其他工具的剩余部分数据。
-- [ ] 使ToolLLaMA达到GPT-4的工具使用能力。
-- [ ] ToolBench的中文版本。
-- [ ] 支持中文LLM，例如CPM-bee。
-
-## 待办事项
+## Citation
 如果您对ToolBench感兴趣，欢迎引用我们的工作。
 
 ```bibtex

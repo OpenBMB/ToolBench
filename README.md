@@ -263,7 +263,7 @@ By fine-tuning LLaMA on ToolBench, we obtain **ToolLLaMA**. Considering that hum
  - **Preference**: Measured by comparing two answers (action sequences) for a given instruction. We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT. We provide the test instruction and two candidate answers to the evaluator and obtain its preference. We evaluate each answer pair multiple times to improve the reliability of our system. Then we calculate the **Win Rate** (percentage of being preferred by the evaluator) and **Standard Error** (the standard error of the Win Rate). More details can be found in our paper.
 
 To validate the effectiveness of the metric **Preference**, we sample among three different methods (ChatGPT+ReACT, GPT4+ReACT, and ChatGPT+DFSDT) to obtain answer pairs for *600* test instructions. Then we engage humans to annotate human preference for them (*4* annotations for each answer pair, *2400* annotations in total).
-Our automatic evaluator, developed using \turbo, demonstrates a significant correlation of **75.8%** with human annotators.
+Our automatic evaluator, developed using ChatGPT, demonstrates a significant correlation of **75.8%** with human annotators.
 We also obtain the agreement among different human annotators **83.54%**, and the agreement between humans and our evaluator **80.21%**.
 
 More details about ToolEval can be found in our paper.
@@ -319,7 +319,6 @@ Below are the main results compared with ChatGPT and Text-Davinci-003.
 
 
 ## TODO
-- [ ] Release the rest part of the data for other tools in BMTools.
 - [ ] ToolLLaMA will reach GPT-4's tool-use capability.
 - [ ] We will train a ToolLLaMa-2
 
