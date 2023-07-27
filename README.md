@@ -376,8 +376,7 @@ The evaluation results for 15 cases for 6 tools are as below (higher is better),
 ## TODO
 - [ ] Release the rest part of the data for other tools in BMTools.
 - [ ] ToolLLaMA will reach GPT-4's tool-use capability.
-- [ ] There will be a Chinese version of ToolBench.
-- [ ] Support Chinese LLMs, e.g., CPM-bee.
+- [ ] We will train a ToolLLaMa-2
 
 ## Citation
 Feel free to cite us if you like ToolBench.
