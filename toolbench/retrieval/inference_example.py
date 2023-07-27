@@ -4,19 +4,29 @@ import pandas as pd
 from collections import defaultdict
 import torch
 from tqdm import tqdm
+import argparse
+import os
+
+# 创建参数解析器并添加参数
+parser = argparse.ArgumentParser()
+parser.add_argument('model_path', type=str, required=True, help='Your trained model path')
+parser.add_argument('dataset_path', help='The processed dataset files path')
+
+# 解析命令行参数
+args = parser.parse_args()
 
 # Check if a GPU is available and if not, use a CPU
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-model_path = 'Your_trained_model_path'
+model_path = args.model_path
 
 # Load the trained model
 model = SentenceTransformer(model_path).to(device)
 
 # Load test data
-documents_df = pd.read_csv('./denseIR_dataset/corpus.tsv', sep='\t')
-test_queries_df = pd.read_csv('./denseIR_dataset/test.query.txt', sep='\t', names=['qid', 'query_text'])
-test_labels_df = pd.read_csv('./denseIR_dataset/qrels.test.tsv', sep='\t', names=['qid', 'useless', 'docid', 'label'])
+documents_df = pd.read_csv(os.path.join(args.dataset_path, 'corpus.tsv'), sep='\t')
+test_queries_df = pd.read_csv(os.path.join(args.dataset_path, 'test.query.txt'), sep='\t', names=['qid', 'query_text'])
+test_labels_df = pd.read_csv(os.path.join(args.dataset_path, 'qrels.test.tsv'), sep='\t', names=['qid', 'useless', 'docid', 'label'])
 
 # Create mappings, get 'tool_name' and 'api_name' from the document_content
 ir_corpus = {row.docid: (json.loads(row.document_content)['tool_name'], json.loads(row.document_content)['api_name']) for _, row in documents_df.iterrows()}

@@ -7,7 +7,7 @@ from tqdm import tqdm
 parser = argparse.ArgumentParser()
 parser.add_argument('query_file', help='The name of the query file')
 parser.add_argument('index_file', help='The name of the index file')
-
+parser.add_argument('dataset_name', help='The name of the output dataset')
 # 解析命令行参数
 args = parser.parse_args()
 
@@ -34,7 +34,7 @@ for index, item in tqdm(enumerate(query_data)):
         query_train.append(item)
 
 # 创建输出文件的名字
-output_file_base = os.path.splitext(args.query_file)[0]
+output_file_base = args.dataset_name
 train_file = output_file_base + '_train.json'
 test_file = output_file_base + '_test.json'
 
