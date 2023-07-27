@@ -1,9 +1,8 @@
 export PYTHONPATH=./
-export DATA_DIR="data/retriever/G1_demo/"
+export DATA_DIR="data/retrieval/G1/"
 export MODEL_NAME="bert-base-uncased"
 export OUTPUT_PATH="retriever_model"
 
-# Run train.py
 python toolbench/retrieval/train.py \
     --data_path $DATA_DIR \
     --model_name $MODEL_NAME \

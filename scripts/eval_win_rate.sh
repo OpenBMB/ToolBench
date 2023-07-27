@@ -3,7 +3,7 @@
 export OPENAI_KEY=""
 TESTSET='G1_instruction'
 
-ANS_DIR="data/toolllama/tooleval_answer/"
+ANS_DIR="data/answer/"
 
 MODEL_1="chatgpt_cot"
 METHOD_1='CoT'

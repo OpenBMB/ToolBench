@@ -50,6 +50,7 @@
 
 *Please note that current released data is still not the final version. We are conducting extensive post-processing to improve the data quality and increase the coverage of real-world tools.*
 
+*[Old version](https://github.com/OpenBMB/ToolBench/tree/legacy)*
 <!-- 💁‍♂️💁💁‍♀️**We need your help!** Curating large-scale real-world APIs and their corresponding tool-use SFT data is not easy, we sincerely invite you to join us in building and refining ToolBench. We will list all participants as co-authors in the final paper. Please contact and join [us](mailto:yujiaqin16@gmail.com) if you're interested. -->
 
 ## 🗒️Data
@@ -71,44 +72,78 @@ ToolBench contains both single-tool and multi-tool scenarios. The multi-tool sce
 
 ### Data Release
 
- Please download our dataset using the following link: [Data](https://drive.google.com/drive/folders/1OaB-hM7eRiWi3TeqHij24VT9MAqgvC0H?usp=drive_link).
+ Please download our dataset using the following link: [Data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
+- `G1`,` G2`, `G3`data refers to single-tool, intra-category multi-tool and intra-collection multi-tool data respectively.
+- We split the G1, G2 and G3 data into train, eval and test parts respectively and combine the train data for training in our main experiments. `toolllama_G123_dfs_train.json` refers to the combined train data.
+- The tool environment related data is in `toolenv` directory.
+- We sample 100 instances from every test set. The `test_query_ids` directory contains query ids of the test instances in each test set.
+- The data used for tool retrieval is also included in the `retrieval` directory.
 
 
 ## 🤖Model
 
-We release the 7b lora version of [ToolLLaMA](https://huggingface.co/pooruss-lsh/tool-llama7b-single-tool-lora) which is trained on the released dataset. The models are trained in a multi-task fashion.
+We release the 7b lora version of [ToolLLaMA](https://huggingface.co/pooruss/ToolLLaMA-7b-lora) which is trained on the released dataset. The models are trained in a multi-task fashion.
 
 ## 🚀Fine-tuning
 ### Install
-Clone this repository and navigate to the ToolLLaMA folder.
+Clone this repository and navigate to the ToolBench folder.
 ```bash
 git clone git@github.com:OpenBMB/ToolBench.git
-cd ToolLLaMA
+cd ToolBench
 ```
 Install Package (python>=3.9)
 ```bash
 pip install -r requirements.txt
 ```
 
-### Training ToolLLaMA
-- Data preparation: Download our newly released tool data and put them under `data/toolllama/raw_answer/`. You can use the following command to process the data for fine-tuning.:
+### Data Preparation
+
+Download the [data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) and unzip it under ToolBench.
+
+
+### Training Retriever
+- Data preprocessing:
 ```bash
 export PYTHONPATH=./
-export TOOL_DATA_DIR="data/toolllama/raw_answer/G1_demo/"
-export METHOD="DFS_woFilter_w2"
-export OUTPUT_FILE="data/toolllama/processed_answer/G1_demo_DFS_woFilter_w2.json"
-
-python data/preprocess_toolllama_data.py \
-    --tool_data_dir $TOOL_DATA_DIR \
-    --method $METHOD \
-    --output_file $OUTPUT_FILE
+python data/preprocess_retriever_data.py \
+    --query_file data/instruction/G1_query.json \
+    --index_file data/test_query_ids/G1_instruction_test_query_ids.json \
+    --dataset_name G1 \
+    --output_dir data/retrieval/G1
 ```
-- Training: Our code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB):
+- Then run the following command to train the tool retriever:
+```bash
+export PYTHONPATH=./
+python toolbench/retrieval/train.py \
+    --data_path data/retrieval/G1/ \
+    --model_name bert-base-uncased \
+    --output_path retrieval_model \
+    --num_epochs 5 \
+    --train_batch_size 32 \
+    --learning_rate 2e-5 \
+    --warmup_steps 500 \
+    --max_seq_length 256
+```
+
+### Training ToolLLaMA
+Our training code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB), with the preprocessed data in our [data link](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J). We split the G1, G2 and G3 data into train, eval, test parts respectively and combine the train data for training. 
+
+You can also preprocess the data and split in your own way with this command:
+```bash
+export PYTHONPATH=./
+python preprocess/preprocess_toolllama_data.py \
+    --tool_data_dir data/answer/G1_answer \
+    --method DFS_woFilter_w2 \
+    --output_file data/answer/toolllama_G1_dfs.json
+```
+
+To train ToolLLaMA, use the following command:
 ```bash
 export PYTHONPATH=./
 torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.py \
     --model_name_or_path huggyllama/llama-7b  \
-    --data_path  data/toolllama/processed_answer/G1_demo_DFS_woFilter_w2.json \
+    --data_path  data/toolllama_G123_dfs_train.json \
+    --eval_data_path  data/toolllama_G123_dfs_eval.json \
     --conv_template tool-llama-single-round \
     --bf16 True \
     --output_dir toolllama \
@@ -138,14 +173,15 @@ And train with lora:
 export PYTHONPATH=./
 deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
     --model_name_or_path huggyllama/llama-7b  \
-    --data_path  data/toolllama/processed_answer/G1_demo_DFS_woFilter_w2.json \
+    --data_path  data/toolllama_G123_dfs_train.json \
+    --eval_data_path  data/toolllama_G123_dfs_eval.json \
     --conv_template tool-llama-single-round \
     --bf16 True \
     --output_dir toolllama_lora \
     --num_train_epochs 5 \
     --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 2 \
-    --gradient_accumulation_steps 4 \
+    --gradient_accumulation_steps 2 \
     --evaluation_strategy "epoch" \
     --prediction_loss_only \
     --save_strategy "epoch" \
@@ -157,97 +193,57 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
     --logging_steps 1 \
     --model_max_length 8192 \
     --gradient_checkpointing True \
-    --lazy_preprocess True \
+    --lazy_preprocess True \    
     --deepspeed ds_configs/stage2.json \
     --report_to none
-```
 
-### Training Retriever
-- Data preparation: Download our newly released tool data and put them under `data/toolllama/raw_answer/`. You can use the following command to process the data for fine-tuning.:
-```bash
-export PYTHONPATH=./
-export QUERY_FILE="data/query/queryG1_demo.json"
-export INDEX_FILE="data/retriever/G1_instruction_test_ids.json"
-export DATASET_NAME="G1"
-export OUTPUT_DIR="data/retriever/G1_demo"
-
-python data/preprocess_retriever_data.py \
-    --query_file $QUERY_FILE \
-    --index_file $INDEX_FILE \
-    --dataset_name $DATASET_NAME \
-    --output_dir $OUTPUT_DIR
-```
-- Training: Run the following commands to train the tool retriever:
-```bash
-export PYTHONPATH=./
-export DATA_DIR="data/retriever/G1_demo/"
-export MODEL_NAME="bert-base-uncased"
-export OUTPUT_PATH="retrieval_model"
-
-python toolbench/retrieval/train.py \
-    --data_path $DATA_DIR \
-    --model_name $MODEL_NAME \
-    --output_path $OUTPUT_PATH \
-    --num_epochs 5 \
-    --train_batch_size 32 \
-    --learning_rate 2e-5 \
-    --warmup_steps 500 \
-    --max_seq_length 256
 ```
 
 
 ## Inference
 
-### Tool Environment Preparation
-Download the tools environment file: `tools.tar` and `response_examples.tar` through google drive, unzip them and replace them with under `toolenv/tools` and `toolenv/response_examples`. Then run with the following commands (should prepare your rapidapi key first):
+First prepare your rapidapi key:
 ```bash
-export RAPIDAPIKEY=""
-export OUTPUT_DIR="data/pipeline_result/toolllama"
-export PYTHONPATH=./
+export RAPIDAPIKEY="your_rapidapi_key"
+```
 
-mkdir $OUTPUT_DIR
+Then run the following commands:
+```bash
+export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
-    --tool_root_dir toolenv/tools/ \
+    --tool_root_dir data/toolenv/tools/ \
     --backbone_model toolllama \
     --model_path toolllama \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
-    --input_query_file data/query/query_demo.json \
-    --output_answer_file $OUTPUT_DIR \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/toolllama_dfs \
     --rapidapi_key $RAPIDAPIKEY
 ```
 
-For **lora** version, run with:
+For **lora** version:
 ```bash
-export RAPIDAPIKEY=""
-export OUTPUT_DIR="data/pipeline_result/toolllama_lora"
 export PYTHONPATH=./
-
-mkdir $OUTPUT_DIR
 python toolbench/inference/qa_pipeline.py \
-    --tool_root_dir toolenv/tools/ \
+    --tool_root_dir data/toolenv/tools/ \
     --backbone_model toolllama \
     --model_path huggyllama/llama-7b \
     --lora \
     --lora_path toolllama_lora \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
-    --input_query_file data/query/inference_query_demo.json \
-    --output_answer_file $OUTPUT_DIR \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/toolllama_lora_dfs \
     --rapidapi_key $RAPIDAPIKEY
 ```
 
-For lora version under **open-domain** setting, run with:
+For lora version under **open-domain** setting, run:
 ```bash
-export RAPIDAPIKEY=""
-export OUTPUT_DIR="data/pipeline_result/toolllama_lora_open_domain"
 export PYTHONPATH=./
-
-mkdir $OUTPUT_DIR
 python toolbench/inference/qa_pipeline_open_domain.py \
-    --tool_root_dir toolenv/tools/ \
-    --corpus_tsv_path data/retrieval/corpus.tsv \
-    --retrieval_model_path /path/to/retrival/model \
+    --tool_root_dir data/toolenv/tools/ \
+    --corpus_tsv_path data/retrieval/G1/corpus.tsv \
+    --retrieval_model_path retrival_model \
     --retrieved_api_nums 5 \
     --backbone_model toolllama \
     --model_path huggyllama/llama-7b \
@@ -255,8 +251,8 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --lora_path toolllama_lora \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
-    --input_query_file data/query/inference_query_demo_open_domain.json \
-    --output_answer_file $OUTPUT_DIR \
+    --input_query_file data/instruction/inference_query_demo_open_domain.json \
+    --output_answer_file data/answer/toolllama_lora_dfs_open_domain \
     --rapidapi_key $RAPIDAPIKEY
 ```
 
@@ -265,7 +261,7 @@ python toolbench/inference/qa_pipeline_open_domain.py \
 
 By fine-tuning LLaMA on ToolBench, we obtain **ToolLLaMA**. Considering that human evaluation can be time-consuming, we follow [AlpacaEval](https://tatsu-lab.github.io/alpaca_eval/) to develop an efficient machine evaluator **ToolEval**, which incorporates two evaluation metrics:
  - **Pass Rate**: Calculates the proportion of successfully completing an instruction within limited OpenAI API calls. 
- - **Preference**: Measured by comparing two answers (action sequences) for a given instruction. We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT. We provide the test instruction and two candidate answers to the evaluator and obtain its preference. We evaluate each answer pair multiple times to improve the reliability of our system. Then we calculate the **Win Rate** (percentage of being preferred by the evaluator). % and **Standard Error** (the standard error of the Win Rate). More details can be found in our paper.
+ - **Preference**: Measured by comparing two answers (action sequences) for a given instruction. We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT. We provide the test instruction and two candidate answers to the evaluator and obtain its preference. We evaluate each answer pair multiple times to improve the reliability of our system. Then we calculate the **Win Rate** (percentage of being preferred by the evaluator) and **Standard Error** (the standard error of the Win Rate). More details can be found in our paper.
 
 To validate the effectiveness of the metric **Preference**, we sample among three different methods (ChatGPT+ReACT, GPT4+ReACT, and ChatGPT+DFSDT) to obtain answer pairs for *600* test instructions. Then we engage humans to annotate human preference for them (*4* annotations for each answer pair, *2400* annotations in total).
 Our automatic evaluator, developed using \turbo, demonstrates a significant correlation of **75.8%** with human annotators.
@@ -273,24 +269,52 @@ We also obtain the agreement among different human annotators **83.54%**, and th
 
 More details about ToolEval can be found in our paper.
 
+### Evaluation with ToolEval
+To evaluate a model on G1-Inst. test set, for example, run the following commands.
+- Pass rate:
+```bash
+python toolbench/tooleval/pass_rate.py --answer_dir data/answer/toolllama_dfs/G1_instruction
+```
+- Win rate (Reference model: ChatGPT-ReACT):
+```bash
+export OPENAI_KEY=""
+export REF_MODEL_DATA="data/answer/chatgpt_cot/G1_instruction"
+export REF_MODEL_METHOD="CoT"
+export TEST_MODEL_DATA="data/answer/toolllama_dfs/G1_instruction"
+export TEST_MODEL_METHOD="DFS"
+python ./toolbench/tooleval/convert_to_answer_format.py \
+    --method CoT \
+    --answer_dir $REF_MODEL_DATA \
+    --output ${REF_MODEL_DATA}_converted
 
+python ./toolbench/tooleval/convert_to_answer_format.py \
+    --method DFS \
+    --answer_dir $TEST_MODEL_DATA \
+    --output ${TEST_MODEL_DATA}_converted
 
+python ./toolbench/tooleval/automatic_eval_sample.py \
+    --output ${REF_MODEL_DATA}_converted \
+    --ref_output ${TEST_MODEL_DATA}_converted \
+    --method $REF_MODEL_METHOD \
+    --use_existed_output
+```
 
 ### Model Experiment
 
 In our main experiments, ToolLLaMA demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions.
 Below are the main results compared with ChatGPT and Text-Davinci-003.
-Pass Rate:
-| model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
-|------------------------|----------|----------|---------|----------|---------|----------|---------|
-| ChatGPT-DFSDT          | 89       | 78       | 84      | 58       | 51      | 57       | 69.6    |
-| Text-Davinci-003-DFSDT | 61       | 53       | 58      | 38       | 38      | 39       | 47.8    |
-| ToolLLaMA              | 75       | 68       | 80      | 56       | 47      | 40       | 61      |
 
-Win Rate: (Reference model: ChatGPT-DFSDT)
+**Pass Rate:**
 | model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
 |------------------------|----------|----------|---------|----------|---------|----------|---------|
-| ChatGPT-DFSDT          | -        | -        | -       | -        | -       | -        | -       |
+| ChatGPT-ReACT          | 66       | 56       | 62      | 22       | 28      | 30       | 44.0    |
+| ChatGPT-DFSDT          | **89**       | **78**       | **84**      | **58**       | **51**      | **57**       | **69.6**    |
+| Text-Davinci-003-DFSDT | 61       | 53       | 58      | 38       | 38      | 39       | 47.8    |
+| ToolLLaMA              | 75       | 68       | 80      | 56       | 47      | 40       | 61.0    |
+
+**Win Rate:** (Reference model: ChatGPT-DFSDT)
+| model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
+|------------------------|----------|----------|---------|----------|---------|----------|---------|
 | Text-Davinci-003-DFSDT | 38       | 34       | 43      | 25       | 20      | 28       | 31.3    |
 | ToolLLaMA              | **50**       | 45       | 45      | **59**       | 48      | 46       | 48.8    |
 

@@ -1,16 +1,7 @@
-from fastapi import FastAPI
-from typing import Optional
 from pydantic import BaseModel
-from fastapi import FastAPI
-import uvicorn
-import time
 import json
 import os
-import requests
-import yaml
-import re
 from typing import Union
-import importlib
 from toolbench.utils import standardize, change_name
 import random
 
@@ -135,7 +126,7 @@ def observation_shorten(schema_root, response_dict, category, tool_name, api_nam
     return str(response_dict["response"])
 
 
-def get_rapidapi_response(input_dict: dict, tools_root="toolenv.tools", schema_root="toolenv/response_examples"):
+def get_rapidapi_response(input_dict: dict, tools_root="data.toolenv.tools", schema_root="data/toolenv/response_examples"):
     info = Info
     info.category = input_dict['category']
     info.tool_name = input_dict['tool_name']

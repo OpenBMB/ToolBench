@@ -12,7 +12,7 @@ from toolbench.inference.LLM.tool_llama_model import ToolLLaMA
 from toolbench.inference.LLM.retriever import ToolRetriever
 from toolbench.inference.Algorithms.single_chain import single_chain
 from toolbench.inference.Algorithms.DFS import DFS_tree_search
-from toolenv.server import get_rapidapi_response
+from toolbench.inference.server import get_rapidapi_response
 from toolbench.utils import (
     standardize,
     change_name,
@@ -370,6 +370,8 @@ class pipeline_runner:
         args = self.args
         query_dir = args.input_query_file
         answer_dir = args.output_answer_file
+        if not os.path.exists(answer_dir):
+            os.mkdir(answer_dir)
         method = args.method
         if args.backbone_model == "toolllama":
             # ratio = 4 means the sequence length is expanded by 4, remember to change the model_max_length to 8192 (2048 * ratio) for ratio = 4

@@ -1,7 +1,8 @@
 export PYTHONPATH=./
 deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
     --model_name_or_path huggyllama/llama-7b  \
-    --data_path  data/toolllama/processed_answer/G1_demo_DFS_woFilter_w2.json \
+    --data_path  data/toolllama_G123_dfs_train.json \
+    --eval_data_path  data/toolllama_G123_dfs_eval.json \
     --conv_template tool-llama-single-round \
     --bf16 True \
     --output_dir toolllama_lora \
