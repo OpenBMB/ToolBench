@@ -98,10 +98,11 @@ def apply_delta_low_cpu_mem(base_model_path, target_model_path, delta_path):
             file_name = f"pytorch_model-{i}.bin"
             for name, param in state_dict.items():
                 if name not in delta_state_dict:
-                    if name in weight_map:
-                        state_dict[name] = weight_map[name]
-                    else:
-                        continue
+                    for delta_file in delta_files:
+                        delta_state_dict = torch.load(delta_file)
+                        gc.collect()
+                        if name in delta_state_dict:
+                            break
 
                 state_dict[name] += delta_state_dict[name]
                 weight_map[name] = file_name
@@ -119,8 +120,6 @@ def apply_delta_low_cpu_mem(base_model_path, target_model_path, delta_path):
     print(f"Saving the target model to {target_model_path}")
     delta_tokenizer.save_pretrained(target_model_path)
     delta_config.save_pretrained(target_model_path)
-
-
 
 
 def apply_delta(base_model_path, target_model_path, delta_path):

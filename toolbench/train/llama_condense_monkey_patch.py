@@ -42,19 +42,3 @@ class CondenseRotaryEmbedding(torch.nn.Module):
 
 def replace_llama_with_condense(ratio):
     transformers.models.llama.modeling_llama.LlamaRotaryEmbedding = partial(CondenseRotaryEmbedding, ratio=ratio)
-
-
-# import transformers
-
-# old_init = transformers.models.llama.modeling_llama.LlamaRotaryEmbedding.__init__
-# def ntk_scaled_init(self, dim, max_position_embeddings=2048, base=10000, device=None):
-
-#     #The method is just these three lines
-#     max_position_embeddings = 8192
-#     a = 4 #Alpha value
-#     base = base * a ** (dim / (dim-2)) #Base change formula
-
-#     old_init(self, dim, max_position_embeddings, base, device)
-
-# def replace_llama_with_condense_freq():
-#     transformers.models.llama.modeling_llama.LlamaRotaryEmbedding.__init__ = ntk_scaled_init

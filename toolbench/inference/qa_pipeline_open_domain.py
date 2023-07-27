@@ -1,0 +1,29 @@
+'''
+Open-domain QA Pipeline
+'''
+import argparse
+from toolbench.inference.Downstream_tasks.rapidapi import pipeline_runner
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--corpus_tsv_path', type=str, default="your_retrival_corpus_path/", required=False, help='')
+    parser.add_argument('--retrieval_model_path', type=str, default="your_model_path/", required=False, help='')
+    parser.add_argument('--retrieved_api_nums', type=int, default=5, required=False, help='')
+    parser.add_argument('--backbone_model', type=str, default="toolllama", required=False, help='chatgpt_function or davinci or toolllama')
+    parser.add_argument('--openai_key', type=str, default="", required=False, help='openai key for chatgpt_function or davinci model')
+    parser.add_argument('--model_path', type=str, default="your_model_path/", required=True, help='')
+    parser.add_argument('--tool_root_dir', type=str, default="your_tools_path/", required=True, help='')
+    parser.add_argument("--lora", action="store_true", help="Load lora model or not.")
+    parser.add_argument('--lora_path', type=str, default="your_lora_path if lora", required=False, help='')
+    parser.add_argument('--max_observation_length', type=int, default=1024, required=False, help='maximum observation length')
+    parser.add_argument('--method', type=str, default="CoT@1", required=False, help='method for answer generation: CoT@n,Reflexion@n,BFS,DFS,UCT_vote')
+    parser.add_argument('--input_query_file', type=str, default="", required=False, help='input path')
+    parser.add_argument('--output_answer_file', type=str, default="",required=False, help='output path')
+    parser.add_argument('--rapidapi_key', type=str, default="",required=False, help='your rapidapi key')
+
+    args = parser.parse_args()
+
+    pipeline_runner = pipeline_runner(args, add_retrieval=True)
+    pipeline_runner.run()

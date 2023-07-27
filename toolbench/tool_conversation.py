@@ -18,6 +18,7 @@ class SeparatorStyle(Enum):
     DOLLY = auto()
     RWKV = auto()
     PHOENIX = auto()
+    ONLY_LAST_ASSISTANT = auto()
 
 
 @dataclasses.dataclass
@@ -45,7 +46,18 @@ class Conversation:
 
     def get_prompt(self) -> str:
         """Get the prompt for generation."""
-        if self.sep_style == SeparatorStyle.ADD_COLON_SINGLE:
+        if self.sep_style == SeparatorStyle.ONLY_LAST_ASSISTANT:
+            seps = [self.sep, self.sep2]
+            ret = ""
+            for i, (role, message) in enumerate(self.messages):
+                if i + 1 == len(self.messages) and message:
+                    ret += role + ": " + str(message) + seps[1]
+                elif message:
+                    ret += role + ": " + str(message) + seps[0]
+                else:
+                    ret += role + ":"
+            return ret
+        elif self.sep_style == SeparatorStyle.ADD_COLON_SINGLE:
             ret = self.system + self.sep
             for role, message in self.messages:
                 if message:
@@ -234,7 +246,7 @@ register_conv_template(
 # Vicuna v1.1 template
 register_conv_template(
     Conversation(
-        name="vicuna_v1.1",
+        name="vicuna-v1.1",
         system="A chat between a curious user and an artificial intelligence assistant. "
         "The assistant gives helpful, detailed, and polite answers to the user's questions.",
         roles=("USER", "ASSISTANT"),
@@ -249,7 +261,7 @@ register_conv_template(
 # tool-llama template
 register_conv_template(
     Conversation(
-        name="tool_llama",
+        name="tool-llama",
         system="A chat between a curious user and an artificial intelligence assistant who can use external tools and APIs to solve the user's question. "
         "The assistant gives tools and APIs calling processes or final answer to the human's question.",
         roles=("Human", "Assistant"),
@@ -260,6 +272,21 @@ register_conv_template(
         sep2="</s>",
     )
 )
+
+# tool_llama_v2 with openai function template
+register_conv_template(
+    Conversation(
+        name="tool-llama-single-round",
+        system="", # We put the system message in the specific SFT data. Remember to use the same system message in inference.
+        roles=("System", "User", "Function", "Assistant"),
+        messages=(),
+        offset=0,
+        sep_style=SeparatorStyle.ONLY_LAST_ASSISTANT,
+        sep="\n",
+        sep2="</s>",
+    )
+)
+
 
 if __name__ == "__main__":
     conv = get_conv_template("vicuna_v1.1")

@@ -1,0 +1,16 @@
+{
+    "api_list": [
+        {
+            "name": "Success Quote",
+            "schema": {
+                "quote": "str"
+            }
+        },
+        {
+            "name": "Motivation Quote",
+            "schema": {
+                "quote": "str"
+            }
+        }
+    ]
+}

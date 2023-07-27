@@ -1,0 +1,42 @@
+tooleval_gpt-3.5-turbo_normalized:
+  prompt_template: "template.txt"
+  fn_completions: "normalized_openai_completions"
+  apis_json: "your/path/to/api_pool.json"
+  completions_kwargs:
+    model: "gpt-3.5-turbo-16k"
+    max_tokens: 100
+    temperature: 0
+    timeout: 10
+    functions:
+      - name: "parse_answer_details"
+        description: "Parse the json answer with layerd nodes and return the informations about the answer"
+        parameters:
+          type: "object"
+          properties:
+            succeed_tool_calling:
+              type: "number"
+              description: "Give the number of times that the 'tool' nodes' message is called successfully without any errors in the response"
+            used_tool_types:
+              type: "number"
+              description: "Give the number of different 'name' in 'tool' nodes' message"
+        "required": [ "succeed_tool_calling", "used_tool_types"]
+      - name: "select_best_final_answer"
+        description: "For given query, select the best answer in answers list and return the index of the best answer"
+        parameters:
+          type: "object"
+          properties:
+            best_answer_index:
+              type: "number"
+              description: "The index of the best answer in the answer list, start from 0"
+        "required": [ "best_answer_index"]
+      - name: "check_solve_query"
+        description: "Check whether the given answer solve the given query, return true or false"
+        parameters:
+          type: "object"
+          properties:
+            is_solved:
+              type: "boolean"
+              description: "true if solved and false if not"
+        "required": ["is_solved"]
+  fn_completion_parser: "index_parser"
+  batch_size: 1

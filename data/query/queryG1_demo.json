@@ -1,0 +1,401 @@
+[
+    {
+        "api_list": [
+            {
+                "category_name": "Finance",
+                "tool_name": "NFTs by address",
+                "api_name": "getNFTs_byaddress",
+                "api_description": "Gets all NFTs currently owned by a given address. Unlimited, results display in 100s.",
+                "required_parameters": [
+                    {
+                        "name": "owner",
+                        "type": "STRING",
+                        "description": "Input the address for NFT owner and scrape their NFTs.\n",
+                        "default": "0x8e7644918b3e280fb3b599ca381a4efcb7ade201"
+                    }
+                ],
+                "optional_parameters": [
+                    {
+                        "name": "pageKey",
+                        "type": "STRING",
+                        "description": "To pull subsequent requests. Note: it expires after 10 minutes",
+                        "default": ""
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "ownedNfts": [
+                        {
+                            "contract": {
+                                "address": "str"
+                            },
+                            "id": {
+                                "tokenId": "str",
+                                "tokenMetadata": {
+                                    "tokenType": "str"
+                                }
+                            },
+                            "balance": "str",
+                            "title": "str",
+                            "description": "str",
+                            "tokenUri": {
+                                "gateway": "str",
+                                "raw": "str"
+                            },
+                            "media": [
+                                {
+                                    "gateway": "str",
+                                    "raw": "str",
+                                    "_list_length": 1
+                                }
+                            ],
+                            "metadata": {
+                                "metadata": "empty list",
+                                "attributes": "empty list"
+                            },
+                            "timeLastUpdated": "str",
+                            "error": "str",
+                            "contractMetadata": {
+                                "name": "str",
+                                "symbol": "str",
+                                "tokenType": "str",
+                                "contractDeployer": "str",
+                                "deployedBlockNumber": "int",
+                                "openSea": {
+                                    "collectionName": "str",
+                                    "safelistRequestStatus": "str",
+                                    "imageUrl": "str",
+                                    "description": "str",
+                                    "externalUrl": "str",
+                                    "lastIngestedAt": "str"
+                                }
+                            },
+                            "spamInfo": {
+                                "isSpam": "str",
+                                "classifications": [
+                                    "list of str with length 7"
+                                ]
+                            },
+                            "_list_length": 100
+                        }
+                    ],
+                    "pageKey": "str",
+                    "totalCount": "int",
+                    "blockHash": "str"
+                }
+            },
+            {
+                "category_name": "Finance",
+                "tool_name": "NFTs by address",
+                "api_name": "getNFTs_metadata",
+                "api_description": "Get NFTs metadata, attributes and enclosed media.",
+                "required_parameters": [
+                    {
+                        "name": "contractAddress",
+                        "type": "STRING",
+                        "description": "Address of NFT contract. Example for Bored APES: 0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb\n",
+                        "default": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
+                    },
+                    {
+                        "name": "tokenId",
+                        "type": "NUMBER",
+                        "description": "Id for NFT",
+                        "default": "4671"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "contract": {
+                        "address": "str"
+                    },
+                    "id": {
+                        "tokenId": "str",
+                        "tokenMetadata": {
+                            "tokenType": "str"
+                        }
+                    },
+                    "title": "str",
+                    "description": "str",
+                    "tokenUri": {
+                        "gateway": "str",
+                        "raw": "str"
+                    },
+                    "media": [
+                        {
+                            "gateway": "str",
+                            "thumbnail": "str",
+                            "raw": "str",
+                            "format": "str",
+                            "bytes": "int",
+                            "_list_length": 1
+                        }
+                    ],
+                    "metadata": {
+                        "image": "str",
+                        "attributes": [
+                            {
+                                "value": "str",
+                                "trait_type": "str",
+                                "_list_length": 6
+                            }
+                        ]
+                    },
+                    "timeLastUpdated": "str",
+                    "contractMetadata": {
+                        "name": "str",
+                        "symbol": "str",
+                        "totalSupply": "str",
+                        "tokenType": "str",
+                        "contractDeployer": "str",
+                        "deployedBlockNumber": "int",
+                        "openSea": {
+                            "floorPrice": "float",
+                            "collectionName": "str",
+                            "safelistRequestStatus": "str",
+                            "imageUrl": "str",
+                            "description": "str",
+                            "externalUrl": "str",
+                            "twitterUsername": "str",
+                            "discordUrl": "str",
+                            "lastIngestedAt": "str"
+                        }
+                    }
+                }
+            }
+        ],
+        "query": "I need to gather information about all the NFTs owned by my friend's address. Please scrape the NFTs owned by address 0x8e7644918b3e280fb3b599ca381a4efcb7ade201 and provide details like contract address, token ID, and balance. Also, include the media and metadata associated with each NFT.",
+        "query_id": 36486
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Finance",
+                "tool_name": "NFTs by address",
+                "api_name": "getNFTs_byaddress",
+                "api_description": "Gets all NFTs currently owned by a given address. Unlimited, results display in 100s.",
+                "required_parameters": [
+                    {
+                        "name": "owner",
+                        "type": "STRING",
+                        "description": "Input the address for NFT owner and scrape their NFTs.\n",
+                        "default": "0x8e7644918b3e280fb3b599ca381a4efcb7ade201"
+                    }
+                ],
+                "optional_parameters": [
+                    {
+                        "name": "pageKey",
+                        "type": "STRING",
+                        "description": "To pull subsequent requests. Note: it expires after 10 minutes",
+                        "default": ""
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "ownedNfts": [
+                        {
+                            "contract": {
+                                "address": "str"
+                            },
+                            "id": {
+                                "tokenId": "str",
+                                "tokenMetadata": {
+                                    "tokenType": "str"
+                                }
+                            },
+                            "balance": "str",
+                            "title": "str",
+                            "description": "str",
+                            "tokenUri": {
+                                "gateway": "str",
+                                "raw": "str"
+                            },
+                            "media": [
+                                {
+                                    "gateway": "str",
+                                    "raw": "str",
+                                    "_list_length": 1
+                                }
+                            ],
+                            "metadata": {
+                                "metadata": "empty list",
+                                "attributes": "empty list"
+                            },
+                            "timeLastUpdated": "str",
+                            "error": "str",
+                            "contractMetadata": {
+                                "name": "str",
+                                "symbol": "str",
+                                "tokenType": "str",
+                                "contractDeployer": "str",
+                                "deployedBlockNumber": "int",
+                                "openSea": {
+                                    "collectionName": "str",
+                                    "safelistRequestStatus": "str",
+                                    "imageUrl": "str",
+                                    "description": "str",
+                                    "externalUrl": "str",
+                                    "lastIngestedAt": "str"
+                                }
+                            },
+                            "spamInfo": {
+                                "isSpam": "str",
+                                "classifications": [
+                                    "list of str with length 7"
+                                ]
+                            },
+                            "_list_length": 100
+                        }
+                    ],
+                    "pageKey": "str",
+                    "totalCount": "int",
+                    "blockHash": "str"
+                }
+            },
+            {
+                "category_name": "Finance",
+                "tool_name": "NFTs by address",
+                "api_name": "getNFTs_metadata",
+                "api_description": "Get NFTs metadata, attributes and enclosed media.",
+                "required_parameters": [
+                    {
+                        "name": "contractAddress",
+                        "type": "STRING",
+                        "description": "Address of NFT contract. Example for Bored APES: 0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb\n",
+                        "default": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
+                    },
+                    {
+                        "name": "tokenId",
+                        "type": "NUMBER",
+                        "description": "Id for NFT",
+                        "default": "4671"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "contract": {
+                        "address": "str"
+                    },
+                    "id": {
+                        "tokenId": "str",
+                        "tokenMetadata": {
+                            "tokenType": "str"
+                        }
+                    },
+                    "title": "str",
+                    "description": "str",
+                    "tokenUri": {
+                        "gateway": "str",
+                        "raw": "str"
+                    },
+                    "media": [
+                        {
+                            "gateway": "str",
+                            "thumbnail": "str",
+                            "raw": "str",
+                            "format": "str",
+                            "bytes": "int",
+                            "_list_length": 1
+                        }
+                    ],
+                    "metadata": {
+                        "image": "str",
+                        "attributes": [
+                            {
+                                "value": "str",
+                                "trait_type": "str",
+                                "_list_length": 6
+                            }
+                        ]
+                    },
+                    "timeLastUpdated": "str",
+                    "contractMetadata": {
+                        "name": "str",
+                        "symbol": "str",
+                        "totalSupply": "str",
+                        "tokenType": "str",
+                        "contractDeployer": "str",
+                        "deployedBlockNumber": "int",
+                        "openSea": {
+                            "floorPrice": "float",
+                            "collectionName": "str",
+                            "safelistRequestStatus": "str",
+                            "imageUrl": "str",
+                            "description": "str",
+                            "externalUrl": "str",
+                            "twitterUsername": "str",
+                            "discordUrl": "str",
+                            "lastIngestedAt": "str"
+                        }
+                    }
+                }
+            }
+        ],
+        "query": "Can you help me research the NFTs owned by a specific Ethereum address? I'm interested in gathering details about the NFTs owned by the address 0x8e7644918b3e280fb3b599ca381a4efcb7ade201. Please provide me with the contract address, token ID, balance, title, description, and media associated with each NFT.",
+        "query_id": 36487
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Social",
+                "tool_name": "Olato Quotes",
+                "api_name": "Love Quote",
+                "api_description": "It shows random quotes",
+                "required_parameters": [],
+                "optional_parameters": [
+                    {
+                        "name": "quotes",
+                        "type": "STRING",
+                        "description": "",
+                        "default": "random quotes"
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "quote": "str"
+                }
+            },
+            {
+                "category_name": "Social",
+                "tool_name": "Olato Quotes",
+                "api_name": "Success Quote",
+                "api_description": "It shows random quotes",
+                "required_parameters": [],
+                "optional_parameters": [
+                    {
+                        "name": "quotes",
+                        "type": "STRING",
+                        "description": "",
+                        "default": "random quotes"
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "quote": "str"
+                }
+            },
+            {
+                "category_name": "Social",
+                "tool_name": "Olato Quotes",
+                "api_name": "Motivation Quote",
+                "api_description": "It shows random quotes",
+                "required_parameters": [],
+                "optional_parameters": [
+                    {
+                        "name": "quotes",
+                        "type": "STRING",
+                        "description": "",
+                        "default": "random quotes"
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "quote": "str"
+                }
+            }
+        ],
+        "query": "I'm planning a surprise party for my best friend, and I want to include meaningful quotes in the decorations. Can you provide me with random love, success, and motivation quotes? It would be great to have quotes that can celebrate love, success, and inspire everyone at the party. Thank you so much for your help!",
+        "query_id": 82217
+    }
+]

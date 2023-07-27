@@ -11,15 +11,27 @@ from torch.utils.tensorboard import SummaryWriter
 from api_evaluator import APIEvaluator
 import argparse
 import os
+from toolbench.utils import process_retrieval_ducoment
 
 import os
 
-# 命令行参数解析
 parser = argparse.ArgumentParser()
 parser.add_argument("--data_path", default=None, type=str, required=True,
                     help="The input data dir. Should contain the .tsv files for the task.")
-parser.add_argument("--output_base_path", default=None, type=str, required=True,
+parser.add_argument("--model_name", default=None, type=str, required=True,
+                    help="The base model name.")
+parser.add_argument("--output_path", default=None, type=str, required=True,
                     help="The base path where the model output will be saved.")
+parser.add_argument("--num_epochs", default=5, type=int, required=True,
+                    help="Train epochs.")
+parser.add_argument("--train_batch_size", default=32, type=int, required=True,
+                    help="Train batch size.")
+parser.add_argument("--learning_rate", default=2e-5, type=float, required=True,
+                    help="Learning rate.")
+parser.add_argument("--warmup_steps", default=500, type=float, required=True,
+                    help="Warmup steps.")
+parser.add_argument("--max_seq_length", default=256, type=int, required=True,
+                    help="Max sequence length.")
 args = parser.parse_args()
 
 logging.basicConfig(format='%(asctime)s - %(message)s',
@@ -31,12 +43,12 @@ logger = logging.getLogger(__name__)
 torch.manual_seed(42)
 torch.cuda.manual_seed(42)
 
-num_epochs = 5
-train_batch_size = 32
-
+num_epochs = args.num_epochs
+train_batch_size = args.train_batch_size
+lr = args.learning_rate
+warmup_steps = args.warmup_steps
 data_path = args.data_path
-
-output_path = args.output_base_path
+output_path = args.output_path
 os.makedirs(output_path, exist_ok=True)
 
 model_save_path = os.path.join(output_path, datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
@@ -52,26 +64,17 @@ def log_callback_st(train_ix, global_step, training_steps, current_lr, loss_valu
 
 
 # Model definition
-word_embedding_model = models.Transformer('bert-base-uncased', max_seq_length=256)
+word_embedding_model = models.Transformer(args.model_name, max_seq_length=args.max_seq_length)
 pooling_model = models.Pooling(word_embedding_model.get_word_embedding_dimension())
 model = SentenceTransformer(modules=[word_embedding_model, pooling_model])
 
 ir_train_queries = {}
 ir_test_queries = {}
-ir_corpus = {}
 ir_relevant_docs = {}
 train_samples = []
 
 documents_df = pd.read_csv(os.path.join(data_path, 'corpus.tsv'), sep='\t')
-for row in documents_df.itertuples():
-    doc = json.loads(row.document_content)
-    ir_corpus[row.docid] = (doc.get('category_name', '') or '') + ', ' + \
-    (doc.get('tool_name', '') or '') + ', ' + \
-    (doc.get('api_name', '') or '') + ', ' + \
-    (doc.get('api_description', '') or '') + \
-    ', required_params: ' + json.dumps(doc.get('required_parameters', '')) + \
-    ', optional_params: ' + json.dumps(doc.get('optional_parameters', '')) + \
-    ', return_schema: ' + json.dumps(doc.get('template_response', ''))
+ir_corpus, _ = process_retrieval_ducoment(documents_df)
 
 train_queries_df = pd.read_csv(os.path.join(data_path, 'train.query.txt'), sep='\t', names=['qid', 'query'])
 for row in train_queries_df.itertuples():
@@ -97,8 +100,8 @@ ir_evaluator = APIEvaluator(ir_test_queries, ir_corpus, ir_relevant_docs)
 model.fit(train_objectives=[(train_dataloader, train_loss)],
                 evaluator=ir_evaluator,
                 epochs=num_epochs,
-                warmup_steps=500,
-                optimizer_params={'lr': 2e-5},
+                warmup_steps=warmup_steps,
+                optimizer_params={'lr': lr},
                 output_path=model_save_path
                 )
 

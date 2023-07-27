@@ -1,0 +1,28 @@
+<message>
+<role>system</role>
+<content>You are a helpful annotator, that help user to annotate data.</content>
+</message>
+<message>
+<role>user</role>
+<content>Giving task description and candidate answers, I want you to choose one preferred answer based on the rules. To do so, I will give you the task description that given to the models, and the candidate answers in a list for chosen. To choose the one preferred answer, you need to first analyse answers based on rules, then give the index number of the preferred answer of JSON to `choose_preference`. 
+
+Here are the preference rules:
+1. if both answers give the none empty `final_answer`, check whether the given `final_answer` solves the given query.
+1.1 if both answers solve the query, choose one with smaller `total_steps`.
+1.1.1 if `total_steps` are same, choose one answer with better `final_answer` quality.
+1.2 if one answer solve while the other not, chose the answer that solve query.
+1.3 if both answers failed, check the `answer_details` to choose one with considering following preference:
+1.3.1 check `response` and prefer more successful tool calling.
+1.3.2 check `name` and prefer using more various tool usage.
+1.3.3 prefer smaller `total_steps`.
+2. if one give none empty `final_answer` while other not, choose the one give `final_answer`.
+3. if both failed to give none empty `final_answer`, following 1.3 to choose one with better `answer_details`.
+
+Here is the task description in JSON format:
+{task_description}
+
+Here are the candidate answers in JSON format:
+{answers}
+
+Now choose the preferred answer by analysing results and the rules given, return the index in range [0,1].</content>
+</message>

@@ -164,7 +164,7 @@ def load_model(
         adapter = get_model_adapter(model_path)
         model, tokenizer = adapter.load_model(model_path, kwargs)
     else:
-        tokenizer = AutoTokenizer.from_pretrained("huggyllama/llama-7b", use_fast=False)
+        tokenizer = AutoTokenizer.from_pretrained("huggyllama/llama-7b", use_fast=False, model_max_length=8192)
     if device == "cuda" and num_gpus == 1 and not cpu_offloading:
         model.to(device)
 
@@ -232,7 +232,7 @@ class VicunaAdapter(BaseAdapter):
         return model, tokenizer
 
     def get_default_conv_template(self, model_path: str) -> Conversation:
-        return get_conv_template("vicuna_v1.1")
+        return get_conv_template("vicuna-v1.1")
 
     def raise_warning_for_old_weights(self, model):
         if isinstance(model, LlamaForCausalLM) and model.model.vocab_size > 32000:
@@ -250,7 +250,7 @@ class ToolLlamaAdapter(BaseAdapter):
     "Model adapater for tool-llama"
 
     def match(self, model_path: str):
-        return "tool-llama" in model_path
+        return "tool-llama" == model_path
 
     def load_model(self, model_path: str, from_pretrained_kwargs: dict):
         tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
@@ -262,13 +262,32 @@ class ToolLlamaAdapter(BaseAdapter):
         return model, tokenizer
 
     def get_default_conv_template(self, model_path: str) -> Conversation:
-        return get_conv_template("tool_llama")
+        return get_conv_template("tool-llama")
+
+class ToolLlamaAdapterSingleRound(BaseAdapter):
+    "Model adapater for tool-llama-single-round"
+
+    def match(self, model_path: str):
+        return "tool-llama-single-round" == model_path
+
+    def load_model(self, model_path: str, from_pretrained_kwargs: dict):
+        tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False, model_max_length=8192)
+        model = AutoModelForCausalLM.from_pretrained(
+            model_path,
+            low_cpu_mem_usage=True,
+            **from_pretrained_kwargs,
+        )
+        return model, tokenizer
+
+    def get_default_conv_template(self, model_path: str) -> Conversation:
+        return get_conv_template("tool-llama-single-round")
 
 
 # Note: the registration order matters.
 # The one registered earlier has a higher matching priority.
 register_model_adapter(VicunaAdapter)
 register_model_adapter(ToolLlamaAdapter)
+register_model_adapter(ToolLlamaAdapterSingleRound)
 
 # After all adapters, try the default base adapter.
 register_model_adapter(BaseAdapter)

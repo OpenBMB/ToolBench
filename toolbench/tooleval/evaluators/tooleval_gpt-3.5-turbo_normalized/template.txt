@@ -1,0 +1,31 @@
+<function>
+<name>parse_answer_details</name>
+<description>
+Giving answer details in the following JSON format:
+{answer_details}
+
+I want you to parse the answer details and give the information of JSON to `parse_answer_details`. Now parse the answer.
+</description>
+</function>
+<function>
+<name>select_best_final_answer</name>
+<description>
+For query {query}, you have the following answers in JSON format:
+{final_answers}
+
+I want you to select the best answer from the above answers and give the index of the answer of JSON to `select_best_final_answer`. Now select the best answer.
+</description>
+</function>
+<function>
+<name>check_solve_query</name>
+<description>
+Please check whether the answer solve the query or not.
+Query:
+{query}
+
+Answer:
+{final_answer}
+
+Now give your judgment of JSON to `check_solve_query`, remember do not be too strict.
+</description>
+</function>
