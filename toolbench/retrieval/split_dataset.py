@@ -3,42 +3,42 @@ import argparse
 import os
 from tqdm import tqdm
 
-# 创建参数解析器并添加参数
+# Create an argument parser and add arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('query_file', help='The name of the query file')
 parser.add_argument('index_file', help='The name of the index file')
 parser.add_argument('dataset_name', help='The name of the output dataset')
-# 解析命令行参数
+# Parse command line arguments
 args = parser.parse_args()
 
-# 读取query文件
+# Read the query file
 with open(args.query_file, 'r') as f:
     query_data = json.load(f)
 
-# 读取index文件
+# Read the index file
 with open(args.index_file, 'r') as f:
     test_index_data = json.load(f)
 
-# 通过集合操作，创建测试集index的集合
+# Create a set of test set indices using set operations
 test_index_set = set(map(int, test_index_data.keys()))
 
-# 初始化训练集和测试集的列表
+# Initialize the lists for the training set and test set
 query_train = []
 query_test = []
 
-# 根据index，将query_data的数据分配到训练集和测试集
+# Allocate the data from query_data to the training set and test set based on the index
 for index, item in tqdm(enumerate(query_data)):
     if index in test_index_set:
         query_test.append(item)
     else:
         query_train.append(item)
 
-# 创建输出文件的名字
+# Create the names of the output files
 output_file_base = args.dataset_name
 train_file = output_file_base + '_train.json'
 test_file = output_file_base + '_test.json'
 
-# 将训练集和测试集写入到对应的json文件中
+# Write the training set and test set into their corresponding json files
 with open(train_file, 'w') as f:
     json.dump(query_train, f)
 

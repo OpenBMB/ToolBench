@@ -19,4 +19,4 @@ uvicorn==0.22.0
 wandb==0.15.2
 deepspeed==0.9.2
 peft==0.3.0
-sentence_transformers
+sentence_transformers==2.2.2
