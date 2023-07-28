@@ -256,7 +256,11 @@ python toolbench/inference/qa_pipeline_open_domain.py \
 ```
 
 ## Setting up and running the interface
-ToolBench contains an Web UI based on [Chatbot UI](https://github.com/mckaywrigley/chatbot-ui), forked to include the use of tools in the interface. It comes in two parts: the backend server, and [chatbot-ui-toolllama](https://github.com/lilbillybiscuit/chatbot-ui-toolllama).
+ToolBench contains a Web UI based on [Chatbot UI](https://github.com/mckaywrigley/chatbot-ui), forked to include the use of tools in the interface. It comes in two parts: the backend server, and [chatbot-ui-toolllama](https://github.com/lilbillybiscuit/chatbot-ui-toolllama).
+
+Here is a video demo:
+![](demo/toolbench-demo.mp4)
+
 
 ### Web UI
 ```bash
