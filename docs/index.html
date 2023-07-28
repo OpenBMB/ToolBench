@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ToolEval Leaderboard</title>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=398766410"></script> -->
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/89920203?s=48&v=4">
+
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.4.2/chroma.min.js"></script>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 50px 20px;
+        background-color: #FFFFFF;
+        color: #000000;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: auto;
+    }
+
+    #branding {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    #branding h1 {
+        margin: 0;
+        font-size: 2em;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 1.2em;
+        color: #777;
+    }
+
+    .box{
+        padding: 0%;
+    }
+
+
+  </style>
+</head>
+<body>
+<div class="container">
+    <div id="branding">
+
+        <h1>
+            <a href="https://github.com/OpenBMB/ToolBench">
+                <img src="https://avatars.githubusercontent.com/u/89920203?s=200&v=4"
+                     alt="Logo" style="height: 2em; vertical-align: middle;"></a>
+            ToolEval
+            Leaderboard
+        </h1>
+        <iframe src="https://ghbtns.com/github-btn.html?user=OpenBMB&repo=ToolBench&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>
+        <iframe src="https://ghbtns.com/github-btn.html?user=OpenBMB&repo=ToolBench&type=watch&count=true&v=2" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>
+        <!-- <br> -->
+        <h2>An Automatic Evaluation for Tool Learning</h2>
+
+    </div>
+
+    <div style="text-align: center;">
+        <h4 >Win Rate of Methods vs.
+            <div style="display: inline-block;"><select id="leaderboardBaseline" class="form-select">
+                <option value="ChatGPT-DFSDT">ChatGPT-DFSDT</option>
+                <!-- <option value="Test">Test</option> -->
+
+            </select></div>
+        </h4>
+        <canvas id="leaderboard"></canvas>
+    </div>
+    <div class="box">
+        <h4>Win Rate of Methods vs.
+            <div style="display: inline-block;">
+                <select id="radarBaseline" class="form-select">
+                <option value="ChatGPT-DFSDT">ChatGPT-DFSDT</option>
+                <!-- <option value="Test">Test</option> -->
+            </select></div>
+            on Each Subsets</h4>
+        <canvas id="radarchart"></canvas>
+    </div>
+
+    <div id="documantation">
+        <h2>About ToolEval</h2>
+        <p>
+            <a href="https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval">ToolEval</a>
+            is an automatic evaluator build for tool learning.
+            We sample among three different methods (ChatGPT+ReACT, GPT4+ReACT, and ChatGPT+DFSDT) to obtain answer pairs for 600 test instructions.
+            Then we engage humans to annotate human preference for them (4 annotations for each answer pair, 2400 annotations in total).
+            Our automatic evaluator, developed using ChatGPT, demonstrates a significant correlation of 75.8% with human annotators.
+            We also obtain the agreement among different human annotators 83.54%, and the agreement between humans and our evaluator 80.21%.
+        </p>
+
+        <h2>Adding new methods or evaluators</h2>
+        <p>
+            We welcome new method contributions to the leaderboard from the community.
+            Please follow the steps in <a href="https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval">ToolEval</a> to get more information.
+        </p>
+
+        <h2>ToolEval limitations</h2>
+        <p>
+            ToolEval is not a comprehensive evaluation of methods' abilities.
+            It can only reflect the methods' abilities on utilizing tools to solve problems.
+            The automatic evaluators are not perfect and can be wrong under certain circumstance.
+            We encourage the community to contribute more robust, safe and ethical evaluators to the project. 
+        </p>
+    </div>
+</div>
+
+<script>
+    const leaderboardSelect = document.getElementById('leaderboardBaseline');
+    const radarSelect = document.getElementById('radarBaseline')
+    const records_urls={
+        'ChatGPT-DFSDT':'https://raw.githubusercontent.com/OpenBMB/ToolBench/master/toolbench/tooleval/results/leaderboard%23%23%23default_evalset%23%23%23tooleval_gpt-3.5-turbo_normalized%23%23%23ChatGPT-DFSDT.csv',
+    }
+    var myRadarChart = null;
+    var myBarChart=null;
+    var backgroundColors=null;
+    var borderColors=null;
+
+    leaderboardSelect.addEventListener('change', function() {
+        radarSelect.value = leaderboardSelect.value;
+        updateLeaderboard(records_urls[leaderboardSelect.value]);
+    });
+    radarSelect.addEventListener('change',function(){
+        leaderboardSelect.value = radarSelect.value;
+        updateLeaderboard(records_urls[leaderboardSelect.value]);
+    });
+
+
+    updateLeaderboard(records_urls[leaderboardSelect.value]);
+    
+    function updateLeaderboard(url){
+        Papa.parse(url,{
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                if (results.data.length>0){
+                    console.log("Success to downlad file.")
+                    const data = results.data
+                    assignColors(data);
+                    plotBarChart(document.getElementById('leaderboard'),data);
+                    plotRadarChart(document.getElementById('radarchart'), data);
+                }
+              }
+        })
+    }
+    function assignColors(data){
+        backgroundColors=[];
+        borderColors=[];
+        data.map((item,i)=>{
+            var color = chroma.random();
+            if (item.Method==leaderboardSelect.value){
+                color = chroma("black")
+            }
+
+            backgroundColors.push(color.alpha(0.5))
+            borderColors.push(color)
+        })
+    }
+      
+
+    function plotRadarChart(canvas, data) {
+        if (myRadarChart){
+            myRadarChart.destroy()
+        }
+        myRadarChart = new Chart(canvas, {
+            type: 'radar',
+            data: {
+                labels: ['G1 Tool','G1 Category','G1 Instruction',
+                        'G2 Category','G2 Instruction','G3 Instruction'],
+                datasets: data.map((item,i)=>{
+                    var hidden = true;
+                    if (i<=5){
+                        hidden = false;
+                    }
+
+                    return {
+                        label: item.Method,
+                        data: [item.G1_tool_WinRate, item.G1_category_WinRate, item.G1_instruction_WinRate,item.G2_category_WinRate, item.G2_instruction_WinRate, item.G3_instruction_WinRate],
+                        backgroundColor:backgroundColors[i],
+                        borderColor:borderColors[i],
+                        fill: false,
+                        hidden:hidden
+                    }
+                })
+            },
+            options: {
+                plugins:{
+                    //title:{
+                    //    display:true,
+                    //    text:'Win Rate on Subsets',
+                    //    font:{
+                    //        size:20
+                    //    }
+                    //},
+                    legend:{
+                        //position:'left',
+                        labels:{
+                            font:{
+                                size:16,
+                                weight:'bold'
+                            }
+                        }
+                    }
+
+                },
+                scales: {
+                    r: {
+                        //max:1.0,
+                        pointLabels:{
+                            font:{
+                                size:16,
+                                weight:'bold'
+                            },
+                            
+                        },                        
+                    },
+                    
+                },
+
+            },
+        })
+    }
+
+    function plotBarChart(canvas,data) {
+
+        if (myBarChart){
+            myBarChart.destroy();
+        }
+        
+
+        myBarChart = new Chart(canvas, {
+            type: 'bar',
+            data: {
+            labels: data.map((item,i)=>item.Method),
+            datasets: [
+                {
+                    label: 'Win Rate',
+                    data: data.map((item,i)=>item.WinRate),
+                    //sems: sems,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 2,
+                },
+
+            ],
+            },
+            options: {
+                
+                indexAxis:'y',
+                scales: {
+                    x: {
+                        //max:1.0,
+                        beginAtZero: true,
+                    },
+                    y:{
+                        ticks:{
+                            font:{
+                                size:16,
+                                weight:'bold'
+                            },
+                        }
+                    }
+
+                },
+                plugins: {
+                    //title:{
+                    //    display:true,
+                    //    text:'Win Rate Leaderboard',
+                    //    font:{
+                    //        size:20
+                    //    }
+                    //},
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        //callbacks:{
+                        //    footer:(tooltipItems)=>{
+                        //        return `SEM: ${tooltipItems[0].dataset.sems[tooltipItems[0].dataIndex].substring(0,5)}`
+                        //    }
+                        //}
+                    },
+                },
+                
+            },
+        })
+    };
+
+
+
+
+</script>
+</body>
+</html>
