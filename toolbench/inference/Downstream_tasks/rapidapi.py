@@ -31,7 +31,7 @@ def get_white_list(tool_root_dir):
             if not file.endswith(".json"):
                 continue
             standard_tool_name = file.split(".")[0]
-            with open(os.path.join(white_list_dir,cate,file), "r", encoding="utf-8") as reader:
+            with open(os.path.join(white_list_dir,cate,file)) as reader:
                 js_data = json.load(reader)
             origin_tool_name = js_data["tool_name"]
             white_list[standardize(origin_tool_name)] = {"description": js_data["tool_description"], "standard_tool_name": standard_tool_name}
@@ -373,6 +373,8 @@ class pipeline_runner:
     def get_backbone_model(self):
         args = self.args
         if args.backbone_model == "toolllama":
+            # ratio = 4 means the sequence length is expanded by 4, remember to change the model_max_length to 8192 (2048 * ratio) for ratio = 4
+            replace_llama_with_condense(ratio=4)
             if args.lora:
                 backbone_model = ToolLLaMALoRA(base_name_or_path=args.model_path, model_name_or_path=args.lora_path)
             else:
