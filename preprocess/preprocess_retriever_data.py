@@ -71,10 +71,13 @@ def process_data(data, pairs):
     for doc in tqdm(data):
         for api in doc['api_list']:
             document_content = api
+            api_identity = [api['tool_name'], api['api_name']]
             doc_id = doc_id_map.setdefault(json.dumps(document_content), len(doc_id_map) + 1)
             documents.append([doc_id, json.dumps(document_content)])
-            queries = doc['query'] if isinstance(doc['query'], list) else [doc['query']]
-            for query in queries:
+
+            # Check if the current API is in the relevant APIs
+            if api_identity in doc['relevant APIs']:
+                query = doc['query']
                 query_id = query_id_map.setdefault(query, len(query_id_map) + 1)
                 pairs.append(([query_id, query], [query_id, 0, doc_id, 1]))
 
