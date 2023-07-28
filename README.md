@@ -82,7 +82,7 @@ ToolBench contains both single-tool and multi-tool scenarios. The multi-tool sce
 
 ## 🤖Model
 
-We release the 7b lora version of [ToolLLaMA](https://huggingface.co/pooruss/ToolLLaMA-7b-lora) which is trained on the released dataset. The models are trained in a multi-task fashion. We also release the [tool retriever](https://huggingface.co/KunlunZhu/ToolBench_IR_bert_based_uncased/tree/main) trained under our experimental setting.
+We release the [ToolLLaMA-7b](https://huggingface.co/ToolBench/ToolLLaMA-7b) and [ToolLLaMA-7b-LoRA](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA) models, which are both trained on the released dataset in a multi-task fashion. We also release the [tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased) trained under our experimental setting.
 
 ## 🚀Fine-tuning
 ### Install
@@ -98,7 +98,7 @@ pip install -r requirements.txt
 
 Prepare the data and tool environment. Download the [data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) and unzip it under ToolBench:
 ```bash
-tar -zxvf data.tar
+unzip data.zip
 ```
 
 
@@ -212,7 +212,7 @@ export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
     --tool_root_dir data/toolenv/tools/ \
     --backbone_model toolllama \
-    --model_path /path/to/your/toolllama \
+    --model_path ToolBench/ToolLLaMA-7b \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
@@ -228,7 +228,7 @@ python toolbench/inference/qa_pipeline.py \
     --backbone_model toolllama \
     --model_path huggyllama/llama-7b \
     --lora \
-    --lora_path /path/to/your/toolllama_lora \
+    --lora_path /path/to/your/downloaded/ToolLLaMA-7b-LoRA \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \

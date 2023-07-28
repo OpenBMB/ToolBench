@@ -85,8 +85,7 @@ ToolBench包含单工具和多工具场景。多工具场景可以进一步分�
 
 
 ## 🤖模型
-
-我们发布了7b Lora 版本的[ToolLLaMA](https://huggingface.co/pooruss/ToolLLaMA-7b-lora)，该版本是在发布的数据集上以多任务方式训练的。我们也发布在实验设置下训练的[tool retriever](https://huggingface.co/KunlunZhu/ToolBench_IR_bert_based_uncased/tree/main).
+我们发布了全参数微调版本[ToolLLaMA-7b](https://huggingface.co/ToolBench/ToolLLaMA-7b)和lora版本[ToolLLaMA-7b-LoRA](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA)，都是在发布的数据集上以多任务方式训练的。我们也发布在实验设置下训练的[tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased).
 ## 🚀精调
 ### 安装
 克隆这个仓库并进入ToolBench文件夹。
@@ -101,7 +100,7 @@ pip install -r requirements.txt
 
 准备数据和工具环境。下载[数据](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)并解压到ToolBench目录下:
 ```bash
-tar -zxvf data.tar
+unzip data.zip
 ```
 
 
