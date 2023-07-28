@@ -31,7 +31,7 @@ def get_white_list(tool_root_dir):
             if not file.endswith(".json"):
                 continue
             standard_tool_name = file.split(".")[0]
-            with open(os.path.join(white_list_dir,cate,file)) as reader:
+            with open(os.path.join(white_list_dir,cate,file), "r", encoding="utf-8") as reader:
                 js_data = json.load(reader)
             origin_tool_name = js_data["tool_name"]
             white_list[standardize(origin_tool_name)] = {"description": js_data["tool_description"], "standard_tool_name": standard_tool_name}
@@ -360,11 +360,32 @@ You have access of the following tools:\n'''
 
 
 class pipeline_runner:
-    def __init__(self, args, add_retrieval=False, process_id=0):
+    def __init__(self, args, add_retrieval=False, process_id=0, server=False):
         self.args = args
         self.add_retrieval = add_retrieval
         self.process_id = process_id
-        self.task_list = self.generate_task_list()
+        self.server = server
+        if not self.server: self.task_list = self.generate_task_list()
+        else: self.task_list = []
+
+
+
+    def get_backbone_model(self):
+        args = self.args
+        if args.backbone_model == "toolllama":
+            if args.lora:
+                backbone_model = ToolLLaMALoRA(base_name_or_path=args.model_path, model_name_or_path=args.lora_path)
+            else:
+                backbone_model = ToolLLaMA(model_name_or_path=args.model_path)
+        else:
+            backbone_model = args.backbone_model
+        return backbone_model
+
+    def get_retriever(self):
+        return ToolRetriever(corpus_tsv_path=self.args.corpus_tsv_path, model_path=self.args.retrieval_model_path)
+
+    def get_args(self):
+        return self.args
 
     def generate_task_list(self):
         args = self.args
@@ -373,15 +394,7 @@ class pipeline_runner:
         if not os.path.exists(answer_dir):
             os.mkdir(answer_dir)
         method = args.method
-        if args.backbone_model == "toolllama":
-            # ratio = 4 means the sequence length is expanded by 4, remember to change the model_max_length to 8192 (2048 * ratio) for ratio = 4
-            replace_llama_with_condense(ratio=4)
-            if args.lora:   
-                backbone_model = ToolLLaMALoRA(base_name_or_path=args.model_path, model_name_or_path=args.lora_path)
-            else:
-                backbone_model = ToolLLaMA(model_name_or_path=args.model_path)
-        else:
-            backbone_model = args.backbone_model
+        backbone_model = self.get_backbone_model()
         white_list = get_white_list(args.tool_root_dir)
         task_list = []
         querys = json.load(open(query_dir, "r"))
@@ -399,7 +412,8 @@ class pipeline_runner:
             task_list.append((method, backbone_model, query_id, data_dict, args, answer_dir, tool_des))
         return task_list
     
-    def method_converter(self, backbone_model, openai_key, method, env, process_id, single_chain_max_step=12, max_query_count=60):
+    def method_converter(self, backbone_model, openai_key, method, env, process_id, single_chain_max_step=12, max_query_count=60, callbacks=None):
+        if callbacks is None: callbacks = []
         if backbone_model == "chatgpt_function":
             model = "gpt-3.5-turbo-16k-0613"
             llm_forward = ChatGPTFunction(model=model, openai_key=openai_key)
@@ -425,7 +439,7 @@ class pipeline_runner:
             with_filter = True
             if "woFilter" in method:
                 with_filter = False
-            chain = DFS_tree_search(llm=llm_forward, io_func=env,process_id=process_id)
+            chain = DFS_tree_search(llm=llm_forward, io_func=env,process_id=process_id, callbacks=callbacks)
             result = chain.start(
                                 single_chain_max_step=single_chain_max_step,
                                 tree_beam_size = width,
@@ -437,17 +451,30 @@ class pipeline_runner:
             raise NotImplementedError
         return chain, result
     
-    def run_single_task(self, method, backbone_model, query_id, data_dict, args, output_dir_path, tool_des, retriever=None, process_id=0):
+    def run_single_task(self, method, backbone_model, query_id, data_dict, args, output_dir_path, tool_des, retriever=None, process_id=0, callbacks=None, server= None):
+        if server is None:
+            server = self.server
+        if callbacks is None:
+            if server: print("Warning: no callbacks are defined for server mode")
+            callbacks = []
         splits = output_dir_path.split("/")
         os.makedirs("/".join(splits[:-1]),exist_ok=True)
         os.makedirs("/".join(splits),exist_ok=True)
         output_file_path = os.path.join(output_dir_path,f"{query_id}_{method}.json")
-        if os.path.exists(output_file_path):
+        if (not server) and os.path.exists(output_file_path):
             return
+        [callback.on_tool_retrieval_start() for callback in callbacks]
         env = rapidapi_wrapper(data_dict, tool_des, retriever, args, process_id=process_id)
+        [callback.on_tool_retrieval_end(
+            tools=env.functions
+        ) for callback in callbacks]
         query = data_dict["query"]
         if process_id == 0:
             print(colored(f"[process({process_id})]now playing {query}, with {len(env.functions)} APIs", "green"))
+        [callback.on_request_start(
+            user_input=query,
+            method=method,
+        ) for callback in callbacks]
         chain,result = self.method_converter(
             backbone_model=backbone_model,
             openai_key=args.openai_key,
@@ -455,7 +482,13 @@ class pipeline_runner:
             env=env,
             process_id=process_id,
             single_chain_max_step=12,
-            max_query_count=200)
+            max_query_count=200,
+            callbacks=callbacks
+        )
+        [callback.on_request_end(
+            chain=chain.terminal_node[0].messages,
+            outputs=chain.terminal_node[0].description,
+        ) for callback in callbacks]
         if output_dir_path is not None:
             with open(output_file_path,"w") as writer:
                 data = chain.to_json(answer=True,process=True)
@@ -480,7 +513,7 @@ class pipeline_runner:
         task_list = new_task_list
         print(f"undo tasks: {len(task_list)}")
         if self.add_retrieval:
-            retriever = ToolRetriever(corpus_tsv_path=self.args.corpus_tsv_path, model_path=self.args.retrieval_model_path)
+            retriever = self.get_retriever()
         else:
             retriever = None
         for k, task in enumerate(task_list):

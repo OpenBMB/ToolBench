@@ -25,3 +25,6 @@ tensorboard
 openai
 scipy
 termcolor
+flask
+flask_cors
+sentence_transformers
