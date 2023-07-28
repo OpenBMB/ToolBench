@@ -310,16 +310,24 @@ python ./toolbench/tooleval/automatic_eval_sample.py \
 **通过率**
 | model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
 |------------------------|----------|----------|---------|----------|---------|----------|---------|
-| ChatGPT-ReACT          | 66       | 56       | 62      | 22       | 28      | 30       | 44.0    |
 | ChatGPT-DFSDT          | **89**       | **78**       | **84**      | **58**       | **51**      | **57**       | **69.6**    |
+| ChatGPT-ReACT          | 66       | 56       | 62      | 22       | 28      | 30       | 44.0    |
 | Text-Davinci-003-DFSDT | 61       | 53       | 58      | 38       | 38      | 39       | 47.8    |
+| Text-Davinci-003-ReACT | 30       | 19       | 25      | 11       | 12      | 14       | 18.5    |
 | ToolLLaMA              | 75       | 68       | 80      | 56       | 47      | 40       | 61.0    |
+| ToolLLaMA-LoRA              | 61       | 51       | 63      | 42       | 38      | 45       | 50.0    |
+| ToolLLaMA-API Retriever              | 72      | 62       | 62      | 55       | 45      | 47       | 57.2    |
 
 **优胜率** (参考模型: ChatGPT-DFSDT)
 | model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
 |------------------------|----------|----------|---------|----------|---------|----------|---------|
+| ChatGPT-DFSDT | 50       | 50       | 50      | 50       | 50      | 50       | 50.0    |
+| ChatGPT-ReACT | 38       | 32       | 41      | 43       | 22      | 23       | 30.7    |
+| Text-Davinci-003-ReACT | 14       | 21       | 18      | 8       | 7      | 12       | 13.3    |
 | Text-Davinci-003-DFSDT | 38       | 34       | 43      | 25       | 20      | 28       | 31.3    |
 | ToolLLaMA              | **50**       | 45       | 45      | **59**       | 48      | 46       | 48.8    |
+| ToolLLaMA-LoRA              | 43       | 36.4       | 30      | 42       | 45      | **51**       | 41.2    |
+| ToolLLaMA-API Retriever              | **51**       | 39       | 44      | 49       | 49      | **55**       | 47.8    |
 
 
 ## TODO
