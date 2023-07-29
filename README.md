@@ -25,14 +25,19 @@
 
 </div>
 
+<div align="center">
+<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="400px">
+</div>
 
 🔨This project aims to construct **open-source, large-scale, high-quality** instruction tuning SFT data to facilitate the construction of powerful LLMs with general **tool-use** capability. We aim to empower open-source LLMs to master thousands of diverse real-world APIs. We achieve this by collecting a high-quality instruction-tuning dataset. It is constructed automatically using the latest ChatGPT (gpt-3.5-turbo-16k), which is upgraded with enhanced [function call](https://openai.com/blog/function-calling-and-other-api-updates) capabilities. We provide the dataset, the corresponding training and evaluation scripts, and a capable model ToolLLaMA fine-tuned on ToolBench.
 
 ✨More details and our paper about ToolBench and ToolLLaMA are coming soon!
 
+<br>
 <div align="center">
-<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="400px">
+<img src="assets/overview.png" width="800px">
 </div>
+<br>
 
 ✨✨Features:
  - **API Collection**: we gather **16464** representational state transfer (REST) APIs from [RapidAPI](https://rapidapi.com/hub), a platform that hosts massive real-world APIs provided by developers.
@@ -44,16 +49,10 @@
 
 <div align="center">
 
-<img src="assets/demo.mov" width="700px">
+https://github.com/OpenBMB/ToolBench/assets/25274507/f1151d85-747b-4fac-92ff-6c790d8d9a31
 
 </div>
 
-
-<br>
-<div align="center">
-<img src="assets/overview.png" width="800px">
-</div>
-<br>
 
 *Please note that current released data is still not the final version. We are conducting extensive post-processing to improve the data quality and increase the coverage of real-world tools.*
 
