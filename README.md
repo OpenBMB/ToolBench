@@ -349,15 +349,16 @@ In our main experiments, ToolLLaMA demonstrates a compelling capability to handl
 Below are the main results compared with ChatGPT and Text-Davinci-003.
 
 **Pass Rate:**
-| model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
-|------------------------|----------|----------|---------|----------|---------|----------|---------|
-| ChatGPT-DFSDT          | **89**       | **78**       | **84**      | **58**       | **51**      | **57**       | **69.6**    |
-| ChatGPT-ReACT          | 66       | 56       | 62      | 22       | 28      | 30       | 44.0    |
-| Text-Davinci-003-DFSDT | 61       | 53       | 58      | 38       | 38      | 39       | 47.8    |
-| Text-Davinci-003-ReACT | 30       | 19       | 25      | 11       | 12      | 14       | 18.5    |
-| ToolLLaMA              | 75       | 68       | 80      | 56       | 47      | 40       | 61.0    |
-| ToolLLaMA-LoRA              | 61       | 51       | 63      | 42       | 38      | 45       | 50.0    |
-| ToolLLaMA-API Retriever              | 72      | 62       | 62      | 55       | 45      | 47       | 57.2    |
+| model                   | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average  |
+|-------------------------|----------|----------|---------|----------|---------|----------|----------|
+| ChatGPT-DFSDT           | **78**   | **84**   | **89**  | **51**   | **58**  | **57**   | **69.6** |
+| ChatGPT-ReACT           | 56       | 62       | 66      | 28       | 22      | 30       | 44.0     |
+| Text-Davinci-003-DFSDT  | 53       | 58       | 61      | 38       | 38      | 39       | 47.8     |
+| Text-Davinci-003-ReACT  | 19       | 25       | 30      | 12       | 11      | 14       | 18.5     |
+| ToolLLaMA               | 68       | 80       | 75      | 47       | 56      | 40       | 61.0     |
+| ToolLLaMA-LoRA          | 51       | 63       | 61      | 38       | 42      | 45       | 50.0     |
+| ToolLLaMA-API Retriever | 62       | 62       | 72      | 45       | 55      | 47       | 57.2     |
+
 
 **Win Rate:** (Reference model: ChatGPT-DFSDT)
 | model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
