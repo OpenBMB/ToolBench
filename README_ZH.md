@@ -17,7 +17,7 @@
   <a href="#model">Model</a> •
   <a href="#data">Data Release</a> •
   <a href="https://github.com/OpenBMB/BMTools">Toolkit</a> •
-  <a href="https://arxiv.org/abs/2304.08354">Paper</a> •
+  <a href="assets/paper.pdf">Paper</a> •
   <a href="https://github.com/thunlp/ToolLearningPapers">Paper List</a> •
   <a href="#citation">Citation</a> •
 
@@ -44,6 +44,14 @@
  - API Retriever: 我们整合了API检索模块，为ToolLLaMA提供了开放域的工具使用能力。
 
  - 所有数据均由OpenAI API自动生成并由我们筛选，整个数据创建过程易于扩展。
+
+ - **以下是ToolLLaMA的demo展示**
+
+<div align="center">
+
+<img src="assets/demo.mov" width="700px">
+
+</div>
 
 
 <br>
