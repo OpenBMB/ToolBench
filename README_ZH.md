@@ -25,14 +25,19 @@
 
 </div>
 
+<div align="center">
+<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="400px">
+</div>
 
 🔨这个项目旨在构建**开源、大规模、高质量**的指令调整 SFT 数据，以促进构建具有通用工具使用能力的强大LLMs。我们的目标是赋予开源 LLMs 掌握成千上万多样的真实世界API能力。我们通过收集高质量的指令调整数据集来实现这一目标。该数据集使用最新的ChatGPT（gpt-3.5-turbo-16k）自动构建，该版本升级了增强的函数调用功能。我们提供数据集、相应的训练和评估脚本，以及在ToolBench上经过微调的强大模型ToolLLaMA。
 
 ✨更多有关 ToolBench 的详细信息以及我们的论文即将发布！
 
+<br>
 <div align="center">
-<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="400px">
+<img src="assets/overview.png" width="800px">
 </div>
+<br>
 
 ✨✨特点:
  - API收集: 我们从 RapidAPI 收集了 16464 个API。RapidAPI 是一个托管开发者提供的大规模真实世界API的平台。
@@ -49,16 +54,9 @@
 
 <div align="center">
 
-<img src="assets/demo.mov" width="700px">
+https://github.com/OpenBMB/ToolBench/assets/25274507/f1151d85-747b-4fac-92ff-6c790d8d9a31
 
 </div>
-
-
-<br>
-<div align="center">
-<img src="assets/overview.png" width="800px">
-</div>
-<br>
 
 *请注意，当前发布的数据仍然不是最终版本。我们正在进行数据的后期处理，以提高数据质量并增加真实世界工具的覆盖范围。*
 
