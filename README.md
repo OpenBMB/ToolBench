@@ -102,8 +102,9 @@ Install Package (python>=3.9)
 pip install -r requirements.txt
 ```
 
-Prepare the data and tool environment. Download the [data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) and unzip it under ToolBench:
+Prepare the data and tool environment:
 ```bash
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Vis-RxBstXLKC1W1agIQUJNuumPJrrw0&confirm=yes' -O data.zip
 unzip data.zip
 ```
 

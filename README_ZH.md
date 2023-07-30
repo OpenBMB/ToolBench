@@ -104,8 +104,9 @@ cd ToolBench
 pip install -r requirements.txt
 ```
 
-准备数据和工具环境。下载[数据](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)并解压到ToolBench目录下:
+准备数据和工具环境:
 ```bash
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Vis-RxBstXLKC1W1agIQUJNuumPJrrw0&confirm=yes' -O data.zip
 unzip data.zip
 ```
 
