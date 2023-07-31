@@ -282,6 +282,48 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --rapidapi_key $RAPIDAPIKEY
 ```
 
+## Setting up and running the interface
+
+ToolBench包含一个基于[Chatbot UI](https://github.com/mckaywrigley/chatbot-ui)的Web UI，经过修改以包含在界面中使用工具的功能。它包含两个部分：后端服务器和[chatbot-ui-toolllama](https://github.com/lilbillybiscuit/chatbot-ui-toolllama)。这是一个[视频演示](assets/toolbench-demo.mp4)。
+
+### Web UI
+```bash
+git clone https://github.com/lilbillybiscuit/chatbot-ui-toolllama
+cd chatbot-ui-toolllama
+npm install
+npm run dev
+```
+
+应用将在 http://localhost:3000/ 上可用
+
+### Backend server
+```bash
+export PYTHONPATH=./
+python toolbench/inference/toolbench_server.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --corpus_tsv_path data/retrieval/G1/corpus.tsv \
+    --retrieval_model_path /path/to/your/retrival_model \
+    --retrieved_api_nums 5 \
+    --backbone_model toolllama \
+    --model_path huggyllama/llama-7b \
+    --lora \
+    --lora_path /path/to/your/toolllama_lora \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo_open_domain.json \
+    --output_answer_file data/answer/toolllama_lora_dfs_open_domain \
+    --rapidapi_key $RAPIDAPIKEY
+```
+
+This server will be available on `http://localhost:5000/`. To start a request, call `http://localhost:5000/stream` with a GET or POST request containing a JSON object with the following fields:
+```json
+{
+    "text": "What is the weather in New York today?",
+    "top_k": 5,
+    "method": "DFS_woFilter_w2"
+}
+```
+
 
 ## ToolEval
 
