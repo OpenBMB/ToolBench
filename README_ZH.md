@@ -26,10 +26,10 @@
 </div>
 
 <div align="center">
-<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="400px">
+<img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="350px">
 </div>
 
-🔨这个项目旨在构建**开源、大规模、高质量**的指令调整 SFT 数据，以促进构建具有通用工具使用能力的强大LLMs。我们的目标是赋予开源 LLMs 掌握成千上万多样的真实世界API能力。我们通过收集高质量的指令调整数据集来实现这一目标。该数据集使用最新的ChatGPT（gpt-3.5-turbo-16k）自动构建，该版本升级了增强的函数调用功能。我们提供数据集、相应的训练和评估脚本，以及在ToolBench上经过微调的强大模型ToolLLaMA。
+🔨这个项目(ToolLLM)旨在构建**开源、大规模、高质量**的指令调整 SFT 数据，以促进构建具有通用工具使用能力的强大LLMs。我们的目标是赋予开源 LLMs 掌握成千上万多样的真实世界API能力。我们通过收集高质量的指令调整数据集来实现这一目标。该数据集使用最新的ChatGPT（gpt-3.5-turbo-16k）自动构建，该版本升级了增强的函数调用功能。我们提供数据集、相应的训练和评估脚本，以及在ToolBench上经过微调的强大模型ToolLLaMA。
 
 ✨以下是数据集构建方法、模型训练、评测的整体概览
 
@@ -64,9 +64,13 @@ https://github.com/OpenBMB/ToolBench/assets/25274507/f1151d85-747b-4fac-92ff-6c7
 
 </div>
 
-*我们将不断进行数据的后处理与清洗，以提高数据质量并增加真实世界工具的覆盖范围。*
+目前，我们的ToolLLaMA已经达到了和ChatGPT（turbo-16k）接近的工具使用能力，未来*我们将不断进行数据的后处理与清洗，以提高数据质量并增加真实世界工具的覆盖范围。*
 
-*[老版本](https://github.com/OpenBMB/ToolBench/tree/legacy)*
+<div align="center">
+<img src="assets/performance.png" width="350px">
+</div>
+
+这是*[老版本](https://github.com/OpenBMB/ToolBench/tree/legacy)*的ToolBench。
 <!-- 💁‍♂️💁💁‍♀️**We need your help!** Curating large-scale real-world APIs and their corresponding tool-use SFT data is not easy, we sincerely invite you to join us in building and refining ToolBench. We will list all participants as co-authors in the final paper. Please contact and join [us](mailto:yujiaqin16@gmail.com) if you're interested. -->
 
 ## 🗒️数据
@@ -76,6 +80,14 @@ https://github.com/OpenBMB/ToolBench/assets/25274507/f1151d85-747b-4fac-92ff-6c7
 | 工具数量 | API数量 | 实例数量 | 真实API调用数量 | 平均Reasoning步数 |
 |-----------|----------|---------------|---------------|------------------|
 | 3451      | 16464    | 12657         | 37204         | 4.1              |
+
+我们从[RapidAPI](https://rapidapi.com/hub)爬取了超过16000个API，并且为之构造了真实的人类指令。以下是RapidAPI的架构信息与指令构造的方式。
+
+<br>
+<div align="center">
+<img src="assets/instructiongeneration.png" width="800px">
+</div>
+<br>
 
 
 ToolBench包含单工具和多工具场景。多工具场景可以进一步分为类别内多工具和集合内多工具。我们在数据创建过程中使用DFSDT方法。以下是使用DFSDT方法进行数据创建的说明：
