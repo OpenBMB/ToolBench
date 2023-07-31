@@ -63,7 +63,7 @@ https://github.com/OpenBMB/ToolBench/assets/25274507/f1151d85-747b-4fac-92ff-6c7
 Currently, our ToolLLaMA has reached the performance of ChatGPT (turbo-16k) in tool use, in the future, *we will continually improve the data quality and increase the coverage of real-world tools.*
 
 <div align="center">
-<img src="assets/performance.png" width="350px">
+<img src="assets/performance.png" width="300px">
 </div>
 
 Here is the *[Old version](https://github.com/OpenBMB/ToolBench/tree/legacy)* of ToolBench.

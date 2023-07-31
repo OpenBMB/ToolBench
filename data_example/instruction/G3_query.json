@@ -1,0 +1,682 @@
+[
+    {
+        "api_list": [
+            {
+                "category_name": "Finance",
+                "tool_name": "Investors Exchange (IEX) Trading",
+                "api_name": "IEX Short Interest List",
+                "api_description": "Consolidated market short interest positions in all IEX-listed securities",
+                "required_parameters": [
+                    {
+                        "name": "symbol",
+                        "type": "STRING",
+                        "description": "",
+                        "default": "GOOG"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Finance",
+                "tool_name": "Investors Exchange (IEX) Trading",
+                "api_name": "IEX Regulation SHO Threshold Securities List",
+                "api_description": "IEX-listed securities that have an aggregate fail to deliver position for five consecutive settlement days at a registered clearing agency, totaling 10,000 shares or more and equal to at least 0.5% of the issuer\u2019s total shares outstanding (i.e., \u201cthreshold securities\u201d). ",
+                "required_parameters": [
+                    {
+                        "name": "symbol",
+                        "type": "STRING",
+                        "description": "",
+                        "default": "NVDA"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Finance",
+                "tool_name": "Investors Exchange (IEX) Trading",
+                "api_name": "OHLC",
+                "api_description": "Returns the official open and close for a give symbol.",
+                "required_parameters": [
+                    {
+                        "name": "symbol",
+                        "type": "STRING",
+                        "description": "Specify stock symbol or use \"market\" for market-wide information",
+                        "default": "qcom"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Food",
+                "tool_name": "The Cocktail DB",
+                "api_name": "List of Cocktails",
+                "api_description": "This endpoint responds with a list of cocktails that includes their names and images, as well as their IDs, which must be provided in the \"Detailed Cocktail Recipe by ID\" endpoint to receive the detailed cocktail recipe.",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "id": "str",
+                    "title": "str",
+                    "difficulty": "str",
+                    "image": "str"
+                }
+            },
+            {
+                "category_name": "Food",
+                "tool_name": "The Cocktail DB",
+                "api_name": "Detailed Cocktail Recipe by ID",
+                "api_description": "Get Cocktail by ID",
+                "required_parameters": [
+                    {
+                        "name": "id",
+                        "type": "string",
+                        "description": "",
+                        "default": "45"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "id": "str",
+                    "title": "str",
+                    "difficulty": "str",
+                    "portion": "str",
+                    "time": "str",
+                    "description": "str",
+                    "ingredients": [
+                        "list of str with length 5"
+                    ],
+                    "method": [
+                        {
+                            "Step 1": "str",
+                            "_list_length": 3
+                        }
+                    ],
+                    "image": "str"
+                }
+            },
+            {
+                "category_name": "Data",
+                "tool_name": "Web Search",
+                "api_name": "spellCheck",
+                "api_description": "Check spelling.",
+                "required_parameters": [
+                    {
+                        "name": "text",
+                        "type": "STRING",
+                        "description": "The text string to check for spelling errors.",
+                        "default": "teylor swiift"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Data",
+                "tool_name": "Web Search",
+                "api_name": "newsSearch",
+                "api_description": "Get news articles relevant for a given query.",
+                "required_parameters": [
+                    {
+                        "name": "pageSize",
+                        "type": "NUMBER",
+                        "description": "The number of items per page. The maximum value is 50.",
+                        "default": "10"
+                    },
+                    {
+                        "name": "autoCorrect",
+                        "type": "BOOLEAN",
+                        "description": "Automatically correct spelling.",
+                        "default": true
+                    },
+                    {
+                        "name": "q",
+                        "type": "STRING",
+                        "description": "The user's search query string.",
+                        "default": "taylor swift"
+                    },
+                    {
+                        "name": "pageNumber",
+                        "type": "NUMBER",
+                        "description": "The page to view.",
+                        "default": "1"
+                    }
+                ],
+                "optional_parameters": [
+                    {
+                        "name": "toPublishedDate",
+                        "type": "STRING",
+                        "description": "The  published date and time for the newest article allowed.  For example: *2015-05-16T05:50:06.* See  [https://www.c-sharpcorner.com/blogs/date-and-time-format-in-c-sharp-programming1 ](url)for more possible DateTime formats. ",
+                        "default": "null"
+                    },
+                    {
+                        "name": "safeSearch",
+                        "type": "BOOLEAN",
+                        "description": "A filter used to filter results for adult content.",
+                        "default": false
+                    },
+                    {
+                        "name": "fromPublishedDate",
+                        "type": "STRING",
+                        "description": "The  published date and time for the oldest article allowed.  For example: *2015-05-16T05:50:06.* See  [https://www.c-sharpcorner.com/blogs/date-and-time-format-in-c-sharp-programming1 ](url)for more possible DateTime formats. ",
+                        "default": "null"
+                    },
+                    {
+                        "name": "withThumbnails",
+                        "type": "BOOLEAN",
+                        "description": "Show results with image thumbnails.",
+                        "default": false
+                    }
+                ],
+                "method": "GET"
+            },
+            {
+                "category_name": "Data",
+                "tool_name": "Web Search",
+                "api_name": "autoComplete",
+                "api_description": "Suggest as-you-type completion.",
+                "required_parameters": [
+                    {
+                        "name": "text",
+                        "type": "STRING",
+                        "description": "The prefix to complete",
+                        "default": "do"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {}
+            },
+            {
+                "category_name": "Sports",
+                "tool_name": "Live Sports Odds",
+                "api_name": "/v4/sports/{sport}/odds",
+                "api_description": "Returns list of live and upcoming games for a given sport, showing bookmaker odds for the specified region and markets. Set the `sport` to a `sport_key` from the /sports endpoint. Alternatively if `sport=upcoming`, it will return a list of the next 8 upcoming games across all sports, as well as any live games. For more info, see [list of available sports](https://the-odds-api.com/sports-odds-data/sports-apis.html) and [list of available bookmakers](https://the-odds-api.com/sports-odds-data/bookmaker-apis.html).",
+                "required_parameters": [
+                    {
+                        "name": "sport",
+                        "type": "STRING",
+                        "description": "sport key for which to return games and odds",
+                        "default": "upcoming"
+                    },
+                    {
+                        "name": "regions",
+                        "type": "STRING",
+                        "description": "Determines which bookmakers appear in the response. Can be a comma delimited list of regions. Each region will count as 1 request against the usage quota for each market. Most use cases will only need to specify one region. For a list of bookmakers by region, see https://the-odds-api.com/sports-odds-data/bookmaker-apis.html",
+                        "default": "us"
+                    }
+                ],
+                "optional_parameters": [
+                    {
+                        "name": "oddsFormat",
+                        "type": "STRING",
+                        "description": "Format of returned odds.",
+                        "default": "decimal"
+                    },
+                    {
+                        "name": "markets",
+                        "type": "STRING",
+                        "description": "The odds market to return. Can be a comma delimited list of odds markets. Defaults to h2h (head to head / moneyline). Outrights only avaialable for select sports. Note each market counts as 1 request against the usage quota.",
+                        "default": "h2h,spreads"
+                    },
+                    {
+                        "name": "dateFormat",
+                        "type": "STRING",
+                        "description": "Format of returned timestamps. Can be iso (ISO8601) or unix timestamp (seconds since epoch)",
+                        "default": "iso"
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "id": "str",
+                    "sport_key": "str",
+                    "sport_title": "str",
+                    "commence_time": "str",
+                    "home_team": "str",
+                    "away_team": "str",
+                    "bookmakers": [
+                        {
+                            "key": "str",
+                            "title": "str",
+                            "last_update": "str",
+                            "markets": [
+                                {
+                                    "key": "str",
+                                    "last_update": "str",
+                                    "outcomes": [
+                                        {
+                                            "name": "str",
+                                            "price": "float",
+                                            "_list_length": 2
+                                        }
+                                    ],
+                                    "_list_length": 1
+                                }
+                            ],
+                            "_list_length": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "category_name": "Sports",
+                "tool_name": "Live Sports Odds",
+                "api_name": "/v4/sports",
+                "api_description": "Returns a list of available sports and tournaments. Use the `sports_key` in requests for /odds and /scores endpoints.",
+                "required_parameters": [],
+                "optional_parameters": [
+                    {
+                        "name": "all",
+                        "type": "BOOLEAN",
+                        "description": "When excluded, only recently updated (in-season) sports appear. Include this paramter to see all available sports",
+                        "default": "true"
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "key": "str",
+                    "group": "str",
+                    "title": "str",
+                    "description": "str",
+                    "active": "bool",
+                    "has_outrights": "bool"
+                }
+            },
+            {
+                "category_name": "Sports",
+                "tool_name": "Live Sports Odds",
+                "api_name": "/v4/sports/{sport}/scores",
+                "api_description": "Returns list of live and upcoming games for a given sport, and optionally recently completed games. Live and completed games will contain scores. **Currently in beta** and only available for selected sports. For more info, see the [list of available sports](https://the-odds-api.com/sports-odds-data/sports-apis.html)",
+                "required_parameters": [
+                    {
+                        "name": "sport",
+                        "type": "STRING",
+                        "description": "sport key for which to return games and odds",
+                        "default": "americanfootball_nfl"
+                    }
+                ],
+                "optional_parameters": [
+                    {
+                        "name": "daysFrom",
+                        "type": "NUMBER",
+                        "description": "The number of days in the past from which to return completed games. Valid values are integers from `1` to `3`. If this field is missing, only live and upcoming games are returned.",
+                        "default": 3
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "id": "str",
+                    "sport_key": "str",
+                    "sport_title": "str",
+                    "commence_time": "str",
+                    "completed": "bool",
+                    "home_team": "str",
+                    "away_team": "str",
+                    "scores": "NoneType",
+                    "last_update": "NoneType"
+                }
+            }
+        ],
+        "query": "I'm planning a surprise birthday party for my best friend. Can you help me find a list of popular cocktails to serve at the party? Also, I need some suggestions for cocktail recipes that are easy to make. Additionally, find some interesting news articles related to birthday celebrations.",
+        "relevant APIs": [
+            [
+                "The Cocktail DB",
+                "List of Cocktails"
+            ],
+            [
+                "The Cocktail DB",
+                "Detailed Cocktail Recipe by ID"
+            ],
+            [
+                "Web Search",
+                "newsSearch"
+            ]
+        ],
+        "query_id": 1
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Finance",
+                "tool_name": "Investors Exchange (IEX) Trading",
+                "api_name": "IEX Short Interest List",
+                "api_description": "Consolidated market short interest positions in all IEX-listed securities",
+                "required_parameters": [
+                    {
+                        "name": "symbol",
+                        "type": "STRING",
+                        "description": "",
+                        "default": "GOOG"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Finance",
+                "tool_name": "Investors Exchange (IEX) Trading",
+                "api_name": "IEX Regulation SHO Threshold Securities List",
+                "api_description": "IEX-listed securities that have an aggregate fail to deliver position for five consecutive settlement days at a registered clearing agency, totaling 10,000 shares or more and equal to at least 0.5% of the issuer\u2019s total shares outstanding (i.e., \u201cthreshold securities\u201d). ",
+                "required_parameters": [
+                    {
+                        "name": "symbol",
+                        "type": "STRING",
+                        "description": "",
+                        "default": "NVDA"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Finance",
+                "tool_name": "Investors Exchange (IEX) Trading",
+                "api_name": "OHLC",
+                "api_description": "Returns the official open and close for a give symbol.",
+                "required_parameters": [
+                    {
+                        "name": "symbol",
+                        "type": "STRING",
+                        "description": "Specify stock symbol or use \"market\" for market-wide information",
+                        "default": "qcom"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Food",
+                "tool_name": "The Cocktail DB",
+                "api_name": "List of Cocktails",
+                "api_description": "This endpoint responds with a list of cocktails that includes their names and images, as well as their IDs, which must be provided in the \"Detailed Cocktail Recipe by ID\" endpoint to receive the detailed cocktail recipe.",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "id": "str",
+                    "title": "str",
+                    "difficulty": "str",
+                    "image": "str"
+                }
+            },
+            {
+                "category_name": "Food",
+                "tool_name": "The Cocktail DB",
+                "api_name": "Detailed Cocktail Recipe by ID",
+                "api_description": "Get Cocktail by ID",
+                "required_parameters": [
+                    {
+                        "name": "id",
+                        "type": "string",
+                        "description": "",
+                        "default": "45"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "id": "str",
+                    "title": "str",
+                    "difficulty": "str",
+                    "portion": "str",
+                    "time": "str",
+                    "description": "str",
+                    "ingredients": [
+                        "list of str with length 5"
+                    ],
+                    "method": [
+                        {
+                            "Step 1": "str",
+                            "_list_length": 3
+                        }
+                    ],
+                    "image": "str"
+                }
+            },
+            {
+                "category_name": "Data",
+                "tool_name": "Web Search",
+                "api_name": "spellCheck",
+                "api_description": "Check spelling.",
+                "required_parameters": [
+                    {
+                        "name": "text",
+                        "type": "STRING",
+                        "description": "The text string to check for spelling errors.",
+                        "default": "teylor swiift"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Data",
+                "tool_name": "Web Search",
+                "api_name": "newsSearch",
+                "api_description": "Get news articles relevant for a given query.",
+                "required_parameters": [
+                    {
+                        "name": "pageSize",
+                        "type": "NUMBER",
+                        "description": "The number of items per page. The maximum value is 50.",
+                        "default": "10"
+                    },
+                    {
+                        "name": "autoCorrect",
+                        "type": "BOOLEAN",
+                        "description": "Automatically correct spelling.",
+                        "default": true
+                    },
+                    {
+                        "name": "q",
+                        "type": "STRING",
+                        "description": "The user's search query string.",
+                        "default": "taylor swift"
+                    },
+                    {
+                        "name": "pageNumber",
+                        "type": "NUMBER",
+                        "description": "The page to view.",
+                        "default": "1"
+                    }
+                ],
+                "optional_parameters": [
+                    {
+                        "name": "toPublishedDate",
+                        "type": "STRING",
+                        "description": "The  published date and time for the newest article allowed.  For example: *2015-05-16T05:50:06.* See  [https://www.c-sharpcorner.com/blogs/date-and-time-format-in-c-sharp-programming1 ](url)for more possible DateTime formats. ",
+                        "default": "null"
+                    },
+                    {
+                        "name": "safeSearch",
+                        "type": "BOOLEAN",
+                        "description": "A filter used to filter results for adult content.",
+                        "default": false
+                    },
+                    {
+                        "name": "fromPublishedDate",
+                        "type": "STRING",
+                        "description": "The  published date and time for the oldest article allowed.  For example: *2015-05-16T05:50:06.* See  [https://www.c-sharpcorner.com/blogs/date-and-time-format-in-c-sharp-programming1 ](url)for more possible DateTime formats. ",
+                        "default": "null"
+                    },
+                    {
+                        "name": "withThumbnails",
+                        "type": "BOOLEAN",
+                        "description": "Show results with image thumbnails.",
+                        "default": false
+                    }
+                ],
+                "method": "GET"
+            },
+            {
+                "category_name": "Data",
+                "tool_name": "Web Search",
+                "api_name": "autoComplete",
+                "api_description": "Suggest as-you-type completion.",
+                "required_parameters": [
+                    {
+                        "name": "text",
+                        "type": "STRING",
+                        "description": "The prefix to complete",
+                        "default": "do"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {}
+            },
+            {
+                "category_name": "Sports",
+                "tool_name": "Live Sports Odds",
+                "api_name": "/v4/sports/{sport}/odds",
+                "api_description": "Returns list of live and upcoming games for a given sport, showing bookmaker odds for the specified region and markets. Set the `sport` to a `sport_key` from the /sports endpoint. Alternatively if `sport=upcoming`, it will return a list of the next 8 upcoming games across all sports, as well as any live games. For more info, see [list of available sports](https://the-odds-api.com/sports-odds-data/sports-apis.html) and [list of available bookmakers](https://the-odds-api.com/sports-odds-data/bookmaker-apis.html).",
+                "required_parameters": [
+                    {
+                        "name": "sport",
+                        "type": "STRING",
+                        "description": "sport key for which to return games and odds",
+                        "default": "upcoming"
+                    },
+                    {
+                        "name": "regions",
+                        "type": "STRING",
+                        "description": "Determines which bookmakers appear in the response. Can be a comma delimited list of regions. Each region will count as 1 request against the usage quota for each market. Most use cases will only need to specify one region. For a list of bookmakers by region, see https://the-odds-api.com/sports-odds-data/bookmaker-apis.html",
+                        "default": "us"
+                    }
+                ],
+                "optional_parameters": [
+                    {
+                        "name": "oddsFormat",
+                        "type": "STRING",
+                        "description": "Format of returned odds.",
+                        "default": "decimal"
+                    },
+                    {
+                        "name": "markets",
+                        "type": "STRING",
+                        "description": "The odds market to return. Can be a comma delimited list of odds markets. Defaults to h2h (head to head / moneyline). Outrights only avaialable for select sports. Note each market counts as 1 request against the usage quota.",
+                        "default": "h2h,spreads"
+                    },
+                    {
+                        "name": "dateFormat",
+                        "type": "STRING",
+                        "description": "Format of returned timestamps. Can be iso (ISO8601) or unix timestamp (seconds since epoch)",
+                        "default": "iso"
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "id": "str",
+                    "sport_key": "str",
+                    "sport_title": "str",
+                    "commence_time": "str",
+                    "home_team": "str",
+                    "away_team": "str",
+                    "bookmakers": [
+                        {
+                            "key": "str",
+                            "title": "str",
+                            "last_update": "str",
+                            "markets": [
+                                {
+                                    "key": "str",
+                                    "last_update": "str",
+                                    "outcomes": [
+                                        {
+                                            "name": "str",
+                                            "price": "float",
+                                            "_list_length": 2
+                                        }
+                                    ],
+                                    "_list_length": 1
+                                }
+                            ],
+                            "_list_length": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "category_name": "Sports",
+                "tool_name": "Live Sports Odds",
+                "api_name": "/v4/sports",
+                "api_description": "Returns a list of available sports and tournaments. Use the `sports_key` in requests for /odds and /scores endpoints.",
+                "required_parameters": [],
+                "optional_parameters": [
+                    {
+                        "name": "all",
+                        "type": "BOOLEAN",
+                        "description": "When excluded, only recently updated (in-season) sports appear. Include this paramter to see all available sports",
+                        "default": "true"
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "key": "str",
+                    "group": "str",
+                    "title": "str",
+                    "description": "str",
+                    "active": "bool",
+                    "has_outrights": "bool"
+                }
+            },
+            {
+                "category_name": "Sports",
+                "tool_name": "Live Sports Odds",
+                "api_name": "/v4/sports/{sport}/scores",
+                "api_description": "Returns list of live and upcoming games for a given sport, and optionally recently completed games. Live and completed games will contain scores. **Currently in beta** and only available for selected sports. For more info, see the [list of available sports](https://the-odds-api.com/sports-odds-data/sports-apis.html)",
+                "required_parameters": [
+                    {
+                        "name": "sport",
+                        "type": "STRING",
+                        "description": "sport key for which to return games and odds",
+                        "default": "americanfootball_nfl"
+                    }
+                ],
+                "optional_parameters": [
+                    {
+                        "name": "daysFrom",
+                        "type": "NUMBER",
+                        "description": "The number of days in the past from which to return completed games. Valid values are integers from `1` to `3`. If this field is missing, only live and upcoming games are returned.",
+                        "default": 3
+                    }
+                ],
+                "method": "GET",
+                "template_response": {
+                    "id": "str",
+                    "sport_key": "str",
+                    "sport_title": "str",
+                    "commence_time": "str",
+                    "completed": "bool",
+                    "home_team": "str",
+                    "away_team": "str",
+                    "scores": "NoneType",
+                    "last_update": "NoneType"
+                }
+            }
+        ],
+        "query": "I'm a food enthusiast and I want to explore different cuisines. Can you suggest some popular cocktails and their recipes that pair well with different types of cuisine? Also, find some interesting news articles about the culinary world. Additionally, provide me with the current threshold securities list for NVIDIA's stock.",
+        "relevant APIs": [
+            [
+                "The Cocktail DB",
+                "List of Cocktails"
+            ],
+            [
+                "The Cocktail DB",
+                "Detailed Cocktail Recipe by ID"
+            ],
+            [
+                "Web Search",
+                "newsSearch"
+            ],
+            [
+                "Investors Exchange (IEX) Trading",
+                "IEX Regulation SHO Threshold Securities List"
+            ]
+        ],
+        "query_id": 2
+    }
+]

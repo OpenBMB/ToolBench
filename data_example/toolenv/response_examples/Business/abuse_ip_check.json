@@ -1,0 +1,23 @@
+{
+    "api_list": [
+        {
+            "name": "CHECK Endpoint",
+            "schema": {
+                "data": {
+                    "ipAddress": "str",
+                    "isPublic": "bool",
+                    "ipVersion": "int",
+                    "isWhitelisted": "bool",
+                    "abuseConfidenceScore": "int",
+                    "countryCode": "str",
+                    "usageType": "str",
+                    "isp": "str",
+                    "domain": "str",
+                    "isTor": "bool",
+                    "totalReports": "int",
+                    "lastReportedAt": "str"
+                }
+            }
+        }
+    ]
+}

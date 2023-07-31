@@ -1,0 +1,30 @@
+{
+    "api_list": [
+        {
+            "name": "getPetById",
+            "schema": {
+                "code": "int",
+                "message": "str"
+            }
+        },
+        {
+            "name": "getInventory",
+            "schema": {
+                "Sale": "int",
+                "totvs": "int",
+                "sold": "int",
+                "pending": "int",
+                "available": "int",
+                "peric": "int",
+                "not available": "int"
+            }
+        },
+        {
+            "name": "getOrderById",
+            "schema": {
+                "code": "int",
+                "message": "str"
+            }
+        }
+    ]
+}

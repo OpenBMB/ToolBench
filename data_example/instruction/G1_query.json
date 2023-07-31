@@ -1,0 +1,447 @@
+[
+    {
+        "api_list": [
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Checkhealth",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Projects",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            }
+        ],
+        "query": "I'm working on a logistics project for my company and need to check the health of the SQUAKE API. Can you verify the API health by calling the 'Checkhealth' API endpoint? Additionally, I would like to retrieve the list of projects using the 'Projects' API endpoint.",
+        "relevant APIs": [
+            [
+                "SQUAKE",
+                "Checkhealth"
+            ],
+            [
+                "SQUAKE",
+                "Projects"
+            ]
+        ],
+        "query_id": 1
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Checkhealth",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Projects",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            }
+        ],
+        "query": "As a sustainability enthusiast, I'm interested in exploring the projects available on the SQUAKE platform. Could you fetch the list of projects using the 'Projects' API? Additionally, I would like to check the health of the SQUAKE API using the 'Checkhealth' API.",
+        "relevant APIs": [
+            [
+                "SQUAKE",
+                "Checkhealth"
+            ],
+            [
+                "SQUAKE",
+                "Projects"
+            ]
+        ],
+        "query_id": 2
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Checkhealth",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Projects",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            }
+        ],
+        "query": "I'm organizing a sustainability event for my community and would like to showcase various projects promoting eco-friendly practices. Could you provide me with a list of projects available on the SQUAKE platform using the 'Projects' API? Additionally, I would like to check the health of the SQUAKE API using the 'Checkhealth' API.",
+        "relevant APIs": [
+            [
+                "SQUAKE",
+                "Checkhealth"
+            ],
+            [
+                "SQUAKE",
+                "Projects"
+            ]
+        ],
+        "query_id": 3
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Checkhealth",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Projects",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            }
+        ],
+        "query": "My friend and I are passionate about sustainability and want to contribute to projects that promote eco-friendly practices. Can you fetch the list of projects available on the SQUAKE platform using the 'Projects' API? Additionally, I would like to check the health of the SQUAKE API using the 'Checkhealth' API.",
+        "relevant APIs": [
+            [
+                "SQUAKE",
+                "Checkhealth"
+            ],
+            [
+                "SQUAKE",
+                "Projects"
+            ]
+        ],
+        "query_id": 4
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/tracking/correo_argentino/result_task/:task_id",
+                "api_description": "Result for one Task ID.",
+                "required_parameters": [
+                    {
+                        "name": "task_id",
+                        "type": "STRING",
+                        "description": "Task ID",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/cities/states/:stateIsoCode",
+                "api_description": "List of city for iso state.",
+                "required_parameters": [
+                    {
+                        "name": "stateIsoCode",
+                        "type": "STRING",
+                        "description": "State ISO Code",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/cities/postcode/:stateIsoCode/:postCode",
+                "api_description": "List of city for iso state and postcode.",
+                "required_parameters": [
+                    {
+                        "name": "stateIsoCode",
+                        "type": "STRING",
+                        "description": "State ISO Code",
+                        "default": ""
+                    },
+                    {
+                        "name": "postCode",
+                        "type": "STRING",
+                        "description": "Postcode",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/cities/search/:stateIsoCode/:keyword",
+                "api_description": "Search city for iso state and keyword name.",
+                "required_parameters": [
+                    {
+                        "name": "stateIsoCode",
+                        "type": "STRING",
+                        "description": "State ISO Code",
+                        "default": ""
+                    },
+                    {
+                        "name": "keyword",
+                        "type": "STRING",
+                        "description": "Keyword to search, example: Caballito",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/cities/states",
+                "api_description": "List of states for Argentina with iso code.",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "name": "str",
+                    "iso_code": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/quotes/city/correo_argentino/:weight/:stateIsoCodeSrc/:normalizeCityNameSrc/:stateIsoCodeDst/:normalizeCityNameDst",
+                "api_description": "List of quote for iso state and city keyword name in Correo Argentino.",
+                "required_parameters": [
+                    {
+                        "name": "normalizeCityNameSrc",
+                        "type": "STRING",
+                        "description": "Normalize City Name of Source",
+                        "default": ""
+                    },
+                    {
+                        "name": "stateIsoCodeDst",
+                        "type": "STRING",
+                        "description": "State ISO Code of Destination",
+                        "default": ""
+                    },
+                    {
+                        "name": "normalizeCityNameDst",
+                        "type": "STRING",
+                        "description": "Normalize City Name of Destination",
+                        "default": ""
+                    },
+                    {
+                        "name": "weight",
+                        "type": "NUMBER",
+                        "description": "Weight in KG",
+                        "default": ""
+                    },
+                    {
+                        "name": "stateIsoCodeSrc",
+                        "type": "STRING",
+                        "description": "State ISO Code of Source",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/quotes/postcode/oca/:cuit/:operativa/:cost/:weight/:volume/:postCodeSrc/:postCodeDst",
+                "api_description": "Quote for postcode in OCA e-Pack.",
+                "required_parameters": [
+                    {
+                        "name": "postCodeDst",
+                        "type": "NUMBER",
+                        "description": "Postcode Destination",
+                        "default": ""
+                    },
+                    {
+                        "name": "cuit",
+                        "type": "STRING",
+                        "description": "CUIT of your account in OCA e-Pack",
+                        "default": ""
+                    },
+                    {
+                        "name": "operativa",
+                        "type": "STRING",
+                        "description": "Operativa number of your account in OCA e-Pack",
+                        "default": ""
+                    },
+                    {
+                        "name": "cost",
+                        "type": "NUMBER",
+                        "description": "Cost of products in ARS",
+                        "default": ""
+                    },
+                    {
+                        "name": "postCodeSrc",
+                        "type": "NUMBER",
+                        "description": "Postcode Source",
+                        "default": ""
+                    },
+                    {
+                        "name": "volume",
+                        "type": "NUMBER",
+                        "description": "Volume in cm3",
+                        "default": ""
+                    },
+                    {
+                        "name": "weight",
+                        "type": "NUMBER",
+                        "description": "Weight in KG",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/quotes/postcode/correo_argentino/:weight/:postCodeSrc/:postCodeDst",
+                "api_description": "List of quote for postcode in Correo Argentino.",
+                "required_parameters": [
+                    {
+                        "name": "postCodeDst",
+                        "type": "NUMBER",
+                        "description": "Postcode Destination",
+                        "default": ""
+                    },
+                    {
+                        "name": "postCodeSrc",
+                        "type": "NUMBER",
+                        "description": "Postcode Source",
+                        "default": ""
+                    },
+                    {
+                        "name": "weight",
+                        "type": "NUMBER",
+                        "description": "Weight in KG",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/tracking/correo_argentino/create_task/:service/:tracking_code",
+                "api_description": "Create task to get the history.\nThe result of the trace can be obtained after approximately 20-60 seconds by calling the endpoint: /tracking/correo_argentino/result_task/:task_id\n**IMPORTANT: ** The result will only be stored for approx 1 hour.",
+                "required_parameters": [
+                    {
+                        "name": "service",
+                        "type": "STRING",
+                        "description": "Service: ecommerce, mercadolibre, national, national-plus or national-international",
+                        "default": "ecommerce"
+                    },
+                    {
+                        "name": "tracking_code",
+                        "type": "STRING",
+                        "description": "Tracking code",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "message": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/offices/postcode/:service/:postCode",
+                "api_description": "List of offices for iso state and postcode.",
+                "required_parameters": [
+                    {
+                        "name": "service",
+                        "type": "STRING",
+                        "description": "Service Name: correo_argentino, oca, andreani",
+                        "default": ""
+                    },
+                    {
+                        "name": "postCode",
+                        "type": "NUMBER",
+                        "description": "Postcode",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "message": "str"
+                }
+            }
+        ],
+        "query": "I need to track a package sent through Correo Argentino. The tracking code is 'ABC123'. Please create a task to get the history of the package and provide me with the task ID. I will use the task ID to retrieve the result later.",
+        "relevant APIs": [
+            [
+                "Transportistas de Argentina",
+                "/tracking/correo_argentino/create_task/:service/:tracking_code"
+            ],
+            [
+                "Transportistas de Argentina",
+                "/tracking/correo_argentino/result_task/:task_id"
+            ]
+        ],
+        "query_id": 5
+    }
+]

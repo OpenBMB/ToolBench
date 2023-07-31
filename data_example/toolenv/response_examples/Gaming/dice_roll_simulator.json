@@ -1,0 +1,28 @@
+{
+    "api_list": [
+        {
+            "name": "Regular dice rolls",
+            "schema": {
+                "result": [
+                    {
+                        "roll": "empty list",
+                        "subtotal": "int"
+                    }
+                ],
+                "total": "int"
+            }
+        },
+        {
+            "name": "Custom dice rolls",
+            "schema": {
+                "result": [
+                    {
+                        "roll": "empty list",
+                        "subtotal": "int"
+                    }
+                ],
+                "total": "int"
+            }
+        }
+    ]
+}

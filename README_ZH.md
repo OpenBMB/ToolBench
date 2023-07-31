@@ -67,7 +67,7 @@ https://github.com/OpenBMB/ToolBench/assets/25274507/f1151d85-747b-4fac-92ff-6c7
 目前，我们的ToolLLaMA已经达到了和ChatGPT（turbo-16k）接近的工具使用能力，未来*我们将不断进行数据的后处理与清洗，以提高数据质量并增加真实世界工具的覆盖范围。*
 
 <div align="center">
-<img src="assets/performance.png" width="350px">
+<img src="assets/performance.png" width="300px">
 </div>
 
 这是*[老版本](https://github.com/OpenBMB/ToolBench/tree/legacy)*的ToolBench。

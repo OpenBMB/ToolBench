@@ -1,0 +1,22 @@
+{
+    "api_list": [
+        {
+            "name": "/feedbacks/{id}",
+            "schema": {
+                "message": "str"
+            }
+        },
+        {
+            "name": "/shipping/{id}",
+            "schema": {
+                "message": "str"
+            }
+        },
+        {
+            "name": "/product/{id}",
+            "schema": {
+                "message": "str"
+            }
+        }
+    ]
+}

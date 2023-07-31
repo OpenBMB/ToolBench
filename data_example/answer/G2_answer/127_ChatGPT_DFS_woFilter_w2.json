@@ -1,0 +1,456 @@
+{
+  "win": false,
+  "tree": {
+    "size": 19,
+    "max_length": 9,
+    "tree": {
+      "is_terminal": false,
+      "pruned": false,
+      "finished": false,
+      "depth": 0,
+      "node_type": "Action Input",
+      "description": "",
+      "Elo": 1000.0,
+      "child_count": 2,
+      "expand_num": 0,
+      "io_state": {},
+      "children": [
+        {
+          "is_terminal": false,
+          "pruned": false,
+          "finished": false,
+          "depth": 1,
+          "node_type": "Action",
+          "description": "api_tracking_for_pack_send",
+          "Elo": 1000.0,
+          "child_count": 1,
+          "expand_num": 0,
+          "children": [
+            {
+              "is_terminal": false,
+              "pruned": false,
+              "finished": false,
+              "depth": 2,
+              "node_type": "Action Input",
+              "description": "{\n  \"reference\": \"YZA890\"\n}",
+              "Elo": 1000.0,
+              "observation": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6e0c-47a57f57d8b1a7d2.'}\"}",
+              "observation_code": 0,
+              "child_count": 2,
+              "expand_num": 1,
+              "io_state": {},
+              "children": [
+                {
+                  "is_terminal": false,
+                  "pruned": false,
+                  "finished": false,
+                  "depth": 3,
+                  "node_type": "Action",
+                  "description": "get_track_info_for_pridnestrovie_post",
+                  "Elo": 1000.0,
+                  "child_count": 1,
+                  "expand_num": 0,
+                  "children": [
+                    {
+                      "is_terminal": false,
+                      "pruned": false,
+                      "finished": false,
+                      "depth": 4,
+                      "node_type": "Action Input",
+                      "description": "{\n  \"track_number\": \"RB413450335SG\"\n}",
+                      "Elo": 1000.0,
+                      "observation": "{\"error\": \"Function executing from my_tools.Logistics.pridnestrovie_post.api import get_track_info error...\\nExceeded 30 redirects.\", \"response\": \"\"}",
+                      "observation_code": 0,
+                      "child_count": 1,
+                      "expand_num": 2,
+                      "io_state": {},
+                      "children": [
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": false,
+                          "depth": 5,
+                          "node_type": "Action",
+                          "description": "Finish",
+                          "Elo": 1000.0,
+                          "child_count": 1,
+                          "expand_num": 0,
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": true,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Action Input",
+                              "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                              "Elo": 1000.0,
+                              "observation": "{\"response\":\"chose to give up and restart\"}",
+                              "observation_code": 4,
+                              "child_count": 0,
+                              "expand_num": 3,
+                              "io_state": {},
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "is_terminal": false,
+                  "pruned": false,
+                  "finished": false,
+                  "depth": 3,
+                  "node_type": "Thought",
+                  "description": "Based on the previous action, it seems that there was an error while trying to track the package using Pridnestrovie Post. Since we have already tried that action and it failed, we should try a different approach.\n\nThought: Let's try using the Pack & Send reference number with a different function to get the tracking details.\n\nAction: Call the 'api_tracking_for_pack_send' function with the reference number 'YZA890'.",
+                  "Elo": 1000.0,
+                  "child_count": 1,
+                  "expand_num": 0,
+                  "children": [
+                    {
+                      "is_terminal": false,
+                      "pruned": false,
+                      "finished": false,
+                      "depth": 4,
+                      "node_type": "Action",
+                      "description": "api_tracking_for_pack_send",
+                      "Elo": 1000.0,
+                      "child_count": 1,
+                      "expand_num": 0,
+                      "children": [
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": false,
+                          "depth": 5,
+                          "node_type": "Action Input",
+                          "description": "{\n  \"reference\": \"YZA890\"\n}",
+                          "Elo": 1000.0,
+                          "observation": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6e0c-47a57f57d8b1a7d2.'}\"}",
+                          "observation_code": 0,
+                          "child_count": 1,
+                          "expand_num": 4,
+                          "io_state": {},
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": false,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Thought",
+                              "description": "It appears that there was an error again while trying to track the package using Pack & Send. Since both attempts to track the packages have failed, we are unable to proceed with the task in the current state.\n\nAction: Call the 'Finish' function to give up and restart the task.",
+                              "Elo": 1000.0,
+                              "child_count": 1,
+                              "expand_num": 0,
+                              "children": [
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": false,
+                                  "depth": 7,
+                                  "node_type": "Action",
+                                  "description": "Finish",
+                                  "Elo": 1000.0,
+                                  "child_count": 1,
+                                  "expand_num": 0,
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": true,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Action Input",
+                                      "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                                      "Elo": 1000.0,
+                                      "observation": "{\"response\":\"chose to give up and restart\"}",
+                                      "observation_code": 4,
+                                      "child_count": 0,
+                                      "expand_num": 5,
+                                      "io_state": {},
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "is_terminal": false,
+          "pruned": false,
+          "finished": false,
+          "depth": 1,
+          "node_type": "Thought",
+          "description": "Based on the previous action and its failure, it seems that calling the \"api_tracking_for_pack_send\" function with the reference number \"YZA890\" resulted in a bad request error. To avoid repeating the same failed action, I should try a different approach.\n\nThought:\n1. Since the pack_send API did not provide the tracking details, I should try using the \"get_track_info_for_pridnestrovie_post\" function to check the status of the package sent through Pridnestrovie Post.\n2. I will call the \"get_track_info_for_pridnestrovie_post\" function with the tracking number \"RB413450335SG\" to retrieve the tracking information.\n\nAction:\nI will call the function \"get_track_info_for_pridnestrovie_post\" with the tracking number \"RB413450335SG\".",
+          "Elo": 1000.0,
+          "child_count": 1,
+          "expand_num": 0,
+          "children": [
+            {
+              "is_terminal": false,
+              "pruned": false,
+              "finished": false,
+              "depth": 2,
+              "node_type": "Action",
+              "description": "get_track_info_for_pridnestrovie_post",
+              "Elo": 1000.0,
+              "child_count": 1,
+              "expand_num": 0,
+              "children": [
+                {
+                  "is_terminal": false,
+                  "pruned": false,
+                  "finished": false,
+                  "depth": 3,
+                  "node_type": "Action Input",
+                  "description": "{\n  \"track_number\": \"RB413450335SG\"\n}",
+                  "Elo": 1000.0,
+                  "observation": "{\"error\": \"Function executing from my_tools.Logistics.pridnestrovie_post.api import get_track_info error...\\nExceeded 30 redirects.\", \"response\": \"\"}",
+                  "observation_code": 0,
+                  "child_count": 1,
+                  "expand_num": 6,
+                  "io_state": {},
+                  "children": [
+                    {
+                      "is_terminal": false,
+                      "pruned": false,
+                      "finished": false,
+                      "depth": 4,
+                      "node_type": "Thought",
+                      "description": "It seems that there is an issue with the \"get_track_info_for_pridnestrovie_post\" function. It returned an error stating that the function exceeded 30 redirects. Since both the Pack & Send and Pridnestrovie Post functions are currently failing, I am unable to provide the tracking details for the packages.\n\nI will use the \"Finish\" function to give up and restart the task.",
+                      "Elo": 1000.0,
+                      "child_count": 1,
+                      "expand_num": 0,
+                      "children": [
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": false,
+                          "depth": 5,
+                          "node_type": "Action",
+                          "description": "Finish",
+                          "Elo": 1000.0,
+                          "child_count": 1,
+                          "expand_num": 0,
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": true,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Action Input",
+                              "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                              "Elo": 1000.0,
+                              "observation": "{\"response\":\"chose to give up and restart\"}",
+                              "observation_code": 4,
+                              "child_count": 0,
+                              "expand_num": 7,
+                              "io_state": {},
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "forward_args": {
+    "single_chain_max_step": 12,
+    "tree_beam_size": 2,
+    "max_query_count": 200,
+    "answer": 1,
+    "with_filter": false
+  },
+  "compare_candidates": [],
+  "answer_generation": {
+    "valid_data": true,
+    "query_count": 7,
+    "total_tokens": 6985,
+    "final_answer": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+    "finish_type": "give_up",
+    "function": [
+      {
+        "name": "api_tracking_for_pack_send",
+        "description": "This is the subfunction for tool \"pack_send\", you can use this tool.The description of this function is: \"If you support your Pack & Send Reference Number, we can provide your with some relevant information.\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "description": "",
+              "example_value": "ReferenceNumberHere"
+            }
+          },
+          "required": [
+            "reference"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "get_track_info_for_pridnestrovie_post",
+        "description": "This is the subfunction for tool \"pridnestrovie_post\", you can use this tool.The description of this function is: \"get_track_info_for_pridnestrovie_post by track number\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "track_number": {
+              "type": "string",
+              "description": "",
+              "example_value": "RB413450335SG"
+            }
+          },
+          "required": [
+            "track_number"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "Finish",
+        "description": "If you believe that you have obtained a result that can answer the task, please call this function to provide the final answer. Alternatively, if you recognize that you are unable to proceed with the task in the current state, call this function to restart. Remember: you must ALWAYS call this function at the end of your attempt, and the only part that will be shown to the user is the final answer, so it should contain sufficient information.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "return_type": {
+              "type": "string",
+              "enum": [
+                "give_answer",
+                "give_up_and_restart"
+              ]
+            },
+            "final_answer": {
+              "type": "string",
+              "description": "The final answer you want to give the user. You should have this field if \"return_type\"==\"give_answer\""
+            }
+          },
+          "required": [
+            "return_type"
+          ]
+        }
+      }
+    ],
+    "chain": [],
+    "train_messages": [
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pack_send: Logistics and Shipment Services\n2.pridnestrovie_post: Transnistria parcel tracking\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI'm organizing a charity auction and I need to track the delivery of the donated items. Can you give me the tracking details for the package I sent using Pack & Send? The reference number is YZA890. Additionally, I need to check the status of the package I sent through Pridnestrovie Post. The tracking number is RB413450335SG.\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "api_tracking_for_pack_send",
+            "arguments": "{\n  \"reference\": \"YZA890\"\n}"
+          }
+        }
+      ],
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pack_send: Logistics and Shipment Services\n2.pridnestrovie_post: Transnistria parcel tracking\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI'm organizing a charity auction and I need to track the delivery of the donated items. Can you give me the tracking details for the package I sent using Pack & Send? The reference number is YZA890. Additionally, I need to check the status of the package I sent through Pridnestrovie Post. The tracking number is RB413450335SG.\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "api_tracking_for_pack_send",
+            "arguments": "{\n  \"reference\": \"YZA890\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "api_tracking_for_pack_send",
+          "content": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6e0c-47a57f57d8b1a7d2.'}\"}"
+        },
+        {
+          "role": "user",
+          "content": "This is not the first time you try this task, all previous trails failed.\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\n[\n  {\n    \"name\": \"get_track_info_for_pridnestrovie_post\",\n    \"arguments\": \"{\\n  \\\"track_number\\\": \\\"RB413450335SG\\\"\\n}\",\n    \"function_output\": \"{\\\"error\\\": \\\"Function executing from my_tools.Logistics.pridnestrovie_post.api import get_track_info error...\\\\nExceeded 30 redirects.\\\", \\\"response\\\": \\\"\\\"}\",\n    \"mento-carlo-action-value\": 0.0\n  }\n]\nagain, your former observation: {\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6e0c-47a57f57d8b1a7d2.'}\"}\n\nRemember you are now in the intermediate state of a trail, you will first analyze the now state and previous action candidates, then make actions that is different from all the previous.",
+          "valid": false
+        },
+        {
+          "role": "assistant",
+          "content": "Based on the previous action, it seems that there was an error while trying to track the package using Pridnestrovie Post. Since we have already tried that action and it failed, we should try a different approach.\n\nThought: Let's try using the Pack & Send reference number with a different function to get the tracking details.\n\nAction: Call the 'api_tracking_for_pack_send' function with the reference number 'YZA890'.",
+          "function_call": {
+            "name": "api_tracking_for_pack_send",
+            "arguments": "{\n  \"reference\": \"YZA890\"\n}"
+          }
+        }
+      ],
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pack_send: Logistics and Shipment Services\n2.pridnestrovie_post: Transnistria parcel tracking\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI'm organizing a charity auction and I need to track the delivery of the donated items. Can you give me the tracking details for the package I sent using Pack & Send? The reference number is YZA890. Additionally, I need to check the status of the package I sent through Pridnestrovie Post. The tracking number is RB413450335SG.\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "api_tracking_for_pack_send",
+            "arguments": "{\n  \"reference\": \"YZA890\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "api_tracking_for_pack_send",
+          "content": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6e0c-47a57f57d8b1a7d2.'}\"}"
+        },
+        {
+          "role": "user",
+          "content": "This is not the first time you try this task, all previous trails failed.\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\n[\n  {\n    \"name\": \"get_track_info_for_pridnestrovie_post\",\n    \"arguments\": \"{\\n  \\\"track_number\\\": \\\"RB413450335SG\\\"\\n}\",\n    \"function_output\": \"{\\\"error\\\": \\\"Function executing from my_tools.Logistics.pridnestrovie_post.api import get_track_info error...\\\\nExceeded 30 redirects.\\\", \\\"response\\\": \\\"\\\"}\",\n    \"mento-carlo-action-value\": 0.0\n  }\n]\nagain, your former observation: {\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6e0c-47a57f57d8b1a7d2.'}\"}\n\nRemember you are now in the intermediate state of a trail, you will first analyze the now state and previous action candidates, then make actions that is different from all the previous.",
+          "valid": false
+        },
+        {
+          "role": "assistant",
+          "content": "Based on the previous action, it seems that there was an error while trying to track the package using Pridnestrovie Post. Since we have already tried that action and it failed, we should try a different approach.\n\nThought: Let's try using the Pack & Send reference number with a different function to get the tracking details.\n\nAction: Call the 'api_tracking_for_pack_send' function with the reference number 'YZA890'.",
+          "function_call": {
+            "name": "api_tracking_for_pack_send",
+            "arguments": "{\n  \"reference\": \"YZA890\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "api_tracking_for_pack_send",
+          "content": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6e0c-47a57f57d8b1a7d2.'}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": "It appears that there was an error again while trying to track the package using Pack & Send. Since both attempts to track the packages have failed, we are unable to proceed with the task in the current state.\n\nAction: Call the 'Finish' function to give up and restart the task.",
+          "function_call": {
+            "name": "Finish",
+            "arguments": "{\n  \"return_type\": \"give_up_and_restart\"\n}"
+          }
+        }
+      ]
+    ],
+    "query": "I'm organizing a charity auction and I need to track the delivery of the donated items. Can you give me the tracking details for the package I sent using Pack & Send? The reference number is YZA890. Additionally, I need to check the status of the package I sent through Pridnestrovie Post. The tracking number is RB413450335SG."
+  }
+}

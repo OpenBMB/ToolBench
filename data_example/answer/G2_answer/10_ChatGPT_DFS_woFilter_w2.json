@@ -1,0 +1,1475 @@
+{
+  "win": false,
+  "tree": {
+    "size": 83,
+    "max_length": 15,
+    "tree": {
+      "is_terminal": false,
+      "pruned": false,
+      "finished": false,
+      "depth": 0,
+      "node_type": "Action Input",
+      "description": "",
+      "Elo": 1000.0,
+      "child_count": 2,
+      "expand_num": 0,
+      "io_state": {},
+      "children": [
+        {
+          "is_terminal": false,
+          "pruned": false,
+          "finished": false,
+          "depth": 1,
+          "node_type": "Action",
+          "description": "track_package_for_amex_australia_fastway_australia_tracking",
+          "Elo": 1000.0,
+          "child_count": 1,
+          "expand_num": 0,
+          "children": [
+            {
+              "is_terminal": false,
+              "pruned": false,
+              "finished": false,
+              "depth": 2,
+              "node_type": "Action Input",
+              "description": "{\n  \"tracking_number\": \"GHI789\"\n}",
+              "Elo": 1000.0,
+              "observation": "{\"error\": \"\", \"response\": \"{'success': False, 'message': 'Tracking information not found'}\"}",
+              "observation_code": 0,
+              "child_count": 2,
+              "expand_num": 1,
+              "io_state": {},
+              "children": [
+                {
+                  "is_terminal": false,
+                  "pruned": false,
+                  "finished": false,
+                  "depth": 3,
+                  "node_type": "Action",
+                  "description": "latest_for_suivi_colis",
+                  "Elo": 1000.0,
+                  "child_count": 1,
+                  "expand_num": 0,
+                  "children": [
+                    {
+                      "is_terminal": false,
+                      "pruned": false,
+                      "finished": false,
+                      "depth": 4,
+                      "node_type": "Action Input",
+                      "description": "{\n  \"colisid\": \"GHI789\"\n}",
+                      "Elo": 1000.0,
+                      "observation": "{\"error\": \"\", \"response\": \"\"}",
+                      "observation_code": 0,
+                      "child_count": 2,
+                      "expand_num": 2,
+                      "io_state": {},
+                      "children": [
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": false,
+                          "depth": 5,
+                          "node_type": "Action",
+                          "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                          "Elo": 1000.0,
+                          "child_count": 1,
+                          "expand_num": 0,
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": false,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Action Input",
+                              "description": "{\n  \"cepnumber\": \"24680\"\n}",
+                              "Elo": 1000.0,
+                              "observation": "{\"error\": \"Timeout error...HTTPConnectionPool(host='172.19.0.1', port=7890): Read timed out. (read timeout=30)\", \"response\": \"\"}",
+                              "observation_code": 5,
+                              "child_count": 1,
+                              "expand_num": 3,
+                              "io_state": {},
+                              "children": [
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": false,
+                                  "depth": 7,
+                                  "node_type": "Action",
+                                  "description": "Finish",
+                                  "Elo": 1000.0,
+                                  "child_count": 1,
+                                  "expand_num": 0,
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": true,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Action Input",
+                                      "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                                      "Elo": 1000.0,
+                                      "observation": "{\"response\":\"chose to give up and restart\"}",
+                                      "observation_code": 4,
+                                      "child_count": 0,
+                                      "expand_num": 4,
+                                      "io_state": {},
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": false,
+                          "depth": 5,
+                          "node_type": "Thought",
+                          "description": "Based on the previous attempt, the function call to retrieve the address details for the event venue using the zip code 24680 failed due to a timeout error. Since there are no other previous action candidates, I will retry the same action to see if it was a temporary issue.\n\n",
+                          "Elo": 1000.0,
+                          "child_count": 1,
+                          "expand_num": 0,
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": false,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Action",
+                              "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                              "Elo": 1000.0,
+                              "child_count": 1,
+                              "expand_num": 0,
+                              "children": [
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": false,
+                                  "depth": 7,
+                                  "node_type": "Action Input",
+                                  "description": "{\n  \"cepnumber\": \"24680\"\n}",
+                                  "Elo": 1000.0,
+                                  "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                                  "observation_code": 11,
+                                  "child_count": 2,
+                                  "expand_num": 5,
+                                  "io_state": {},
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Action",
+                                      "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                      "Elo": 1000.0,
+                                      "child_count": 1,
+                                      "expand_num": 0,
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": false,
+                                          "finished": false,
+                                          "depth": 9,
+                                          "node_type": "Action Input",
+                                          "description": "{\n  \"cepnumber\": \"24680\"\n}",
+                                          "Elo": 1000.0,
+                                          "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                                          "observation_code": 11,
+                                          "child_count": 2,
+                                          "expand_num": 6,
+                                          "io_state": {},
+                                          "children": [
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Action",
+                                              "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                              "Elo": 1000.0,
+                                              "child_count": 1,
+                                              "expand_num": 0,
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Action Input",
+                                                  "description": "{\n  \"cepnumber\": \"24680\"\n}",
+                                                  "Elo": 1000.0,
+                                                  "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                                                  "observation_code": 11,
+                                                  "child_count": 2,
+                                                  "expand_num": 7,
+                                                  "io_state": {},
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": true,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Thought",
+                                                      "description": "I apologize, but I am currently unable to retrieve the address details for the event venue using the zip code 24680. It seems that there is an issue with the CEP Brazil API. Please double-check the zip code and try again later. Is there anything else I can assist you with?",
+                                                      "Elo": 1000.0,
+                                                      "child_count": 0,
+                                                      "expand_num": 8,
+                                                      "children": []
+                                                    },
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": false,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Thought",
+                                                      "description": "Based on the repeated attempts, it seems that the function call to retrieve address details using the zip code 24680 is not working due to an invalid CEP. I will give up and restart the task.",
+                                                      "Elo": 1000.0,
+                                                      "child_count": 1,
+                                                      "expand_num": 0,
+                                                      "children": [
+                                                        {
+                                                          "is_terminal": false,
+                                                          "pruned": false,
+                                                          "finished": false,
+                                                          "depth": 13,
+                                                          "node_type": "Action",
+                                                          "description": "Finish",
+                                                          "Elo": 1000.0,
+                                                          "child_count": 1,
+                                                          "expand_num": 0,
+                                                          "children": [
+                                                            {
+                                                              "is_terminal": false,
+                                                              "pruned": true,
+                                                              "finished": false,
+                                                              "depth": 14,
+                                                              "node_type": "Action Input",
+                                                              "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                                                              "Elo": 1000.0,
+                                                              "observation": "{\"response\":\"chose to give up and restart\"}",
+                                                              "observation_code": 4,
+                                                              "child_count": 0,
+                                                              "expand_num": 9,
+                                                              "io_state": {},
+                                                              "children": []
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Thought",
+                                              "description": "Based on the previous attempts, all of them failed to retrieve the address details for the event venue using the zip code 24680. Since I have exhausted the attempts using the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function, I will try a different approach. I will use the \"turkey_postal_codes\" tool to search for the address details based on the zip code.\n\n",
+                                              "Elo": 1000.0,
+                                              "child_count": 1,
+                                              "expand_num": 0,
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Action",
+                                                  "description": "il_for_turkey_postal_codes",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": true,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action Input",
+                                                      "description": "{\n  \"il\": 24680\n}",
+                                                      "Elo": 1000.0,
+                                                      "observation": "{\"error\": \"\", \"response\": \"\"}",
+                                                      "observation_code": 0,
+                                                      "child_count": 0,
+                                                      "expand_num": 10,
+                                                      "io_state": {},
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Thought",
+                                      "description": "Based on the previous attempt, the function call to retrieve the address details for the event venue using the zip code 24680 failed with an invalid CEP error. Since there are no other previous action candidates, I will try a different approach to obtain the address details for the event venue. I will use the tool \"cep_brazil\" to retrieve the address details by providing the correct CEP number.",
+                                      "Elo": 1000.0,
+                                      "child_count": 1,
+                                      "expand_num": 0,
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": false,
+                                          "finished": false,
+                                          "depth": 9,
+                                          "node_type": "Action",
+                                          "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                          "Elo": 1000.0,
+                                          "child_count": 1,
+                                          "expand_num": 0,
+                                          "children": [
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Action Input",
+                                              "description": "{\n  \"cepnumber\": \"24680-000\"\n}",
+                                              "Elo": 1000.0,
+                                              "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP NAO ENCONTRADO: {\\\"SigepClienteException\\\":\\\"CEP NAO ENCONTRADO\\\"}'}]}\"}",
+                                              "observation_code": 11,
+                                              "child_count": 2,
+                                              "expand_num": 11,
+                                              "io_state": {},
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Action",
+                                                  "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": true,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action Input",
+                                                      "description": "{\n  \"cepnumber\": \"24680-000\"\n}",
+                                                      "Elo": 1000.0,
+                                                      "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP NAO ENCONTRADO: {\\\"SigepClienteException\\\":\\\"CEP NAO ENCONTRADO\\\"}'}]}\"}",
+                                                      "observation_code": 11,
+                                                      "child_count": 0,
+                                                      "expand_num": 12,
+                                                      "io_state": {},
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Thought",
+                                                  "description": "Based on the previous attempts, all of them failed to retrieve the address details for the event venue using the provided zip code 24680-000. Since I have exhausted all the previous action candidates, I need to try a different approach. \n\nOne possible alternative is to use a different tool called \"pack_send\" to track the package containing the donation items. This tool may provide relevant information about the package, including the latest status and location updates. I will make a function call to the \"api_tracking_for_pack_send\" subfunction with the tracking number \"GHI789\" to retrieve the necessary details.",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": false,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action",
+                                                      "description": "api_tracking_for_pack_send",
+                                                      "Elo": 1000.0,
+                                                      "child_count": 1,
+                                                      "expand_num": 0,
+                                                      "children": [
+                                                        {
+                                                          "is_terminal": false,
+                                                          "pruned": true,
+                                                          "finished": false,
+                                                          "depth": 13,
+                                                          "node_type": "Action Input",
+                                                          "description": "{\n  \"reference\": \"GHI789\"\n}",
+                                                          "Elo": 1000.0,
+                                                          "observation": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6c94-47a57f57d8b1a7d2.'}\"}",
+                                                          "observation_code": 0,
+                                                          "child_count": 0,
+                                                          "expand_num": 13,
+                                                          "io_state": {},
+                                                          "children": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "is_terminal": false,
+                  "pruned": false,
+                  "finished": false,
+                  "depth": 3,
+                  "node_type": "Thought",
+                  "description": "Based on the previous action and the current state, it seems that the tracking information for the package with tracking number GHI789 was not found. To proceed, I will try to retrieve the latest status and location updates for the package by using the \"latest_for_suivi_colis\" function.\n",
+                  "Elo": 1000.0,
+                  "child_count": 1,
+                  "expand_num": 0,
+                  "children": [
+                    {
+                      "is_terminal": false,
+                      "pruned": false,
+                      "finished": false,
+                      "depth": 4,
+                      "node_type": "Action",
+                      "description": "latest_for_suivi_colis",
+                      "Elo": 1000.0,
+                      "child_count": 1,
+                      "expand_num": 0,
+                      "children": [
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": false,
+                          "depth": 5,
+                          "node_type": "Action Input",
+                          "description": "{\n  \"colisid\": \"GHI789\"\n}",
+                          "Elo": 1000.0,
+                          "observation": "{\"error\": \"\", \"response\": \"\"}",
+                          "observation_code": 0,
+                          "child_count": 2,
+                          "expand_num": 14,
+                          "io_state": {},
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": false,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Action",
+                              "description": "latest_for_suivi_colis",
+                              "Elo": 1000.0,
+                              "child_count": 1,
+                              "expand_num": 0,
+                              "children": [
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": false,
+                                  "depth": 7,
+                                  "node_type": "Action Input",
+                                  "description": "{\"colisid\": \"GHI789\"}",
+                                  "Elo": 1000.0,
+                                  "observation": "{\"error\": \"\", \"response\": \"\"}",
+                                  "observation_code": 0,
+                                  "child_count": 2,
+                                  "expand_num": 15,
+                                  "io_state": {},
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Action",
+                                      "description": "latest_for_suivi_colis",
+                                      "Elo": 1000.0,
+                                      "child_count": 1,
+                                      "expand_num": 0,
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": false,
+                                          "finished": false,
+                                          "depth": 9,
+                                          "node_type": "Action Input",
+                                          "description": "{\n  \"colisid\": \"GHI789\"\n}",
+                                          "Elo": 1000.0,
+                                          "observation": "{\"error\": \"\", \"response\": \"\"}",
+                                          "observation_code": 0,
+                                          "child_count": 2,
+                                          "expand_num": 16,
+                                          "io_state": {},
+                                          "children": [
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Thought",
+                                              "description": "Based on the current state, the latest status and location updates for the package with tracking number GHI789 are not available. As the tracking information is not found, I will now proceed to find the address details for the event venue using the zip code 24680. For this, I will use the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function.\n",
+                                              "Elo": 1000.0,
+                                              "child_count": 1,
+                                              "expand_num": 0,
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Action",
+                                                  "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": true,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action Input",
+                                                      "description": "{\n  \"cepnumber\": \"24680\"\n}",
+                                                      "Elo": 1000.0,
+                                                      "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                                                      "observation_code": 11,
+                                                      "child_count": 0,
+                                                      "expand_num": 17,
+                                                      "io_state": {},
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Thought",
+                                              "description": "Based on the previous actions, it seems that the attempt to retrieve address details for the event venue using the zip code 24680 using the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function failed. Since all previous actions in this state have failed, I will try a different approach.\n\nTo track the package containing the donation items with the tracking number GHI789, I will use the \"api_tracking_for_pack_send\" function from the \"pack_send\" tool. This function should provide relevant information about the package.",
+                                              "Elo": 1000.0,
+                                              "child_count": 1,
+                                              "expand_num": 0,
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Action",
+                                                  "description": "api_tracking_for_pack_send",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": true,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action Input",
+                                                      "description": "{\n  \"reference\": \"GHI789\"\n}",
+                                                      "Elo": 1000.0,
+                                                      "observation": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6c94-47a57f57d8b1a7d2.'}\"}",
+                                                      "observation_code": 0,
+                                                      "child_count": 0,
+                                                      "expand_num": 18,
+                                                      "io_state": {},
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Thought",
+                                      "description": "Based on the current state and the previous actions, it seems that retrieving the latest status and location updates for the package with tracking number GHI789 using the \"latest_for_suivi_colis\" function did not provide any response. To proceed, I will try a different approach and use the \"api_tracking_for_pack_send\" function from the \"pack_send\" tool to track the package with the reference number GHI789.",
+                                      "Elo": 1000.0,
+                                      "child_count": 1,
+                                      "expand_num": 0,
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": false,
+                                          "finished": false,
+                                          "depth": 9,
+                                          "node_type": "Action",
+                                          "description": "api_tracking_for_pack_send",
+                                          "Elo": 1000.0,
+                                          "child_count": 1,
+                                          "expand_num": 0,
+                                          "children": [
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Action Input",
+                                              "description": "{\n  \"reference\": \"GHI789\"\n}",
+                                              "Elo": 1000.0,
+                                              "observation": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6c94-47a57f57d8b1a7d2.'}\"}",
+                                              "observation_code": 0,
+                                              "child_count": 2,
+                                              "expand_num": 19,
+                                              "io_state": {},
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Thought",
+                                                  "description": "Based on the current state and the previous actions, it seems that the \"api_tracking_for_pack_send\" function from the \"pack_send\" tool failed to track the package with the reference number GHI789. The function returned a bad request error. To proceed, I will try to find the address details for the event venue using the zip code 24680 by using the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function from the \"cep_brazil\" tool.",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": false,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action",
+                                                      "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                                      "Elo": 1000.0,
+                                                      "child_count": 1,
+                                                      "expand_num": 0,
+                                                      "children": [
+                                                        {
+                                                          "is_terminal": false,
+                                                          "pruned": true,
+                                                          "finished": false,
+                                                          "depth": 13,
+                                                          "node_type": "Action Input",
+                                                          "description": "{\n  \"cepnumber\": \"24680\"\n}",
+                                                          "Elo": 1000.0,
+                                                          "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                                                          "observation_code": 11,
+                                                          "child_count": 0,
+                                                          "expand_num": 20,
+                                                          "io_state": {},
+                                                          "children": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Thought",
+                                                  "description": "Based on the previous actions and the current state, it appears that all attempts to track the package with the tracking number GHI789 using various functions have failed. To proceed, I will try a different approach and use the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function from the \"cep_brazil\" tool to retrieve the address details for the event venue using the zip code 24680.",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": false,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action",
+                                                      "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                                      "Elo": 1000.0,
+                                                      "child_count": 1,
+                                                      "expand_num": 0,
+                                                      "children": [
+                                                        {
+                                                          "is_terminal": false,
+                                                          "pruned": true,
+                                                          "finished": false,
+                                                          "depth": 13,
+                                                          "node_type": "Action Input",
+                                                          "description": "{\n  \"cepnumber\": \"24680\"\n}",
+                                                          "Elo": 1000.0,
+                                                          "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                                                          "observation_code": 11,
+                                                          "child_count": 0,
+                                                          "expand_num": 21,
+                                                          "io_state": {},
+                                                          "children": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "is_terminal": false,
+                              "pruned": false,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Thought",
+                              "description": "Based on the analysis of the current state and previous actions, it seems that retrieving the latest status and location updates for the package with tracking number GHI789 using the \"latest_for_suivi_colis\" function did not provide any useful information in the previous trails.\n\nTo proceed and generate a different action, I will try to track the package and retrieve relevant information using the \"api_tracking_for_pack_send\" function from the \"pack_send\" tool.",
+                              "Elo": 1000.0,
+                              "child_count": 1,
+                              "expand_num": 0,
+                              "children": [
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": false,
+                                  "depth": 7,
+                                  "node_type": "Action",
+                                  "description": "api_tracking_for_pack_send",
+                                  "Elo": 1000.0,
+                                  "child_count": 1,
+                                  "expand_num": 0,
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Action Input",
+                                      "description": "{\n  \"reference\": \"GHI789\"\n}",
+                                      "Elo": 1000.0,
+                                      "observation": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6c94-47a57f57d8b1a7d2.'}\"}",
+                                      "observation_code": 0,
+                                      "child_count": 1,
+                                      "expand_num": 22,
+                                      "io_state": {},
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": false,
+                                          "finished": false,
+                                          "depth": 9,
+                                          "node_type": "Thought",
+                                          "description": "Based on the analysis of the current state and previous actions, it seems that the \"api_tracking_for_pack_send\" function from the \"pack_send\" tool is not available at the moment and returned a 400 Bad Request error.\n\nAt this point, since both attempts to track the package have failed, I will conclude that I am unable to proceed with the task in the current state. I will call the \"Finish\" function and restart the task.",
+                                          "Elo": 1000.0,
+                                          "child_count": 1,
+                                          "expand_num": 0,
+                                          "children": [
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Action",
+                                              "description": "Finish",
+                                              "Elo": 1000.0,
+                                              "child_count": 1,
+                                              "expand_num": 0,
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": true,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Action Input",
+                                                  "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                                                  "Elo": 1000.0,
+                                                  "observation": "{\"response\":\"chose to give up and restart\"}",
+                                                  "observation_code": 4,
+                                                  "child_count": 0,
+                                                  "expand_num": 23,
+                                                  "io_state": {},
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "is_terminal": false,
+          "pruned": false,
+          "finished": false,
+          "depth": 1,
+          "node_type": "Thought",
+          "description": "Based on the previous unsuccessful attempt to track the package using the \"track_package_for_amex_australia_fastway_australia_tracking\" function, I should try a different approach. Since the function returned an error stating that the tracking information was not found, I can try using the \"api_tracking_for_pack_send\" function from the \"pack_send\" tool to track the package.\n\nActions:\n1. Use the \"api_tracking_for_pack_send\" function with the tracking number \"GHI789\" to track the package.\n2. If the tracking information is found, use the \"latest_for_suivi_colis\" function from the \"suivi_colis\" tool with the colisid of the package to get the latest status and location updates.\n3. Use the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function from the \"cep_brazil\" tool with the zip code \"24680\" to find the address details of the event venue.\n\nPlease execute action 1.",
+          "Elo": 1000.0,
+          "child_count": 1,
+          "expand_num": 0,
+          "children": [
+            {
+              "is_terminal": false,
+              "pruned": false,
+              "finished": false,
+              "depth": 2,
+              "node_type": "Action",
+              "description": "api_tracking_for_pack_send",
+              "Elo": 1000.0,
+              "child_count": 1,
+              "expand_num": 0,
+              "children": [
+                {
+                  "is_terminal": false,
+                  "pruned": false,
+                  "finished": false,
+                  "depth": 3,
+                  "node_type": "Action Input",
+                  "description": "{\n  \"reference\": \"GHI789\"\n}",
+                  "Elo": 1000.0,
+                  "observation": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6c94-47a57f57d8b1a7d2.'}\"}",
+                  "observation_code": 0,
+                  "child_count": 2,
+                  "expand_num": 24,
+                  "io_state": {},
+                  "children": [
+                    {
+                      "is_terminal": false,
+                      "pruned": false,
+                      "finished": false,
+                      "depth": 4,
+                      "node_type": "Thought",
+                      "description": "It seems that there was an error while using the \"api_tracking_for_pack_send\" function to track the package using the tracking number \"GHI789\". The function returned a bad request error.\n\nSince the tracking number provided is not valid or recognized, I cannot proceed with tracking the package. However, I can still try to find the address details of the event venue using the zip code \"24680\" by using the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function from the \"cep_brazil\" tool.\n\nPlease execute action 3.",
+                      "Elo": 1000.0,
+                      "child_count": 1,
+                      "expand_num": 0,
+                      "children": [
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": false,
+                          "depth": 5,
+                          "node_type": "Action",
+                          "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                          "Elo": 1000.0,
+                          "child_count": 1,
+                          "expand_num": 0,
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": false,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Action Input",
+                              "description": "{\n  \"cepnumber\": \"24680\"\n}",
+                              "Elo": 1000.0,
+                              "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                              "observation_code": 11,
+                              "child_count": 1,
+                              "expand_num": 25,
+                              "io_state": {},
+                              "children": [
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": false,
+                                  "depth": 7,
+                                  "node_type": "Thought",
+                                  "description": "It seems that there was an error while using the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function to find the address details of the event venue using the zip code \"24680\". The function returned an error stating that it was not possible to consult the Correios with the provided zip code.\n\nSince the zip code provided is not valid or recognized, I am unable to retrieve the address details of the event venue. Unfortunately, I couldn't proceed with tracking the package or finding the address details.\n\nI will have to give up and restart the task.",
+                                  "Elo": 1000.0,
+                                  "child_count": 1,
+                                  "expand_num": 0,
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Action",
+                                      "description": "Finish",
+                                      "Elo": 1000.0,
+                                      "child_count": 1,
+                                      "expand_num": 0,
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": true,
+                                          "finished": false,
+                                          "depth": 9,
+                                          "node_type": "Action Input",
+                                          "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                                          "Elo": 1000.0,
+                                          "observation": "{\"response\":\"chose to give up and restart\"}",
+                                          "observation_code": 4,
+                                          "child_count": 0,
+                                          "expand_num": 26,
+                                          "io_state": {},
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "is_terminal": false,
+                      "pruned": false,
+                      "finished": false,
+                      "depth": 4,
+                      "node_type": "Thought",
+                      "description": "Based on the previous failed attempts to track the package and retrieve address details using the zip code, I can see that both the \"api_tracking_for_pack_send\" and \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" functions returned errors with status 400. It seems there might be an issue with the provided tracking number and zip code. \n\nTo proceed with different actions:\n1. Retry the \"api_tracking_for_pack_send\" function with a different tracking number to track the package.\n2. Retry the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function with a different zip code to find the address details of the event venue.\n\nSince I don't have any alternative tracking number or zip code, I will proceed with trying a different tracking number. \nPlease execute action 1 with a different tracking number.",
+                      "Elo": 1000.0,
+                      "child_count": 1,
+                      "expand_num": 0,
+                      "children": [
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": false,
+                          "depth": 5,
+                          "node_type": "Action",
+                          "description": "api_tracking_for_pack_send",
+                          "Elo": 1000.0,
+                          "child_count": 1,
+                          "expand_num": 0,
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": false,
+                              "finished": false,
+                              "depth": 6,
+                              "node_type": "Action Input",
+                              "description": "{\n  \"reference\": \"ABC123\"\n}",
+                              "Elo": 1000.0,
+                              "observation": "{\"error\": \"\", \"response\": \"{'type': 'https://tools.ietf.org/html/rfc7231#section-6.5.1', 'title': 'Bad Request', 'status': 400, 'traceId': '|b1da6c5a-47a57f57d8b1a7d2.'}\"}",
+                              "observation_code": 0,
+                              "child_count": 2,
+                              "expand_num": 27,
+                              "io_state": {},
+                              "children": [
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": false,
+                                  "depth": 7,
+                                  "node_type": "Thought",
+                                  "description": "Based on the previous unsuccessful attempt to track the package using a different tracking number, it seems that the issue might not be with the tracking number itself. \n\nTo proceed, I will retry the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function with a different zip code to find the address details of the event venue.\n\nPlease execute action 2 with a different zip code.",
+                                  "Elo": 1000.0,
+                                  "child_count": 1,
+                                  "expand_num": 0,
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Action",
+                                      "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                      "Elo": 1000.0,
+                                      "child_count": 1,
+                                      "expand_num": 0,
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": false,
+                                          "finished": false,
+                                          "depth": 9,
+                                          "node_type": "Action Input",
+                                          "description": "{\n  \"cepnumber\": \"12345\"\n}",
+                                          "Elo": 1000.0,
+                                          "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                                          "observation_code": 11,
+                                          "child_count": 1,
+                                          "expand_num": 28,
+                                          "io_state": {},
+                                          "children": [
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Thought",
+                                              "description": "Based on the previous unsuccessful attempt to retrieve address details using the zip code, it seems that the provided zip code \"12345\" is invalid and cannot be used to find the address details of the event venue.\n\nAt this point, all the attempts to track the package and retrieve address details have failed. I am unable to proceed with the given information.\n\nI will call the \"Finish\" function to give up and restart the task.",
+                                              "Elo": 1000.0,
+                                              "child_count": 1,
+                                              "expand_num": 0,
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Action",
+                                                  "description": "Finish",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": true,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action Input",
+                                                      "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                                                      "Elo": 1000.0,
+                                                      "observation": "{\"response\":\"chose to give up and restart\"}",
+                                                      "observation_code": 4,
+                                                      "child_count": 0,
+                                                      "expand_num": 29,
+                                                      "io_state": {},
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": false,
+                                  "depth": 7,
+                                  "node_type": "Thought",
+                                  "description": "Based on the previous unsuccessful attempts, I have identified the following options for generating new actions:\n1. Retry the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function with a different zip code.\n2. Retry the \"api_tracking_for_pack_send\" function with a different tracking number.\n\nSince I don't have an alternative zip code or tracking number, I will prioritize trying a different zip code. \n\nPlease execute the \"retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil\" function with a different zip code.",
+                                  "Elo": 1000.0,
+                                  "child_count": 1,
+                                  "expand_num": 0,
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": false,
+                                      "depth": 8,
+                                      "node_type": "Action",
+                                      "description": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+                                      "Elo": 1000.0,
+                                      "child_count": 1,
+                                      "expand_num": 0,
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": false,
+                                          "finished": false,
+                                          "depth": 9,
+                                          "node_type": "Action Input",
+                                          "description": "{\n  \"cepnumber\": \"13579\"\n}",
+                                          "Elo": 1000.0,
+                                          "observation": "{\"error\": \"Message error...\", \"response\": \"{'status': 400, 'message': 'N\\u00e3o foi poss\\u00edvel consultar os Correios', 'errors': [{'error': 'soap:Server: CEP INV\\u00c1LIDO: {\\\"SigepClienteException\\\":\\\"CEP INV\\u00c1LIDO\\\"}'}]}\"}",
+                                          "observation_code": 11,
+                                          "child_count": 1,
+                                          "expand_num": 30,
+                                          "io_state": {},
+                                          "children": [
+                                            {
+                                              "is_terminal": false,
+                                              "pruned": false,
+                                              "finished": false,
+                                              "depth": 10,
+                                              "node_type": "Thought",
+                                              "description": "Based on the previous unsuccessful attempts, I have tried different tracking numbers and zip codes, but I received errors indicating that the tracking information and address details could not be retrieved.\n\nSince all the attempts to track the package and find the address details have failed, I am unable to provide the latest status and location updates of the package or the address details of the event venue.\n\nI will now give up and restart the task.",
+                                              "Elo": 1000.0,
+                                              "child_count": 1,
+                                              "expand_num": 0,
+                                              "children": [
+                                                {
+                                                  "is_terminal": false,
+                                                  "pruned": false,
+                                                  "finished": false,
+                                                  "depth": 11,
+                                                  "node_type": "Action",
+                                                  "description": "Finish",
+                                                  "Elo": 1000.0,
+                                                  "child_count": 1,
+                                                  "expand_num": 0,
+                                                  "children": [
+                                                    {
+                                                      "is_terminal": false,
+                                                      "pruned": true,
+                                                      "finished": false,
+                                                      "depth": 12,
+                                                      "node_type": "Action Input",
+                                                      "description": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+                                                      "Elo": 1000.0,
+                                                      "observation": "{\"response\":\"chose to give up and restart\"}",
+                                                      "observation_code": 4,
+                                                      "child_count": 0,
+                                                      "expand_num": 31,
+                                                      "io_state": {},
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "forward_args": {
+    "single_chain_max_step": 12,
+    "tree_beam_size": 2,
+    "max_query_count": 200,
+    "answer": 1,
+    "with_filter": false
+  },
+  "compare_candidates": [],
+  "answer_generation": {
+    "valid_data": true,
+    "query_count": 31,
+    "total_tokens": 52416,
+    "final_answer": "{\n  \"return_type\": \"give_up_and_restart\"\n}",
+    "finish_type": "give_up",
+    "function": [
+      {
+        "name": "api_tracking_for_pack_send",
+        "description": "This is the subfunction for tool \"pack_send\", you can use this tool.The description of this function is: \"If you support your Pack & Send Reference Number, we can provide your with some relevant information.\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "description": "",
+              "example_value": "ReferenceNumberHere"
+            }
+          },
+          "required": [
+            "reference"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+        "description": "This is the subfunction for tool \"cep_brazil\", you can use this tool.The description of this function is: \"Retorna dados endere\u00e7o\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cepnumber": {
+              "type": "string",
+              "description": "",
+              "example_value": "75094080"
+            }
+          },
+          "required": [
+            "cepnumber"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "track_package_for_amex_australia_fastway_australia_tracking",
+        "description": "This is the subfunction for tool \"amex_australia_fastway_australia_tracking\", you can use this tool.The description of this function is: \"Track a package shipping details using a package tracking number\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "tracking_number": {
+              "type": "string",
+              "description": "",
+              "example_value": "1234567890"
+            }
+          },
+          "required": [
+            "tracking_number"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "count_for_suivi_colis",
+        "description": "This is the subfunction for tool \"suivi_colis\", you can use this tool.The description of this function is: \"Compte le nombre d'\u00e9tapes de l'historique, pratique pour limiter la consommation r\u00e9seau ou les ressources sur un IoT. Permet par exemple de poller un \u00e9tat de mani\u00e8re optimale.\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "colisid": {
+              "type": "string",
+              "description": "",
+              "example_value": "CA107308006SI"
+            }
+          },
+          "required": [
+            "colisid"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "latest_for_suivi_colis",
+        "description": "This is the subfunction for tool \"suivi_colis\", you can use this tool.The description of this function is: \"L'\u00e9tat courant (ie. le dernier \u00e9tat du colis).\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "colisid": {
+              "type": "string",
+              "description": "",
+              "example_value": "CA107308006SI"
+            }
+          },
+          "required": [
+            "colisid"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "health_for_suivi_colis",
+        "description": "This is the subfunction for tool \"suivi_colis\", you can use this tool.The description of this function is: \"Get the API's health\"",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "optional": []
+        }
+      },
+      {
+        "name": "il_for_turkey_postal_codes",
+        "description": "This is the subfunction for tool \"turkey_postal_codes\", you can use this tool.The description of this function is: \"Turkish plates. 1 to 81\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "il": {
+              "type": "integer",
+              "description": "",
+              "example_value": "34"
+            }
+          },
+          "required": [
+            "il"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "Finish",
+        "description": "If you believe that you have obtained a result that can answer the task, please call this function to provide the final answer. Alternatively, if you recognize that you are unable to proceed with the task in the current state, call this function to restart. Remember: you must ALWAYS call this function at the end of your attempt, and the only part that will be shown to the user is the final answer, so it should contain sufficient information.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "return_type": {
+              "type": "string",
+              "enum": [
+                "give_answer",
+                "give_up_and_restart"
+              ]
+            },
+            "final_answer": {
+              "type": "string",
+              "description": "The final answer you want to give the user. You should have this field if \"return_type\"==\"give_answer\""
+            }
+          },
+          "required": [
+            "return_type"
+          ]
+        }
+      }
+    ],
+    "chain": [],
+    "train_messages": [
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pack_send: Logistics and Shipment Services\n2.cep_brazil: API gratuita que retorna os dados Correios atrav\u00e9s de CEP\n3.amex_australia_fastway_australia_tracking: Tracking API for Aramex Australia also know as Fastway Australia. For any questions please contact support@logicsquares.com\n4.suivi_colis: L'API de suivi des colis en Nouvelle-Cal\u00e9donie\n5.turkey_postal_codes: Turkey's postal codes.\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI'm organizing a charity event and I need to track the donations we receive. Can you help me track the package containing the donation items? The tracking number is GHI789. Also, provide me with the latest status and location updates. Additionally, find the address details for the event venue using the zip code 24680.\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "track_package_for_amex_australia_fastway_australia_tracking",
+            "arguments": "{\n  \"tracking_number\": \"GHI789\"\n}"
+          }
+        }
+      ],
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pack_send: Logistics and Shipment Services\n2.cep_brazil: API gratuita que retorna os dados Correios atrav\u00e9s de CEP\n3.amex_australia_fastway_australia_tracking: Tracking API for Aramex Australia also know as Fastway Australia. For any questions please contact support@logicsquares.com\n4.suivi_colis: L'API de suivi des colis en Nouvelle-Cal\u00e9donie\n5.turkey_postal_codes: Turkey's postal codes.\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI'm organizing a charity event and I need to track the donations we receive. Can you help me track the package containing the donation items? The tracking number is GHI789. Also, provide me with the latest status and location updates. Additionally, find the address details for the event venue using the zip code 24680.\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "track_package_for_amex_australia_fastway_australia_tracking",
+            "arguments": "{\n  \"tracking_number\": \"GHI789\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "track_package_for_amex_australia_fastway_australia_tracking",
+          "content": "{\"error\": \"\", \"response\": \"{'success': False, 'message': 'Tracking information not found'}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "latest_for_suivi_colis",
+            "arguments": "{\n  \"colisid\": \"GHI789\"\n}"
+          }
+        }
+      ],
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pack_send: Logistics and Shipment Services\n2.cep_brazil: API gratuita que retorna os dados Correios atrav\u00e9s de CEP\n3.amex_australia_fastway_australia_tracking: Tracking API for Aramex Australia also know as Fastway Australia. For any questions please contact support@logicsquares.com\n4.suivi_colis: L'API de suivi des colis en Nouvelle-Cal\u00e9donie\n5.turkey_postal_codes: Turkey's postal codes.\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI'm organizing a charity event and I need to track the donations we receive. Can you help me track the package containing the donation items? The tracking number is GHI789. Also, provide me with the latest status and location updates. Additionally, find the address details for the event venue using the zip code 24680.\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "track_package_for_amex_australia_fastway_australia_tracking",
+            "arguments": "{\n  \"tracking_number\": \"GHI789\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "track_package_for_amex_australia_fastway_australia_tracking",
+          "content": "{\"error\": \"\", \"response\": \"{'success': False, 'message': 'Tracking information not found'}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "latest_for_suivi_colis",
+            "arguments": "{\n  \"colisid\": \"GHI789\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "latest_for_suivi_colis",
+          "content": "{\"error\": \"\", \"response\": \"\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+            "arguments": "{\n  \"cepnumber\": \"24680\"\n}"
+          }
+        }
+      ],
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pack_send: Logistics and Shipment Services\n2.cep_brazil: API gratuita que retorna os dados Correios atrav\u00e9s de CEP\n3.amex_australia_fastway_australia_tracking: Tracking API for Aramex Australia also know as Fastway Australia. For any questions please contact support@logicsquares.com\n4.suivi_colis: L'API de suivi des colis en Nouvelle-Cal\u00e9donie\n5.turkey_postal_codes: Turkey's postal codes.\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI'm organizing a charity event and I need to track the donations we receive. Can you help me track the package containing the donation items? The tracking number is GHI789. Also, provide me with the latest status and location updates. Additionally, find the address details for the event venue using the zip code 24680.\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "track_package_for_amex_australia_fastway_australia_tracking",
+            "arguments": "{\n  \"tracking_number\": \"GHI789\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "track_package_for_amex_australia_fastway_australia_tracking",
+          "content": "{\"error\": \"\", \"response\": \"{'success': False, 'message': 'Tracking information not found'}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "latest_for_suivi_colis",
+            "arguments": "{\n  \"colisid\": \"GHI789\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "latest_for_suivi_colis",
+          "content": "{\"error\": \"\", \"response\": \"\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+            "arguments": "{\n  \"cepnumber\": \"24680\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+          "content": "{\"error\": \"Timeout error...HTTPConnectionPool(host='172.19.0.1', port=7890): Read timed out. (read timeout=30)\", \"response\": \"\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "Finish",
+            "arguments": "{\n  \"return_type\": \"give_up_and_restart\"\n}"
+          }
+        }
+      ]
+    ],
+    "query": "I'm organizing a charity event and I need to track the donations we receive. Can you help me track the package containing the donation items? The tracking number is GHI789. Also, provide me with the latest status and location updates. Additionally, find the address details for the event venue using the zip code 24680."
+  }
+}

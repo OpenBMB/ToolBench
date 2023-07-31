@@ -1,0 +1,70 @@
+{
+    "api_list": [
+        {
+            "name": "Played",
+            "schema": {
+                "data": [
+                    {
+                        "location": "str",
+                        "team_won": {
+                            "title": "str"
+                        },
+                        "team_lose_country": {
+                            "title": "str"
+                        },
+                        "match_kind": {
+                            "title": "str"
+                        },
+                        "score_lose": "str",
+                        "team_won_country": {
+                            "title": "str"
+                        },
+                        "score_won": "str",
+                        "event": {
+                            "title": "str"
+                        },
+                        "stars": "str"
+                    }
+                ],
+                "meta": {
+                    "limit": "str",
+                    "page": "str",
+                    "total": "str",
+                    "pages": "str"
+                }
+            }
+        },
+        {
+            "name": "Upcoming",
+            "schema": {
+                "data": [
+                    {
+                        "match_kind": {
+                            "title": "str"
+                        },
+                        "event": {
+                            "title": "str"
+                        },
+                        "stars": "str",
+                        "play_at": "str",
+                        "team1": {
+                            "title": "str"
+                        },
+                        "team1_country": {
+                            "title": "str"
+                        },
+                        "team2": {
+                            "title": "str"
+                        },
+                        "team2_country": {
+                            "title": "str"
+                        }
+                    }
+                ],
+                "meta": {
+                    "total": "str"
+                }
+            }
+        }
+    ]
+}

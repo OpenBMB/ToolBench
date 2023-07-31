@@ -1,0 +1,578 @@
+[
+    {
+        "api_list": [
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/offices/search/:service/:stateIsoCode/:keyword",
+                "api_description": "List of offices for iso state and postcode.",
+                "required_parameters": [
+                    {
+                        "name": "keyword",
+                        "type": "STRING",
+                        "description": "Keyword to search, example: Caballito",
+                        "default": ""
+                    },
+                    {
+                        "name": "service",
+                        "type": "STRING",
+                        "description": "Service Name: correo_argentino, oca, andreani",
+                        "default": ""
+                    },
+                    {
+                        "name": "stateIsoCode",
+                        "type": "STRING",
+                        "description": "State ISO Code",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "message": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/tracking/correo_argentino/result_task/:task_id",
+                "api_description": "Result for one Task ID.",
+                "required_parameters": [
+                    {
+                        "name": "task_id",
+                        "type": "STRING",
+                        "description": "Task ID",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/quotes/postcode/oca/:cuit/:operativa/:cost/:weight/:volume/:postCodeSrc/:postCodeDst",
+                "api_description": "Quote for postcode in OCA e-Pack.",
+                "required_parameters": [
+                    {
+                        "name": "postCodeDst",
+                        "type": "NUMBER",
+                        "description": "Postcode Destination",
+                        "default": ""
+                    },
+                    {
+                        "name": "cuit",
+                        "type": "STRING",
+                        "description": "CUIT of your account in OCA e-Pack",
+                        "default": ""
+                    },
+                    {
+                        "name": "operativa",
+                        "type": "STRING",
+                        "description": "Operativa number of your account in OCA e-Pack",
+                        "default": ""
+                    },
+                    {
+                        "name": "cost",
+                        "type": "NUMBER",
+                        "description": "Cost of products in ARS",
+                        "default": ""
+                    },
+                    {
+                        "name": "postCodeSrc",
+                        "type": "NUMBER",
+                        "description": "Postcode Source",
+                        "default": ""
+                    },
+                    {
+                        "name": "volume",
+                        "type": "NUMBER",
+                        "description": "Volume in cm3",
+                        "default": ""
+                    },
+                    {
+                        "name": "weight",
+                        "type": "NUMBER",
+                        "description": "Weight in KG",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Create Container Tracking",
+                "api_name": "Get Tracking Data",
+                "api_description": "The user will be able to retrieve the data using this endpoint.",
+                "required_parameters": [
+                    {
+                        "name": "id",
+                        "type": "string",
+                        "description": "",
+                        "default": "6045e2f44e1b233199a5e77a"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Turkey Postal Codes",
+                "api_name": "il",
+                "api_description": "Turkish plates. 1 to 81",
+                "required_parameters": [
+                    {
+                        "name": "il",
+                        "type": "NUMBER",
+                        "description": "",
+                        "default": "34"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "success": "bool",
+                    "status": "str",
+                    "dataupdatedate": "str",
+                    "description": "str",
+                    "pagecreatedate": "str",
+                    "postakodu": [
+                        {
+                            "plaka": "int",
+                            "il": "str",
+                            "ilce": "str",
+                            "semt_bucak_belde": "str",
+                            "mahalle": "str",
+                            "pk": "str",
+                            "_list_length": 975
+                        }
+                    ]
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Checkhealth",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Projects",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            }
+        ],
+        "query": "I'm starting an e-commerce business and I need to integrate a package tracking feature. Can you provide me with the tracking data for the shipment with ID 6045e2f44e1b233199a5e77a? Also, I would like to check the health status of the SQUAKE authentication system.",
+        "relevant APIs": [
+            [
+                "Create Container Tracking",
+                "Get Tracking Data"
+            ],
+            [
+                "SQUAKE",
+                "Checkhealth"
+            ]
+        ],
+        "query_id": 1
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/offices/search/:service/:stateIsoCode/:keyword",
+                "api_description": "List of offices for iso state and postcode.",
+                "required_parameters": [
+                    {
+                        "name": "keyword",
+                        "type": "STRING",
+                        "description": "Keyword to search, example: Caballito",
+                        "default": ""
+                    },
+                    {
+                        "name": "service",
+                        "type": "STRING",
+                        "description": "Service Name: correo_argentino, oca, andreani",
+                        "default": ""
+                    },
+                    {
+                        "name": "stateIsoCode",
+                        "type": "STRING",
+                        "description": "State ISO Code",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "message": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/tracking/correo_argentino/result_task/:task_id",
+                "api_description": "Result for one Task ID.",
+                "required_parameters": [
+                    {
+                        "name": "task_id",
+                        "type": "STRING",
+                        "description": "Task ID",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/quotes/postcode/oca/:cuit/:operativa/:cost/:weight/:volume/:postCodeSrc/:postCodeDst",
+                "api_description": "Quote for postcode in OCA e-Pack.",
+                "required_parameters": [
+                    {
+                        "name": "postCodeDst",
+                        "type": "NUMBER",
+                        "description": "Postcode Destination",
+                        "default": ""
+                    },
+                    {
+                        "name": "cuit",
+                        "type": "STRING",
+                        "description": "CUIT of your account in OCA e-Pack",
+                        "default": ""
+                    },
+                    {
+                        "name": "operativa",
+                        "type": "STRING",
+                        "description": "Operativa number of your account in OCA e-Pack",
+                        "default": ""
+                    },
+                    {
+                        "name": "cost",
+                        "type": "NUMBER",
+                        "description": "Cost of products in ARS",
+                        "default": ""
+                    },
+                    {
+                        "name": "postCodeSrc",
+                        "type": "NUMBER",
+                        "description": "Postcode Source",
+                        "default": ""
+                    },
+                    {
+                        "name": "volume",
+                        "type": "NUMBER",
+                        "description": "Volume in cm3",
+                        "default": ""
+                    },
+                    {
+                        "name": "weight",
+                        "type": "NUMBER",
+                        "description": "Weight in KG",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Create Container Tracking",
+                "api_name": "Get Tracking Data",
+                "api_description": "The user will be able to retrieve the data using this endpoint.",
+                "required_parameters": [
+                    {
+                        "name": "id",
+                        "type": "string",
+                        "description": "",
+                        "default": "6045e2f44e1b233199a5e77a"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Turkey Postal Codes",
+                "api_name": "il",
+                "api_description": "Turkish plates. 1 to 81",
+                "required_parameters": [
+                    {
+                        "name": "il",
+                        "type": "NUMBER",
+                        "description": "",
+                        "default": "34"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "success": "bool",
+                    "status": "str",
+                    "dataupdatedate": "str",
+                    "description": "str",
+                    "pagecreatedate": "str",
+                    "postakodu": [
+                        {
+                            "plaka": "int",
+                            "il": "str",
+                            "ilce": "str",
+                            "semt_bucak_belde": "str",
+                            "mahalle": "str",
+                            "pk": "str",
+                            "_list_length": 975
+                        }
+                    ]
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Checkhealth",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Projects",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            }
+        ],
+        "query": "I'm planning a trip to Istanbul and I need to know the postal codes for different districts. Can you provide me with the postal codes for the districts in Istanbul with plate number 34? Additionally, I would like to track a package with the task ID 987654321.",
+        "relevant APIs": [
+            [
+                "Turkey Postal Codes",
+                "il"
+            ],
+            [
+                "Transportistas de Argentina",
+                "/tracking/correo_argentino/result_task/:task_id"
+            ]
+        ],
+        "query_id": 2
+    },
+    {
+        "api_list": [
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/offices/search/:service/:stateIsoCode/:keyword",
+                "api_description": "List of offices for iso state and postcode.",
+                "required_parameters": [
+                    {
+                        "name": "keyword",
+                        "type": "STRING",
+                        "description": "Keyword to search, example: Caballito",
+                        "default": ""
+                    },
+                    {
+                        "name": "service",
+                        "type": "STRING",
+                        "description": "Service Name: correo_argentino, oca, andreani",
+                        "default": ""
+                    },
+                    {
+                        "name": "stateIsoCode",
+                        "type": "STRING",
+                        "description": "State ISO Code",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "message": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/tracking/correo_argentino/result_task/:task_id",
+                "api_description": "Result for one Task ID.",
+                "required_parameters": [
+                    {
+                        "name": "task_id",
+                        "type": "STRING",
+                        "description": "Task ID",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Transportistas de Argentina",
+                "api_name": "/quotes/postcode/oca/:cuit/:operativa/:cost/:weight/:volume/:postCodeSrc/:postCodeDst",
+                "api_description": "Quote for postcode in OCA e-Pack.",
+                "required_parameters": [
+                    {
+                        "name": "postCodeDst",
+                        "type": "NUMBER",
+                        "description": "Postcode Destination",
+                        "default": ""
+                    },
+                    {
+                        "name": "cuit",
+                        "type": "STRING",
+                        "description": "CUIT of your account in OCA e-Pack",
+                        "default": ""
+                    },
+                    {
+                        "name": "operativa",
+                        "type": "STRING",
+                        "description": "Operativa number of your account in OCA e-Pack",
+                        "default": ""
+                    },
+                    {
+                        "name": "cost",
+                        "type": "NUMBER",
+                        "description": "Cost of products in ARS",
+                        "default": ""
+                    },
+                    {
+                        "name": "postCodeSrc",
+                        "type": "NUMBER",
+                        "description": "Postcode Source",
+                        "default": ""
+                    },
+                    {
+                        "name": "volume",
+                        "type": "NUMBER",
+                        "description": "Volume in cm3",
+                        "default": ""
+                    },
+                    {
+                        "name": "weight",
+                        "type": "NUMBER",
+                        "description": "Weight in KG",
+                        "default": ""
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "statusCode": "int",
+                    "message": "str",
+                    "error": "str"
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Create Container Tracking",
+                "api_name": "Get Tracking Data",
+                "api_description": "The user will be able to retrieve the data using this endpoint.",
+                "required_parameters": [
+                    {
+                        "name": "id",
+                        "type": "string",
+                        "description": "",
+                        "default": "6045e2f44e1b233199a5e77a"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "Turkey Postal Codes",
+                "api_name": "il",
+                "api_description": "Turkish plates. 1 to 81",
+                "required_parameters": [
+                    {
+                        "name": "il",
+                        "type": "NUMBER",
+                        "description": "",
+                        "default": "34"
+                    }
+                ],
+                "optional_parameters": [],
+                "method": "GET",
+                "template_response": {
+                    "success": "bool",
+                    "status": "str",
+                    "dataupdatedate": "str",
+                    "description": "str",
+                    "pagecreatedate": "str",
+                    "postakodu": [
+                        {
+                            "plaka": "int",
+                            "il": "str",
+                            "ilce": "str",
+                            "semt_bucak_belde": "str",
+                            "mahalle": "str",
+                            "pk": "str",
+                            "_list_length": 975
+                        }
+                    ]
+                }
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Checkhealth",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            },
+            {
+                "category_name": "Logistics",
+                "tool_name": "SQUAKE",
+                "api_name": "Projects",
+                "api_description": " ",
+                "required_parameters": [],
+                "optional_parameters": [],
+                "method": "GET"
+            }
+        ],
+        "query": "I'm planning a trip to Buenos Aires and I need to know the postal codes for different districts. Can you provide me with the postal codes for the districts in Buenos Aires with plate number 1? Additionally, I would like to track a package with the task ID 987654321.",
+        "relevant APIs": [
+            [
+                "Turkey Postal Codes",
+                "il"
+            ],
+            [
+                "Transportistas de Argentina",
+                "/tracking/correo_argentino/result_task/:task_id"
+            ]
+        ],
+        "query_id": 3
+    }
+]

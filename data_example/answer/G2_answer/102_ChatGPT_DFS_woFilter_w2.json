@@ -1,0 +1,588 @@
+{
+  "win": true,
+  "tree": {
+    "size": 10,
+    "max_length": 10,
+    "tree": {
+      "is_terminal": false,
+      "pruned": false,
+      "finished": false,
+      "depth": 0,
+      "node_type": "Action Input",
+      "description": "",
+      "Elo": 1000.0,
+      "child_count": 1,
+      "expand_num": 0,
+      "io_state": {},
+      "children": [
+        {
+          "is_terminal": false,
+          "pruned": false,
+          "finished": false,
+          "depth": 1,
+          "node_type": "Action",
+          "description": "carriers_detect_for_trackingmore_v2",
+          "Elo": 1000.0,
+          "child_count": 1,
+          "expand_num": 0,
+          "children": [
+            {
+              "is_terminal": false,
+              "pruned": false,
+              "finished": false,
+              "depth": 2,
+              "node_type": "Action Input",
+              "description": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}",
+              "Elo": 1000.0,
+              "observation": "{\"error\": \"\", \"response\": \"{'meta': {'code': 200, 'type': 'Success', 'message': 'Success'}, 'data': [{'name': 'Yun Express', 'code': 'yunexpress'}]}\"}",
+              "observation_code": 0,
+              "child_count": 1,
+              "expand_num": 1,
+              "io_state": {},
+              "children": [
+                {
+                  "is_terminal": false,
+                  "pruned": false,
+                  "finished": false,
+                  "depth": 3,
+                  "node_type": "Action",
+                  "description": "packages_v2_track_for_trackingmore_v2",
+                  "Elo": 1000.0,
+                  "child_count": 1,
+                  "expand_num": 0,
+                  "children": [
+                    {
+                      "is_terminal": false,
+                      "pruned": false,
+                      "finished": true,
+                      "depth": 4,
+                      "node_type": "Action Input",
+                      "description": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}",
+                      "Elo": 1000.0,
+                      "observation": "{\"error\": \"\", \"response\": \"{'originCountryData': {'stausDataNum': 1, 'substatus': 'notfound002', 'destinationcountryname': '', 'itemTimeLength': None, 'infoState': 3, 'phonenum': '4000-2621-26', 'weblink': 'http://www.yunexpress.com/'}, 'destinationCountryData': [], 'costTimeData': {'carrier_code': 'yunexpress', 'original': '', 'destination': '', 'total': 0, 'delivered': 0, 'range1': 0, 'range3': 0, 'range4': 0, 'range5': 0, 'range6': 0, 'day': 0}, 'lastEvent': '', 'expressType': 'express', 'stausDataNum': 1, 'function': 2, 'itemkey': 'DqCJiHaGSfVTJ'}\"}",
+                      "observation_code": 0,
+                      "child_count": 1,
+                      "expand_num": 2,
+                      "io_state": {},
+                      "children": [
+                        {
+                          "is_terminal": false,
+                          "pruned": false,
+                          "finished": true,
+                          "depth": 5,
+                          "node_type": "Action",
+                          "description": "transitaires_for_transitaires",
+                          "Elo": 1000.0,
+                          "child_count": 1,
+                          "expand_num": 0,
+                          "children": [
+                            {
+                              "is_terminal": false,
+                              "pruned": false,
+                              "finished": true,
+                              "depth": 6,
+                              "node_type": "Action Input",
+                              "description": "{}",
+                              "Elo": 1000.0,
+                              "observation": "{\"error\": \"\", \"response\": \"[{\\\"id\\\":\\\"EKVF\\\",\\\"name\\\":\\\"EKVF\\\",\\\"phone\\\":\\\"+687 27.25.92\\\"},{\\\"id\\\":\\\"ACT_AGENCE_CALEDONIENNE_DE_TRANSIT\\\",\\\"codePostal\\\":\\\"98800\\\",\\\"email\\\":\\\"sales@act.nc\\\",\\\"name\\\":\\\"ACT - Agence Cal\\u00e9donienne de Transit\\\",\\\"phone\\\":\\\"+687 27.55.48\\\",\\\"ridet\\\":\\\"0036590\\\"},{\\\"id\\\":\\\"AFL_AGENCE_DE_FRET_ET_LOGISTIQUE\\\",\\\"codePostal\\\":\\\"98846\\\",\\\"name\\\":\\\"AFL - Agence de Fr\\u00eat et Logistique\\\",\\\"phone\\\":\\\"+687 26.11.11\\\",\\\"website\\\":\\\"www.transportinter.eu\\\"},{\\\"id\\\":\\\"AGENCE_LOGISTIQUE_ET_TRANSIT_NOUMEA\\\",\\\"codePostal\\\":\\\"98800\\\",\\\"email\\\":\\\"ltn@ltn.nc\\\",\\\"name\\\":\\\"Agence Logistique et Transit Noum\\u00e9a\\\",\\\"phone\\\":\\\"+687 24.21.85\\\",\\\"website\\\":\\\"www.ltn.nc\\\"},{\\\"id\\\":\\\"ATI_TRAMAR_GROUPE_LEON_VINCENT\\\",\\\"name\\\":\\\"ATI TRAMAR- Groupe L\\u00e9on Vincent\\\",\\\"phone\\\":\\\"+687 28.61.25\\\"},{\\\"id\\\":\\\"ATL_LINES_DEMLINES\\\",\\\"email\\\":\\\"e.fleurence@atl-lines.fr\\\",\\\"name\\\":\\\"ATL Lines - DEMLINES\\\",\\\"website\\\":\\\"nouvellecaledonie.demlines.com\\\"},{\\\"id\\\":\\\"BOLLORE_LOGISTICS_NOUMEA\\\",\\\"codePostal\\\":\\\"9...",
+                              "observation_code": 0,
+                              "child_count": 1,
+                              "expand_num": 3,
+                              "io_state": {},
+                              "children": [
+                                {
+                                  "is_terminal": false,
+                                  "pruned": false,
+                                  "finished": true,
+                                  "depth": 7,
+                                  "node_type": "Thought",
+                                  "description": "Based on the carrier detection, the package is being handled by Yun Express. However, the current status and destination information are not available for the tracking number YT2003521266065328. \n\nAs for the transitaires agencies that can handle customs clearance, here are some options:\n1. EKVF - Phone: +687 27.25.92\n2. ACT - Agence Cal\u00e9donienne de Transit - Phone: +687 27.55.48, Email: sales@act.nc\n3. AFL - Agence de Fr\u00eat et Logistique - Phone: +687 26.11.11, Website: www.transportinter.eu\n4. Agence Logistique et Transit Noum\u00e9a - Phone: +687 24.21.85, Website: www.ltn.nc\n5. ATI TRAMAR- Groupe L\u00e9on Vincent - Phone: +687 28.61.25\n6. ATL Lines - DEMLINES - Email: e.fleurence@atl-lines.fr, Website: nouvellecaledonie.demlines.com\n7. BOLLORE LOGISTICS NOUMEA - Website: www.bollore-logistics.com\n\nPlease contact the respective agency for more information and assistance with customs clearance. Let me know if there is anything else I can help with!",
+                                  "Elo": 1000.0,
+                                  "child_count": 1,
+                                  "expand_num": 0,
+                                  "children": [
+                                    {
+                                      "is_terminal": false,
+                                      "pruned": false,
+                                      "finished": true,
+                                      "depth": 8,
+                                      "node_type": "Action",
+                                      "description": "Finish",
+                                      "Elo": 1000.0,
+                                      "child_count": 1,
+                                      "expand_num": 0,
+                                      "children": [
+                                        {
+                                          "is_terminal": false,
+                                          "pruned": false,
+                                          "finished": true,
+                                          "depth": 9,
+                                          "node_type": "Action Input",
+                                          "description": "{\n  \"return_type\": \"give_answer\",\n  \"final_answer\": \"The package with tracking number YT2003521266065328 is being handled by Yun Express. The current status and destination information are not available at the moment. For customs clearance assistance, you can consider contacting the following transitaires agencies: 1. EKVF - Phone: +687 27.25.92, 2. ACT - Agence Cal\u00e9donienne de Transit - Phone: +687 27.55.48, Email: sales@act.nc, 3. AFL - Agence de Fr\u00eat et Logistique - Phone: +687 26.11.11, Website: www.transportinter.eu, 4. Agence Logistique et Transit Noum\u00e9a - Phone: +687 24.21.85, Website: www.ltn.nc, 5. ATI TRAMAR- Groupe L\u00e9on Vincent - Phone: +687 28.61.25, 6. ATL Lines - DEMLINES - Email: e.fleurence@atl-lines.fr, Website: nouvellecaledonie.demlines.com, 7. BOLLORE LOGISTICS NOUMEA - Website: www.bollore-logistics.com\"\n}",
+                                          "Elo": 1000.0,
+                                          "observation": "{\"response\":\"successfully giving the final answer.\"}",
+                                          "observation_code": 3,
+                                          "child_count": 0,
+                                          "expand_num": 4,
+                                          "io_state": {},
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "forward_args": {
+    "single_chain_max_step": 12,
+    "tree_beam_size": 2,
+    "max_query_count": 200,
+    "answer": 1,
+    "with_filter": false
+  },
+  "compare_candidates": [
+    [
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": false,
+        "depth": 1,
+        "node_type": "Action",
+        "description": "carriers_detect_for_trackingmore_v2",
+        "Elo": 1000.0,
+        "child_count": 1,
+        "expand_num": 0
+      },
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": false,
+        "depth": 2,
+        "node_type": "Action Input",
+        "description": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}",
+        "Elo": 1000.0,
+        "observation": "{\"error\": \"\", \"response\": \"{'meta': {'code': 200, 'type': 'Success', 'message': 'Success'}, 'data': [{'name': 'Yun Express', 'code': 'yunexpress'}]}\"}",
+        "observation_code": 0,
+        "child_count": 1,
+        "expand_num": 1,
+        "io_state": {}
+      },
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": false,
+        "depth": 3,
+        "node_type": "Action",
+        "description": "packages_v2_track_for_trackingmore_v2",
+        "Elo": 1000.0,
+        "child_count": 1,
+        "expand_num": 0
+      },
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": true,
+        "depth": 4,
+        "node_type": "Action Input",
+        "description": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}",
+        "Elo": 1000.0,
+        "observation": "{\"error\": \"\", \"response\": \"{'originCountryData': {'stausDataNum': 1, 'substatus': 'notfound002', 'destinationcountryname': '', 'itemTimeLength': None, 'infoState': 3, 'phonenum': '4000-2621-26', 'weblink': 'http://www.yunexpress.com/'}, 'destinationCountryData': [], 'costTimeData': {'carrier_code': 'yunexpress', 'original': '', 'destination': '', 'total': 0, 'delivered': 0, 'range1': 0, 'range3': 0, 'range4': 0, 'range5': 0, 'range6': 0, 'day': 0}, 'lastEvent': '', 'expressType': 'express', 'stausDataNum': 1, 'function': 2, 'itemkey': 'DqCJiHaGSfVTJ'}\"}",
+        "observation_code": 0,
+        "child_count": 1,
+        "expand_num": 2,
+        "io_state": {}
+      },
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": true,
+        "depth": 5,
+        "node_type": "Action",
+        "description": "transitaires_for_transitaires",
+        "Elo": 1000.0,
+        "child_count": 1,
+        "expand_num": 0
+      },
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": true,
+        "depth": 6,
+        "node_type": "Action Input",
+        "description": "{}",
+        "Elo": 1000.0,
+        "observation": "{\"error\": \"\", \"response\": \"[{\\\"id\\\":\\\"EKVF\\\",\\\"name\\\":\\\"EKVF\\\",\\\"phone\\\":\\\"+687 27.25.92\\\"},{\\\"id\\\":\\\"ACT_AGENCE_CALEDONIENNE_DE_TRANSIT\\\",\\\"codePostal\\\":\\\"98800\\\",\\\"email\\\":\\\"sales@act.nc\\\",\\\"name\\\":\\\"ACT - Agence Cal\\u00e9donienne de Transit\\\",\\\"phone\\\":\\\"+687 27.55.48\\\",\\\"ridet\\\":\\\"0036590\\\"},{\\\"id\\\":\\\"AFL_AGENCE_DE_FRET_ET_LOGISTIQUE\\\",\\\"codePostal\\\":\\\"98846\\\",\\\"name\\\":\\\"AFL - Agence de Fr\\u00eat et Logistique\\\",\\\"phone\\\":\\\"+687 26.11.11\\\",\\\"website\\\":\\\"www.transportinter.eu\\\"},{\\\"id\\\":\\\"AGENCE_LOGISTIQUE_ET_TRANSIT_NOUMEA\\\",\\\"codePostal\\\":\\\"98800\\\",\\\"email\\\":\\\"ltn@ltn.nc\\\",\\\"name\\\":\\\"Agence Logistique et Transit Noum\\u00e9a\\\",\\\"phone\\\":\\\"+687 24.21.85\\\",\\\"website\\\":\\\"www.ltn.nc\\\"},{\\\"id\\\":\\\"ATI_TRAMAR_GROUPE_LEON_VINCENT\\\",\\\"name\\\":\\\"ATI TRAMAR- Groupe L\\u00e9on Vincent\\\",\\\"phone\\\":\\\"+687 28.61.25\\\"},{\\\"id\\\":\\\"ATL_LINES_DEMLINES\\\",\\\"email\\\":\\\"e.fleurence@atl-lines.fr\\\",\\\"name\\\":\\\"ATL Lines - DEMLINES\\\",\\\"website\\\":\\\"nouvellecaledonie.demlines.com\\\"},{\\\"id\\\":\\\"BOLLORE_LOGISTICS_NOUMEA\\\",\\\"codePostal\\\":\\\"9...",
+        "observation_code": 0,
+        "child_count": 1,
+        "expand_num": 3,
+        "io_state": {}
+      },
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": true,
+        "depth": 7,
+        "node_type": "Thought",
+        "description": "Based on the carrier detection, the package is being handled by Yun Express. However, the current status and destination information are not available for the tracking number YT2003521266065328. \n\nAs for the transitaires agencies that can handle customs clearance, here are some options:\n1. EKVF - Phone: +687 27.25.92\n2. ACT - Agence Cal\u00e9donienne de Transit - Phone: +687 27.55.48, Email: sales@act.nc\n3. AFL - Agence de Fr\u00eat et Logistique - Phone: +687 26.11.11, Website: www.transportinter.eu\n4. Agence Logistique et Transit Noum\u00e9a - Phone: +687 24.21.85, Website: www.ltn.nc\n5. ATI TRAMAR- Groupe L\u00e9on Vincent - Phone: +687 28.61.25\n6. ATL Lines - DEMLINES - Email: e.fleurence@atl-lines.fr, Website: nouvellecaledonie.demlines.com\n7. BOLLORE LOGISTICS NOUMEA - Website: www.bollore-logistics.com\n\nPlease contact the respective agency for more information and assistance with customs clearance. Let me know if there is anything else I can help with!",
+        "Elo": 1000.0,
+        "child_count": 1,
+        "expand_num": 0
+      },
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": true,
+        "depth": 8,
+        "node_type": "Action",
+        "description": "Finish",
+        "Elo": 1000.0,
+        "child_count": 1,
+        "expand_num": 0
+      },
+      {
+        "is_terminal": false,
+        "pruned": false,
+        "finished": true,
+        "depth": 9,
+        "node_type": "Action Input",
+        "description": "{\n  \"return_type\": \"give_answer\",\n  \"final_answer\": \"The package with tracking number YT2003521266065328 is being handled by Yun Express. The current status and destination information are not available at the moment. For customs clearance assistance, you can consider contacting the following transitaires agencies: 1. EKVF - Phone: +687 27.25.92, 2. ACT - Agence Cal\u00e9donienne de Transit - Phone: +687 27.55.48, Email: sales@act.nc, 3. AFL - Agence de Fr\u00eat et Logistique - Phone: +687 26.11.11, Website: www.transportinter.eu, 4. Agence Logistique et Transit Noum\u00e9a - Phone: +687 24.21.85, Website: www.ltn.nc, 5. ATI TRAMAR- Groupe L\u00e9on Vincent - Phone: +687 28.61.25, 6. ATL Lines - DEMLINES - Email: e.fleurence@atl-lines.fr, Website: nouvellecaledonie.demlines.com, 7. BOLLORE LOGISTICS NOUMEA - Website: www.bollore-logistics.com\"\n}",
+        "Elo": 1000.0,
+        "observation": "{\"response\":\"successfully giving the final answer.\"}",
+        "observation_code": 3,
+        "child_count": 0,
+        "expand_num": 4,
+        "io_state": {}
+      }
+    ]
+  ],
+  "answer_generation": {
+    "valid_data": true,
+    "query_count": 4,
+    "total_tokens": 6032,
+    "final_answer": "{\n  \"return_type\": \"give_answer\",\n  \"final_answer\": \"The package with tracking number YT2003521266065328 is being handled by Yun Express. The current status and destination information are not available at the moment. For customs clearance assistance, you can consider contacting the following transitaires agencies: 1. EKVF - Phone: +687 27.25.92, 2. ACT - Agence Cal\u00e9donienne de Transit - Phone: +687 27.55.48, Email: sales@act.nc, 3. AFL - Agence de Fr\u00eat et Logistique - Phone: +687 26.11.11, Website: www.transportinter.eu, 4. Agence Logistique et Transit Noum\u00e9a - Phone: +687 24.21.85, Website: www.ltn.nc, 5. ATI TRAMAR- Groupe L\u00e9on Vincent - Phone: +687 28.61.25, 6. ATL Lines - DEMLINES - Email: e.fleurence@atl-lines.fr, Website: nouvellecaledonie.demlines.com, 7. BOLLORE LOGISTICS NOUMEA - Website: www.bollore-logistics.com\"\n}",
+    "finish_type": "give_answer",
+    "function": [
+      {
+        "name": "get_track_info_for_pridnestrovie_post",
+        "description": "This is the subfunction for tool \"pridnestrovie_post\", you can use this tool.The description of this function is: \"get_track_info_for_pridnestrovie_post by track number\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "track_number": {
+              "type": "string",
+              "description": "",
+              "example_value": "RB413450335SG"
+            }
+          },
+          "required": [
+            "track_number"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "retorna_dados_do_endere_o_atrav_s_do_cep_for_cep_brazil",
+        "description": "This is the subfunction for tool \"cep_brazil\", you can use this tool.The description of this function is: \"Retorna dados endere\u00e7o\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "cepnumber": {
+              "type": "string",
+              "description": "",
+              "example_value": "75094080"
+            }
+          },
+          "required": [
+            "cepnumber"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "carriers_detect_for_trackingmore_v2",
+        "description": "This is the subfunction for tool \"trackingmore_v2\", you can use this tool.The description of this function is: \"Detect carrier by providing tracking number\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "trackingnumber": {
+              "type": "string",
+              "description": "The tracking number of parcel",
+              "example_value": "YT2003521266065328"
+            }
+          },
+          "required": [
+            "trackingnumber"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "packages_track_deprecated_for_trackingmore_v2",
+        "description": "This is the subfunction for tool \"trackingmore_v2\", you can use this tool.The description of this function is: \"Get tracking information of specific package\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "carriercode": {
+              "type": "string",
+              "description": "Carrier code gotten from .../carriers/list or carriers/detect endpoint",
+              "example_value": "yunexpress"
+            },
+            "trackingnumber": {
+              "type": "string",
+              "description": "Tracking number of package",
+              "example_value": "YT2003521266065328"
+            },
+            "lang": {
+              "type": "string",
+              "description": "One of the following : en|cn|es|it|ru",
+              "example_value": "en"
+            }
+          },
+          "required": [
+            "carriercode",
+            "trackingnumber"
+          ],
+          "optional": [
+            "lang"
+          ]
+        }
+      },
+      {
+        "name": "packages_v2_track_for_trackingmore_v2",
+        "description": "This is the subfunction for tool \"trackingmore_v2\", you can use this tool.The description of this function is: \"Get tracking information of specific package\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "trackingnumber": {
+              "type": "string",
+              "description": "Tracking number of package",
+              "example_value": "NY323068698GB"
+            }
+          },
+          "required": [
+            "trackingnumber"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "transitaire_for_transitaires",
+        "description": "This is the subfunction for tool \"transitaires\", you can use this tool.The description of this function is: \"R\u00e9cup\u00e8re un transitaire donn\u00e9e\"",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "is_id": {
+              "type": "string",
+              "description": "",
+              "example_value": "DOUANE_AGENCE_GONDRAND"
+            }
+          },
+          "required": [
+            "is_id"
+          ],
+          "optional": []
+        }
+      },
+      {
+        "name": "transitaires_for_transitaires",
+        "description": "This is the subfunction for tool \"transitaires\", you can use this tool.The description of this function is: \"Renvoie tous les transiatires\"",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "optional": []
+        }
+      },
+      {
+        "name": "Finish",
+        "description": "If you think you get the result which can answer the task, call this function to give the final answer. Or, if you think you can't handle the task from this status, call this function to restart. Remember: you should ALWAYS call this function at the end of your try, and the final answer is the ONLY part that will be showed to user, so final answer should contain enough information.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "return_type": {
+              "type": "string",
+              "enum": [
+                "give_answer",
+                "give_up_and_restart"
+              ]
+            },
+            "final_answer": {
+              "type": "string",
+              "description": "The final answer you want to give the user. You should have this field if \"return_type\"==\"give_answer\""
+            }
+          },
+          "required": [
+            "return_type"
+          ]
+        }
+      }
+    ],
+    "chain": [],
+    "train_messages": [
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pridnestrovie_post: Transnistria parcel tracking\n2.cep_brazil: API gratuita que retorna os dados Correios atrav\u00e9s de CEP\n3.trackingmore_v2: All-in-one global package tracking tool. Support track and trace international 472 couriers.\n4.transitaires: Transitaires de d\u00e9douanement en Nouvelle-Cal\u00e9donie\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI need to track a package with the tracking number YT2003521266065328. Can you provide me with the carrier information and the current status? Additionally, I'm looking for a transitaires agency that can handle customs clearance. Thank you for your assistance!\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "carriers_detect_for_trackingmore_v2",
+            "arguments": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}"
+          }
+        }
+      ],
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pridnestrovie_post: Transnistria parcel tracking\n2.cep_brazil: API gratuita que retorna os dados Correios atrav\u00e9s de CEP\n3.trackingmore_v2: All-in-one global package tracking tool. Support track and trace international 472 couriers.\n4.transitaires: Transitaires de d\u00e9douanement en Nouvelle-Cal\u00e9donie\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI need to track a package with the tracking number YT2003521266065328. Can you provide me with the carrier information and the current status? Additionally, I'm looking for a transitaires agency that can handle customs clearance. Thank you for your assistance!\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "carriers_detect_for_trackingmore_v2",
+            "arguments": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "carriers_detect_for_trackingmore_v2",
+          "content": "{\"error\": \"\", \"response\": \"{'meta': {'code': 200, 'type': 'Success', 'message': 'Success'}, 'data': [{'name': 'Yun Express', 'code': 'yunexpress'}]}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "packages_v2_track_for_trackingmore_v2",
+            "arguments": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}"
+          }
+        }
+      ],
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pridnestrovie_post: Transnistria parcel tracking\n2.cep_brazil: API gratuita que retorna os dados Correios atrav\u00e9s de CEP\n3.trackingmore_v2: All-in-one global package tracking tool. Support track and trace international 472 couriers.\n4.transitaires: Transitaires de d\u00e9douanement en Nouvelle-Cal\u00e9donie\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI need to track a package with the tracking number YT2003521266065328. Can you provide me with the carrier information and the current status? Additionally, I'm looking for a transitaires agency that can handle customs clearance. Thank you for your assistance!\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "carriers_detect_for_trackingmore_v2",
+            "arguments": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "carriers_detect_for_trackingmore_v2",
+          "content": "{\"error\": \"\", \"response\": \"{'meta': {'code': 200, 'type': 'Success', 'message': 'Success'}, 'data': [{'name': 'Yun Express', 'code': 'yunexpress'}]}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "packages_v2_track_for_trackingmore_v2",
+            "arguments": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "packages_v2_track_for_trackingmore_v2",
+          "content": "{\"error\": \"\", \"response\": \"{'originCountryData': {'stausDataNum': 1, 'substatus': 'notfound002', 'destinationcountryname': '', 'itemTimeLength': None, 'infoState': 3, 'phonenum': '4000-2621-26', 'weblink': 'http://www.yunexpress.com/'}, 'destinationCountryData': [], 'costTimeData': {'carrier_code': 'yunexpress', 'original': '', 'destination': '', 'total': 0, 'delivered': 0, 'range1': 0, 'range3': 0, 'range4': 0, 'range5': 0, 'range6': 0, 'day': 0}, 'lastEvent': '', 'expressType': 'express', 'stausDataNum': 1, 'function': 2, 'itemkey': 'DqCJiHaGSfVTJ'}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "transitaires_for_transitaires",
+            "arguments": "{}"
+          }
+        }
+      ],
+      [
+        {
+          "role": "system",
+          "content": "You are AutoGPT, you can use many tools(functions) to do the following task.\nFirst I will give you the task description, and your task start.\nAt each step, you need to give your thought to analyze the status now and what to do next, with a function call to actually excute your step.\nAfter the call, you will get the call result, and you are now in a new state.\nThen you will analyze your status now, then decide what to do next...\nAfter many (Thought-call) pairs, you finally perform the task, then you can give your finial answer.\nRemember: \n1.the state change is irreversible, you can't go back to one of the former state, if you want to restart the task, say \"I give up and restart\".\n2.All the thought is short, at most in 5 sentence.\n3.You can do more then one trys, so if your plan is to continusly try some conditions, you can do one of the conditions per try.\nLet's Begin!\nTask description: You should use functions to help handle the real time user querys. Remember:\n1.ALWAYS call \"Finish\" function at the end of the task. And the final answer should contain enough information to show to the user,If you can't handle the task, or you find that function calls always fail(the function is not valid now), use function Finish->give_up_and_restart.\n2.Do not use origin tool names, use only subfunctions' names.\nYou have access of the following tools:\n1.pridnestrovie_post: Transnistria parcel tracking\n2.cep_brazil: API gratuita que retorna os dados Correios atrav\u00e9s de CEP\n3.trackingmore_v2: All-in-one global package tracking tool. Support track and trace international 472 couriers.\n4.transitaires: Transitaires de d\u00e9douanement en Nouvelle-Cal\u00e9donie\n"
+        },
+        {
+          "role": "user",
+          "content": "\nI need to track a package with the tracking number YT2003521266065328. Can you provide me with the carrier information and the current status? Additionally, I'm looking for a transitaires agency that can handle customs clearance. Thank you for your assistance!\nBegin!\n"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "carriers_detect_for_trackingmore_v2",
+            "arguments": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "carriers_detect_for_trackingmore_v2",
+          "content": "{\"error\": \"\", \"response\": \"{'meta': {'code': 200, 'type': 'Success', 'message': 'Success'}, 'data': [{'name': 'Yun Express', 'code': 'yunexpress'}]}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "packages_v2_track_for_trackingmore_v2",
+            "arguments": "{\n  \"trackingnumber\": \"YT2003521266065328\"\n}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "packages_v2_track_for_trackingmore_v2",
+          "content": "{\"error\": \"\", \"response\": \"{'originCountryData': {'stausDataNum': 1, 'substatus': 'notfound002', 'destinationcountryname': '', 'itemTimeLength': None, 'infoState': 3, 'phonenum': '4000-2621-26', 'weblink': 'http://www.yunexpress.com/'}, 'destinationCountryData': [], 'costTimeData': {'carrier_code': 'yunexpress', 'original': '', 'destination': '', 'total': 0, 'delivered': 0, 'range1': 0, 'range3': 0, 'range4': 0, 'range5': 0, 'range6': 0, 'day': 0}, 'lastEvent': '', 'expressType': 'express', 'stausDataNum': 1, 'function': 2, 'itemkey': 'DqCJiHaGSfVTJ'}\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "function_call": {
+            "name": "transitaires_for_transitaires",
+            "arguments": "{}"
+          }
+        },
+        {
+          "role": "function",
+          "name": "transitaires_for_transitaires",
+          "content": "{\"error\": \"\", \"response\": \"[{\\\"id\\\":\\\"EKVF\\\",\\\"name\\\":\\\"EKVF\\\",\\\"phone\\\":\\\"+687 27.25.92\\\"},{\\\"id\\\":\\\"ACT_AGENCE_CALEDONIENNE_DE_TRANSIT\\\",\\\"codePostal\\\":\\\"98800\\\",\\\"email\\\":\\\"sales@act.nc\\\",\\\"name\\\":\\\"ACT - Agence Cal\\u00e9donienne de Transit\\\",\\\"phone\\\":\\\"+687 27.55.48\\\",\\\"ridet\\\":\\\"0036590\\\"},{\\\"id\\\":\\\"AFL_AGENCE_DE_FRET_ET_LOGISTIQUE\\\",\\\"codePostal\\\":\\\"98846\\\",\\\"name\\\":\\\"AFL - Agence de Fr\\u00eat et Logistique\\\",\\\"phone\\\":\\\"+687 26.11.11\\\",\\\"website\\\":\\\"www.transportinter.eu\\\"},{\\\"id\\\":\\\"AGENCE_LOGISTIQUE_ET_TRANSIT_NOUMEA\\\",\\\"codePostal\\\":\\\"98800\\\",\\\"email\\\":\\\"ltn@ltn.nc\\\",\\\"name\\\":\\\"Agence Logistique et Transit Noum\\u00e9a\\\",\\\"phone\\\":\\\"+687 24.21.85\\\",\\\"website\\\":\\\"www.ltn.nc\\\"},{\\\"id\\\":\\\"ATI_TRAMAR_GROUPE_LEON_VINCENT\\\",\\\"name\\\":\\\"ATI TRAMAR- Groupe L\\u00e9on Vincent\\\",\\\"phone\\\":\\\"+687 28.61.25\\\"},{\\\"id\\\":\\\"ATL_LINES_DEMLINES\\\",\\\"email\\\":\\\"e.fleurence@atl-lines.fr\\\",\\\"name\\\":\\\"ATL Lines - DEMLINES\\\",\\\"website\\\":\\\"nouvellecaledonie.demlines.com\\\"},{\\\"id\\\":\\\"BOLLORE_LOGISTICS_NOUMEA\\\",\\\"codePostal\\\":\\\"9..."
+        },
+        {
+          "role": "assistant",
+          "content": "Based on the carrier detection, the package is being handled by Yun Express. However, the current status and destination information are not available for the tracking number YT2003521266065328. \n\nAs for the transitaires agencies that can handle customs clearance, here are some options:\n1. EKVF - Phone: +687 27.25.92\n2. ACT - Agence Cal\u00e9donienne de Transit - Phone: +687 27.55.48, Email: sales@act.nc\n3. AFL - Agence de Fr\u00eat et Logistique - Phone: +687 26.11.11, Website: www.transportinter.eu\n4. Agence Logistique et Transit Noum\u00e9a - Phone: +687 24.21.85, Website: www.ltn.nc\n5. ATI TRAMAR- Groupe L\u00e9on Vincent - Phone: +687 28.61.25\n6. ATL Lines - DEMLINES - Email: e.fleurence@atl-lines.fr, Website: nouvellecaledonie.demlines.com\n7. BOLLORE LOGISTICS NOUMEA - Website: www.bollore-logistics.com\n\nPlease contact the respective agency for more information and assistance with customs clearance. Let me know if there is anything else I can help with!",
+          "function_call": {
+            "name": "Finish",
+            "arguments": "{\n  \"return_type\": \"give_answer\",\n  \"final_answer\": \"The package with tracking number YT2003521266065328 is being handled by Yun Express. The current status and destination information are not available at the moment. For customs clearance assistance, you can consider contacting the following transitaires agencies: 1. EKVF - Phone: +687 27.25.92, 2. ACT - Agence Cal\u00e9donienne de Transit - Phone: +687 27.55.48, Email: sales@act.nc, 3. AFL - Agence de Fr\u00eat et Logistique - Phone: +687 26.11.11, Website: www.transportinter.eu, 4. Agence Logistique et Transit Noum\u00e9a - Phone: +687 24.21.85, Website: www.ltn.nc, 5. ATI TRAMAR- Groupe L\u00e9on Vincent - Phone: +687 28.61.25, 6. ATL Lines - DEMLINES - Email: e.fleurence@atl-lines.fr, Website: nouvellecaledonie.demlines.com, 7. BOLLORE LOGISTICS NOUMEA - Website: www.bollore-logistics.com\"\n}"
+          }
+        }
+      ]
+    ],
+    "query": "I need to track a package with the tracking number YT2003521266065328. Can you provide me with the carrier information and the current status? Additionally, I'm looking for a transitaires agency that can handle customs clearance. Thank you for your assistance!"
+  }
+}
