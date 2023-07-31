@@ -16,10 +16,10 @@
 <p align="center">
   <a href="#model">Model</a> •
   <a href="#data">Data Release</a> •
-  <a href="https://github.com/OpenBMB/BMTools">Toolkit</a> •
+  <a href="#web-ui">Web Demo</a> •
+  <a href="#tool-eval">Tool Eval</a> •
   <a href="assets/paper.pdf">Paper</a> •
-  <a href="https://github.com/thunlp/ToolLearningPapers">Paper List</a> •
-  <a href="#citation">Citation</a> •
+  <a href="#citation">Citation</a>
 
 </p>
 
@@ -31,7 +31,7 @@
 
 🔨这个项目旨在构建**开源、大规模、高质量**的指令调整 SFT 数据，以促进构建具有通用工具使用能力的强大LLMs。我们的目标是赋予开源 LLMs 掌握成千上万多样的真实世界API能力。我们通过收集高质量的指令调整数据集来实现这一目标。该数据集使用最新的ChatGPT（gpt-3.5-turbo-16k）自动构建，该版本升级了增强的函数调用功能。我们提供数据集、相应的训练和评估脚本，以及在ToolBench上经过微调的强大模型ToolLLaMA。
 
-✨更多有关 ToolBench 的详细信息以及我们的论文即将发布！
+✨以下是数据集构建方法、模型训练、评测的整体概览
 
 <br>
 <div align="center">
@@ -50,7 +50,13 @@
 
  - 所有数据均由OpenAI API自动生成并由我们筛选，整个数据创建过程易于扩展。
 
- - **以下是ToolLLaMA的demo展示**
+<br>
+<div align="center">
+<img src="assets/comparison.png" width="800px">
+</div>
+<br>
+
+以下是**ToolLLaMA的demo展示**
 
 <div align="center">
 
@@ -58,7 +64,7 @@ https://github.com/OpenBMB/ToolBench/assets/25274507/f1151d85-747b-4fac-92ff-6c7
 
 </div>
 
-*请注意，当前发布的数据仍然不是最终版本。我们正在进行数据的后期处理，以提高数据质量并增加真实世界工具的覆盖范围。*
+*我们将不断进行数据的后处理与清洗，以提高数据质量并增加真实世界工具的覆盖范围。*
 
 *[老版本](https://github.com/OpenBMB/ToolBench/tree/legacy)*
 <!-- 💁‍♂️💁💁‍♀️**We need your help!** Curating large-scale real-world APIs and their corresponding tool-use SFT data is not easy, we sincerely invite you to join us in building and refining ToolBench. We will list all participants as co-authors in the final paper. Please contact and join [us](mailto:yujiaqin16@gmail.com) if you're interested. -->
@@ -339,6 +345,18 @@ python ./toolbench/tooleval/automatic_eval_sample.py \
 ## TODO
 - [ ] ToolLLaMA将达到GPT-4的工具使用能力。
 - [ ] 我们将训练一个ToolLLaMa-2。
+
+## 工具学习相关链接
+
+鉴于基础模型的强大能力，我们期待看到它们在操纵各种工具中的应用。更多的资源，请参考以下内容：
+
+- **BMTools**. [[Project](https://github.com/OpenBMB/BMTools)]
+
+- **Tool Learning Survey**. [[Paper](https://arxiv.org/abs/2304.08354)]
+  
+- **Tool Learning Paper List**. [[Project](https://github.com/thunlp/ToolLearningPapers)]
+
+- **WebCPM**. [[Paper](https://github.com/thunlp/WebCPM)]
 
 ## Citation
 如果您对ToolBench感兴趣，欢迎引用我们的工作。
