@@ -7,7 +7,7 @@ Observation: the result of the action
 ... (this Thought/Action/Action Input/Observation can repeat N times)
 Thought: I now know the final answer. (or) I give up and retry.
 Final Answer: the final answer to the original input question. (or) I give up and try again.
-Remember, this is not your first try, you have tried this task before and make some (thought-action) chains. So in each postion of the (thought-action) chain, you first look at the former choices and former reflections, and then decide whether to go down a former choice or to make a new choice here.
+Remember, this is not your first try, you have tried this task before and make some (thought-action) chains. So in each position of the (thought-action) chain, you first look at the former choices and former reflections, and then decide whether to go down a former choice or to make a new choice here.
 {task_description}
 {input_description}
 This is Not my first try, I have tried this task for many times. This time I first follow one of the former trices:
