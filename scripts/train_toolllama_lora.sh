@@ -21,6 +21,6 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
     --logging_steps 1 \
     --model_max_length 8192 \
     --gradient_checkpointing True \
-    --lazy_preprocess True \    
+    --lazy_preprocess True \
     --deepspeed ds_configs/stage2.json \
     --report_to none
