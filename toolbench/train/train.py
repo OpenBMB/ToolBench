@@ -224,6 +224,7 @@ def make_supervised_data_module(
     rank0_print("Loading data...")
     raw_data = json.load(open(data_args.data_path, "r"))
     if data_args.eval_data_path is not None:
+        train_raw_data = raw_data
         eval_raw_data = json.load(open(data_args.eval_data_path, "r"))
     else:
         # Split train/test
@@ -234,7 +235,6 @@ def make_supervised_data_module(
         train_raw_data = [raw_data[i] for i in train_indices]
         eval_raw_data = [raw_data[i] for i in eval_indices]
     rank0_print(f"#train {len(train_raw_data)}, #eval {len(eval_raw_data)}")
-
     train_dataset = dataset_cls(train_raw_data, tokenizer=tokenizer, template=data_args.conv_template)
     eval_dataset = dataset_cls(eval_raw_data, tokenizer=tokenizer, template=data_args.conv_template)
     return dict(train_dataset=train_dataset, eval_dataset=eval_dataset)
