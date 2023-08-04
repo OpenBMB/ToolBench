@@ -23,6 +23,8 @@ if __name__ == "__main__":
     parser.add_argument('--input_query_file', type=str, default="", required=False, help='input path')
     parser.add_argument('--output_answer_file', type=str, default="",required=False, help='output path')
     parser.add_argument('--toolbench_key', type=str, default="",required=False, help='your toolbench key to request rapidapi service')
+    parser.add_argument('--rapidapi_key', type=str, default="",required=False, help='your rapidapi key to request rapidapi service')
+    parser.add_argument('--use_rapidapi_key', action="store_true", help="To use customized rapidapi service or not.")
 
     args = parser.parse_args()
 

@@ -54,6 +54,8 @@ class rapidapi_wrapper(base_env):
 
         self.tool_root_dir = args.tool_root_dir
         self.toolbench_key = args.toolbench_key
+        self.rapidapi_key = args.rapidapi_key
+        self.use_rapidapi_key = args.use_rapidapi_key
         self.service_url = "http://8.218.239.54:8080/rapidapi"
         self.max_observation_length = args.max_observation_length
         self.observ_compress_method = args.observ_compress_method
@@ -328,14 +330,18 @@ You have access of the following tools:\n'''
                     }
                     if self.process_id == 0:
                         print(colored(f"query to {self.cate_names[k]}-->{self.tool_names[k]}-->{action_name}",color="yellow"))
-                    response = requests.post(self.service_url, json=payload,timeout=30)
-                    if response.status_code != 200:
-                        return json.dumps({"error": f"request invalid, data error. status_code={response.status_code}", "response": ""}), 12
-                    try:
-                        response = response.json()
-                    except:
-                        print(response)
-                        return json.dumps({"error": f"request invalid, data error", "response": ""}), 12
+                    if self.use_rapidapi_key:
+                        payload["rapidapi_key"] = self.rapidapi_key
+                        response = get_rapidapi_response(payload)
+                    else:
+                        response = requests.post(self.service_url, json=payload,timeout=30)
+                        if response.status_code != 200:
+                            return json.dumps({"error": f"request invalid, data error. status_code={response.status_code}", "response": ""}), 12
+                        try:
+                            response = response.json()
+                        except:
+                            print(response)
+                            return json.dumps({"error": f"request invalid, data error", "response": ""}), 12
                     # 1 Hallucinating function names
                     # 4 means that the model decides to pruning by itself
                     # 5 represents api call timeout

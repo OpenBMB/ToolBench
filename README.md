@@ -237,13 +237,15 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
 ```
 
 
-## Inference
-First prepare your toolbench key:
+## Inference With Our RapidAPI Server
+Please fill out the [form](https://forms.gle/oCHHc8DQzhGfiT9r6) first and after reviewing we will send you the toolbench key. Then prepare your toolbench key by:
 ```bash
 export TOOLBENCH_KEY="your_toolbench_key"
 ```
 
-Then run the following commands:
+### For ToolLLaMA
+
+To inference with ToolLLaMA, run the following commands:
 ```bash
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
@@ -258,7 +260,9 @@ python toolbench/inference/qa_pipeline.py \
     --toolbench_key $TOOLBENCH_KEY
 ```
 
-For **lora** version:
+To use your own RapidAPI key, run:
+
+For **ToolLLaMA-LoRA**:
 ```bash
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
@@ -275,7 +279,7 @@ python toolbench/inference/qa_pipeline.py \
     --toolbench_key $TOOLBENCH_KEY
 ```
 
-For lora version under **open-domain** setting, run:
+For ToolLLaMA-LoRA under **open-domain** setting, run:
 ```bash
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline_open_domain.py \
@@ -293,6 +297,57 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --input_query_file data/instruction/inference_query_demo_open_domain.json \
     --output_answer_file data/answer/toolllama_lora_dfs_open_domain \
     --toolbench_key $TOOLBENCH_KEY
+```
+
+### For OpenAI Models
+To use ChatGPT, run:
+```bash
+export TOOLBENCH_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model chatgpt_function \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/chatgpt_dfs \
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+To use Text-Davinci-003, run:
+```bash
+export TOOLBENCH_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model davinci \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/davinci_dfs \
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+## Inference With Your Own RapidAPI Account
+To do inference with customized RapidAPI account, pass your **rapidapi key** and specify the `use_rapidapi_key` argument in the script:
+```bash
+export RAPIDAPI_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model chatgpt_function \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/chatgpt_dfs \
+    --rapidapi_key $RAPIDAPI_KEY \
+    --use_rapidapi_key
 ```
 
 ## Setting up and running the interface

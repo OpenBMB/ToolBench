@@ -241,13 +241,13 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
 ```
 
 
-## Inference
-首先准备您的ToolBench key:
+## 用我们的RapidAPI服务进行推理
+请先填写[问卷](https://forms.gle/oCHHc8DQzhGfiT9r6)，我们会尽快审核然后给您发送toolbench key。然后初始化您的toolbench key:
 ```bash
 export TOOLBENCH_KEY="your_toolbench_key"
 ```
-
-然后用以下命令做inference:
+### ToolLLaMA
+用以下命令用ToolLLaMA做推理:
 ```bash
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
@@ -297,6 +297,56 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --input_query_file data/instruction/inference_query_demo_open_domain.json \
     --output_answer_file data/answer/toolllama_lora_dfs_open_domain \
     --toolbench_key $TOOLBENCH_KEY
+```
+### OpenAI模型
+用ChatGPT:
+```bash
+export TOOLBENCH_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model chatgpt_function \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/chatgpt_dfs \
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+用Text-Davinci-003:
+```bash
+export TOOLBENCH_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model davinci \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/davinci_dfs \
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+## 用您自己的RapidAPI账号做推理
+要用定制化的RapidAPI账号进行推理，请在脚本中传入您的**rapidapi key**并指定`use_rapidapi_key`参数:
+```bash
+export RAPIDAPI_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model chatgpt_function \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/chatgpt_dfs \
+    --rapidapi_key $RAPIDAPI_KEY \
+    --use_rapidapi_key
 ```
 
 ## Setting up and running the interface
