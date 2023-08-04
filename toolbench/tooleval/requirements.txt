@@ -4,3 +4,4 @@ pandas
 pydantic
 tenacity
 openai
+pyyaml

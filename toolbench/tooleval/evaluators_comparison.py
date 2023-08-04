@@ -2,7 +2,7 @@ import pandas as pd
 import json
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from tqdm import tqdm
-from evaluators import load_automatic_evaluator
+from evaluators import load_registered_automatic_evaluator
 import os 
 import numpy as np
 import copy
@@ -45,7 +45,7 @@ def get_correlation(x,y):
     return pearsonr(x,y)[0]
 
 def test_on_annotated_data(evaluator_cfg)->List[List[int]]:
-    evaluators = [load_automatic_evaluator(evaluator_cfg) for _ in range(NUM_WORKERS)]
+    evaluators = [load_registered_automatic_evaluator(evaluator_cfg) for _ in range(NUM_WORKERS)]
     def get_preference(idx):
         data = annotated_data[idx]
         def process_tools(tools:list):

@@ -7,7 +7,7 @@ import numpy as np
 import argparse
 import random
 from evaluation import UserEvaluation,BaseToolMethod
-from evaluators import load_automatic_evaluator
+from evaluators import load_registered_automatic_evaluator
 from typing import List,Dict,Callable
 import pandas as pd
 
@@ -75,7 +75,7 @@ if __name__=='__main__':
         raise Exception('Cannot load reference answer from {}\n Please Download before evaluation!'.format(args.ref_output))
     
     print('Loading automatic evaluators...')
-    evaluators = [load_automatic_evaluator(vars(args)) for _ in range(args.max_eval_threads)]
+    evaluators = [load_registered_automatic_evaluator(vars(args)) for _ in range(args.max_eval_threads)]
     
     def get_preference(qid,query,tools,ref_ans,ans,):
         global evaluators
