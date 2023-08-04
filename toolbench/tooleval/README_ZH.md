@@ -145,5 +145,24 @@ The result is shown below:
 ### 创建新的自动评估器
 如果您想创建新的自动评估器，您需要按下列步骤进行：
 1. 在路径`toolbench/tooleval/evaluators`下创建一个评测器配置文件目录，命名与你的评测器名一致。在其中添加`config.yaml`文件与`template.txt`文件。具体配置方式可参考`toolbench/tooleval/evaluators/tooleval_gpt-3.5-turbo_normalized`中的实现。
-2. 添加你的`completions_fn`函数到类`AutomaticEvaluator`中去（位于文件`toolbench/tooleval/evaluators/evaluator.py`），或继承该类，实现一个新的评估器类。
+2. 创建你的evaluator类并实现`fn_completions`函数,
+这里给出一个例子：
+```Python
+from evaluators import register_evaluator,BaseEvaluator
+from typing import Dict,List
+
+@register_evaluator
+class MyEvaluator(BaseEvaluator):
+    def __init__(self,config):
+        super().__init__(
+            fn_completions=self.fn_completions,
+        )
+        # set your configures here
+    
+    def fn_completions(self,query:Dict,answers:List[Dict])->int:
+        # implement your evaluator here
+        # return the index of the preferred answer
+        return 0
+```
+其中register_evaluator是一个装饰器，用于注册评估器，BaseEvaluator是一个基类，用于实现评估器的基本功能。
 3. 测试评估器的性能，运行脚本`evaluators_comparison.py`。

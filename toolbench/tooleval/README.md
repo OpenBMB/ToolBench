@@ -151,7 +151,27 @@ The result is shown below:
 ### Create new Automatic Evaluators
 To create new automatic evaluators, you can following the steps below:
 1. Create a config folder under `toolbench/tooleval/evaluators`, name it with the name of your evaluators.
-Adding a `config.yaml` file and a `template.txt` file in the folder.
+Adding a `config.yaml` file (must have) and a `template.txt` file (optional) in the folder.
 You can refer to the `toolbench/tooleval/evaluators/tooleval_gpt-3.5-turbo_normalized` folder for example. 
-2. Adding your `completions_fn` to the class `AutomaticEvaluator` in `toolbench/tooleval/evaluators/evaluator.py` or inherit the class.
+2. Create your own evaluator class and implement the `fn_completions` function.
+Here is a example of the evaluator class: 
+```Python
+from evaluators import register_evaluator,BaseEvaluator
+from typing import Dict,List
+
+@register_evaluator
+class MyEvaluator(BaseEvaluator):
+    def __init__(self,config):
+        super().__init__(
+            fn_completions=self.fn_completions,
+        )
+        # set your configures here
+    
+    def fn_completions(self,query:Dict,answers:List[Dict])->int:
+        # implement your evaluator here
+        # return the index of the preferred answer
+        return 0
+```
+The wrapper `register_evaluator` will register your evaluator to the available evaluators.
+
 3. Run the script `evaluators_comparison.py` to test the performance of your evaluators.
