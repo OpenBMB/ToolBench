@@ -76,6 +76,7 @@ Note that the downloaded data should be converted with the script `convert_to_an
     ... // more answers for the give query in the testdata
 ]
 ```
+Note that the order of answers should be same as the reference answers.
 
 3. Run the evaluation script to get result:
 
@@ -96,7 +97,7 @@ We will run the evaluation script to get the result and update the leaderboard.
 
 Sepcifically, you should provide the following information in your submission email:
 ```
-Method Name:
+Method Name :
 Method Link : (Optional)
 Test Set : (default to data/test_query_ids)
 Comparison Method Name : (default: ChatGPT-ReACT) 
@@ -137,12 +138,15 @@ The script calculate four metrics for the evaluators, we adopt metrics **Human A
 The result is shown below:
 | Evaluator                   | Human Agreement(%) | Bias | Variance | Correlation |
 |-------------------------|----------|----------|---------|----------
-| Human          | **83.54**   | 0.0  | 3.97  | N/A   
-| tooleval gpt-3.5-turbo normalized           | 80.21       | 19.3       | 3.47      | 0.7580       
+| Human          | **83.54**   | **0.0**  | 3.97  | N/A   
+| tooleval gpt-3.5-turbo normalized           | 80.21       | 19.3       | **3.47**      | **0.7580**       
 | tooleval gpt-3.5-turbo fn  | 63.75       | 36.5       | 9.52      | 0.5308       
 
 
 ### Create new Automatic Evaluators
-To create new automatic evaluators, you should create a config folder under `toolbench/tooleval/evaluators` and adding your `completions_fn` to the class `AutomaticEvaluator` in `toolbench/tooleval/evaluators/evaluator.py`.
-
-To test your evaluator, you can run the script `evaluators_comparison.py` for your evaluator.
+To create new automatic evaluators, you can following the steps below:
+1. Create a config folder under `toolbench/tooleval/evaluators`, name it with the name of your evaluators.
+Adding a `config.yaml` file and a `template.txt` file in the folder.
+You can refer to the `toolbench/tooleval/evaluators/tooleval_gpt-3.5-turbo_normalized` folder for example. 
+2. Adding your `completions_fn` to the class `AutomaticEvaluator` in `toolbench/tooleval/evaluators/evaluator.py` or inherit the class.
+3. Run the script `evaluators_comparison.py` to test the performance of your evaluators.
