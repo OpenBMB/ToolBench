@@ -35,7 +35,7 @@
 
 ## What's New
 
-- **[2023/8/4]** We provide RapidAPI backend service to free you from using your own RapidAPI key and subsribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6) and we will review it as soon as possible and send you the ToolBench key to our service! 
+- **[2023/8/4]** We provide RapidAPI backend service to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6) and we will review it as soon as possible and send you the ToolBench key to our service! 
 
 - **[2023/8/1]** Our [paper](https://arxiv.org/abs/2307.16789) is released.
 
