@@ -5,3 +5,5 @@ data.zip
 __MACOSX/
 
 run.bash
+
+*.pyc
