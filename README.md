@@ -260,8 +260,6 @@ python toolbench/inference/qa_pipeline.py \
     --toolbench_key $TOOLBENCH_KEY
 ```
 
-To use your own RapidAPI key, run:
-
 For **ToolLLaMA-LoRA**:
 ```bash
 export PYTHONPATH=./
@@ -333,7 +331,7 @@ python toolbench/inference/qa_pipeline.py \
 ```
 
 ## Inference With Your Own RapidAPI Account
-To do inference with customized RapidAPI account, pass your **rapidapi key** and specify the `use_rapidapi_key` argument in the script:
+To do inference with customized RapidAPI account, pass your **rapidapi key** through `rapidapi_key` and specify the `use_rapidapi_key` argument in the script:
 ```bash
 export RAPIDAPI_KEY=""
 export OPENAI_KEY=""
