@@ -11,7 +11,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--backbone_model', type=str, default="toolllama", required=False, help='chatgpt_function or davinci or toolllama')
     parser.add_argument('--openai_key', type=str, default="", required=False, help='openai key for chatgpt_function or davinci model')
-    parser.add_argument('--model_path', type=str, default="your_model_path/", required=True, help='')
+    parser.add_argument('--model_path', type=str, default="your_model_path/", required=False, help='')
     parser.add_argument('--tool_root_dir', type=str, default="your_tools_path/", required=True, help='')
     parser.add_argument("--lora", action="store_true", help="Load lora model or not.")
     parser.add_argument('--lora_path', type=str, default="your_lora_path if lora", required=False, help='')

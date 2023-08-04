@@ -25,13 +25,17 @@ from toolbench.inference.Downstream_tasks.base_env import base_env
 
 # For pipeline environment preparation
 def get_white_list(tool_root_dir):
+    # print(tool_root_dir)
     white_list_dir = os.path.join(tool_root_dir)
     white_list = {}
     for cate in tqdm(os.listdir(white_list_dir)):
+        if not os.path.isdir(os.path.join(white_list_dir,cate)):
+            continue
         for file in os.listdir(os.path.join(white_list_dir,cate)):
             if not file.endswith(".json"):
                 continue
             standard_tool_name = file.split(".")[0]
+            # print(standard_tool_name)
             with open(os.path.join(white_list_dir,cate,file)) as reader:
                 js_data = json.load(reader)
             origin_tool_name = js_data["tool_name"]
@@ -279,14 +283,21 @@ You have access of the following tools:\n'''
         return obs, code
 
     def _step(self, action_name="", action_input=""):
-        '''
-        Need to return an observation string and status code:
-        0 means normal response
-        1 means there is no corresponding api name
-        2 means there is an error in the input
-        3 represents the end of the generation and the final answer appears
-        4 means that the model decides to pruning by itself
-        '''
+        """Need to return an observation string and status code:
+            0 means normal response
+            1 means there is no corresponding api name
+            2 means there is an error in the input
+            3 represents the end of the generation and the final answer appears
+            4 means that the model decides to pruning by itself
+            5 represents api call timeout
+            6 for 404
+            7 means not subscribed
+            8 represents unauthorized
+            9 represents too many requests
+            10 stands for rate limit
+            11 message contains "error" field
+            12 error sending request
+        """
         if action_name == "Finish":
             try:
                 json_data = json.loads(action_input,strict=False)
