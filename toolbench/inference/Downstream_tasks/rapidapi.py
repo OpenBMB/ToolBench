@@ -334,7 +334,9 @@ You have access of the following tools:\n'''
                         payload["rapidapi_key"] = self.rapidapi_key
                         response = get_rapidapi_response(payload)
                     else:
-                        response = requests.post(self.service_url, json=payload,timeout=30)
+                        time.sleep(2) # rate limit: 30 per minute
+                        headers = {"toolbench_key": self.toolbench_key}
+                        response = requests.post(self.service_url, json=payload, headers=headers, timeout=15)
                         if response.status_code != 200:
                             return json.dumps({"error": f"request invalid, data error. status_code={response.status_code}", "response": ""}), 12
                         try:
