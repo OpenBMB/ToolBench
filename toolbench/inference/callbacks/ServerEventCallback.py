@@ -1,7 +1,7 @@
 from typing import Any, Dict, List, Union
 import queue
 class ServerEventCallback():
-    """Base callback handler that can be used to handle callbacks from langchain."""
+    """Base callback handler"""
 
     def __init__(self, queue: queue.Queue, *args, **kwargs):
         super().__init__(*args, **kwargs)

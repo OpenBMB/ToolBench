@@ -5,12 +5,11 @@ from Algorithms.base_search import base_search_method
 from copy import deepcopy
 
 class single_chain(base_search_method):
-
+    """Implement of CoT method
+    """
     def __init__(self,llm,io_func,extra_prefix="",process_id=0,start_message_list=None):
-        super(single_chain, self).__init__()
-        '''
-        Linearly generate thought, action, action input loop
-        '''
+        """extra_prefix and start_message_list is used in Reflection Algo"""
+        super(single_chain, self).__init__(llm,io_func, process_id, callbacks=None)
         self.io_func = io_func
         self.llm = llm
         self.extra_prefix = extra_prefix
@@ -61,6 +60,9 @@ class single_chain(base_search_method):
         return json_obj
 
     def to_json_single(self):
+        """parse the last try
+        Though the nodes are formed as a tree, We still know they are actually a chain
+        """
         json_obj = {}
         tree_obj = self.terminal_node[-1].get_chain_result_from_this_node()
         json_obj["chain"] = tree_obj
@@ -73,7 +75,8 @@ class single_chain(base_search_method):
             self.forward_args.pop("self")
 
         for i in range(pass_at):
-            print(f"[process({self.process_id})][single_chain]try for the {i+1} time")
+            if self.process_id == 0:
+                print(f"[single_chain]try for the {i+1} time")
             self.tree = my_tree()
             self.tree.root.node_type = "Action Input"
             self.tree.root.io_state = deepcopy(self.io_func)
@@ -87,16 +90,9 @@ class single_chain(base_search_method):
                     return 1
         return 0
 
-    def do_chain(self,now_node,single_chain_max_step):
-        if callable(self.llm):
-            return self.do_chain_react(now_node,single_chain_max_step)
-        else:
-            return self.do_chain_function(now_node,single_chain_max_step)
 
-    def do_chain_function(self,now_node,single_chain_max_step):
-        '''
-        initialize root's self.messages to generate system and user
-        '''
+    def do_chain(self,now_node,single_chain_max_step):
+
         if self.start_message_list == None:
             system = FORMAT_INSTRUCTIONS_SYSTEM_FUNCTION
             system = system.replace("{task_description}",self.io_func.task_description)
@@ -106,10 +102,12 @@ class single_chain(base_search_method):
             user = user.replace("{input_description}",self.io_func.input_description)
             self.tree.root.messages.append({"role":"user","content":user})
         else:
+            """In Reflection Algo, we startswith former trials and reflections, so the caller will give the start messages"""
             self.tree.root.messages = self.start_message_list
         
         now_node = self.tree.root
         while True:
+            # recursively parse message into nodes
             self.llm.change_messages(now_node.messages)
             new_message,error_code,total_tokens = self.llm.parse(functions=self.io_func.functions,process_id=self.process_id)
             self.total_tokens += total_tokens
@@ -168,11 +166,7 @@ class single_chain(base_search_method):
                 now_node = temp_node
 
                 if status != 0:
-                    # 0 means normal return
-                    # 1 means there is no corresponding api name
-                    # 2 means there is an error in the input
-                    # 3 represents the end of the generation, and the final answer appears
-                    # 4 means that the model decides to pruning by itself
+                    # return code refers to Downstream_tasks/rapidapi
                     if status == 4:
                         now_node.pruned = True
                     elif status == 1: # hallucination api name

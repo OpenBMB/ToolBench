@@ -1,0 +1,9 @@
+data/
+data.zip
+*.DS_store
+
+__MACOSX/
+
+run.bash
+
+*.pyc
