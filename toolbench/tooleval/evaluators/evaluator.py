@@ -4,23 +4,8 @@ import re
 import math
 from typing import List,Union,Dict,Any
 from copy import deepcopy
-from tenacity import retry, wait_random_exponential, stop_after_attempt
-import numpy as np
-import os
+from .utils import OpenaiPoolRequest
 
-class OpenaiPoolRequest:
-    def __init__(self, pool_json_file):
-        self.api_key = os.environ.get('OPENAI_KEY')
-
-    @retry(wait=wait_random_exponential(multiplier=1, max=30), stop=stop_after_attempt(10),reraise=True)
-    def request(self,messages,**kwargs):
-        import openai
-        kwargs['api_key'] = self.api_key
-        return openai.ChatCompletion.create(messages=messages,**kwargs)
-    
-    def __call__(self,messages,**kwargs):
-        return self.request(messages,**kwargs)
-                
 def process_answer(answer:Dict):
     answer['final_answer'] = answer['final_answer'][:1000]
     answer['answer_details'] = answer['answer_details'][:3000]
@@ -31,6 +16,7 @@ def process_tools(tools:List[Dict]):
         tool.pop('description',None)
         tool.pop('parameters',None)
     return tools
+
 class AutomaticEvaluator:
     def __init__(self,eval_config,template):
         self.eval_config = eval_config

@@ -1,0 +1,6 @@
+tqdm
+numpy
+pandas
+pydantic
+tenacity
+openai

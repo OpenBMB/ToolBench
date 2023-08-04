@@ -123,6 +123,10 @@ cd ToolBench
 ```bash
 pip install -r requirements.txt
 ```
+或者仅安装ToolEval需要的包
+```bash
+pip install -r toolbench/tooleval/requirements.txt
+```
 
 准备数据和工具环境:
 ```bash

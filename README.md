@@ -119,6 +119,10 @@ Install Package (python>=3.9)
 ```bash
 pip install -r requirements.txt
 ```
+or for ToolEval only
+```bash
+pip install -r toolbench/tooleval/requirements.txt
+```
 
 Prepare the data and tool environment:
 ```bash

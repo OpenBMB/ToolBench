@@ -11,6 +11,11 @@ Our automatic evaluator, developed using ChatGPT, demonstrates a significant cor
 We also obtain the agreement among different human annotators **83.54%**, and the agreement between humans and our evaluator **80.21%**.
 
 ## 🚀Usage
+### Install
+Install Package (python>=3.9)
+```bash
+pip install -r requirements.txt
+```
 
 ### Reproduce our Results
 
