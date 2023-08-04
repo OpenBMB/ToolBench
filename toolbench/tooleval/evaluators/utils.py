@@ -1,6 +1,24 @@
 from tenacity import retry, wait_random_exponential, stop_after_attempt
 import os
 
+__registered_evaluators__ = {}
+
+def register_evaluator(cls):
+    """
+    Decorator function to register classes with the registered_evaluators list.
+    """
+    __registered_evaluators__[cls.__name__] = cls
+    return cls
+
+def get_evaluator_cls(clsname):
+    """
+    Return the evaluator class with the given name.
+    """
+    try:
+        return __registered_evaluators__.get(clsname)
+    except:
+        raise ModuleNotFoundError('Cannot find evaluator class {}'.format(clsname))
+
 
 class OpenaiPoolRequest:
     def __init__(self, pool_json_file):

@@ -7,3 +7,4 @@ __MACOSX/
 run.bash
 
 *.pyc
+**/__pycache__
