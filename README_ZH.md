@@ -33,6 +33,14 @@
 
 **💁‍♂️💁💁‍♀️在 [Discord](https://discord.gg/QSC6yTtu) 加入我们!**
 
+## 最新支持
+
+- **[2023/8/4]** 我们提供RapidAPI后端服务，以免您使用自己的RapidAPI私钥去订阅API。填写[表单](https://forms.gle/oCHHc8DQzhGfiT9r6)后，我们会尽快审核并给您发送ToolBench key去请求该后端服务! 
+
+- **[2023/8/1]** 我们的[论文](https://arxiv.org/abs/2307.16789)正式发布.
+
+- **[2023/7/27]** 新版本ToolBench更新.
+
 ✨以下是数据集构建方法、模型训练、评测的整体概览
 
 <br>
@@ -234,9 +242,9 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
 
 
 ## Inference
-首先准备您的rapidapi key:
+首先准备您的ToolBench key:
 ```bash
-export RAPIDAPIKEY="your_rapidapi_key"
+export TOOLBENCH_KEY="your_toolbench_key"
 ```
 
 然后用以下命令做inference:
@@ -247,10 +255,11 @@ python toolbench/inference/qa_pipeline.py \
     --backbone_model toolllama \
     --model_path /path/to/your/toolllama \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file data/answer/toolllama_dfs \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 ```
 
 **lora**版本的inference:
@@ -263,10 +272,11 @@ python toolbench/inference/qa_pipeline.py \
     --lora \
     --lora_path /path/to/your/toolllama_lora \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file data/answer/toolllama_lora_dfs \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 ```
 
 lora版本的**开放域**, 用以下命令:

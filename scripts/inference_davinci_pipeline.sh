@@ -1,4 +1,4 @@
-export RAPIDAPIKEY=""
+export TOOLBENCH_KEY=""
 export OUTPUT_DIR="data/answer/davinci_dfs"
 export OPENAI_KEY=""
 
@@ -11,5 +11,5 @@ python toolbench/inference/qa_pipeline.py \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file $OUTPUT_DIR \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 

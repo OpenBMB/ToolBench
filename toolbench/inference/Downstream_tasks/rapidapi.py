@@ -2,6 +2,7 @@ import re
 import os
 import json
 import time
+import requests
 from tqdm import tqdm
 from termcolor import colored
 import random
@@ -52,8 +53,10 @@ class rapidapi_wrapper(base_env):
         super(rapidapi_wrapper).__init__()
 
         self.tool_root_dir = args.tool_root_dir
-        self.rapidapi_key = args.rapidapi_key
+        self.toolbench_key = args.toolbench_key
+        self.service_url = "http://8.218.239.54:8080/rapidapi"
         self.max_observation_length = args.max_observation_length
+        self.observ_compress_method = args.observ_compress_method
         self.retriever = retriever
         self.process_id = process_id
 
@@ -315,19 +318,24 @@ You have access of the following tools:\n'''
             for k, function in enumerate(self.functions):
                 if function["name"].endswith(action_name):
                     pure_api_name = self.api_name_reflect[function["name"]]
-                    # try:
-                    print(action_input)
                     payload = {
                         "category": self.cate_names[k],
                         "tool_name": self.tool_names[k],
                         "api_name": pure_api_name,
                         "tool_input": action_input,
-                        "strip": "truncate",
-                        "rapidapi_key": self.rapidapi_key
+                        "strip": self.observ_compress_method,
+                        "toolbench_key": self.toolbench_key
                     }
                     if self.process_id == 0:
                         print(colored(f"query to {self.cate_names[k]}-->{self.tool_names[k]}-->{action_name}",color="yellow"))
-                    response = get_rapidapi_response(payload)
+                    response = requests.post(self.service_url, json=payload,timeout=30)
+                    if response.status_code != 200:
+                        return json.dumps({"error": f"request invalid, data error. status_code={response.status_code}", "response": ""}), 12
+                    try:
+                        response = response.json()
+                    except:
+                        print(response)
+                        return json.dumps({"error": f"request invalid, data error", "response": ""}), 12
                     # 1 Hallucinating function names
                     # 4 means that the model decides to pruning by itself
                     # 5 represents api call timeout
@@ -337,6 +345,7 @@ You have access of the following tools:\n'''
                     # 9 represents too many requests
                     # 10 stands for rate limit
                     # 11 message contains "error" field
+                    # 12 error sending request
                     if response["error"] == "API not working error...":
                         status_code = 6
                     elif response["error"] == "Unauthorized error...":
@@ -367,8 +376,6 @@ class pipeline_runner:
         self.server = server
         if not self.server: self.task_list = self.generate_task_list()
         else: self.task_list = []
-
-
 
     def get_backbone_model(self):
         args = self.args

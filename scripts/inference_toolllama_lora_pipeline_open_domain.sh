@@ -1,5 +1,5 @@
 export CUDA_VISIBLE_DEVICES=0
-export RAPIDAPIKEY=""
+export TOOLBENCH_KEY=""
 export OUTPUT_DIR="data/answer/toolllama_lora_open_domain"
 export PYTHONPATH=./
 
@@ -14,8 +14,9 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --lora \
     --lora_path toolllama_lora \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo_open_domain.json \
     --output_answer_file $OUTPUT_DIR \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 

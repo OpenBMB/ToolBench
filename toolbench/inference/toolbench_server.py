@@ -81,11 +81,13 @@ class Model:
         parser.add_argument('--lora_path', type=str, default="your_lora_path if lora", required=False, help='')
         parser.add_argument('--max_observation_length', type=int, default=1024, required=False,
                             help='maximum observation length')
+        parser.add_argument('--observ_compress_method', type=str, default="truncate", choices=["truncate", "filter", "random"], 
+                            required=False, help='observation compress method')
         parser.add_argument('--method', type=str, default="CoT@1", required=False,
                             help='method for answer generation: CoT@n,Reflexion@n,BFS,DFS,UCT_vote')
         parser.add_argument('--input_query_file', type=str, default="", required=False, help='input path')
         parser.add_argument('--output_answer_file', type=str, default="", required=False, help='output path')
-        parser.add_argument('--rapidapi_key', type=str, default="", required=False, help='your rapidapi key')
+        parser.add_argument('--toolbench_key', type=str, default="", required=False, help='your toolbench key')
 
         args = parser.parse_args()
         return args

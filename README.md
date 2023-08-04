@@ -33,6 +33,14 @@
 
 **💁‍♂️💁💁‍♀️Joint Us on [Discord](https://discord.gg/QSC6yTtu)!**
 
+## What's New
+
+- **[2023/8/4]** We provide RapidAPI backend service to free you from using your own RapidAPI key and subsribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6) and we will review it as soon as possible and send you the ToolBench key to our service! 
+
+- **[2023/8/1]** Our [paper](https://arxiv.org/abs/2307.16789) is released.
+
+- **[2023/7/27]** New version ToolBench is released.
+
 ✨Here is an overview of the dataset construction, training, and evaluation.
 
 <br>
@@ -230,9 +238,9 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
 
 
 ## Inference
-First prepare your rapidapi key:
+First prepare your toolbench key:
 ```bash
-export RAPIDAPIKEY="your_rapidapi_key"
+export TOOLBENCH_KEY="your_toolbench_key"
 ```
 
 Then run the following commands:
@@ -243,10 +251,11 @@ python toolbench/inference/qa_pipeline.py \
     --backbone_model toolllama \
     --model_path ToolBench/ToolLLaMA-7b \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file data/answer/toolllama_dfs \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 ```
 
 For **lora** version:
@@ -259,10 +268,11 @@ python toolbench/inference/qa_pipeline.py \
     --lora \
     --lora_path /path/to/your/downloaded/ToolLLaMA-7b-LoRA \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file data/answer/toolllama_lora_dfs \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 ```
 
 For lora version under **open-domain** setting, run:
