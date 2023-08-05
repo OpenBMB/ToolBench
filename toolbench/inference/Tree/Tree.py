@@ -38,13 +38,10 @@ class tree_node:
 
         self.io_state = None
 
-        self.reflection = []
-        self.generated_reflection = ""
+
 
         self.expand_num = 0 # The number of visits to the node, 0 means it has not been visited
 
-        self.values = []
-        self.vote_counts = []
 
         self.Elo = 1000.0
 
@@ -55,13 +52,7 @@ class tree_node:
         '''
         Used in the UCT algorithm to calculate the node weight of each son during selection
         '''
-        if self.pruned:
-            return -10000
-        
-        if len(self.values) == 0:
-            return 0.0
-        else:
-            return np.mean(np.array(self.values))
+        return 0.0
 
     def get_max_depth(self):
         '''
@@ -227,7 +218,6 @@ class tree_node:
         json_obj["node_type"] = self.node_type
         json_obj["description"] = self.description
         json_obj["Elo"] = self.Elo
-        json_obj["matching_time"] = self.matching_time
         if self.observation != "":
             json_obj["observation"] = self.observation
         if self.observation_code != None:
@@ -238,13 +228,6 @@ class tree_node:
         if self.io_state != None and self.node_type == "Action Input":
             json_obj["io_state"] = self.io_state.to_json()
 
-        if self.reflection != []:
-            json_obj["reflection"] = self.reflection
-        if self.generated_reflection != "":
-            json_obj["generated_reflection"] = self.generated_reflection
-        if self.values != []:
-            json_obj["mean_value"] = np.mean(np.array(self.values))
-            json_obj["mean_votes"] = np.mean(np.array(self.vote_counts))
             
         if use_messages:
             json_obj["messages"] = []
