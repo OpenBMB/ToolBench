@@ -33,6 +33,8 @@
 
 **💁‍♂️💁💁‍♀️在 [Discord](https://discord.gg/QSC6yTtu) 加入我们!**
 
+*英文[README](README.md)链接.*
+
 ## 最新支持
 
 - **[2023/8/4]** 我们提供RapidAPI后端服务，以免您使用自己的RapidAPI私钥去订阅API。填写[表单](https://forms.gle/oCHHc8DQzhGfiT9r6)后，我们会尽快审核并给您发送ToolBench key去请求该后端服务! 
@@ -48,8 +50,6 @@
 <img src="assets/overview.png" width="800px">
 </div>
 <br>
-
-*英文[README](README.md)链接.*
 
 ✨✨特点:
  - API收集: 我们从 RapidAPI 收集了 16464 个API。RapidAPI 是一个托管开发者提供的大规模真实世界API的平台。
