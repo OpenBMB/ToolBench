@@ -31,7 +31,7 @@
 
 🔨这个项目(ToolLLM)旨在构建**开源、大规模、高质量**的指令调整 SFT 数据，以促进构建具有通用工具使用能力的强大LLMs。我们的目标是赋予开源 LLMs 掌握成千上万多样的真实世界API能力。我们通过收集高质量的指令调整数据集来实现这一目标。该数据集使用最新的ChatGPT（gpt-3.5-turbo-16k）自动构建，该版本升级了增强的函数调用功能。我们提供数据集、相应的训练和评估脚本，以及在ToolBench上经过微调的强大模型ToolLLaMA。
 
-**💁‍♂️💁💁‍♀️在 [Discord](https://discord.gg/QSC6yTtu) 加入我们!**
+**💁‍♂️💁💁‍♀️在 [Discord](https://discord.gg/asjtEkAA) 加入我们!**
 
 *英文[README](README.md)链接.*
 
