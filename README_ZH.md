@@ -49,6 +49,8 @@
 </div>
 <br>
 
+*英文[README](README.md)链接.*
+
 ✨✨特点:
  - API收集: 我们从 RapidAPI 收集了 16464 个API。RapidAPI 是一个托管开发者提供的大规模真实世界API的平台。
 
