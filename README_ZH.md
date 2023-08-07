@@ -33,6 +33,14 @@
 
 **💁‍♂️💁💁‍♀️在 [Discord](https://discord.gg/QSC6yTtu) 加入我们!**
 
+## 最新支持
+
+- **[2023/8/4]** 我们提供RapidAPI后端服务，以免您使用自己的RapidAPI私钥去订阅API。填写[表单](https://forms.gle/oCHHc8DQzhGfiT9r6)后，我们会尽快审核并给您发送ToolBench key去请求该后端服务! 
+
+- **[2023/8/1]** 我们的[论文](https://arxiv.org/abs/2307.16789)正式发布.
+
+- **[2023/7/27]** 新版本ToolBench更新.
+
 ✨以下是数据集构建方法、模型训练、评测的整体概览
 
 <br>
@@ -102,7 +110,7 @@ ToolBench包含单工具和多工具场景。多工具场景可以进一步分�
 
 ### 数据发布
 
- 请使用以下链接下载我们的数据集：[数据](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)。
+ 请使用以下链接下载我们的数据集：[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)或者[清华云盘](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/).
 
  - `G1`，`G2`，`G3` 数据分别代表单工具数据，类别内多工具数据和集合内多工具数据。我们在 G1、G2 和 G3 数据内分别划分出训练集、验证集和测试集，并将训练集合并，作为我们的主要实验的训练数据。`toolllama_G123_dfs_train.json` 文件代表合并后的训练集数据。同时我们也给出了基于Atlas的数据可视化结果：[Atlas Explorer](https://atlas.nomic.ai/map/58aca169-c29a-447a-8f01-0d418fc4d341/030ddad7-5305-461c-ba86-27e1ca79d899) for visualization。
  - 与工具环境相关的数据位于 `toolenv` 目录下。
@@ -122,6 +130,10 @@ cd ToolBench
 安装包 (python>=3.9)
 ```bash
 pip install -r requirements.txt
+```
+或者仅安装ToolEval需要的包
+```bash
+pip install -r toolbench/tooleval/requirements.txt
 ```
 
 准备数据和工具环境:
@@ -229,13 +241,13 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
 ```
 
 
-## Inference
-首先准备您的rapidapi key:
+## 用我们的RapidAPI服务进行推理
+请先填写[问卷](https://forms.gle/oCHHc8DQzhGfiT9r6)，我们会尽快审核然后给您发送toolbench key。然后初始化您的toolbench key:
 ```bash
-export RAPIDAPIKEY="your_rapidapi_key"
+export TOOLBENCH_KEY="your_toolbench_key"
 ```
-
-然后用以下命令做inference:
+### ToolLLaMA
+用以下命令用ToolLLaMA做推理:
 ```bash
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
@@ -243,10 +255,11 @@ python toolbench/inference/qa_pipeline.py \
     --backbone_model toolllama \
     --model_path /path/to/your/toolllama \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file data/answer/toolllama_dfs \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 ```
 
 **lora**版本的inference:
@@ -259,10 +272,11 @@ python toolbench/inference/qa_pipeline.py \
     --lora \
     --lora_path /path/to/your/toolllama_lora \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file data/answer/toolllama_lora_dfs \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 ```
 
 lora版本的**开放域**, 用以下命令:
@@ -278,10 +292,61 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --lora \
     --lora_path /path/to/your/toolllama_lora \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo_open_domain.json \
     --output_answer_file data/answer/toolllama_lora_dfs_open_domain \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
+```
+### OpenAI模型
+用ChatGPT:
+```bash
+export TOOLBENCH_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model chatgpt_function \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/chatgpt_dfs \
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+用Text-Davinci-003:
+```bash
+export TOOLBENCH_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model davinci \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/davinci_dfs \
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+## 用您自己的RapidAPI账号做推理
+要用定制化的RapidAPI账号进行推理，请在脚本中传入您的**rapidapi key**并指定`use_rapidapi_key`参数:
+```bash
+export RAPIDAPI_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model chatgpt_function \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/chatgpt_dfs \
+    --rapidapi_key $RAPIDAPI_KEY \
+    --use_rapidapi_key
 ```
 
 ## Setting up and running the interface

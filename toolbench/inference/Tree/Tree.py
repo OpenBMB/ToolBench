@@ -9,35 +9,6 @@ class my_tree:
         self.root = tree_node()
         self.now_deal_node = self.root
 
-    def get_former_trice(self,start_node,target_node,valid_types=["Thought","Action","Action Input","Observation"]):
-        '''
-        Get all operations from start_node node to target_node node, including target_node itself and start_node
-        '''
-        node = target_node
-        now_str = ""
-        while node != self.root and node != start_node.father:
-            node_info = ""
-            if node.node_type in valid_types:
-                node_info = node_info + f"{node.node_type}: {node.description}\n"
-            if node.observation != "" and "Observation" in valid_types:
-                node_info = node_info + f"Observation: {node.observation}\n"
-            now_str = node_info + now_str
-
-            node = node.father
-        
-        return now_str
-
-    def add_child(self,new_node):
-        '''
-        Add child nodes to the currently processed node
-        '''
-        new_node.father = self.now_deal_node
-        self.now_deal_node.children.append(new_node)
-        self.now_deal_node = new_node
-
-    def backup(self):
-        self.now_deal_node = self.now_deal_node.father
-
 
     def to_json_recursive(self,use_messages=False):
         tree_structure =  self.root.to_json_recursive(use_messages=use_messages)
@@ -48,53 +19,6 @@ class my_tree:
         }
         return js_obj
 
-    def chain_tree_to_json(self):
-        json_obj = []
-        now_node = self.root
-        while True:
-
-            
-            json_obj.append(now_node.to_json())
-
-            
-            if now_node.children != []:
-                assert len(now_node.children) == 1
-                now_node = now_node.children[0]
-            else:
-                break
-        return json_obj
-    
-    def chain_tree_to_str(self):
-        now_prefix = ""
-        json_obj = self.chain_tree_to_json()
-        for k,ins in enumerate(json_obj):
-            if k != 0:
-                now_prefix += f"\n{ins['node_type']}: "
-            now_prefix += f"{ins['description']}"
-            if 'observation' in ins.keys():
-                now_prefix += f"\nObservation: {ins['description']}"
-        return now_prefix
-
-
-    @classmethod
-    def from_chain_tree_json(self, js_obj):
-        tree = my_tree()
-        for k, ins in enumerate(js_obj):
-            temp_node = tree_node.from_json(ins)
-            if k == 0:
-                tree.root = temp_node
-                tree.now_deal_node = tree.root
-            else:
-                tree.add_child(temp_node)
-
-        return tree
-    
-    def balence_Elo(self,temperature):
-        '''
-        Recalculate the Elo points for all nodes in the tree
-        '''
-        return self.root.compute_Elo(temperature)
-    
 
 class tree_node:
 
@@ -114,88 +38,21 @@ class tree_node:
 
         self.io_state = None
 
-        self.reflection = []
-        self.generated_reflection = ""
+
 
         self.expand_num = 0 # The number of visits to the node, 0 means it has not been visited
 
 
-        '''
-        UCT
-        '''
-        self.values = []
-        self.vote_counts = []
-
-
-        '''
-        ETS
-        '''
         self.Elo = 1000.0
-        self.prior_score = 0
-        self.matching_time = 0
 
-        '''
-        用于0613接口
-        '''
+        # openai-messages of this node
         self.messages = []
 
     def compute_weight(self):
         '''
         Used in the UCT algorithm to calculate the node weight of each son during selection
         '''
-        if self.pruned:
-            return -10000
-        
-        if len(self.values) == 0:
-            return 0.0
-        else:
-            return np.mean(np.array(self.values))
-        
-    def compute_Elo(self,temperature):
-        '''
-        A recursive algorithm. In theory, call the compute_Elo of the parent node, and the Elo of all subtrees should be calculated.
-        '''
-        if len(self.children) == 1:
-            child_Elo = self.children[0].compute_Elo(temperature)
-            self.Elo = float(child_Elo)
-        elif len(self.children) > 1:
-            for child in self.children:
-                _ = child.compute_Elo(temperature)
-            weights = [child.Elo for child in self.children]
-            
-            match_decrease = 1/ (math.ln(self.matching_time + 1))
-
-            weights = softmax_bias(weights,temperature*match_decrease)
-            elo = 0.0
-            for weight,child in zip(weights,self.children):
-                elo += (weight * child.Elo)
-            self.Elo = float(elo)
-        elif self.expand_num == 0:
-            return 0.0
-
-        return self.Elo
-
-    def init_Elo(self):
-        '''
-            To give an initial score to newly added nodes:
-            final_answer, does not include apologize: +100
-            final_answer: +50
-            give_up: unchanged
-            Extra long: -50
-        '''
-        return 
-        
-    def randomly_select_to_terminal_node(self,temperature=1.0):
-        if len(self.children) == 0:
-            return self
-        elif len(self.children) == 1:
-            return self.children[0].randomly_select_to_terminal_node()
-        else:
-            elos = [-10000 if (child.expand_num == 0 or child.finished) else child.Elo for child in self.children]
-            match_decrease = 1 / (math.ln(self.matching_time + 1))
-            weights = softmax_bias(elos,temperature*match_decrease)
-            result = np.random.multinomial(1,weights)
-            return self.children[result].randomly_select_to_terminal_node()
+        return 0.0
 
     def get_max_depth(self):
         '''
@@ -256,20 +113,7 @@ class tree_node:
         else:
             return tree_node.find_ancestor_intersection(node1, node2.father)
 
-    @classmethod
-    def from_json(self,json_obj):
-        node = tree_node()
-        node.is_terminal = json_obj["is_terminal"]
-        node.node_type = json_obj["node_type"]
-        node.description = json_obj["description"]
-        if "observation" in json_obj.keys():
-            node.observation = json_obj["observation"]
-        return node
     
-    def have_brother(self):
-        if self.father == None:
-            return False
-        return len(self.father.children) > 1
 
     def to_json_recursive(self,use_messages=False):
         js_obj = self.to_json(use_messages=use_messages)
@@ -374,7 +218,6 @@ class tree_node:
         json_obj["node_type"] = self.node_type
         json_obj["description"] = self.description
         json_obj["Elo"] = self.Elo
-        json_obj["matching_time"] = self.matching_time
         if self.observation != "":
             json_obj["observation"] = self.observation
         if self.observation_code != None:
@@ -385,13 +228,6 @@ class tree_node:
         if self.io_state != None and self.node_type == "Action Input":
             json_obj["io_state"] = self.io_state.to_json()
 
-        if self.reflection != []:
-            json_obj["reflection"] = self.reflection
-        if self.generated_reflection != "":
-            json_obj["generated_reflection"] = self.generated_reflection
-        if self.values != []:
-            json_obj["mean_value"] = np.mean(np.array(self.values))
-            json_obj["mean_votes"] = np.mean(np.array(self.vote_counts))
             
         if use_messages:
             json_obj["messages"] = []
@@ -402,20 +238,3 @@ class tree_node:
                     json_obj["messages"].append(message["role"] + "_invalid")
 
         return json_obj
-
-    def describe_children(self):
-        assert self.node_type == "Action Input"
-        assert len(self.children) > 0
-        des_str = ""
-        for i in range(min(len(self.children),10)):
-            thought_node = self.children[i]
-            temp_str = f"<former_attempt_{i+1}>\nThought: {thought_node.description}\n"
-            if len(thought_node.children) > 0:
-                action_node = thought_node.children[0]
-                temp_str = temp_str + f"Action: {action_node.description}\n"
-                if len(action_node.children) > 0:
-                    action_input_node = action_node.children[0]
-                    temp_str = temp_str + f"Action Input: {action_input_node.description}\nObservation: {action_input_node.observation}\n"
-            des_str = des_str + temp_str
-
-        return des_str

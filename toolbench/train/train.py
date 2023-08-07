@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 import json
 import pathlib
 from typing import Dict, Optional
-
+import os
 import numpy as np
 import torch
 from torch.utils.data import Dataset
@@ -224,6 +224,7 @@ def make_supervised_data_module(
     rank0_print("Loading data...")
     raw_data = json.load(open(data_args.data_path, "r"))
     if data_args.eval_data_path is not None:
+        train_raw_data = raw_data
         eval_raw_data = json.load(open(data_args.eval_data_path, "r"))
     else:
         # Split train/test
@@ -234,7 +235,6 @@ def make_supervised_data_module(
         train_raw_data = [raw_data[i] for i in train_indices]
         eval_raw_data = [raw_data[i] for i in eval_indices]
     rank0_print(f"#train {len(train_raw_data)}, #eval {len(eval_raw_data)}")
-
     train_dataset = dataset_cls(train_raw_data, tokenizer=tokenizer, template=data_args.conv_template)
     eval_dataset = dataset_cls(eval_raw_data, tokenizer=tokenizer, template=data_args.conv_template)
     return dict(train_dataset=train_dataset, eval_dataset=eval_dataset)
@@ -258,9 +258,13 @@ def train():
     tokenizer.pad_token = tokenizer.unk_token
 
     data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
+    world_size = int(os.environ.get("WORLD_SIZE", 1))
+    ddp = world_size != 1
+    device_map = {"": int(os.environ.get("LOCAL_RANK") or 0)} if ddp else None
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
+        device_map=device_map
     )
     model.config.use_cache = False
     trainer = Trainer(

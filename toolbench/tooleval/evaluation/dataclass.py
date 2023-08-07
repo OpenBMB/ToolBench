@@ -14,9 +14,9 @@ class Tool(BaseModel):
     class Parameters(BaseModel):
         required:List[str]
         optional:Optional[List[str]] = []
-        _type:str  = Field(alias='type')
+        type_:str  = Field(alias='type')
         class Properties(BaseModel):
-            _type:str  = Field(alias='type')
+            type_:str  = Field(alias='type')
             enum:Optional[List[str]] = None
             description:Optional[str] = None
             example_value:Optional[Union[str,bool,int,float]] = None

@@ -25,7 +25,7 @@ import json
 import pandas as pd
 import random
 import numpy as np
-from evaluators import load_automatic_evaluator
+from evaluators import load_registered_automatic_evaluator
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from tqdm import tqdm
 abs_dir = os.path.split(__file__)[0]
@@ -93,7 +93,7 @@ if __name__=='__main__':
     leaderboard.loc[len(leaderboard)] = {'Method':args.method}
     print(leaderboard.loc[leaderboard['Method']==args.method])
     # setting up evaluators
-    evaluators = [load_automatic_evaluator(evaluator_name=args.evaluator,evaluators_cfg_path=args.evaluators_cfg_path) for _ in range(args.max_eval_threads)]
+    evaluators = [load_registered_automatic_evaluator(evaluator_name=args.evaluator,evaluators_cfg_path=args.evaluators_cfg_path) for _ in range(args.max_eval_threads)]
     
     print('#####  Evaluation Info #####')
     print('Evalset: {}'.format(args.evalset))

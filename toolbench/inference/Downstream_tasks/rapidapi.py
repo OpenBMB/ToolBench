@@ -2,6 +2,7 @@ import re
 import os
 import json
 import time
+import requests
 from tqdm import tqdm
 from termcolor import colored
 import random
@@ -24,13 +25,17 @@ from toolbench.inference.Downstream_tasks.base_env import base_env
 
 # For pipeline environment preparation
 def get_white_list(tool_root_dir):
+    # print(tool_root_dir)
     white_list_dir = os.path.join(tool_root_dir)
     white_list = {}
     for cate in tqdm(os.listdir(white_list_dir)):
+        if not os.path.isdir(os.path.join(white_list_dir,cate)):
+            continue
         for file in os.listdir(os.path.join(white_list_dir,cate)):
             if not file.endswith(".json"):
                 continue
             standard_tool_name = file.split(".")[0]
+            # print(standard_tool_name)
             with open(os.path.join(white_list_dir,cate,file)) as reader:
                 js_data = json.load(reader)
             origin_tool_name = js_data["tool_name"]
@@ -52,8 +57,12 @@ class rapidapi_wrapper(base_env):
         super(rapidapi_wrapper).__init__()
 
         self.tool_root_dir = args.tool_root_dir
+        self.toolbench_key = args.toolbench_key
         self.rapidapi_key = args.rapidapi_key
+        self.use_rapidapi_key = args.use_rapidapi_key
+        self.service_url = "http://8.218.239.54:8080/rapidapi"
         self.max_observation_length = args.max_observation_length
+        self.observ_compress_method = args.observ_compress_method
         self.retriever = retriever
         self.process_id = process_id
 
@@ -274,14 +283,21 @@ You have access of the following tools:\n'''
         return obs, code
 
     def _step(self, action_name="", action_input=""):
-        '''
-        Need to return an observation string and status code:
-        0 means normal response
-        1 means there is no corresponding api name
-        2 means there is an error in the input
-        3 represents the end of the generation and the final answer appears
-        4 means that the model decides to pruning by itself
-        '''
+        """Need to return an observation string and status code:
+            0 means normal response
+            1 means there is no corresponding api name
+            2 means there is an error in the input
+            3 represents the end of the generation and the final answer appears
+            4 means that the model decides to pruning by itself
+            5 represents api call timeout
+            6 for 404
+            7 means not subscribed
+            8 represents unauthorized
+            9 represents too many requests
+            10 stands for rate limit
+            11 message contains "error" field
+            12 error sending request
+        """
         if action_name == "Finish":
             try:
                 json_data = json.loads(action_input,strict=False)
@@ -315,19 +331,30 @@ You have access of the following tools:\n'''
             for k, function in enumerate(self.functions):
                 if function["name"].endswith(action_name):
                     pure_api_name = self.api_name_reflect[function["name"]]
-                    # try:
-                    print(action_input)
                     payload = {
                         "category": self.cate_names[k],
                         "tool_name": self.tool_names[k],
                         "api_name": pure_api_name,
                         "tool_input": action_input,
-                        "strip": "truncate",
-                        "rapidapi_key": self.rapidapi_key
+                        "strip": self.observ_compress_method,
+                        "toolbench_key": self.toolbench_key
                     }
                     if self.process_id == 0:
                         print(colored(f"query to {self.cate_names[k]}-->{self.tool_names[k]}-->{action_name}",color="yellow"))
-                    response = get_rapidapi_response(payload)
+                    if self.use_rapidapi_key:
+                        payload["rapidapi_key"] = self.rapidapi_key
+                        response = get_rapidapi_response(payload)
+                    else:
+                        time.sleep(2) # rate limit: 30 per minute
+                        headers = {"toolbench_key": self.toolbench_key}
+                        response = requests.post(self.service_url, json=payload, headers=headers, timeout=15)
+                        if response.status_code != 200:
+                            return json.dumps({"error": f"request invalid, data error. status_code={response.status_code}", "response": ""}), 12
+                        try:
+                            response = response.json()
+                        except:
+                            print(response)
+                            return json.dumps({"error": f"request invalid, data error", "response": ""}), 12
                     # 1 Hallucinating function names
                     # 4 means that the model decides to pruning by itself
                     # 5 represents api call timeout
@@ -337,6 +364,7 @@ You have access of the following tools:\n'''
                     # 9 represents too many requests
                     # 10 stands for rate limit
                     # 11 message contains "error" field
+                    # 12 error sending request
                     if response["error"] == "API not working error...":
                         status_code = 6
                     elif response["error"] == "Unauthorized error...":
@@ -367,8 +395,6 @@ class pipeline_runner:
         self.server = server
         if not self.server: self.task_list = self.generate_task_list()
         else: self.task_list = []
-
-
 
     def get_backbone_model(self):
         args = self.args

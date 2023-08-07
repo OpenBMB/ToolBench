@@ -33,6 +33,14 @@
 
 **💁‍♂️💁💁‍♀️Joint Us on [Discord](https://discord.gg/QSC6yTtu)!**
 
+## What's New
+
+- **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6). We will review it as soon as possible and send you the ToolBench key to get start on it! 
+
+- **[2023/8/1]** Our [paper](https://arxiv.org/abs/2307.16789) is released.
+
+- **[2023/7/27]** New version ToolBench is released.
+
 ✨Here is an overview of the dataset construction, training, and evaluation.
 
 <br>
@@ -96,7 +104,7 @@ ToolBench contains both single-tool and multi-tool scenarios. The multi-tool sce
 
 ### Data Release
 
- Please download our dataset using the following link: [Data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
+ Please download our dataset using the following link: [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/).
 - `G1`,`G2`, `G3`data refers to single-tool, intra-category multi-tool and intra-collection multi-tool data respectively. We also have an [Atlas Explorer](https://atlas.nomic.ai/map/58aca169-c29a-447a-8f01-0d418fc4d341/030ddad7-5305-461c-ba86-27e1ca79d899) for visualization.
 - We split the G1, G2 and G3 data into train, eval and test parts respectively and combine the train data for training in our main experiments. `toolllama_G123_dfs_train.json` refers to the combined train data.
 - The tool environment related data is in `toolenv` directory.
@@ -118,6 +126,10 @@ cd ToolBench
 Install Package (python>=3.9)
 ```bash
 pip install -r requirements.txt
+```
+or for ToolEval only
+```bash
+pip install -r toolbench/tooleval/requirements.txt
 ```
 
 Prepare the data and tool environment:
@@ -225,13 +237,15 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
 ```
 
 
-## Inference
-First prepare your rapidapi key:
+## Inference With Our RapidAPI Server
+Please fill out the [form](https://forms.gle/oCHHc8DQzhGfiT9r6) first and after reviewing we will send you the toolbench key. Then prepare your toolbench key by:
 ```bash
-export RAPIDAPIKEY="your_rapidapi_key"
+export TOOLBENCH_KEY="your_toolbench_key"
 ```
 
-Then run the following commands:
+### For ToolLLaMA
+
+To inference with ToolLLaMA, run the following commands:
 ```bash
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
@@ -239,13 +253,14 @@ python toolbench/inference/qa_pipeline.py \
     --backbone_model toolllama \
     --model_path ToolBench/ToolLLaMA-7b \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file data/answer/toolllama_dfs \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 ```
 
-For **lora** version:
+For **ToolLLaMA-LoRA**:
 ```bash
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
@@ -255,13 +270,14 @@ python toolbench/inference/qa_pipeline.py \
     --lora \
     --lora_path /path/to/your/downloaded/ToolLLaMA-7b-LoRA \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
     --output_answer_file data/answer/toolllama_lora_dfs \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
 ```
 
-For lora version under **open-domain** setting, run:
+For ToolLLaMA-LoRA under **open-domain** setting, run:
 ```bash
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline_open_domain.py \
@@ -274,10 +290,62 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --lora \
     --lora_path /path/to/your/toolllama_lora \
     --max_observation_length 1024 \
+    --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo_open_domain.json \
     --output_answer_file data/answer/toolllama_lora_dfs_open_domain \
-    --rapidapi_key $RAPIDAPIKEY
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+### For OpenAI Models
+To use ChatGPT, run:
+```bash
+export TOOLBENCH_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model chatgpt_function \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/chatgpt_dfs \
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+To use Text-Davinci-003, run:
+```bash
+export TOOLBENCH_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model davinci \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/davinci_dfs \
+    --toolbench_key $TOOLBENCH_KEY
+```
+
+## Inference With Your Own RapidAPI Account
+To do inference with customized RapidAPI account, pass your **rapidapi key** through `rapidapi_key` and specify the `use_rapidapi_key` argument in the script:
+```bash
+export RAPIDAPI_KEY=""
+export OPENAI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model chatgpt_function \
+    --openai_key $OPENAI_KEY \
+    --max_observation_length 1024 \
+    --method DFS_woFilter_w2 \
+    --input_query_file data/instruction/inference_query_demo.json \
+    --output_answer_file data/answer/chatgpt_dfs \
+    --rapidapi_key $RAPIDAPI_KEY \
+    --use_rapidapi_key
 ```
 
 ## Setting up and running the interface
@@ -364,7 +432,8 @@ python ./toolbench/tooleval/automatic_eval_sample.py \
     --use_existed_output
 ```
 
-### Model Experiment
+### 📊 Model Experiments Results
+
 
 In our main experiments, ToolLLaMA demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions.
 Below are the main results compared with ChatGPT and Text-Davinci-003.
@@ -412,6 +481,16 @@ With the powerful capabilities of foundation models, we are eager to see their a
 
 ## Citation
 Feel free to cite us if you like ToolBench.
+```bibtex
+@misc{qin2023toolllm,
+      title={ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs}, 
+      author={Yujia Qin and Shihao Liang and Yining Ye and Kunlun Zhu and Lan Yan and Yaxi Lu and Yankai Lin and Xin Cong and Xiangru Tang and Bill Qian and Sihan Zhao and Runchu Tian and Ruobing Xie and Jie Zhou and Mark Gerstein and Dahai Li and Zhiyuan Liu and Maosong Sun},
+      year={2023},
+      eprint={2307.16789},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI}
+}
+```
 
 ```bibtex
 @misc{qin2023tool,
