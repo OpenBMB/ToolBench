@@ -433,6 +433,8 @@ python ./toolbench/tooleval/automatic_eval_sample.py \
     --method $REF_MODEL_METHOD \
     --use_existed_output
 ```
+Please refer to [ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval) for more details.
+
 
 ### 📊 Model Experiments Results
 

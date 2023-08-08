@@ -437,6 +437,9 @@ python ./toolbench/tooleval/automatic_eval_sample.py \
     --use_existed_output
 ```
 
+更多细节请参考 [ToolEval](https://github.com/OpenBMB/ToolBench/blob/master/toolbench/tooleval/README_ZH.md).
+
+
 ### Model Experiment
 
 在我们的主要实验中，ToolLLaMA展现了处理单一工具和复杂多工具指令的引人注目的能力。

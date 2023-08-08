@@ -49,9 +49,21 @@ class BaseEvaluator:
         
         Parameters:
         ----------
-        
+            query : str
+                The query of the task.
+            available_tools : List[Dict[Any, Any]]
+                The list of available tools for the task. The specific format of the tool is defined in `tooleval/evaluation/dataclass.py`
+            ans1, ans2 : Dict
+                The answers for comparison.
+            multisample : bool, optional
+                Whether to use multisample to get the preference. If True, the function will return a list of preferences, otherwise return a single preference.
+            sample_n : int, optional
+                The number of samples to get the preference.
+
         Returns:
         -------
+            preference : Union[List[int], int]
+                The index of the preferred answer. If `multisample` is True, return a list of preferences, otherwise return a single preference.
         
         Raise:
         -----
