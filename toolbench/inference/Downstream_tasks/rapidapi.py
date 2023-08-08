@@ -43,12 +43,14 @@ def get_white_list(tool_root_dir):
     return white_list
 
 def contain(candidate_list, white_list):
-    output = []
+    output = set()
     for cand in candidate_list:
-        if cand not in white_list.keys():
+        if cand in white_list:
+            output.add(white_list[cand])
+        else:
             return False
-        output.append(white_list[cand])
-    return output
+    return list(output)
+
 
 
 # rapidapi env wrapper
