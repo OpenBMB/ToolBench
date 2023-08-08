@@ -43,13 +43,12 @@ def get_white_list(tool_root_dir):
     return white_list
 
 def contain(candidate_list, white_list):
-    output = set()
+    output = []
     for cand in candidate_list:
-        if cand in white_list:
-            output.add(white_list[cand])
-        else:
+        if cand not in white_list.keys():
             return False
-    return list(output)
+        output.append(white_list[cand])
+    return output
 
 
 
