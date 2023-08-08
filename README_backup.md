@@ -36,6 +36,7 @@
 *Read this in [中文](README_ZH.md).*
 
 ## What's New
+- **[2023/8/8]** No more hallucination! [**ToolLLaMA-2**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
 
 - **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6). We will review it as soon as possible and send you the ToolBench key to get start on it! 
 
@@ -438,7 +439,7 @@ python ./toolbench/tooleval/automatic_eval_sample.py \
 
 
 In our main experiments, ToolLLaMA demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions.
-In addition to existing ToolEval metrics, we introduce **hallucinate rate**(lower is better) as another evaluation metric. An instance is considered to be a hallucinate instance, as long as the whole decision tree contains at least one function call prediction which did not match any of those given or retrieved APIs.
+In addition to existing ToolEval metrics, we introduce **hallucinate rate**(lower is better) as another evaluation metric. An instance is considered to be a hallucinate instance, as long as the whole decision tree contains at least one hallucinated function call.
 Below are the main results compared with ChatGPT and Text-Davinci-003. 
 **Hallucinate rate**
 | model                   | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |

@@ -36,6 +36,7 @@
 *英文[README](README.md)链接.*
 
 ## 最新支持
+- **[2023/8/8]** 告别幻觉！[**ToolLLaMA-2-7b**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) (从LLaMA-2-7b微调而来)模型已发布，比ChatGPT有着更少的API幻觉现象.
 
 - **[2023/8/4]** 我们提供RapidAPI后端服务，以免您使用自己的RapidAPI私钥去订阅API。填写[表单](https://forms.gle/oCHHc8DQzhGfiT9r6)后，我们会尽快审核并给您发送ToolBench key去请求该后端服务! 
 
@@ -443,9 +444,22 @@ python ./toolbench/tooleval/automatic_eval_sample.py \
 ### Model Experiment
 
 在我们的主要实验中，ToolLLaMA展现了处理单一工具和复杂多工具指令的引人注目的能力。
+We introduce **hallucinate rate**(lower is better) evaluation metric as a complement of ToolEval. An instance is considered to be a hallucinate instance, as long as the whole decision tree contains at least one hallucinated function call.
+我们引入**幻觉率**作为ToolEval的补充。若一条实例的决策树包含至少一个幻觉函数调用，我们就认为它是一条幻觉实例。
 以下是与ChatGPT和Text-Davinci-003相比的主要结果。
 
-**通过率**
+**幻觉率：**
+| model                   | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
+|-------------------------|----------|----------|---------|----------|---------|----------|---------|
+| ChatGPT-DFSDT           | **2**    | 6        | **5**   | 14       | 16      | 17       | 10      |
+| Text-Davinci-003-DFSDT  | 6        | **5**    | **5**   | **6**    | **8**   | **6**    | **6.0** |
+| ToolLLaMA               | 16       | 13       | 20      | 24       | 24      | 27       | 20.7    |
+| ToolLLaMA-LoRA          | 61       | 62       | 52      | 69       | 67      | 64       | 62.5    |
+| ToolLLaMA-API Retriever | 16       | 25       | 22      | 20       | 23      | 37       | 23.8    |
+| ToolLLaMA-2             | 3        | 11       | 9       | 8        | 10      | 10       | 8.5     |
+
+
+**通过率：**
 | model                   | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average  |
 |-------------------------|----------|----------|---------|----------|---------|----------|----------|
 | ChatGPT-DFSDT           | **78**   | **84**   | **89**  | **51**   | **58**  | **57**   | **69.6** |
@@ -455,22 +469,23 @@ python ./toolbench/tooleval/automatic_eval_sample.py \
 | ToolLLaMA               | 68       | 80       | 75      | 47       | 56      | 40       | 61.0     |
 | ToolLLaMA-LoRA          | 51       | 63       | 61      | 38       | 42      | 45       | 50.0     |
 | ToolLLaMA-API Retriever | 62       | 62       | 72      | 45       | 55      | 47       | 57.2     |
+| ToolLLaMA-2 | 64       | 72       | 78      | 50       | 51      | 46       | 59.8     |
 
-**优胜率** (参考模型: ChatGPT-DFSDT)
+
+**优胜率：** (Reference model: ChatGPT-DFSDT)
 | model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
 |------------------------|----------|----------|---------|----------|---------|----------|---------|
-| ChatGPT-DFSDT | 50       | 50       | 50      | 50       | 50      | 50       | 50.0    |
+| ChatGPT-DFSDT | **50**       | 50       | **50**      | 50       | **50**      | 50       | 50.0    |
 | ChatGPT-ReACT | 38       | 32       | 41      | 43       | 22      | 23       | 30.7    |
 | Text-Davinci-003-ReACT | 14       | 21       | 18      | 8       | 7      | 12       | 13.3    |
 | Text-Davinci-003-DFSDT | 38       | 34       | 43      | 25       | 20      | 28       | 31.3    |
 | ToolLLaMA              | **50**       | 45       | 45      | **59**       | 48      | 46       | 48.8    |
-| ToolLLaMA-LoRA              | 43       | 36.4       | 30      | 42       | 45      | **51**       | 41.2    |
+| ToolLLaMA-LoRA              | 43       | 36.4       | 30      | 42       | 45      | 51       | 41.2    |
 | ToolLLaMA-API Retriever              | **51**       | 39       | 44      | 49       | 49      | **55**       | 47.8    |
-
+| ToolLLaMA-2              | 43       | 42       | 46      | 55       | 46      | 50       | 47.0    |
 
 ## TODO
 - [ ] ToolLLaMA将达到GPT-4的工具使用能力。
-- [ ] 我们将训练一个ToolLLaMa-2。
 
 ## 工具学习相关链接
 

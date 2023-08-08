@@ -36,6 +36,7 @@
 *Read this in [中文](README_ZH.md).*
 
 ## What's New
+- **[2023/8/8]** No more hallucination! [**ToolLLaMA-2-7b**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
 
 - **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6). We will review it as soon as possible and send you the ToolBench key to get start on it! 
 
@@ -116,7 +117,7 @@ ToolBench contains both single-tool and multi-tool scenarios. The multi-tool sce
 
 ## 🤖Model
 
-We release the [ToolLLaMA-7b](https://huggingface.co/ToolBench/ToolLLaMA-7b) and [ToolLLaMA-7b-LoRA](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA) models, which are both trained on the released dataset in a multi-task fashion. We also release the [tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased) trained under our experimental setting.
+We release the [ToolLLaMA-7b](https://huggingface.co/ToolBench/ToolLLaMA-7b), [ToolLLaMA-7b-LoRA](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA) and [ToolLLaMA-2-7b](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) models, which are both trained on the released dataset in a multi-task fashion. We also release the [tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased) trained under our experimental setting.
 
 ## 🚀Fine-tuning
 ### Install
@@ -440,7 +441,19 @@ Please refer to [ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/tool
 
 
 In our main experiments, ToolLLaMA demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions.
-Below are the main results compared with ChatGPT and Text-Davinci-003.
+We introduce **hallucinate rate**(lower is better) evaluation metric as a complement of ToolEval. An instance is considered to be a hallucinate instance, as long as the whole decision tree contains at least one hallucinated function call.
+Below are the main results compared with ChatGPT and Text-Davinci-003. 
+
+**Hallucinate rate:**
+| model                   | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
+|-------------------------|----------|----------|---------|----------|---------|----------|---------|
+| ChatGPT-DFSDT           | **2**    | 6        | **5**   | 14       | 16      | 17       | 10      |
+| Text-Davinci-003-DFSDT  | 6        | **5**    | **5**   | **6**    | **8**   | **6**    | **6.0** |
+| ToolLLaMA               | 16       | 13       | 20      | 24       | 24      | 27       | 20.7    |
+| ToolLLaMA-LoRA          | 61       | 62       | 52      | 69       | 67      | 64       | 62.5    |
+| ToolLLaMA-API Retriever | 16       | 25       | 22      | 20       | 23      | 37       | 23.8    |
+| ToolLLaMA-2             | 3        | 11       | 9       | 8        | 10      | 10       | 8.5     |
+
 
 **Pass Rate:**
 | model                   | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average  |
@@ -452,23 +465,24 @@ Below are the main results compared with ChatGPT and Text-Davinci-003.
 | ToolLLaMA               | 68       | 80       | 75      | 47       | 56      | 40       | 61.0     |
 | ToolLLaMA-LoRA          | 51       | 63       | 61      | 38       | 42      | 45       | 50.0     |
 | ToolLLaMA-API Retriever | 62       | 62       | 72      | 45       | 55      | 47       | 57.2     |
+| ToolLLaMA-2 | 64       | 72       | 78      | 50       | 51      | 46       | 59.8     |
 
 
 **Win Rate:** (Reference model: ChatGPT-DFSDT)
 | model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
 |------------------------|----------|----------|---------|----------|---------|----------|---------|
-| ChatGPT-DFSDT | 50       | 50       | 50      | 50       | 50      | 50       | 50.0    |
+| ChatGPT-DFSDT | **50**       | 50       | **50**      | 50       | **50**      | 50       | 50.0    |
 | ChatGPT-ReACT | 38       | 32       | 41      | 43       | 22      | 23       | 30.7    |
 | Text-Davinci-003-ReACT | 14       | 21       | 18      | 8       | 7      | 12       | 13.3    |
 | Text-Davinci-003-DFSDT | 38       | 34       | 43      | 25       | 20      | 28       | 31.3    |
 | ToolLLaMA              | **50**       | 45       | 45      | **59**       | 48      | 46       | 48.8    |
-| ToolLLaMA-LoRA              | 43       | 36.4       | 30      | 42       | 45      | **51**       | 41.2    |
+| ToolLLaMA-LoRA              | 43       | 36.4       | 30      | 42       | 45      | 51       | 41.2    |
 | ToolLLaMA-API Retriever              | **51**       | 39       | 44      | 49       | 49      | **55**       | 47.8    |
+| ToolLLaMA-2              | 43       | 42       | 46      | 55       | 46      | 50       | 47.0    |
 
 
 ## TODO
 - [ ] ToolLLaMA will reach GPT-4's tool-use capability.
-- [ ] We will train a ToolLLaMa-2
 
 ## Resources of Tool Learning
 
