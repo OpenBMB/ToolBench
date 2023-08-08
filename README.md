@@ -40,9 +40,9 @@
 
 - **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6). We will review it as soon as possible and send you the ToolBench key to get start on it! 
 
-- **[2023/8/1]** Our [paper](https://arxiv.org/abs/2307.16789) is released.
+- **[2023/8/1]** Our [**paper**](https://arxiv.org/abs/2307.16789) is released.
 
-- **[2023/7/27]** New version ToolBench is released.
+- **[2023/7/27]** **New version** ToolBench is released.
 
 ✨Here is an overview of the dataset construction, training, and evaluation.
 
