@@ -145,7 +145,7 @@ unzip data.zip
 - Data preprocessing:
 ```bash
 export PYTHONPATH=./
-python data/preprocess_retriever_data.py \
+python preprocess/preprocess_retriever_data.py \
     --query_file data/instruction/G1_query.json \
     --index_file data/test_query_ids/G1_instruction_test_query_ids.json \
     --dataset_name G1 \

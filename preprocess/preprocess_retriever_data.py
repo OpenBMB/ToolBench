@@ -78,6 +78,8 @@ def process_data(data, pairs):
             # Check if the current API is in the relevant APIs
             if api_identity in doc['relevant APIs']:
                 query = doc['query']
+                if isinstance(query, list):
+                    query = query[0] # a few instances is store in list
                 query_id = query_id_map.setdefault(query, len(query_id_map) + 1)
                 pairs.append(([query_id, query], [query_id, 0, doc_id, 1]))
 
