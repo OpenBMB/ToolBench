@@ -1,5 +1,7 @@
-from tenacity import retry, wait_random_exponential, stop_after_attempt
 import os
+import json
+from typing import List,Dict
+from tenacity import retry, wait_random_exponential, stop_after_attempt
 
 __registered_evaluators__ = {}
 
@@ -21,13 +23,31 @@ def get_evaluator_cls(clsname):
 
 
 class OpenaiPoolRequest:
-    def __init__(self, pool_json_file):
-        self.api_key = os.environ.get('OPENAI_KEY')
+    def __init__(self, pool_json_file=None):
+        self.pool:List[Dict] = []
+        __pool_file = pool_json_file
+        if os.environ.get('API_POOL_FILE',None) is not None:
+            __pool_file = os.environ.get('API_POOL_FILE')
+        
+        if os.path.exists(__pool_file):
+            self.pool = json.load(open(__pool_file))
+        
+        if os.environ.get('OPENAI_KEY',None) is not None:
+            self.pool.append({
+                'api_key':os.environ.get('OPENAI_KEY'),
+                'organization':os.environ.get('OPENAI_ORG',None)
+            })
 
     @retry(wait=wait_random_exponential(multiplier=1, max=30), stop=stop_after_attempt(10),reraise=True)
     def request(self,messages,**kwargs):
         import openai
-        kwargs['api_key'] = self.api_key
+        import random
+        
+        item = random.choice(self.pool)
+        kwargs['api_key'] = item['api_key']
+        
+        if item.get('organization',None) is not None:
+            kwargs['organization'] = item['organization'] 
         return openai.ChatCompletion.create(messages=messages,**kwargs)
     
     def __call__(self,messages,**kwargs):
