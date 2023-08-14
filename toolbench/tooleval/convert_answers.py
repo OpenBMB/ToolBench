@@ -3,9 +3,9 @@ import json
 from glob import glob
 import os
 
-save_dir = '/data/private/luyaxi/data/converted'
+save_dir = 'path/to/save/dir'
 
-groups_dirs = ['/data/private/luyaxi/data/ChatGPT-DFSDT',]
+groups_dirs = ['path/to/dataset/eval/result/folders']
 
 for groups_dir in groups_dirs:
     method = os.path.split(groups_dir)[1]

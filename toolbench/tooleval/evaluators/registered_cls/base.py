@@ -1,5 +1,7 @@
 import random
 from typing import List, Union, Dict, Any, Callable
+import os
+import yaml
 from .utils import register_evaluator
 
 def process_answer(answer: Dict):
@@ -87,3 +89,25 @@ class BaseEvaluator:
                         {'query': query, 'available_tools': available_tools}, [ans2, ans1]))
             return prefers
 
+@register_evaluator
+class ToolEvalEvaluator(BaseEvaluator):
+    """ToolEval common evaluator class.
+    
+    Attributes:
+    ----------
+        cfg_path : str
+            A path store the configuration of the evaluator.  
+
+        
+    """
+    def __init__(self,
+                 cfg_path: str = None,
+                ):
+        eval_config = yaml.load(open(os.path.join(cfg_path,'config.yaml')),Loader=yaml.FullLoader)
+        template = open(os.path.join(cfg_path,eval_config['prompt_template'])).read()
+        
+        super().__init__(
+            fn_completions=getattr(self,eval_config['fn_completions'])
+            )
+        self.eval_config = eval_config
+        self.template = template

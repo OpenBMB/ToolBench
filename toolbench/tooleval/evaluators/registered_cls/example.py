@@ -1,37 +1,13 @@
-import os
-import yaml
 from copy import deepcopy
 import json
 import re
 import random
 import math
 
-from .base import BaseEvaluator
+
+from .base import ToolEvalEvaluator
 from typing import List, Union, Dict, Any, Callable
 from .utils import register_evaluator,OpenaiPoolRequest
-
-@register_evaluator
-class ToolEvalEvaluator(BaseEvaluator):
-    """ToolEval common evaluator class.
-    
-    Attributes:
-    ----------
-        cfg_path : str
-            A path store the configuration of the evaluator.  
-
-        
-    """
-    def __init__(self,
-                 cfg_path: str = None,
-                ):
-        eval_config = yaml.load(open(os.path.join(cfg_path,'config.yaml')),Loader=yaml.FullLoader)
-        template = open(os.path.join(cfg_path,eval_config['prompt_template'])).read()
-        
-        super().__init__(
-            fn_completions=getattr(self,eval_config['fn_completions'])
-            )
-        self.eval_config = eval_config
-        self.template = template
 
 
 @register_evaluator

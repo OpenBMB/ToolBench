@@ -1,8 +1,6 @@
-from .base import BaseEvaluator
-from .utils import register_evaluator,get_evaluator_cls
-from .example import ToolEvalEvaluator,OpenAIEvaluator,OpenAINormalizedEvaluator
+from .registered_cls import BaseEvaluator,register_evaluator,get_evaluator_cls
 
-__all__=['register_evaluator','get_evaluator_cls','BaseEvaluator','ToolEvalEvaluator','OpenAINormalizedEvaluator','load_registered_automatic_evaluator']
+__all__=['register_evaluator','get_evaluator_cls','BaseEvaluator','load_registered_automatic_evaluator']
 
 
 

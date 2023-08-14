@@ -145,7 +145,8 @@ The result is shown below:
 ### 创建新的自动评估器
 如果您想创建新的自动评估器，您需要按下列步骤进行：
 1. 在路径`toolbench/tooleval/evaluators`下创建一个评测器配置文件目录，命名与你的评测器名一致。在其中添加`config.yaml`文件与`template.txt`文件。具体配置方式可参考`toolbench/tooleval/evaluators/tooleval_gpt-3.5-turbo_normalized`中的实现。
-2. 创建你的evaluator类并实现`fn_completions`函数,
+2. 创建你的evaluator类并实现`fn_completions`函数在文件夹`toolbench/tooleval/evaluators/registered_cls`中，或者你可以使用我们预先定义好的类例如`OpenAINormalizedEvaluator`。
+完成后将配置文件中`registered_cls_name`字段填写为该类的名称。
 这里给出一个例子：
 ```Python
 from evaluators import register_evaluator,BaseEvaluator

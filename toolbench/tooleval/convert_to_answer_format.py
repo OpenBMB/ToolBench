@@ -77,7 +77,7 @@ def process_invalid_data(method,data_dict):
     query = answer_generation['query']
     eg = ExecutionGraph()
     last_node = generate_init_message_node(eg,functions,query)
-    if 'CoT' in method:
+    if 'CoT' in method or 'cot' in method:
         trail = random.choice(data_dict["trys"])
 
         
@@ -103,7 +103,7 @@ def process_invalid_data(method,data_dict):
             last_node = node
         eg = eg.reduce_graph_to_sequence()
    
-    elif 'DFS' in method:
+    elif 'DFS' in method or 'dfs' in method:
 
         def DFS(root):
             if len(root['children']) == 0:

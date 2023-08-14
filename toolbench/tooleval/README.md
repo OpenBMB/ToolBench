@@ -153,7 +153,9 @@ To create new automatic evaluators, you can following the steps below:
 1. Create a config folder under `toolbench/tooleval/evaluators`, name it with the name of your evaluators.
 Adding a `config.yaml` file (must have) and a `template.txt` file (optional) in the folder.
 You can refer to the `toolbench/tooleval/evaluators/tooleval_gpt-3.5-turbo_normalized` folder for example. 
-2. Create your own evaluator class and implement the `fn_completions` function.
+2. Create your own evaluator class and implement the `fn_completions` function in folder `toolbench/tooleval/evaluators/registered_cls` if needed.
+Or you can use the precreated class like `OpenAINormalizedEvaluator`.
+Fill the `registered_cls_name` with class name of the evaluator in your `config.yaml`.
 Here is a example of the evaluator class: 
 ```Python
 from evaluators import register_evaluator,BaseEvaluator
