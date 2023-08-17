@@ -43,12 +43,13 @@ def get_white_list(tool_root_dir):
     return white_list
 
 def contain(candidate_list, white_list):
-    output = []
+    output = set()
     for cand in candidate_list:
-        if cand not in white_list.keys():
+        if cand in white_list:
+            output.add(white_list[cand])
+        else:
             return False
-        output.append(white_list[cand])
-    return output
+    return list(output)
 
 
 
@@ -326,7 +327,7 @@ You have access of the following tools:\n'''
                 self.success = 1 # succesfully return final_answer
                 return "{\"response\":\"successfully giving the final answer.\"}", 3
             else:
-                "{error:\"\"return_type\" is not a valid choice\"}", 2
+                return "{error:\"\"return_type\" is not a valid choice\"}", 2
         else:
 
             for k, function in enumerate(self.functions):
