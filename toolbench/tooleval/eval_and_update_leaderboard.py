@@ -113,8 +113,7 @@ if __name__=='__main__':
         ret = evaluator.annotate_preference(
             query,
             tools,
-            ref_ans,
-            ans)
+            [ref_ans,ans])
         return qid,ret
     def get_most_preferred(d:list)->np.ndarray:
         if np.iterable(d):

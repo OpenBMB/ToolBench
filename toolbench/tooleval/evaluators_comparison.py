@@ -9,7 +9,6 @@ import copy
 from typing import List
 from scipy.stats import pearsonr,spearmanr
 import random
-
 random.seed(42)
 
 abs_dir = os.path.split(__file__)[0]
@@ -58,26 +57,21 @@ def test_on_annotated_data(evaluator_cfg)->List[List[int]]:
         ret = evaluators[idx%NUM_WORKERS].annotate_preference(
             data['query'],
             tools,
-            data['answers'][0],
-            data['answers'][1],multisample=True)
+            data['answers'],multisample=True)
         return idx,ret
     prefer_dict = {}
     with ThreadPoolExecutor(NUM_WORKERS) as pool:
         # future = [pool.submit(get_preference,idx) for idx in range(100)]
         future = [pool.submit(get_preference,idx) for idx in range(len(annotated_data))]
         for thd in tqdm(as_completed(future),total=len(future),ncols=100):
+            if thd.exception() is not None:
+                pool.shutdown(cancel_futures=True)
+                raise thd.exception()
+                exit(-1)
             idx,preference = thd.result()
             prefer_dict[idx] = preference
     prefer = [prefer_dict[idx] for idx in range(len(future))]
     return prefer
-
-evaluator_cfgs=[
-    {
-        'evaluators_cfg_path':os.path.join(abs_dir,'evaluators'),
-        'evaluator':evaluator
-    }
-    for evaluator in ['tooleval_gpt-3.5-turbo_normalized','tooleval_gpt-3.5-turbo_fn']
-]
 
 def get_popped_and_rest(d:list,index:int):
     l = copy.deepcopy(d)
@@ -133,7 +127,7 @@ def calculate_evaluator_performance(evaluator_preference,human_preference):
     }
     
 if __name__=='__main__':
-    evaluators = ['tooleval_gpt-3.5-turbo_normalized','tooleval_gpt-3.5-turbo_fn']
+    evaluators = ['tooleval_gpt-3.5-turbo_normalized',]
     human_perference = [
         data['preference'] for data in annotated_data
     ]

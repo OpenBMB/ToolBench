@@ -42,7 +42,7 @@ class BaseEvaluator:
     def annotate_preference(self,
                             query: str,
                             available_tools: List[Dict[Any, Any]],
-                            ans1: Dict, ans2: Dict,
+                            answers:List[Dict],
                             multisample=False,
                             sample_n=4) -> Union[List[int], int]:
         """Annotate and return the index of the preferred answer.
@@ -55,8 +55,8 @@ class BaseEvaluator:
                 The query of the task.
             available_tools : List[Dict[Any, Any]]
                 The list of available tools for the task. The specific format of the tool is defined in `tooleval/evaluation/dataclass.py`
-            ans1, ans2 : Dict
-                The answers for comparison.
+            answers : List[Dict]
+                The list of answers for comparison.
             multisample : bool, optional
                 Whether to use multisample to get the preference. If True, the function will return a list of preferences, otherwise return a single preference.
             sample_n : int, optional
@@ -71,22 +71,30 @@ class BaseEvaluator:
         -----
         
         """
-        ans1, ans2 = process_answer(ans1), process_answer(ans2)
+        answers_processed = [process_answer(ans) for ans in answers]
         available_tools = process_tools(available_tools)
+        
+        def shuffle_run() -> int:
+            indexs = list(range(len(answers_processed)))
+            random.shuffle(indexs)
+            
+            answers_projected = [answers[idx] for idx in indexs]
+            
+            preferred_index = self.fn_completions(
+                {
+                    'query':query,
+                    'available_tools':available_tools,
+                },
+                answers_projected
+            )
+            if preferred_index in indexs:
+                return indexs.index(preferred_index)
+            raise ValueError(f'Preferred index {preferred_index} is invalid!')
+        
         if not multisample:
-            if random.random() < 0.5:
-                return self.fn_completions({'query': query, 'available_tools': available_tools}, [ans1, ans2])
-            else:
-                return 1 - self.fn_completions({'query': query, 'available_tools': available_tools}, [ans2, ans1])
+            return shuffle_run()
         else:
-            prefers = []
-            for i in range(sample_n):
-                if random.random() < 0.5:
-                    prefers.append(self.fn_completions(
-                        {'query': query, 'available_tools': available_tools}, [ans1, ans2]))
-                else:
-                    prefers.append(1 - self.fn_completions(
-                        {'query': query, 'available_tools': available_tools}, [ans2, ans1]))
+            prefers = [shuffle_run() for _ in range(sample_n)]
             return prefers
 
 @register_evaluator

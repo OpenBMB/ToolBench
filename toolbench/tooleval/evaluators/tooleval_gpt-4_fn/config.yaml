@@ -20,6 +20,6 @@ completions_kwargs:
           preference:
             type: "number"
             description: "The index of the preferred answer in all given answers."
-      "required": [ "preference" ]
+      required: [ "preference" ]
 fn_completion_parser: "index_parser"
 batch_size: 1

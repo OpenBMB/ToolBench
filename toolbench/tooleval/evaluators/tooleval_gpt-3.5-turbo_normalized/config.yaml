@@ -20,7 +20,7 @@ completions_kwargs:
           used_tool_types:
             type: "number"
             description: "Give the number of different 'name' in 'tool' nodes' message"
-      "required": [ "succeed_tool_calling", "used_tool_types"]
+        required: [ "succeed_tool_calling", "used_tool_types"]
     - name: "select_best_final_answer"
       description: "For given query, select the best answer in answers list and return the index of the best answer"
       parameters:
@@ -29,7 +29,7 @@ completions_kwargs:
           best_answer_index:
             type: "number"
             description: "The index of the best answer in the answer list, start from 0"
-      "required": [ "best_answer_index"]
+        required: [ "best_answer_index"]
     - name: "check_solve_query"
       description: "Check whether the given answer solve the given query, return true or false"
       parameters:
@@ -38,6 +38,6 @@ completions_kwargs:
           is_solved:
             type: "boolean"
             description: "true if solved and false if not"
-      "required": ["is_solved"]
+        required: ["is_solved"]
 fn_completion_parser: "index_parser"
 batch_size: 1
