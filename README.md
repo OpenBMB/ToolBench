@@ -351,6 +351,90 @@ python toolbench/inference/qa_pipeline.py \
     --use_rapidapi_key
 ```
 
+## Customize your own APIs
+To do inference with customized API(s), you should prepare the API documentation and code, then modify your query. For example, to add an API **hello_world** which returns a "hello world" string:
+- API documentation
+First generate the API documentation json file(`hello_world.json`), which should follow this format:
+```
+{
+    "tool_description": "Return hello world.",
+    "tool_name": "hello world",
+    "title": "hello world",
+    "api_list": [
+        {
+            "name": "get_hello_world",
+            "url": "",
+            "description": "To get 'hello world'.",
+            "method": "GET",
+            "required_parameters": [],
+            "optional_parameters": []
+        }
+    ],
+    "standardized_name": "hello_world"
+}
+```
+Then put it under a specific category in `data/toolenv/tools/`, either one of the 49 existing categories or a new category, e.g. `Customized`. 
+- API code
+Create a directory naming the standardized_name(`hello_world`) under the specific category `Customized`. Write a code(`api.py`) to realize the function of the API and put it under `Customized/hello_world/`. The API code can be written in this format:
+```python
+def get_hello_world():
+    """
+    To get hello world 
+    """
+    observation = "hello world"
+    return observation
+```
+Now the file structure under `data/toolenv/` should be:
+```
+├── /tools/
+│  ├── /Sports/
+│  │  ├── basketball.json
+│  │  ├── /basketball/
+│  │  │  └── api.py
+│  │  └── ...
+│  ├── ...
+│  ├── Customized
+│  │  ├── hello_world.json
+│  │  ├── /hello_world/
+│  │  │  └── api.py
+└── response_examples
+```
+- Modify your query file
+The query file should be:
+```
+[
+    {
+        "query": "I want to get a 'hello world' string.",
+        "query_id": 200001,
+        "api_list": [
+            {
+                "category_name": "Customized",
+                "tool_name": "hello world",
+                "api_name": "get_hello_world"
+            }
+        ]
+    }
+]
+```
+Then run the following commands:
+```bash
+export RAPIDAPI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model toolllama \
+    --model_path ToolBench/ToolLLaMA-7b \
+    --max_observation_length 1024 \
+    --observ_compress_method truncate \
+    --method DFS_woFilter_w2 \
+    --input_query_file /path/to/your/query/file \
+    --output_answer_file /path/to/your/output/file \
+    --rapidapi_key $RAPIDAPI_KEY \
+    --use_rapidapi_key
+```
+*Currently we only support customized API usage under close-domain setting. We plan to support open-domain soon.*
+
+
 ## Setting up and running the interface
 ToolBench contains a Web UI based on [Chatbot UI](https://github.com/mckaywrigley/chatbot-ui), forked to include the use of tools in the interface. It comes in two parts: the backend server, and [chatbot-ui-toolllama](https://github.com/lilbillybiscuit/chatbot-ui-toolllama). Here is a [video demo](assets/toolbench-demo.mp4).
 
