@@ -375,7 +375,7 @@ python toolbench/inference/qa_pipeline.py \
 }
 ```
 然后将其放在“data/toolenv/tools/”中的某个category下，可以是已有的49个现有类别之一，也可以新创建一个类别，例如`Customized`。
-- API代码：在`Customized`类别下创建一个名为`hello_world`(对应api documentation里的standardized_name参数，如何标准化可以参考(这里)[https://github.com/OpenBMB/ToolBench/blob/master/toolbench/utils.py#L44])的目录，然后编写实现API功能的代码`api.py`并将其放在`Customized/hello_world/`下。 API代码可以写成这样的格式：
+- API代码：在`Customized`文件夹下创建一个名为`hello_world`的文件夹，然后编写实现API功能的代码`api.py`并将其放在`Customized/hello_world/`下。 API代码可以写成这样的格式：
 ```python
 def get_hello_world():
     """

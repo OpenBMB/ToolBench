@@ -373,7 +373,7 @@ To do inference with customized API(s), you should prepare the API documentation
 }
 ```
 Then put it under a specific category in `data/toolenv/tools/`, either one of the 49 existing categories or a new category, e.g. `Customized`. 
-- API code: Create a directory naming the `hello_world`(The standardized_name in api documentation. The standardization process can be referred to (here)[https://github.com/OpenBMB/ToolBench/blob/master/toolbench/utils.py#L44]) under the specific category `Customized`, then write a code `api.py` to realize the function of the API and put it under `Customized/hello_world/`. The API code can be written in this format:
+- API code: Create a directory naming the `hello_world` under `Customized` directory. Then write a code `api.py` to realize the function of the API and put it under `Customized/hello_world/`. The API code can be written in this format:
 ```python
 def get_hello_world():
     """
