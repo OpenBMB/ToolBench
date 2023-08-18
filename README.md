@@ -391,7 +391,7 @@ Now the file structure under `data/toolenv/` should be:
 │  │  │  └── api.py
 │  │  └── ...
 │  ├── ...
-│  ├── Customized
+│  ├── /Customized/
 │  │  ├── hello_world.json
 │  │  ├── /hello_world/
 │  │  │  └── api.py
