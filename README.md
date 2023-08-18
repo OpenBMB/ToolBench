@@ -351,7 +351,7 @@ python toolbench/inference/qa_pipeline.py \
     --use_rapidapi_key
 ```
 
-## Customize your own APIs
+## API Customization
 To do inference with customized API(s), you should prepare the API documentation and code, then modify your query. For example, to add an API **hello_world** which returns a "hello world" string:
 - API documentation: First generate the API documentation `hello_world.json`, which should follow this format:
 ```
