@@ -352,6 +352,87 @@ python toolbench/inference/qa_pipeline.py \
     --use_rapidapi_key
 ```
 
+
+## 自定义API做推理
+要使用自定义API进行推理，您需要准备API文档和代码，然后修改您的query文件。例如，要添加**hello_world** API，该API的功能为返回“hello world”字符串：
+- API文档：首先生成API文档json文件（`hello_world.json`），该文件应遵循以下格式：
+```
+{
+    "tool_description": "Return hello world.",
+    "tool_name": "hello world",
+    "title": "hello world",
+    "api_list": [
+        {
+            "name": "get_hello_world",
+            "url": "",
+            "description": "To get 'hello world'.",
+            "method": "GET",
+            "required_parameters": [],
+            "optional_parameters": []
+        }
+    ],
+    "standardized_name": "hello_world"
+}
+```
+然后将其放在“data/toolenv/tools/”中的某个category下，可以是已有的49个现有类别之一，也可以新创建一个类别，例如`Customized`。
+- API代码：在`Customized`类别下创建一个名为`hello_world`(对应api documentation里的standardized_name参数，如何标准化可以参考(这里)[https://github.com/OpenBMB/ToolBench/blob/master/toolbench/utils.py#L44])的目录，然后编写实现API功能的代码`api.py`并将其放在`Customized/hello_world/`下。 API代码可以写成这样的格式：
+```python
+def get_hello_world():
+    """
+    To get hello world 
+    """
+    observation = "hello world"
+    return observation
+```
+现在 `data/toolenv/` 下的文件结构应该是：
+```
+├── /tools/
+│  ├── /Sports/
+│  │  ├── basketball.json
+│  │  ├── /basketball/
+│  │  │  └── api.py
+│  │  └── ...
+│  ├── ...
+│  ├── Customized
+│  │  ├── hello_world.json
+│  │  ├── /hello_world/
+│  │  │  └── api.py
+└── response_examples
+```
+- 修改您的query文件，查询文件应遵循以下格式：
+```
+[
+    {
+        "query": "I want to get a 'hello world' string.",
+        "query_id": 200001,
+        "api_list": [
+            {
+                "category_name": "Customized",
+                "tool_name": "hello world",
+                "api_name": "get_hello_world"
+            }
+        ]
+    }
+]
+```
+- 最后，我们可以通过运行以下命令来使用自定义的**hello_world**API进行推理：
+```bash
+export RAPIDAPI_KEY=""
+export PYTHONPATH=./
+python toolbench/inference/qa_pipeline.py \
+    --tool_root_dir data/toolenv/tools/ \
+    --backbone_model toolllama \
+    --model_path ToolBench/ToolLLaMA-7b \
+    --max_observation_length 1024 \
+    --observ_compress_method truncate \
+    --method DFS_woFilter_w2 \
+    --input_query_file /path/to/your/query/file \
+    --output_answer_file /path/to/your/output/file \
+    --rapidapi_key $RAPIDAPI_KEY \
+    --use_rapidapi_key
+```
+*Currently we only support customized API usage under close-domain setting. We plan to support open-domain soon.*
+
 ## Setting up and running the interface
 
 ToolBench包含一个基于[Chatbot UI](https://github.com/mckaywrigley/chatbot-ui)的Web UI，经过修改以包含在界面中使用工具的功能。它包含两个部分：后端服务器和[chatbot-ui-toolllama](https://github.com/lilbillybiscuit/chatbot-ui-toolllama)。这是一个[视频演示](assets/toolbench-demo.mp4)。

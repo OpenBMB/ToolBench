@@ -353,8 +353,7 @@ python toolbench/inference/qa_pipeline.py \
 
 ## Customize your own APIs
 To do inference with customized API(s), you should prepare the API documentation and code, then modify your query. For example, to add an API **hello_world** which returns a "hello world" string:
-- API documentation
-First generate the API documentation json file(`hello_world.json`), which should follow this format:
+- API documentation: First generate the API documentation `hello_world.json`, which should follow this format:
 ```
 {
     "tool_description": "Return hello world.",
@@ -374,8 +373,7 @@ First generate the API documentation json file(`hello_world.json`), which should
 }
 ```
 Then put it under a specific category in `data/toolenv/tools/`, either one of the 49 existing categories or a new category, e.g. `Customized`. 
-- API code
-Create a directory naming the standardized_name(`hello_world`) under the specific category `Customized`. Write a code(`api.py`) to realize the function of the API and put it under `Customized/hello_world/`. The API code can be written in this format:
+- API code: Create a directory naming the `hello_world`(The standardized_name in api documentation. The standardization process can be referred to (here)[https://github.com/OpenBMB/ToolBench/blob/master/toolbench/utils.py#L44]) under the specific category `Customized`, then write a code `api.py` to realize the function of the API and put it under `Customized/hello_world/`. The API code can be written in this format:
 ```python
 def get_hello_world():
     """
@@ -399,8 +397,7 @@ Now the file structure under `data/toolenv/` should be:
 │  │  │  └── api.py
 └── response_examples
 ```
-- Modify your query file
-The query file should be:
+- Modify your query file, and the query file should follow the following format:
 ```
 [
     {
@@ -416,7 +413,7 @@ The query file should be:
     }
 ]
 ```
-Then run the following commands:
+- Finally we are free to inference with the **hello_world** API by running the following commands:
 ```bash
 export RAPIDAPI_KEY=""
 export PYTHONPATH=./
