@@ -215,6 +215,7 @@ class DFS_tree_search(base_search_method):
                 temp_node.node_type = "Thought"
                 temp_node.description = new_message["content"]
                 child_io_state = deepcopy(temp_now_node.io_state)
+                child_io_state.retriever=None
 
                 temp_node.io_state = child_io_state
                 temp_node.is_terminal = child_io_state.check_success() != 0
@@ -240,6 +241,7 @@ class DFS_tree_search(base_search_method):
                 temp_node.node_type = "Action"
                 temp_node.description = function_name
                 child_io_state = deepcopy(temp_now_node.io_state)
+                child_io_state.retriever=None
 
                 temp_node.io_state = child_io_state
                 temp_node.is_terminal = child_io_state.check_success() != 0
@@ -255,6 +257,8 @@ class DFS_tree_search(base_search_method):
                 temp_node.node_type = "Action Input"
                 temp_node.description = function_input
                 child_io_state = deepcopy(temp_now_node.io_state)
+                child_io_state.retriever=None
+                
                 # on_tool_start
                 [callback.on_tool_start(
                     depth=now_depth,
