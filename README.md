@@ -560,7 +560,7 @@ Below are the main results compared with ChatGPT and Text-Davinci-003.
 | ToolLLaMA-LoRA              | 43       | 36.4       | 30      | 42       | 45      | 51       | 41.2    |
 | ToolLLaMA-API Retriever              | **51**       | 39       | 44      | 49       | 49      | **55**       | 47.8    |
 | ToolLLaMA-2              | 43       | 42       | 46      | 55       | 46      | 50       | 47.0    |
-| [InternLM-7B-DFS](https://github.com/InternLM/InternLM)              | 59       | 57       | 62      | 57       | 45      | 52       | **55.3**    |
+| [InternLM-7B-DFS](https://github.com/InternLM/InternLM)              | **59**       | **57**       | **62**      | **57**       | 45      | **52**       | **55.3**    |
 
 
 ## TODO
