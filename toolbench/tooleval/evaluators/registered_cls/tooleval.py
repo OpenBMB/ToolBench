@@ -142,16 +142,8 @@ class OpenAINormalizedEvaluator(ToolEvalEvaluator):
                 score += -5*math.log(ans['total_steps'])
             scores.append(score)
         # return index of highest score
-
-        highest_idx = [0]
-        highest_score = scores[0]
-        for idx in range(1,len(scores)):
-            score = scores[idx]
-            if score>highest_score:
-                highest_idx = [idx]
-                highest_score = score
-            elif score==highest_score:
-                highest_idx.append(idx)             
+        highest_score = max(scores)
+        highest_idx = [idx for idx,score in enumerate(scores) if score==highest_score]         
         return random.choice(highest_idx)
     
     def normalized_openai_completions(self,task_description:Dict,answers:List[Dict[Any,Any]])->int:
@@ -182,16 +174,9 @@ class OpenAINormalizedEvaluator(ToolEvalEvaluator):
             
             # print(is_solved)
             if all_solved:
-                shortest = int(answers[0]['total_steps'])
-                ans_idxs = [0]
-                for idx in range(1,len(answers)):
-                    ans = answers[idx]
-                    if int(ans['total_steps'])<shortest:
-                        shortest = int(ans['total_steps'])
-                        ans_idxs = [idx]
-                    elif int(ans['total_steps'])==shortest:
-                        ans_idxs.append(idx)
-                # print(ans_idxs)
+                steps = [int(ans['total_steps']) for ans in answers]
+                shortest_steps = min(steps)
+                ans_idxs = [idx for idx,step in enumerate(steps) if step==shortest_steps]
                 # return only one idx
                 if len(ans_idxs)>1:
                     return ans_idxs[self.select_best_final_answer(
