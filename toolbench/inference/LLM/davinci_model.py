@@ -20,10 +20,9 @@ class Davinci:
 
     def prediction(self, prompt: str, stop: Optional[List[str]] = None) -> str:
         max_try = 10
-        while True and max_try > 0:
+        while True:
             openai.api_key = self.openai_key
             try:
-                
                 response = openai.Completion.create(
                     engine=self.model,
                     prompt=prompt,
@@ -39,6 +38,9 @@ class Davinci:
             except Exception as e:
                 print(e)
                 max_try -= 1
+                if max_try < 0:
+                    result = "Exceed max retry times. Please check your davinci api calling."
+                    break
         return result, response["usage"]
         
     def add_message(self, message):
