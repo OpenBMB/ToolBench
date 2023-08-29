@@ -150,7 +150,7 @@ class OpenAINormalizedEvaluator(ToolEvalEvaluator):
             if score>highest_score:
                 highest_idx = [idx]
                 highest_score = score
-            else:
+            elif score==highest_score:
                 highest_idx.append(idx)             
         return random.choice(highest_idx)
     
