@@ -36,6 +36,8 @@
 *Read this in [中文](README_ZH.md).*
 
 ## What's New
+- **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data-0830.zip` on [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
+
 - **[2023/8/8]** No more hallucination! [**ToolLLaMA-2-7b**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
 
 - **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6). We will review it as soon as possible and send you the ToolBench key to get start on it! 
@@ -564,6 +566,7 @@ Below are the main results compared with ChatGPT and Text-Davinci-003.
 
 
 ## TODO
+- [ ] Update ToolLLaMA results trained with updated data (data-0830 version).
 - [ ] ToolLLaMA will reach GPT-4's tool-use capability.
 
 ## Resources of Tool Learning

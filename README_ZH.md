@@ -36,6 +36,9 @@
 *英文[README](README.md)链接.*
 
 ## 最新支持
+- **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data-0830.zip` on [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
+数据更新，拥有超过**12万**解路径标注和**完整的推理thoughts**！请在 [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) 上找到`data-0830.zip`。
+
 - **[2023/8/8]** 告别幻觉！[**ToolLLaMA-2-7b**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) (从LLaMA-2-7b微调而来)模型已发布，比ChatGPT有着更少的API幻觉现象.
 
 - **[2023/8/4]** 我们提供RapidAPI后端服务，以免您使用自己的RapidAPI私钥去订阅API。填写[表单](https://forms.gle/oCHHc8DQzhGfiT9r6)后，我们会尽快审核并给您发送ToolBench key去请求该后端服务! 
@@ -567,6 +570,7 @@ We introduce **hallucinate rate**(lower is better) evaluation metric as a comple
 | [InternLM-7B-DFS](https://github.com/InternLM/InternLM)              | **59**       | **57**       | **62**      | **57**       | 45      | **52**       | **55.3**    |
 
 ## TODO
+- [ ] 更新使用更新数据（data-0830 版本）训练的 ToolLLaMA 结果。
 - [ ] ToolLLaMA将达到GPT-4的工具使用能力。
 
 ## 工具学习相关链接
