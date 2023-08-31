@@ -144,7 +144,11 @@ def stream():
                     print(obj)
                     print(e)
 
-            future.result()
+            try:
+                future.result()
+            except Exception as e:
+                model.inuse = False
+                print(e)
 
         model.inuse = False
         return
