@@ -90,6 +90,7 @@ class Model:
         parser.add_argument('--toolbench_key', type=str, default="", required=False, help='your toolbench key')
         parser.add_argument('--rapidapi_key', type=str, default="",required=False, help='your rapidapi key to request rapidapi service')
         parser.add_argument('--use_rapidapi_key', action="store_true", help="To use customized rapidapi service or not.")
+        parser.add_argument('--api_customization', action="store_true", help="To use customized api or not.")
 
         args = parser.parse_args()
         return args

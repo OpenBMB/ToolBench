@@ -117,12 +117,35 @@ ToolBench包含单工具和多工具场景。多工具场景可以进一步分�
 ### 数据发布
 
  请使用以下链接下载我们的数据集：[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)或者[清华云盘](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/).
-
- - `G1`，`G2`，`G3` 数据分别代表单工具数据，类别内多工具数据和集合内多工具数据。我们在 G1、G2 和 G3 数据内分别划分出训练集、验证集和测试集，并将训练集合并，作为我们的主要实验的训练数据。`toolllama_G123_dfs_train.json` 文件代表合并后的训练集数据。同时我们也给出了基于Atlas的数据可视化结果：[Atlas Explorer](https://atlas.nomic.ai/map/58aca169-c29a-447a-8f01-0d418fc4d341/030ddad7-5305-461c-ba86-27e1ca79d899) for visualization。
- - 与工具环境相关的数据位于 `toolenv` 目录下。
- - 我们从每个测试集中抽样 100 个实例。`test_query_ids` 目录包含每个测试集中测试实例的query id。
- - 用于工具检索的数据也包含在 `retrieval` 目录中。
-
+文件结构如下:
+```
+├── /data/
+│  ├── /instruction/
+│  ├── /answer/
+│  ├── /toolenv/
+│  ├── /retrieval/
+│  ├── /test_query_ids/
+│  ├── /retrieval_test_query_ids/
+│  ├── toolllama_G123_dfs_train.json
+│  └── toolllama_G123_dfs_eval.json
+├── /reproduction_data/
+│  ├── /chatgpt_cot/
+│  ├── /chatgpt_dfs/
+│  ├── ...
+│  └── /toolllama_dfs/
+├── /data_0830/
+│  ├── /answer_0830/
+│  ├── /test_query_ids/
+│  ├── toolllama_G123_dfs_train_0830.json
+│  └── toolllama_G123_dfs_eval_0830.json
+```
+所有实验和demo都需要`data`目录;ToolEval中使用`reproductive_data`来重现我们的实验结果;`data_0830`是更新后的版本数据，有更多的解路径注释和完整的推理thought。以下是`data`目录的一些描述：
+- `instruction` 和 `answer`：指令数据和解决方案路径标注数据。 `G1`、`G2`、`G3`分别指单工具、类内多工具和集合内多工具数据。我们还有一个用于可视化的 [Atlas Explorer](https://atlas.nomic.ai/map/58aca169-c29a-447a-8f01-0d418fc4d341/030ddad7-5305-461c-ba86-27e1ca79d899)。
+- `toolenv`：工具环境相关数据，包含API json、API代码和API示例返回。
+- `retrieval`：用于工具检索的数据包含在此目录中。
+- `test_query_ids`：我们从每个测试集中抽取 100 个实例。该目录包含每个测试集中测试实例的query id。
+- `retrieval_test_query_ids`：该目录包含检索器测试实例的query id。
+- `toolllama_G123_dfs_train.json` 和 `toolllama_G123_dfs_eval.json`：预处理数据，可用于直接训练 toolllama 并复现我们的结果。对于预处理细节，我们将 G1、G2 和 G3 数据分别分为训练、评估和测试部分，合并各数据集的训练数据进行训练。
 
 ## 🤖模型
 我们发布了全参数微调版本[ToolLLaMA-7b](https://huggingface.co/ToolBench/ToolLLaMA-7b)和lora版本[ToolLLaMA-7b-LoRA](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA)，都是在发布的数据集上以多任务方式训练的。我们也发布在实验设置下训练的[tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased).
@@ -174,7 +197,15 @@ python toolbench/retrieval/train.py \
 ```
 
 ### 训练ToolLLaMA
-我们的训练代码基于[FastChat](https://github.com/lm-sys/FastChat)开发.您可以使用以下命令用两张A100（80G）训练ToolLLaMA-7b, 训练数据是我们已经处理好的[数据](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J):
+- 数据预处理（G1_answer为例子）:
+```bash
+export PYTHONPATH=./
+python preprocess/preprocess_toolllama_data.py \
+    --tool_data_dir data/answer/G1_answer \
+    --method DFS_woFilter_w2 \
+    --output_file data/answer/toolllama_G1_dfs.json
+```
+- 我们的训练代码基于[FastChat](https://github.com/lm-sys/FastChat)开发.您可以使用以下命令用两张A100（80G）以及我们预处理好的数据`data/toolllama_G123_dfs_train.json`或data_0830版本`data_0830/toolllama_G123_dfs_train_0830.json`来训练 ToolLLaMA-7b。对于预处理细节，我们将 G1、G2 和 G3 数据分别分为训练、评估和测试部分，合并各数据集中的训练数据进行训练:
 ```bash
 export PYTHONPATH=./
 torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.py \
@@ -264,7 +295,7 @@ python toolbench/inference/qa_pipeline.py \
     --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
-    --output_answer_file data/answer/toolllama_dfs \
+    --output_answer_file toolllama_dfs_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
 
@@ -281,7 +312,7 @@ python toolbench/inference/qa_pipeline.py \
     --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
-    --output_answer_file data/answer/toolllama_lora_dfs \
+    --output_answer_file toolllama_lora_dfs_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
 
@@ -301,7 +332,7 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo_open_domain.json \
-    --output_answer_file data/answer/toolllama_lora_dfs_open_domain \
+    --output_answer_file toolllama_lora_dfs_open_domain_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
 ### OpenAI模型
@@ -317,7 +348,7 @@ python toolbench/inference/qa_pipeline.py \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
-    --output_answer_file data/answer/chatgpt_dfs \
+    --output_answer_file chatgpt_dfs_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
 
@@ -333,7 +364,7 @@ python toolbench/inference/qa_pipeline.py \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
-    --output_answer_file data/answer/davinci_dfs \
+    --output_answer_file davinci_dfs_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
 
@@ -350,7 +381,7 @@ python toolbench/inference/qa_pipeline.py \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
     --input_query_file data/instruction/inference_query_demo.json \
-    --output_answer_file data/answer/chatgpt_dfs \
+    --output_answer_file chatgpt_dfs_inference_result \
     --rapidapi_key $RAPIDAPI_KEY \
     --use_rapidapi_key
 ```
@@ -420,7 +451,6 @@ def get_hello_world():
 ```
 - 最后，我们可以通过运行以下命令来使用自定义的**hello_world**API进行推理：
 ```bash
-export RAPIDAPI_KEY=""
 export PYTHONPATH=./
 python toolbench/inference/qa_pipeline.py \
     --tool_root_dir data/toolenv/tools/ \
@@ -431,8 +461,7 @@ python toolbench/inference/qa_pipeline.py \
     --method DFS_woFilter_w2 \
     --input_query_file /path/to/your/query/file \
     --output_answer_file /path/to/your/output/file \
-    --rapidapi_key $RAPIDAPI_KEY \
-    --use_rapidapi_key
+    --api_customization
 ```
 *Currently we only support customized API usage under close-domain setting. We plan to support open-domain soon.*
 

@@ -61,6 +61,7 @@ class rapidapi_wrapper(base_env):
         self.toolbench_key = args.toolbench_key
         self.rapidapi_key = args.rapidapi_key
         self.use_rapidapi_key = args.use_rapidapi_key
+        self.api_customization = args.api_customization
         self.service_url = "http://8.218.239.54:8080/rapidapi"
         self.max_observation_length = args.max_observation_length
         self.observ_compress_method = args.observ_compress_method
@@ -342,9 +343,9 @@ You have access of the following tools:\n'''
                     }
                     if self.process_id == 0:
                         print(colored(f"query to {self.cate_names[k]}-->{self.tool_names[k]}-->{action_name}",color="yellow"))
-                    if self.use_rapidapi_key:
+                    if self.use_rapidapi_key or self.api_customization:
                         payload["rapidapi_key"] = self.rapidapi_key
-                        response = get_rapidapi_response(payload)
+                        response = get_rapidapi_response(payload, api_customization=self.api_customization)
                     else:
                         time.sleep(2) # rate limit: 30 per minute
                         headers = {"toolbench_key": self.toolbench_key}

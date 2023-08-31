@@ -126,7 +126,7 @@ def observation_shorten(schema_root, response_dict, category, tool_name, api_nam
     return str(response_dict["response"])
 
 
-def get_rapidapi_response(input_dict: dict, tools_root="data.toolenv.tools", schema_root="data/toolenv/response_examples"):
+def get_rapidapi_response(input_dict: dict, api_customization: bool=False, tools_root: str="data.toolenv.tools", schema_root: str="data/toolenv/response_examples"):
     info = Info
     info.category = input_dict['category']
     info.tool_name = input_dict['tool_name']
@@ -157,8 +157,8 @@ def get_rapidapi_response(input_dict: dict, tools_root="data.toolenv.tools", sch
                 input_params_str += f'{key}="{value}", '
             else:
                 input_params_str += f'{key}={value}, '
-    
-    input_params_str += f"toolbench_rapidapi_key='{rapidapi_key}'"
+    if not api_customization:
+        input_params_str += f"toolbench_rapidapi_key='{rapidapi_key}'"
     success_flag, switch_flag, response_dict, save_cache = run(code_string, api_name, input_params_str)
     observation = observation_shorten(schema_root, response_dict, standard_category, tool_name.replace(f"_for_{standard_category}", ""), api_name, strip_method)
     result = str(observation)[:2048]
