@@ -533,8 +533,8 @@ python ./toolbench/tooleval/convert_to_answer_format.py \
     --output ${TEST_MODEL_DATA}_converted
 
 python ./toolbench/tooleval/automatic_eval_sample.py \
-    --output ${REF_MODEL_DATA}_converted \
-    --ref_output ${TEST_MODEL_DATA}_converted \
+    --output ${TEST_MODEL_DATA}_converted \
+    --ref_output ${REF_MODEL_DATA}_converted \
     --method $REF_MODEL_METHOD \
     --use_existed_output
 ```
