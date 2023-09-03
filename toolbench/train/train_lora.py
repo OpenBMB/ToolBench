@@ -36,7 +36,7 @@ from toolbench.train.train import (
 from toolbench.train.llama_flash_attn_monkey_patch import (
     replace_llama_attn_with_flash_attn,
 )
-
+from toolbench.train.llama_condense_monkey_patch import replace_llama_with_condense
 replace_llama_attn_with_flash_attn()
 
 
@@ -98,6 +98,11 @@ def train():
         training_args,
         lora_args,
     ) = parser.parse_args_into_dataclasses()
+
+    if training_args.source_model_max_length < training_args.model_max_length:
+        condense_ratio = int(training_args.model_max_length/training_args.source_model_max_length)
+        # ratio = N means the sequence length is expanded by N, remember to change the model_max_length to 8192 (2048 * ratio) for ratio = 4
+        replace_llama_with_condense(ratio=condense_ratio)
 
     world_size = int(os.environ.get("WORLD_SIZE", 1))
     ddp = world_size != 1

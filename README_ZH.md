@@ -31,7 +31,7 @@
 
 🔨这个项目(ToolLLM)旨在构建**开源、大规模、高质量**的指令调整 SFT 数据，以促进构建具有通用工具使用能力的强大LLMs。我们的目标是赋予开源 LLMs 掌握成千上万多样的真实世界API能力。我们通过收集高质量的指令调整数据集来实现这一目标。该数据集使用最新的ChatGPT（gpt-3.5-turbo-16k）自动构建，该版本升级了增强的函数调用功能。我们提供数据集、相应的训练和评估脚本，以及在ToolBench上经过微调的强大模型ToolLLaMA。
 
-**💁‍♂️💁💁‍♀️在 [Discord](https://discord.gg/CrKDqXXV) 加入我们!**
+**💁‍♂️💁💁‍♀️在 [Discord](https://discord.gg/QC2HMaDeh) 加入我们!**
 
 *英文[README](README.md)链接.*
 
@@ -208,7 +208,7 @@ python preprocess/preprocess_toolllama_data.py \
 - 我们的训练代码基于[FastChat](https://github.com/lm-sys/FastChat)开发.您可以使用以下命令用两张A100（80G）以及我们预处理好的数据`data/toolllama_G123_dfs_train.json`或data_0830版本`data_0830/toolllama_G123_dfs_train_0830.json`来训练 ToolLLaMA-7b。对于预处理细节，我们将 G1、G2 和 G3 数据分别分为训练、评估和测试部分，合并各数据集中的训练数据进行训练:
 ```bash
 export PYTHONPATH=./
-torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.py \
+torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_mem.py \
     --model_name_or_path huggyllama/llama-7b  \
     --data_path  data/toolllama_G123_dfs_train.json \
     --eval_data_path  data/toolllama_G123_dfs_eval.json \
@@ -231,6 +231,7 @@ torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.p
     --fsdp "full_shard auto_wrap" \
     --fsdp_transformer_layer_cls_to_wrap 'LlamaDecoderLayer' \
     --tf32 True \
+    --source_model_max_length 2048 \
     --model_max_length 8192 \
     --gradient_checkpointing True \
     --lazy_preprocess True \
@@ -250,7 +251,7 @@ python preprocess/preprocess_toolllama_data.py \
 训练lora版本:
 ```bash
 export PYTHONPATH=./
-deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
+deepspeed --master_port=20001 toolbench/train/train_lora.py \
     --model_name_or_path huggyllama/llama-7b  \
     --data_path  data/toolllama_G123_dfs_train.json \
     --eval_data_path  data/toolllama_G123_dfs_eval.json \
@@ -270,6 +271,7 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
     --warmup_ratio 0.04 \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
+    --source_model_max_length 2048 \
     --model_max_length 8192 \
     --gradient_checkpointing True \
     --lazy_preprocess True \    

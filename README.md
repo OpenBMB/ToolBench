@@ -31,7 +31,7 @@
 
 🔨This project (ToolLLM) aims to construct **open-source, large-scale, high-quality** instruction tuning SFT data to facilitate the construction of powerful LLMs with general **tool-use** capability. We aim to empower open-source LLMs to master thousands of diverse real-world APIs. We achieve this by collecting a high-quality instruction-tuning dataset. It is constructed automatically using the latest ChatGPT (gpt-3.5-turbo-16k), which is upgraded with enhanced [function call](https://openai.com/blog/function-calling-and-other-api-updates) capabilities. We provide the dataset, the corresponding training and evaluation scripts, and a capable model ToolLLaMA fine-tuned on ToolBench.
 
-**💁‍♂️💁💁‍♀️ Join Us on [Discord](https://discord.gg/CrKDqXXV)!**
+**💁‍♂️💁💁‍♀️ Join Us on [Discord](https://discord.gg/QC2HMaDeh)!**
 
 *Read this in [中文](README_ZH.md).*
 
@@ -205,7 +205,7 @@ python preprocess/preprocess_toolllama_data.py \
 - Our training code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB), with our preprocessed data `data/toolllama_G123_dfs_train.json`, or data_0830 version, `data_0830/toolllama_G123_dfs_train_0830.json`. For preprocessing details, we split the G1, G2 and G3 data into train, eval and test parts respectively and combine the train data for training in our main experiments:
 ```bash
 export PYTHONPATH=./
-torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.py \
+torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_mem.py \
     --model_name_or_path huggyllama/llama-7b  \
     --data_path  data/toolllama_G123_dfs_train.json \
     --eval_data_path  data/toolllama_G123_dfs_eval.json \
@@ -228,6 +228,7 @@ torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.p
     --fsdp "full_shard auto_wrap" \
     --fsdp_transformer_layer_cls_to_wrap 'LlamaDecoderLayer' \
     --tf32 True \
+    --source_model_max_length 2048 \
     --model_max_length 8192 \
     --gradient_checkpointing True \
     --lazy_preprocess True \
@@ -237,7 +238,7 @@ torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_long_seq.p
 To train lora version:
 ```bash
 export PYTHONPATH=./
-deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
+deepspeed --master_port=20001 toolbench/train/train_lora.py \
     --model_name_or_path huggyllama/llama-7b  \
     --data_path  data/toolllama_G123_dfs_train.json \
     --eval_data_path  data/toolllama_G123_dfs_eval.json \
@@ -257,6 +258,7 @@ deepspeed --master_port=20001 toolbench/train/train_long_seq_lora.py \
     --warmup_ratio 0.04 \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
+    --source_model_max_length 2048 \
     --model_max_length 8192 \
     --gradient_checkpointing True \
     --lazy_preprocess True \    

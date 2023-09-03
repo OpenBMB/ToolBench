@@ -27,6 +27,8 @@ from transformers.trainer_pt_utils import LabelSmoother
 
 from toolbench.tool_conversation import SeparatorStyle
 from toolbench.model.model_adapter import get_conversation_template
+from toolbench.train.llama_condense_monkey_patch import replace_llama_with_condense
+
 
 IGNORE_TOKEN_ID = LabelSmoother.ignore_index
 torch.set_printoptions(profile="full")
@@ -54,10 +56,16 @@ class DataArguments:
 class TrainingArguments(transformers.TrainingArguments):
     cache_dir: Optional[str] = field(default=None)
     optim: str = field(default="adamw_torch")
-    model_max_length: int = field(
+    source_model_max_length: int = field(
         default=2048,
         metadata={
-            "help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."
+            "help": "Original maximum sequence length. Sequences will be right padded (and possibly truncated)."
+        },
+    )
+    model_max_length: int = field(
+        default=8192,
+        metadata={
+            "help": "Expanded maximum sequence length. Sequences will be right padded (and possibly truncated)."
         },
     )
 
@@ -247,6 +255,10 @@ def train():
         (ModelArguments, DataArguments, TrainingArguments)
     )
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
+    if training_args.source_model_max_length < training_args.model_max_length:
+        condense_ratio = int(training_args.model_max_length/training_args.source_model_max_length)
+        # ratio = N means the sequence length is expanded by N, remember to change the model_max_length to 8192 (2048 * ratio) for ratio = 4
+        replace_llama_with_condense(ratio=condense_ratio)
     local_rank = training_args.local_rank
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
