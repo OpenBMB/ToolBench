@@ -85,7 +85,7 @@ Here is the *[Old version](https://github.com/OpenBMB/ToolBench/tree/legacy)* of
 
 ## Data
 
-👐ToolBench is intended solely for research and educational purposes and should not be construed as reflecting the opinions or views of the creators, owners, or contributors of this dataset. It is distributed under [CC BY NC 4.0 License](https://creativecommons.org/licenses/by-nc/4.0/). Below is the statistics of the data :
+👐ToolBench is intended solely for research and educational purposes and should not be construed as reflecting the opinions or views of the creators, owners, or contributors of this dataset. It is distributed under Apache License 2.0. Below is the statistics of the data :
 
 | Tool Nums | API Nums | Instance Nums | Real API Call | Reasoning Traces |
 |-----------|----------|---------------|---------------|------------------|
