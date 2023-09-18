@@ -1,4 +1,5 @@
 Method,WinRate,G1_tool_WinRate,G1_category_WinRate,G1_instruction_WinRate,G2_category_WinRate,G2_instruction_WinRate,G3_instruction_WinRate
+InternLM-20B,61.7,63.0,70.0,62.0,61.0,56.0,58.0
 InternLM-7b-DFS,55.3,57.0,62.0,59.0,45.0,57.0,52.0
 ChatGPT-DFSDT,50.0,50.0,50.0,50.0,50.0,50.0,50.0
 ToolLLaMA,48.8,45.0,45.0,50.0,48.0,59.0,46.0
