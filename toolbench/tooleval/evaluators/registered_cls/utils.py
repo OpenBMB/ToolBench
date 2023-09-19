@@ -40,7 +40,7 @@ class OpenaiPoolRequest:
 
     @retry(wait=wait_random_exponential(multiplier=1, max=30), stop=stop_after_attempt(10),reraise=True)
     def request(self,messages,**kwargs):
-        import openai
+        import litellm
         import random
         
         item = random.choice(self.pool)
@@ -48,7 +48,7 @@ class OpenaiPoolRequest:
         
         if item.get('organization',None) is not None:
             kwargs['organization'] = item['organization'] 
-        return openai.ChatCompletion.create(messages=messages,**kwargs)
+        return litellm.completion(messages=messages,**kwargs)
     
     def __call__(self,messages,**kwargs):
         return self.request(messages,**kwargs)
