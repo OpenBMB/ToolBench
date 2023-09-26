@@ -18,6 +18,8 @@ if __name__ == "__main__":
     parser.add_argument("--lora", action="store_true", help="Load lora model or not.")
     parser.add_argument('--lora_path', type=str, default="your_lora_path if lora", required=False, help='')
     parser.add_argument('--max_observation_length', type=int, default=1024, required=False, help='maximum observation length')
+    parser.add_argument('--max_source_sequence_length', type=int, default=4096, required=False, help='original maximum model sequence length')
+    parser.add_argument('--max_sequence_length', type=int, default=8192, required=False, help='maximum model sequence length')
     parser.add_argument('--observ_compress_method', type=str, default="truncate", choices=["truncate", "filter", "random"], required=False, help='maximum observation length')
     parser.add_argument('--method', type=str, default="CoT@1", required=False, help='method for answer generation: CoT@n,Reflexion@n,BFS,DFS,UCT_vote')
     parser.add_argument('--input_query_file', type=str, default="", required=False, help='input path')

@@ -17,11 +17,21 @@ from toolbench.inference.utils import SimpleChatIO, generate_stream, react_parse
 
 
 class ToolLLaMALoRA:
-    def __init__(self, base_name_or_path: str, model_name_or_path: str, template:str="tool-llama-single-round", device: str="cuda", cpu_offloading: bool=False, load_8bit: bool=False) -> None:
+    def __init__(
+            self, 
+            base_name_or_path: str, 
+            model_name_or_path: str, 
+            template:str="tool-llama-single-round", 
+            device: str="cuda", 
+            cpu_offloading: bool=False, 
+            load_8bit: bool=False,
+            max_sequence_length: int=8192
+        ) -> None:
         super().__init__()
         self.model_name = model_name_or_path
         self.template = template
-        self.tokenizer = AutoTokenizer.from_pretrained(base_name_or_path, use_fast=False, model_max_length=8192, padding_side="right")
+        self.max_sequence_length = max_sequence_length
+        self.tokenizer = AutoTokenizer.from_pretrained(base_name_or_path, use_fast=False, model_max_length=self.max_sequence_length, padding_side="right")
         model = LlamaForCausalLM.from_pretrained(
             base_name_or_path,
             load_in_8bit=load_8bit,
@@ -51,7 +61,7 @@ class ToolLLaMALoRA:
             "echo": False
         }
         generate_stream_func = generate_stream
-        output_stream = generate_stream_func(self.model, self.tokenizer, gen_params, "cuda", 8192, force_generate=True)
+        output_stream = generate_stream_func(self.model, self.tokenizer, gen_params, "cuda", self.max_sequence_length, force_generate=True)
         outputs = self.chatio.return_output(output_stream)
         prediction = outputs.strip()
         return prediction

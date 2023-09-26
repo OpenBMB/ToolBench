@@ -51,7 +51,6 @@ def contain(candidate_list, white_list):
     return output
 
 
-
 # rapidapi env wrapper
 class rapidapi_wrapper(base_env):
     def __init__(self, query_json, tool_descriptions, retriever, args, process_id=0):
@@ -402,11 +401,12 @@ class pipeline_runner:
         args = self.args
         if args.backbone_model == "toolllama":
             # ratio = 4 means the sequence length is expanded by 4, remember to change the model_max_length to 8192 (2048 * ratio) for ratio = 4
-            replace_llama_with_condense(ratio=4)
+            ratio = int(args.max_sequence_length/args.max_source_sequence_length)
+            replace_llama_with_condense(ratio=ratio)
             if args.lora:
-                backbone_model = ToolLLaMALoRA(base_name_or_path=args.model_path, model_name_or_path=args.lora_path)
+                backbone_model = ToolLLaMALoRA(base_name_or_path=args.model_path, model_name_or_path=args.lora_path, max_sequence_length=args.max_sequence_length)
             else:
-                backbone_model = ToolLLaMA(model_name_or_path=args.model_path)
+                backbone_model = ToolLLaMA(model_name_or_path=args.model_path, max_sequence_length=args.max_sequence_length)
         else:
             backbone_model = args.backbone_model
         return backbone_model
