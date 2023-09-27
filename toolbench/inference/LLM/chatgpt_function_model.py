@@ -1,5 +1,6 @@
 import json
 import openai
+import litellm
 from tenacity import retry, wait_random_exponential, stop_after_attempt
 from termcolor import colored
 import time
@@ -33,7 +34,7 @@ def chat_completion_request(key, messages, functions=None,function_call=None,key
             openai.api_key = key
         else:
             raise NotImplementedError
-        openai_response = openai.ChatCompletion.create(
+        openai_response = litellm.completion(
             **json_data,
         )
         json_data = json.loads(str(openai_response))
