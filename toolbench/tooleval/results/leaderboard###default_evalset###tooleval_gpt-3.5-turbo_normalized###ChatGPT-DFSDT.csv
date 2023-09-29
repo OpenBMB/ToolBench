@@ -1,10 +1,11 @@
-Method,WinRate,G1_tool_WinRate,G1_category_WinRate,G1_instruction_WinRate,G2_category_WinRate,G2_instruction_WinRate,G3_instruction_WinRate
-InternLM-20B,61.7,63.0,70.0,62.0,61.0,56.0,58.0
-InternLM-7b-DFS,55.3,57.0,62.0,59.0,45.0,57.0,52.0
-ChatGPT-DFSDT,50.0,50.0,50.0,50.0,50.0,50.0,50.0
-ToolLLaMA,48.8,45.0,45.0,50.0,48.0,59.0,46.0
-ToolLLaMA-API Retriever,47.8,39.0,44.0,51.0,49.0,49.0,55.0
-ToolLLaMA-LoRA,41.2,36.4,30.0,43.0,45.0,42.0,51.0
-Text-Davinci-003-DFSDT,31.3,34.0,43.0,38.0,20.0,25.0,28.0
-ChatGPT-ReACT,30.7,32.0,41.0,38.0,22.0,43.0,23.0
-Text-Davinci-003-ReACT,13.3,21.0,18.0,14.0,7.0,8.0,12.0
+Method,WinRate,G1_instruction_WinRate,G1_tool_WinRate,G1_category_WinRate,G2_instruction_WinRate,G2_category_WinRate,G3_instruction_WinRate
+GPT4-DFSDT,70.4,60,71.5,67,79.5,77.5,71
+GPT4-ReACT,64.4,53.5,50,53.5,67,72,47
+ChatGPT-DFSDT,64.3,54.5,65,60.5,75,71.5,62
+ToolLLaMA-DFSDT-Retriever,63.1,64,64,60.5,81.5,68.5,65
+ToolLLaMA-DFSDT,60,57,61,62,77,77,66
+ChatGPT-ReACT,50,41.5,44,44.5,42.5,46.5,22
+Text-Davinci-003-DFSDT,46.3,43.5,44,46,37,42,46
+Claude-2-DFSDT,43.5,20.5,31,18.5,17,20.5,28
+Claude-2-ReACT,34.4,5.5,3.5,5.5,6,6,14
+Text-Davinci-003-ReACT,33.2,12,20,20,8.5,14.5,24
