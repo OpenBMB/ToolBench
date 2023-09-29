@@ -85,6 +85,7 @@ class OpenAINormalizedEvaluator(ToolEvalEvaluator):
         
         completion_kwargs['function_call'] = {'name':func_name}
         completion_kwargs['functions'] = [func_description]
+
         completion_kwargs['messages'] = [{
             'role':'user',
             'content':str(self.parsed_function_templates[func_name]).format(**func_args)
@@ -105,7 +106,6 @@ class OpenAINormalizedEvaluator(ToolEvalEvaluator):
             ret['content'] = dict(res.choices[0].message).get('content','')
         return ret
     
-
     def select_best_final_answer(self,query,final_answers:List[str])->int:
         hashed_ans = list(map(hash,final_answers))
         all_same = True

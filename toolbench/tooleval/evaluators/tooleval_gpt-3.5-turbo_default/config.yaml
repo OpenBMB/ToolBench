@@ -1,0 +1,49 @@
+evaluator_name: "tooleval_gpt-3.5-turbo_default"
+registered_cls_name: "ReinforceToolLearningEvaluator"
+prompt_template: "template.txt"
+fn_completions: "normalized_openai_completions"
+apis_json: "your/path/to/api_pool.json"
+completions_kwargs:
+  model: "gpt-3.5-turbo-16k"
+  max_tokens: 1000
+  temperature: 0.2
+  timeout: 10
+  functions:
+    - name: "check_answer_status"
+      description: "Parse the json answer with layerd nodes and return the answer_status about the answer"
+      parameters:
+        type: "object"
+        properties:
+          answer_status:
+            type: "string"
+            enum: ["Unsure","Unsolved","Solved"]
+        required: ["answer_status"]
+    - name: "parse_answer_status"
+      description: "Parse the json answer with layerd nodes and return the answer_status about the answer"
+      parameters:
+        type: "object"
+        properties:
+          answer_status:
+            type: "string"
+            enum: ["Unsure","Unsolved","Solved"]
+        required: ["answer_status"]
+    - name: "check_task_solvable"
+      description: "Parse the task description and return the task_status about the task"
+      parameters:
+        type: "object"
+        properties:
+          task_status:
+            type: "string"
+            enum: ["Unsure","Unsolvable","Solvable"]
+        required: ["task_status"]
+    - name: "select_better_answer"
+      description: "Select the better answer with a comprehensive investigation on given aspects. You should ignore the impact of the order of candidate answers."
+      parameters:
+        type: "object"
+        properties:
+          index:
+            type: "number"
+            description: "The `index` value in the selected better answer."
+        required: ["index"]
+fn_completion_parser: "index_parser"
+batch_size: 1

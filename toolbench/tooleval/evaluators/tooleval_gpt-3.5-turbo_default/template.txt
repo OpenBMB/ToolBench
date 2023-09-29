@@ -1,0 +1,80 @@
+<function>
+<name>check_answer_status</name>
+<description>
+Giving the query and answer, you need give `answer_status` of the answer by following rules:
+1. If the answer is a sorry message or not a positive/straight response for the given query, return "Unsolved".
+2. If the answer is a positive/straight response for the given query, you have to further check.
+2.1 If the answer is not sufficient to determine whether the solve the query or not, return "Unsure".
+2.2 If you are confident that the answer is sufficient to determine whether the solve the query or not, return "Solved" or "Unsolved".
+
+Query:
+{query}
+Answer:
+{answer}
+
+Now give your reason in "content" and `answer_status` of JSON to `check_answer_status`.
+</description>
+</function>
+
+<function>
+<name>parse_answer_status</name>
+<description>
+Giving the query and the correspond execution detail of an answer, you need give `answer_status` of the answer by following rules:
+1. If all 'tool' nodes' message indicate that there are errors happened, return "Unsolved"
+2. If you find the information in the "final_answer" is not true/valid according to the messages in 'tool' nodes, return "Unsolved"
+3. If you are unable to verify the authenticity and validity of the information, return "Unsure"
+4. If there are 'tool' node in the chain contains successful func calling and those calling indeed solve the query, return "Solved"
+
+Query:
+{query}
+Answer:
+{answer}
+
+Now you are requested to give reason in "content" and `answer_status` of JSON to `parse_answer_status`.
+</description>
+</function>
+
+<function>
+<name>check_task_solvable</name>
+<description>
+Please check whether the given task solvable with following rules:
+1. If the `query` provide invalid information (e.g. invalid email address or phone number), return "Unsolvable"
+2. If the `query` needs more information to solve (e.g. the target restaurant name in a navigation task), return "Unsolvable"
+3. If you are unable to draw a conclusion, return "Unsure"
+4. If the currently `available_tools` are enough to solve the query, return "Solvable"
+
+Task:
+{task}
+
+Now give your reason in "content" and `task_status` of JSON to `check_task_solvable`.
+</description>
+</function>
+
+
+
+<function>
+<name>select_better_answer</name>
+<description>
+Query:
+{query}
+
+Answer_0:
+{answer_0}
+
+Answer_1:
+{answer_1}
+
+Given above query and answers in JSON format, you must follow the rules to select the relatively better answer and give the index of the answer **(0 for Answer_0, 1 for Answer_1)**:
+1. Compare the value of "final_answer" in following aspects:
+- Informative: whether it contains all necessary information to reply to the query.
+- Factuality: whether it accurately describes what has been done, and what failed in the end.
+- Reasoning: If answer does not solve the query, whether gives a detailed and accurate reason for failure.
+2. If you cannot determine yet, compare the value of "answer_details" in following aspects:
+- Tool calling costs: calculating the percentage of failed and replicated tools calling.
+- Running costs: calculating the total tokens T used in execution.
+- Milestone: calculating the milestone(fixed subtasks) reached in execution.
+- Exploration: whether tries potential useful tools in execution. Just count times of successful tool calling with different tools/arguments in execution.
+
+If you have made your decision, calling `select_better_answer`, else if you cannot determine, select a random answer.
+</description>
+</function>

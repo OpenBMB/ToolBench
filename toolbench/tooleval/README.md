@@ -4,11 +4,10 @@
 
 By fine-tuning LLaMA on ToolBench, we obtain **ToolLLaMA**. Considering that human evaluation can be time-consuming, we follow [AlpacaEval](https://tatsu-lab.github.io/alpaca_eval/) to develop an efficient machine evaluator **ToolEval**, which incorporates two evaluation metrics:
  - **Pass Rate**: Calculates the proportion of successfully completing an instruction within limited OpenAI API calls. 
- - **Preference**: Measured by comparing two answers (action sequences) for a given instruction. We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT. We provide the test instruction and two candidate answers to the evaluator and obtain its preference. We evaluate each answer pair multiple times to improve the reliability of our system. Then we calculate the **Win Rate** (percentage of being preferred by the evaluator) and **Standard Error** (the standard error of the Win Rate). More details can be found in our paper.
+ - **Preference**: Measured by comparing two answers (action sequences) for a given instruction. We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT. We provide the test instruction and two candidate answers to the evaluator and obtain its preference. We evaluate each answer pair multiple times to improve the reliability of our system. Then we calculate the **Win Rate** (percentage of being preferred by the evaluator). More details can be found in our paper.
 
-To validate the effectiveness of the metric **Preference**, we sample among three different methods (ChatGPT+ReACT, GPT4+ReACT, and ChatGPT+DFSDT) to obtain answer pairs for *600* test instructions. Then we engage humans to annotate human preference for them (*4* annotations for each answer pair, *2400* annotations in total).
-Our automatic evaluator, developed using ChatGPT, demonstrates a significant correlation of **75.8%** with human annotators.
-We also obtain the agreement among different human annotators **83.54%**, and the agreement between humans and our evaluator **80.21%**.
+To validate the reliability of ChatGPT evaluator in both pass rate and win rate, we sample among four different methods (ChatGPT+ReACT, ChatGPT+DFSDT, ToolLLaMA+DFSDT and GPT4+DFSDT) to obtain solution pairs for 300 test instructions for each method. Then we engage humans to annotate the pass rate for ChatGPT+DFSDT, ToolLLaMA+DFSDT and GPT4+DFSDT, and the win rate among ChatGPT+ReACT and ChatGPT+DFSDT.
+Our ChatGPT evaluator demonstrates a high agreement of **87.1%** in pass rate and **80.3%** in win rate with human annotators. This result shows that our evaluator generates highly similar evaluation results to humans and can be viewed as a credible evaluator who simulates human evaluation on pass rate and win rate.
 
 ## 🚀Usage
 ### Install
@@ -17,47 +16,97 @@ Install Package (python>=3.9)
 pip install -r requirements.txt
 ```
 
-### Reproduce our Results
+### Evaluation
+*If you want to reproduce the official results, download the reproduction data `reproduction_data.zip` through[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J), unzip it and put the `reproduction_data` under `ToolBench/data/`, and skip the data preparation process*
+- Data preparation. To evaluate your own model and method using ToolEval, first you need to prepare all the model predictions for the six test subsets. Create a directory naming with your model and method, e.g. `chatgpt_cot` then put each test set's predictions under the directory. The file sturcture of the directory should be:
+```
+├── /chatgpt_cot/
+│  ├── /G1_instruction/
+│  │  ├── /10160_CoT@1.json
+│  │  └── ...
+│  ├── /G1_tool/
+│  │  ├── /10221_CoT@1.json
+│  │  └── ...
+│  ├── ...
+│  ├── /G3_instruction/
+│  │  ├── /10221_CoT@1.json
+│  │  └── ...
+```
 
-To evaluate a model on G1-Inst. test set, for example, run the following commands.
+Then preprocess the predictions by running the following commands:
+```bash
+export RAW_ANSWER_PATH=../../data/reproduction_data/model_predictions/
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export MODEL_NAME=chatgpt_cot
+export METHOD=CoT
+mkdir ${CONVERTED_ANSWER_PATH}/${MODEL_NAME}
+for test_set in G1_instruction G1_category G1_tool G2_category G2_instruction G3_instruction
+do
+    answer_dir=${RAW_ANSWER_PATH}/${MODEL_NAME}/${test_set}
+    output_file=${CONVERTED_ANSWER_PATH}/${MODEL_NAME}/${test_set}.json
+    python convert_to_answer_format.py\
+        --answer_dir ${answer_dir} \
+        --method ${METHOD} \
+        --output ${output_file}
+done
+```
+After that, check if there are preprocessed json files for the test sets under `${CONVERTED_ANSWER_PATH}/${MODEL_NAME}`. If so, you're ready to run the following evaluate process. If not, check if there is anything wrong with the model's predictions.
+
+- OpenAI Key. Prepare your openai key to use our evaluator. The key(s) should be stored in a json file, e.g. `path/to/your/openai_key_json_file.json`:
+```bash
+[
+    {
+        "username": "your_user_name",
+        "passwd": "your_password",
+        "api_key": "your_openai_key",
+        "organization": "your_organization"
+    },
+    ...
+]
+```
+
 - Pass rate:
 ```bash
-python pass_rate.py --answer_dir data/answer/toolllama_dfs/G1_instruction
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export SAVE_PATH=pass_rate_results
+export CANDIDATE_MODEL=chatgpt_cot
+export API_POOL_FILE=path/to/your/openai_key_json_file.json
+
+python eval_pass_rate.py \
+    --converted_answer_path ${CONVERTED_ANSWER_PATH} \
+    --save_path ${SAVE_PATH} \
+    --reference_model ${CANDIDATE_MODEL} \
+    --test_ids ../../data/test_ids/ \
+    --max_eval_threads 20 \
+    --evaluate_times 4
+
 ```
-- Win rate (Reference model: ChatGPT-ReACT):
+The result files will be stored under the ${SAVE_PATH}.
+
+- Win rate. The below example take ChatGPT-ReACT as reference model and GPT4-ReACT as candidate model. Notice that you need to get both model's pass rate results first, then run the following commands to evaluate the preference result of GPT4-ReACT:
 ```bash
-export OPENAI_KEY=""
-export REF_MODEL_DATA="data/answer/chatgpt_cot/G1_instruction"
-export REF_MODEL_METHOD="CoT"
-export TEST_MODEL_DATA="data/answer/toolllama_dfs/G1_instruction"
-export TEST_MODEL_METHOD="DFS"
-python convert_to_answer_format.py \
-    --method CoT \
-    --answer_dir ${REF_MODEL_DATA} \
-    --output ${REF_MODEL_DATA}_converted
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export SAVE_PATH=preference_results
+export PASS_TARE_PATH=pass_rate_results
+export REFERENCE_MODEL=chatgpt_cot
+export CANDIDATE_MODEL=gpt-4-0613_cot
+export API_POOL_FILE=path/to/your/openai_key_json_file.json
 
-python convert_to_answer_format.py \
-    --method DFS \
-    --answer_dir ${TEST_MODEL_DATA} \
-    --output ${TEST_MODEL_DATA}_converted
-
-python automatic_eval_sample.py \
-    --output ${TEST_MODEL_DATA}_converted \
-    --ref_output ${REF_MODEL_DATA}_converted \
-    --method ${TEST_MODEL_METHOD} \
-    --ref_method ${REF_MODEL_METHOD} \
-    --use_existed_output
+python eval_preference.py \
+    --converted_answer_path ${CONVERTED_ANSWER_PATH} \
+    --reference_model ${REFERENCE_MODEL} \
+    --output_model ${CANDIDATE_MODEL} \
+    --test_ids ../../data/test_ids/ \
+    --save_path ${SAVE_PATH} \
+    --pass_rate_result_path ${PASS_TARE_PATH} \
+    --max_eval_threads 20 \
+    --use_pass_rate true \
+    --evaluate_times 4
 ```
+The result files will be stored under the ${SAVE_PATH}.
 
 ### Evaluate New Method
-
-The calculation of pass rate is depended on specific method, so we skip the pass rate calculation here.
-To calculate the win rate, you should:
-
-1. Prepare the reference model's answer. You can find the reference answer of `ChatGPT-ReACT` for our default test set in here [Data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
-Note that the downloaded data should be converted with the script `convert_to_answer_format.py` before using it as reference model's answer.
-
-2. Prepare your generated answer for evaluation, the result should be a json file in following format:
+To evaluate with a new method besides ReACT and DFSDT, you should prepare your converted answer for evaluation following the above Data preparation step. The converted answers should be a json file in following format:
 
 ```json
 [
@@ -81,71 +130,11 @@ Note that the downloaded data should be converted with the script `convert_to_an
     ... // more answers for the give query in the testdata
 ]
 ```
-Note that the order of answers should be same as the reference answers.
-
-3. Run the evaluation script to get result:
-
-```bash
-python automatic_eval_sample.py \
-    --output ${REF_MODEL_DATA} \
-    --ref_output ${TEST_MODEL_DATA} \
-    --method ${TEST_MODEL_METHOD} \
-    --ref_method ${REF_MODEL_METHOD} \
-    --use_existed_output
-```
-
 
 ### Update the Leaderboard
 
-To update the [ToolEval Leaderboard](https://openbmb.github.io/ToolBench/), you should submit your answer file to us (urtoolbench@gmail.com) in above format.
-We will run the evaluation script to get the result and update the leaderboard.
-
-Sepcifically, you should provide the following information in your submission email:
-```
-Method Name :
-Method Link : (Optional)
-Test Set : (default to data/test_query_ids)
-Comparison Method Name : (default: ChatGPT-ReACT) 
-Answer Files Link : (shuold contain 6 json files for each subset in Test Set)
-```
-
-We will run the script `eval_and_update_leaderboard.py` to valid your submission and update the leaderboard.
-```bash
-python eval_and_update_leaderboard.py \
-    --evalset default_evalset \
-    --method your_method_name \
-    --ref_method ref_method_name \
-    --result_folder your_answer_files \
-    --ref_result_folder ref_results_files  \
-```
-
-
-## 🔨Evaluate Automatic Evaluators
-
-To validate the effectiveness of the automatic evaluator, we collect a human cross-annotations dataset and compare the performance of automatic annotator with human annotator.
-
-### Human Cross-Annotations Dataset
-The dataset contains 600 comparison pairs, each pair is annotated by 4 human annotators.
-We randomly sample 600 instructions from the ToolBench dataset and randomly select 2 answers for each instruction from answers generated by 3 different methods (ChatGPT+ReACT, GPT4+ReACT, and ChatGPT+DFSDT).
-Then we engage 4 human annotators to annotate the preference between the two answers for each instruction.
-The dataset can be found in [Data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
-
-### Performance of Automatic Evaluators
-We evaluate the performance of automatic evaluator on the human cross-annotations dataset with the script `evaluators_comparison.py`.
-The script calculate four metrics for the evaluators, we adopt metrics **Human Agreement**, **Bias** and **Variance** from [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval/tree/main)
-:
-- **Human Agreement** measures the agreement between the current annotator and the majority preferences of humans on our cross-annotations dataset.
-- **Bias** measures the agreement between the most likely human label and the most likely automatic one.
-- **Variance** measures the unstablility of the automatic evaluator.
-- **Correlation** measures the pearson correlation between the automatic evaluator and human annotators.
-
-
-The result is shown below:
-| Evaluator                   | Human Agreement(%) | Bias | Variance | Correlation |
-|-------------------------|----------|----------|---------|----------
-| Human          | **83.54**   | **0.0**  | 3.97  | N/A   
-| tooleval gpt-3.5-turbo normalized           | 80.21       | 19.3       | **3.47**      | **0.7580**       
-| tooleval gpt-3.5-turbo fn  | 63.75       | 36.5       | 9.52      | 0.5308       
+To update the [ToolEval Leaderboard](https://openbmb.github.io/ToolBench/), you should submit your converted answer file (`${CONVERTED_ANSWER_PATH}/${MODEL_NAME}`) to us (urtoolbench@gmail.com) in above format or open a pull request.
+We will run the evaluation script to get the result and update the leaderboard.     
 
 
 ### Create new Automatic Evaluators

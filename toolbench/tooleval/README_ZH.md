@@ -6,141 +6,145 @@
 
 - **通过率**：计算在有限的OpenAI API调用次数内成功完成指令的比例。
 
-- **偏好**：通过比较给定指令的两个答案（动作序列）来衡量。我们预先定义了一组更好答案的标准，这些标准被组织成ChatGPT的提示。我们向评估器提供测试指令和两个候选答案，并获得其偏好。我们对每个答案对进行多次评估以提高系统的可靠性。然后，我们计算**优胜率**（被评估器选择为更优的百分比）和**标准差**（优胜率的标准误差）。有关详细信息，请参阅我们的论文。
+- **偏好**：通过比较给定指令的两个答案（动作序列）来衡量。我们预先定义了一组更好答案的标准，这些标准被组织成ChatGPT的提示。我们向评估器提供测试指令和两个候选答案，并获得其偏好。我们对每个答案对进行多次评估以提高系统的可靠性。然后，我们计算**优胜率**（被评估器选择为更优的百分比。有关详细信息，请参阅我们的论文。
 
-为了验证偏好指标的有效性，我们从三种不同方法（ChatGPT+ReACT、GPT4+ReACT和ChatGPT+DFSDT）中随机抽样获得600个测试指令的答案对。然后，我们邀请人工标注人员对它们进行人工偏好注释（每个答案对4个注释，总共2400个注释）。我们使用ChatGPT开发的自动评估器与人工标注者呈现出显著的**75.8%**相关性。我们还获得了不同人工标注者之间的一致性为**83.54%**，与我们的评估器和人类标注者之间的一致性为**80.21%**。
+为了验证ChatGPT评估器在通过率和胜率方面的可靠性，我们从四种不同的方法（ChatGPT+ReACT，ChatGPT+DFSDT，ToolLLaMA+DFSDT和GPT4+DFSDT）中进行采样，为每种方法的300个测试指令获取解决方案对。然后，我们请人类标注ChatGPT+DFSDT，ToolLLaMA+DFSDT和GPT4+DFSDT的通过率，以及ChatGPT+ReACT和ChatGPT+DFSDT之间的胜率。
 
+我们的ChatGPT评估器在通过率方面与人类标注者具有高达**87.1%**的一致性，在胜率方面具有**80.3%**的一致性。这个结果表明，我们的评估器生成的评估结果与人类非常相似，并且可以视为在通过率和胜率上模拟人类评估的可靠评估器。
 有关ToolEval的更多细节，请参阅我们的论文。
 
 ## 🚀用法
 
-### 安装
-安装包，要求(python>=3.9)
+### Install
+Install Package (python>=3.9)
 ```bash
 pip install -r requirements.txt
 ```
 
-### 复现结果
-
-要在测试集（如G1-Inst.）上评估模型，可以执行以下命令：
-- 通过率:
-```bash
-python pass_rate.py --answer_dir data/answer/toolllama_dfs/G1_instruction
+### Evaluation
+*若要复现结果，直接通过[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)下载我们的`reproduction_data.zip`，解压后置`reproduction_data`于`ToolBench/data/`下即可，可以跳过数据准备流程。*
+- 数据准备。若要使用 ToolEval 评估您自己的模型和方法，首先需要为六个测试子集准备所有的模型预测。创建一个以您的模型和方法命名的目录，例如 `chatgpt_cot`，然后将每个测试集的预测放在该目录下。目录的文件结构应如下：
 ```
-- 优胜率 (参考模型: ChatGPT-ReACT):
-```bash
-export OPENAI_KEY=""
-export REF_MODEL_DATA="data/answer/chatgpt_cot/G1_instruction"
-export REF_MODEL_METHOD="CoT"
-export TEST_MODEL_DATA="data/answer/toolllama_dfs/G1_instruction"
-export TEST_MODEL_METHOD="DFS"
-python convert_to_answer_format.py \
-    --method CoT \
-    --answer_dir ${REF_MODEL_DATA} \
-    --output ${REF_MODEL_DATA}_converted
-
-python convert_to_answer_format.py \
-    --method DFS \
-    --answer_dir ${TEST_MODEL_DATA} \
-    --output ${TEST_MODEL_DATA}_converted
-
-python automatic_eval_sample.py \
-    --output ${TEST_MODEL_DATA}_converted \
-    --ref_output ${REF_MODEL_DATA}_converted \
-    --method ${TEST_MODEL_METHOD} \
-    --ref_method ${REF_MODEL_METHOD} \
-    --use_existed_output
+├── /chatgpt_cot/
+│  ├── /G1_instruction/
+│  │  ├── /10160_CoT@1.json
+│  │  └── ...
+│  ├── /G1_tool/
+│  │  ├── /10221_CoT@1.json
+│  │  └── ...
+│  ├── ...
+│  ├── /G3_instruction/
+│  │  ├── /10221_CoT@1.json
+│  │  └── ...
 ```
+
+然后对模型预测进行预处理:
+
+```bash
+export RAW_ANSWER_PATH=../../data/reproduction_data/model_predictions/
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export MODEL_NAME=chatgpt_cot
+export METHOD=CoT
+mkdir ${CONVERTED_ANSWER_PATH}/${MODEL_NAME}
+for test_set in G1_instruction G1_category G1_tool G2_category G2_instruction G3_instruction
+do
+    answer_dir=${RAW_ANSWER_PATH}/${MODEL_NAME}/${test_set}
+    output_file=${CONVERTED_ANSWER_PATH}/${MODEL_NAME}/${test_set}.json
+    python convert_to_answer_format.py\
+        --answer_dir ${answer_dir} \
+        --method ${METHOD} \
+        --output ${output_file}
+done
+```
+之后，检查`${CONVERTED_ANSWER_PATH}/${MODEL_NAME}`下是否有测试集的预处理JSON文件。如果有，你就可以准备运行以下评估过程了。如果没有，请检查模型的预测是否有问题。
+
+- OpenAI Key
+准备您的OpenAI Key来搭建我们的evaluator。Key需要被存储到一个json file中，如`path/to/your/openai_key_json_file.json`：
+```bash
+[
+    {
+        "username": "your_user_name",
+        "passwd": "your_password",
+        "api_key": "your_openai_key",
+        "organization": "your_organization"
+    },
+    ...
+]
+```
+- Pass rate.
+```bash
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export SAVE_PATH=pass_rate_results
+export CANDIDATE_MODEL=chatgpt_cot
+export API_POOL_FILE=path/to/your/openai_key_json_file.json
+
+python eval_pass_rate.py \
+    --converted_answer_path ${CONVERTED_ANSWER_PATH} \
+    --save_path ${SAVE_PATH} \
+    --reference_model ${CANDIDATE_MODEL} \
+    --test_ids ../../data/test_query_ids/ \
+    --max_eval_threads 20 \
+    --evaluate_times 4
+
+```
+
+结果文件会被存储至${SAVE_PATH}中。
+
+- Win rate. 以下示例以ChatGPT-ReACT作为参考模型，GPT4-ReACT作为候选模型。请注意，您首先需要获取两个模型的pass rate结果，然后运行以下命令来评估GPT4-ReACT的win rate结果:
+```bash
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export SAVE_PATH=preference_results
+export PASS_TARE_PATH=pass_rate_results
+export REFERENCE_MODEL=chatgpt_cot
+export CANDIDATE_MODEL=gpt-4-0613_cot
+export API_POOL_FILE=path/to/your/openai_key_json_file.json
+
+python eval_preference.py \
+    --converted_answer_path ${CONVERTED_ANSWER_PATH} \
+    --reference_model ${REFERENCE_MODEL} \
+    --output_model ${CANDIDATE_MODEL} \
+    --test_ids ../../data/test_query_ids/ \
+    --save_path ${SAVE_PATH} \
+    --pass_rate_result_path ${PASS_TARE_PATH} \
+    --max_eval_threads 20 \
+    --use_pass_rate true \
+    --evaluate_times 4
+```
+
+结果文件会被存储至${SAVE_PATH}中。
 
 ### 评估新方法
+要评估除了ReACT和DFSDT之外的方法，您需要遵循以上Data preparation的步骤准备您的预处理好的answer数据。预处理好的answer数据需遵循以下json格式:
 
-通过率的计算方式取决于特定的方法或模型，请参考有关通过率的说明与代码计算通过率。
-这里我们介绍优胜率的计算方式：
-
-1. 准备参考模型的答案，我们将`ChatGPT-ReACT`模型在我们的默认测试集上的结果上传到了[Data](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)。
-请注意，下载的答案首先需要通过脚本`convert_to_answer_format.py`转换为评测结构的格式，再用于评测。
-2. 按下面的格式准备待评测的答案：
 ```json
 [
     {
         "method":"method name",
-        "total_steps": int, // 一个整数，记录answer_details的总步数
+        "total_steps": int, // a integer count total steps in answer details
         "final_answer": "final answer from the method",
         "answer_details":[{
             "role":"node role, can be system, user, assistant and tool",
             "message":"message for the node",
-            "next":[// 下一步，如果有多个候选步，可以有多个元素
+            "next":[//next steps, can have multiple elements if the node have multiple candidates.
                 {
                     "role":"",
                     "message":"",
                     "next":[...]
                 },
-                ...//更多候选步
+                ...//more candidates
             ]
         }]
     }
-    ... // 其他答案
+    ... // more answers for the give query in the testdata
 ]
 ```
-请注意，答案的顺序需要保持和参考模型的答案顺序一致。
-3. 执行评测脚本：
-```bash
-python automatic_eval_sample.py \
-    --output ${REF_MODEL_DATA} \
-    --ref_output ${TEST_MODEL_DATA} \
-    --method ${TEST_MODEL_METHOD} \
-    --ref_method ${REF_MODEL_METHOD} \
-    --use_existed_output
-```
+
 
 ### 更新排行榜
 
-如果您想将您的模型的结果上传到[ToolEval Leaderboard](https://openbmb.github.io/ToolBench/)，请您将您的结果文件整理成上述格式发送给我们（urtoolbench@gmail.com）。
+如果您想将您的模型的结果上传到[ToolEval Leaderboard](https://openbmb.github.io/ToolBench/)，请您将您的结果文件整理成上述格式发送给我们（urtoolbench@gmail.com）或者开一个pull request。
 我们将运行评测脚本更新结果并将您的模型添加到排行榜中。
 
-具体来说，您需要提供下列信息：
-```
-Method Name : 方法名称
-Method Link : 方法链接，可选
-Test Set : (测试集，默认为data/test_query_ids中的6个集合)
-Comparison Method Name : (参考模型，默认为ChatGPT-ReACT) 
-Answer Files Link : (结果文件下载链接，应该包含6个json文件，对应测试集中的6个子集合)
-```
-
-我们将运行脚本`eval_and_update_leaderboard.py`验证结果并更新排行榜，您也可以在本地运行该脚本查看结果。
-```bash
-python eval_and_update_leaderboard.py \
-    --evalset default_evalset \
-    --method your_method_name \
-    --ref_method ref_method_name \
-    --result_folder your_answer_files \
-    --ref_result_folder ref_results_files  \
-```
-
-## 🔨评估自动评估器
-为了验证自动评估器的有效性，我们收集了600个测试指令的答案对，然后邀请人工标注人员对它们进行人工偏好注释（每个答案对4个注释，总共2400个注释）。
-
-### 人类交叉标注数据集
-该数据集包含600个答案对，每个答案对由4个人类标注者标注。
-我们随机从ToolBench数据中选择了600个测试指令，并随机从3个不同方法（ChatGPT+ReACT，GPT4+ReACT 和 ChatGPT+DFSDT）的结果中挑选2个答案组成答案对。
-然后我们对每个答案邀请4个人类标注者进行偏好选择，每个标注者都会看到一个答案对，然后选择他们认为更好的答案。
-原始数据集可从[这里](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)下载。
-
-### 自动评估器性能
-我们使用人类交叉标注数据集评估了自动评估器的性能。
-评测脚本`evaluators_comparison.py`为自动评估器计算了4个指标，其中 **人类赞同率**，**偏差**和**方差**是从[AlpacaEval](https://github.com/tatsu-lab/alpaca_eval/tree/main)中借鉴的。
-- **人类赞同率** 代表了当前评估者和主要人类偏好的一致性，越高越一致。
-- **偏差** 计算了主要人类偏好和主要评估器偏好的一致性，越低一致性越高。
-- **方差** 计算了评估器的不稳定性，越低越稳定。
-- **相关系数** 是自动评估器和人类评估者之间的皮尔逊相关系数，越高越相关。
-
-评测结果如下：
-The result is shown below:
-| 评估器                   | 人类赞同率(%) | 偏差 | 方差 | 相关系数 |
-|-------------------------|----------|----------|---------|----------
-| Human          | **83.54**   | **0.0**  | 3.97  | N/A   
-| tooleval gpt-3.5-turbo normalized           | 80.21       | 19.3       | **3.47**      | **0.7580**       
-| tooleval gpt-3.5-turbo fn  | 63.75       | 36.5       | 9.52      | 0.5308       
 
 ### 创建新的自动评估器
 如果您想创建新的自动评估器，您需要按下列步骤进行：

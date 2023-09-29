@@ -6,9 +6,9 @@
 
 ![Dialogues](https://img.shields.io/badge/Tool\_Num-3451-red?style=flat-square)
 ![Dialogues](https://img.shields.io/badge/API\_Num-16464-red?style=flat-square)
-![Dialogues](https://img.shields.io/badge/Current\_Dataset\_Size-12K-red?style=flat-square)
-![Dialogues](https://img.shields.io/badge/Total\_API\_Call-37K-red?style=flat-square)
-![Dialogues](https://img.shields.io/badge/Average\_Reasoning\_Traces-4.1-red?style=flat-square)
+![Dialogues](https://img.shields.io/badge/Current\_Dataset\_Size-126K-red?style=flat-square)
+![Dialogues](https://img.shields.io/badge/Total\_API\_Call-469K-red?style=flat-square)
+![Dialogues](https://img.shields.io/badge/Average\_Reasoning\_Traces-4.0-red?style=flat-square)
 ![Dialogues](https://img.shields.io/badge/Tool\_LLaMA-Released-green?style=flat-square)
 
 </div>
@@ -36,7 +36,9 @@
 *Read this in [中文](README_ZH.md).*
 
 ## What's New
-- **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data_0830.zip` on [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
+- **[2023/9/29]** A new version **ToolEval** which is more stable and covers more models including GPT4! Please refer to [ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval) for more details.
+
+- **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data.zip` on [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J). *Notice that `data_0801` is the old version data.*
 
 - **[2023/8/8]** No more hallucination! [**ToolLLaMA-2-7b**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
 
@@ -89,7 +91,7 @@ Here is the *[Old version](https://github.com/OpenBMB/ToolBench/tree/legacy)* of
 
 | Tool Nums | API Nums | Instance Nums | Real API Call | Reasoning Traces |
 |-----------|----------|---------------|---------------|------------------|
-| 3451      | 16464    | 12657         | 37204         | 4.1              |
+| 3451      | 16464    | 126486         | 469585         | 4.0              |
 
 We crawl 16000+ real-world APIs from [RapidAPI](https://rapidapi.com/hub), and curate realistic human instructions that involve them. Below we present a hierarchy of RapidAPI and our instruction generation process.
 
@@ -117,6 +119,7 @@ The file structure is as follows:
 │  ├── /answer/
 │  ├── /toolenv/
 │  ├── /retrieval/
+│  ├── /test_instruction/
 │  ├── /test_query_ids/
 │  ├── /retrieval_test_query_ids/
 │  ├── toolllama_G123_dfs_train.json
@@ -126,17 +129,12 @@ The file structure is as follows:
 │  ├── /chatgpt_dfs/
 │  ├── ...
 │  └── /toolllama_dfs/
-├── /data_0830/
-│  ├── /answer_0830/
-│  ├── /test_query_ids/
-│  ├── toolllama_G123_dfs_train_0830.json
-│  └── toolllama_G123_dfs_eval_0830.json
 ```
-The `data` directory is needed for all the experiments and demo. `reproduction_data` is used in ToolEval to reproduce our experimental results, and `data_0830` is the updated version data, with more solution path annotations and intact reasoning thoughts. Here is some descriptions for the `data` directory:
+Here is some descriptions for the `data` directory:
 - `instruction` and `answer`: The instruction data and solution path annotation data. `G1`,`G2`, `G3` refers to single-tool, intra-category multi-tool and intra-collection multi-tool data respectively. We also have an [Atlas Explorer](https://atlas.nomic.ai/map/58aca169-c29a-447a-8f01-0d418fc4d341/030ddad7-5305-461c-ba86-27e1ca79d899) for visualization.
 - `toolenv`: The tool environment related data, containing API jsons, API codes and API example responses.
 - `retrieval`: The data used for tool retrieval is included in this directory.
-- `test_query_ids`: We sample 100 instances from every test set. This directory contains query ids of the test instances in each test set.
+- `test_instruction` and `test_query_ids`: We sample 200 instances from every test set. The `test_instruction` directory contains test queries for each test set, and the `test_query_ids` contains query ids of the test instances in each test set.
 - `retrieval_test_query_ids`: This directory contains query ids of the test instances for retriever.
 - `toolllama_G123_dfs_train.json` and `toolllama_G123_dfs_eval.json`: Preprocessed data that can be used to train toolllama directly and reproduce our results. For preprocessing details, we split the G1, G2 and G3 data into train, eval and test parts respectively and combine the train data for training in our main experiments.
 
@@ -164,10 +162,10 @@ pip install -r toolbench/tooleval/requirements.txt
 
 Prepare the data and tool environment:
 ```bash
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Vis-RxBstXLKC1W1agIQUJNuumPJrrw0&confirm=yes' -O data.zip
+wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1XFjDxVZdUY7TXYF2yvzx3pJlS2fy78jk&confirm=yes' -O data.zip
 unzip data.zip
 ```
-
+https://drive.google.com/file/d/1XFjDxVZdUY7TXYF2yvzx3pJlS2fy78jk/view?usp=drive_link
 
 ### Training Retriever
 - Data preprocessing:
@@ -202,7 +200,7 @@ python preprocess/preprocess_toolllama_data.py \
     --method DFS_woFilter_w2 \
     --output_file data/answer/toolllama_G1_dfs.json
 ```
-- Our training code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB), with our preprocessed data `data/toolllama_G123_dfs_train.json`, or data_0830 version, `data_0830/toolllama_G123_dfs_train_0830.json`. For preprocessing details, we split the G1, G2 and G3 data into train, eval and test parts respectively and combine the train data for training in our main experiments:
+- Our training code is based on [FastChat](https://github.com/lm-sys/FastChat). You can use the following command to train ToolLLaMA-7b with 2 x A100 (80GB), with our preprocessed data `data/toolllama_G123_dfs_train.json`. For preprocessing details, we split the G1, G2 and G3 data into train, eval and test parts respectively and combine the train data for training in our main experiments:
 ```bash
 export PYTHONPATH=./
 torchrun --nproc_per_node=2 --master_port=20001 toolbench/train/train_mem.py \
@@ -285,7 +283,7 @@ python toolbench/inference/qa_pipeline.py \
     --max_observation_length 1024 \
     --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
-    --input_query_file data/instruction/inference_query_demo.json \
+    --input_query_file data/test_instruction/G1_instruction.json \
     --output_answer_file toolllama_dfs_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
@@ -302,7 +300,7 @@ python toolbench/inference/qa_pipeline.py \
     --max_observation_length 1024 \
     --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
-    --input_query_file data/instruction/inference_query_demo.json \
+    --input_query_file data/test_instruction/G1_instruction.json \
     --output_answer_file toolllama_lora_dfs_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
@@ -322,7 +320,7 @@ python toolbench/inference/qa_pipeline_open_domain.py \
     --max_observation_length 1024 \
     --observ_compress_method truncate \
     --method DFS_woFilter_w2 \
-    --input_query_file data/instruction/inference_query_demo_open_domain.json \
+    --input_query_file data/test_instruction/G1_instruction.json \
     --output_answer_file toolllama_lora_dfs_open_domain_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
@@ -339,7 +337,7 @@ python toolbench/inference/qa_pipeline.py \
     --openai_key $OPENAI_KEY \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
-    --input_query_file data/instruction/inference_query_demo.json \
+    --input_query_file data/test_instruction/G1_instruction.json \
     --output_answer_file chatgpt_dfs_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
@@ -355,7 +353,7 @@ python toolbench/inference/qa_pipeline.py \
     --openai_key $OPENAI_KEY \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
-    --input_query_file data/instruction/inference_query_demo.json \
+    --input_query_file data/test_instruction/G1_instruction.json \
     --output_answer_file davinci_dfs_inference_result \
     --toolbench_key $TOOLBENCH_KEY
 ```
@@ -372,7 +370,7 @@ python toolbench/inference/qa_pipeline.py \
     --openai_key $OPENAI_KEY \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
-    --input_query_file data/instruction/inference_query_demo.json \
+    --input_query_file data/test_instruction/G1_instruction.json \
     --output_answer_file chatgpt_dfs_inference_result \
     --rapidapi_key $RAPIDAPI_KEY \
     --use_rapidapi_key
@@ -485,7 +483,7 @@ python toolbench/inference/toolbench_server.py \
     --lora_path /path/to/your/toolllama_lora \
     --max_observation_length 1024 \
     --method DFS_woFilter_w2 \
-    --input_query_file data/instruction/inference_query_demo_open_domain.json \
+    --input_query_file data/test_instruction/G1_instruction.json \
     --output_answer_file toolllama_lora_dfs_open_domain_result \
     --rapidapi_key $RAPIDAPIKEY
 ```
@@ -503,94 +501,150 @@ This server will be available on `http://localhost:5000/`. To start a request, c
 
 By fine-tuning LLaMA on ToolBench, we obtain **ToolLLaMA**. Considering that human evaluation can be time-consuming, we follow [AlpacaEval](https://tatsu-lab.github.io/alpaca_eval/) to develop an efficient machine evaluator **ToolEval**, which incorporates two evaluation metrics:
  - **Pass Rate**: Calculates the proportion of successfully completing an instruction within limited OpenAI API calls. 
- - **Preference**: Measured by comparing two answers (action sequences) for a given instruction. We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT. We provide the test instruction and two candidate answers to the evaluator and obtain its preference. We evaluate each answer pair multiple times to improve the reliability of our system. Then we calculate the **Win Rate** (percentage of being preferred by the evaluator) and **Standard Error** (the standard error of the Win Rate). More details can be found in our paper.
+ - **Preference**: Measured by comparing two answers (action sequences) for a given instruction. We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT. We provide the test instruction and two candidate answers to the evaluator and obtain its preference. We evaluate each answer pair multiple times to improve the reliability of our system. Then we calculate the **Win Rate** (percentage of being preferred by the evaluator). More details can be found in our paper.
 
-To validate the effectiveness of the metric **Preference**, we sample among three different methods (ChatGPT+ReACT, GPT4+ReACT, and ChatGPT+DFSDT) to obtain answer pairs for *600* test instructions. Then we engage humans to annotate human preference for them (*4* annotations for each answer pair, *2400* annotations in total).
-Our automatic evaluator, developed using ChatGPT, demonstrates a significant correlation of **75.8%** with human annotators.
-We also obtain the agreement among different human annotators **83.54%**, and the agreement between humans and our evaluator **80.21%**.
+To validate the reliability of ChatGPT evaluator in both pass rate and win rate, we sample among four different methods (ChatGPT+ReACT, ChatGPT+DFSDT, ToolLLaMA+DFSDT and GPT4+DFSDT) to obtain solution pairs for 300 test instructions for each method. Then we engage humans to annotate the pass rate for ChatGPT+DFSDT, ToolLLaMA+DFSDT and GPT4+DFSDT, and the win rate among ChatGPT+ReACT and ChatGPT+DFSDT.
+Our ChatGPT evaluator demonstrates a high agreement of **87.1%** in pass rate and **80.3%** in win rate with human annotators. This result shows that our evaluator generates highly similar evaluation results to humans and can be viewed as a credible evaluator who simulates human evaluation on pass rate and win rate.
 
 More details about ToolEval can be found in our paper.
 
 ### Evaluation with ToolEval
-To evaluate a model on G1-Inst. test set, for example, run the following commands.
+#### Install
+Install Package (python>=3.9)
+```bash
+pip install -r requirements.txt
+```
+
+#### Evaluation
+*If you want to reproduce the official results, download the reproduction data `reproduction_data.zip` through[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J), unzip it and put the `reproduction_data` under `ToolBench/data/`, and skip the data preparation process*
+- Data preparation. To evaluate your own model and method using ToolEval, first you need to prepare all the model predictions for the six test subsets. Create a directory naming with your model and method, e.g. `chatgpt_cot` then put each test set's predictions under the directory. The file sturcture of the directory should be:
+```
+├── /chatgpt_cot/
+│  ├── /G1_instruction/
+│  │  ├── /10160_CoT@1.json
+│  │  └── ...
+│  ├── /G1_tool/
+│  │  ├── /10221_CoT@1.json
+│  │  └── ...
+│  ├── ...
+│  ├── /G3_instruction/
+│  │  ├── /10221_CoT@1.json
+│  │  └── ...
+```
+
+Then preprocess the predictions by running the following commands:
+```bash
+export RAW_ANSWER_PATH=../../data/reproduction_data/model_predictions/
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export MODEL_NAME=chatgpt_cot
+export METHOD=CoT
+mkdir ${CONVERTED_ANSWER_PATH}/${MODEL_NAME}
+for test_set in G1_instruction G1_category G1_tool G2_category G2_instruction G3_instruction
+do
+    answer_dir=${RAW_ANSWER_PATH}/${MODEL_NAME}/${test_set}
+    output_file=${CONVERTED_ANSWER_PATH}/${MODEL_NAME}/${test_set}.json
+    python convert_to_answer_format.py\
+        --answer_dir ${answer_dir} \
+        --method ${METHOD} \
+        --output ${output_file}
+done
+```
+After that, check if there are preprocessed json files for the test sets under `${CONVERTED_ANSWER_PATH}/${MODEL_NAME}`. If so, you're ready to run the following evaluate process. If not, check if there is anything wrong with the model's predictions.
+
+- OpenAI Key. Prepare your openai key to use our evaluator. The key(s) should be stored in a json file, e.g. `path/to/your/openai_key_json_file.json`:
+```bash
+[
+    {
+        "username": "your_user_name",
+        "passwd": "your_password",
+        "api_key": "your_openai_key",
+        "organization": "your_organization"
+    },
+    ...
+]
+```
+
 - Pass rate:
 ```bash
-python toolbench/tooleval/pass_rate.py --answer_dir reproduction_data/toolllama_dfs/G1_instruction
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export SAVE_PATH=pass_rate_results
+export CANDIDATE_MODEL=chatgpt_cot
+export API_POOL_FILE=path/to/your/openai_key_json_file.json
+
+python eval_pass_rate.py \
+    --converted_answer_path ${CONVERTED_ANSWER_PATH} \
+    --save_path ${SAVE_PATH} \
+    --reference_model ${CANDIDATE_MODEL} \
+    --test_ids ../../data/test_ids/ \
+    --max_eval_threads 20 \
+    --evaluate_times 4
+
 ```
-- Win rate (Reference model: ChatGPT-ReACT):
+The result files will be stored under the ${SAVE_PATH}.
+
+- Win rate. The below example take ChatGPT-ReACT as reference model and GPT4-ReACT as candidate model. Notice that you need to get both model's pass rate results first, then run the following commands to evaluate the preference result of GPT4-ReACT:
 ```bash
-export OPENAI_KEY=""
-export REF_MODEL_DATA="reproduction_data/chatgpt_cot/G1_instruction"
-export REF_MODEL_METHOD="CoT"
-export TEST_MODEL_DATA="reproduction_data/toolllama_dfs/G1_instruction"
-export TEST_MODEL_METHOD="DFS"
-python ./toolbench/tooleval/convert_to_answer_format.py \
-    --method CoT \
-    --answer_dir $REF_MODEL_DATA \
-    --output ${REF_MODEL_DATA}_converted
+export CONVERTED_ANSWER_PATH=../../data/reproduction_data/model_predictions_converted/
+export SAVE_PATH=preference_results
+export PASS_TARE_PATH=pass_rate_results
+export REFERENCE_MODEL=chatgpt_cot
+export CANDIDATE_MODEL=gpt-4-0613_cot
+export API_POOL_FILE=path/to/your/openai_key_json_file.json
 
-python ./toolbench/tooleval/convert_to_answer_format.py \
-    --method DFS \
-    --answer_dir $TEST_MODEL_DATA \
-    --output ${TEST_MODEL_DATA}_converted
-
-python ./toolbench/tooleval/automatic_eval_sample.py \
-    --output ${TEST_MODEL_DATA}_converted \
-    --ref_output ${REF_MODEL_DATA}_converted \
-    --method $REF_MODEL_METHOD \
-    --use_existed_output
+python eval_preference.py \
+    --converted_answer_path ${CONVERTED_ANSWER_PATH} \
+    --reference_model ${REFERENCE_MODEL} \
+    --output_model ${CANDIDATE_MODEL} \
+    --test_ids ../../data/test_ids/ \
+    --save_path ${SAVE_PATH} \
+    --pass_rate_result_path ${PASS_TARE_PATH} \
+    --max_eval_threads 20 \
+    --use_pass_rate true \
+    --evaluate_times 4
 ```
-Please refer to [ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval) for more details.
+The result files will be stored under the ${SAVE_PATH}.
 
+Please refer to [ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval) for more details.
 
 ### 📊 Model Experiments Results
 
 
-In our main experiments, ToolLLaMA demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions.
-We introduce **hallucinate rate**(lower is better) evaluation metric as a complement of ToolEval. An instance is considered to be a hallucinate instance, as long as the whole decision tree contains at least one hallucinated function call.
-Below are the main results compared with ChatGPT and Text-Davinci-003. 
-
-**Hallucinate rate:**
-| model                   | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
-|-------------------------|----------|----------|---------|----------|---------|----------|---------|
-| ChatGPT-DFSDT           | **2**    | 6        | **5**   | 14       | 16      | 17       | 10      |
-| Text-Davinci-003-DFSDT  | 6        | **5**    | **5**   | **6**    | **8**   | **6**    | **6.0** |
-| ToolLLaMA               | 16       | 13       | 20      | 24       | 24      | 27       | 20.7    |
-| ToolLLaMA-LoRA          | 61       | 62       | 52      | 69       | 67      | 64       | 62.5    |
-| ToolLLaMA-API Retriever | 16       | 25       | 22      | 20       | 23      | 37       | 23.8    |
-| ToolLLaMA-2             | 3        | 11       | 9       | 8        | 10      | 10       | 8.5     |
+In our main experiments, ToolLLaMA demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions, which on a par with ChatGPT.
+Below are the main results. Win rate for each model is compared with ChatGPT-ReACT.
 
 
 **Pass Rate:**
-| model                   | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average  |
-|-------------------------|----------|----------|---------|----------|---------|----------|----------|
-| ChatGPT-DFSDT           | **78**   | **84**   | **89**  | **51**   | **58**  | **57**   | **69.6** |
-| ChatGPT-ReACT           | 56       | 62       | 66      | 28       | 22      | 30       | 44.0     |
-| Text-Davinci-003-DFSDT  | 53       | 58       | 61      | 38       | 38      | 39       | 47.8     |
-| Text-Davinci-003-ReACT  | 19       | 25       | 30      | 12       | 11      | 14       | 18.5     |
-| ToolLLaMA               | 68       | 80       | 75      | 47       | 56      | 40       | 61.0     |
-| ToolLLaMA-LoRA          | 51       | 63       | 61      | 38       | 42      | 45       | 50.0     |
-| ToolLLaMA-API Retriever | 62       | 62       | 72      | 45       | 55      | 47       | 57.2     |
-| ToolLLaMA-2 | 64       | 72       | 78      | 50       | 51      | 46       | 59.8     |
+| Method | Model               | I1-Inst. | I1-Tool | I1-Cate. | I2-Inst. | I2-Cate. | I3-Inst. | Average |
+|--------|---------------------|----------|---------|----------|----------|----------|----------|---------|
+| ReACT  | Claude-2            | 5.5      | 3.5     | 5.5      | 6        | 6        | 14       | 6.8     |
+|        | Text-Davinci-003    | 12       | 20      | 20       | 8.5      | 14.5     | 24       | 16.5    |
+|        | ChatGPT             | 41.5     | 44      | 44.5     | 42.5     | 46.5     | 22       | 40.2    |
+|        | ToolLLaMA           | 25       | 29      | 33       | 30.5     | 31.5     | 25       | 29      |
+|        | GPT4                | 53.5       | 50.0    | 53.5       | 67.0     | 72.0     | 47.0       | 57.2    |
+| DFSDT  | Claude-2            | 20.5     | 31      | 18.5     | 17       | 20.5     | 28       | 22.6    |
+|        | Text-Davinci-003    | 43.5     | 44      | 46       | 37       | 42       | 46       | 43.1    |
+|        | ChatGPT             | 54.5     | 65      | 60.5     | 75       | 71.5     | 62       | 64.8    |
+|        | ToolLLaMA           | 57       | 61      | 62       | 77       | 77       | 66       | 66.7    |
+|        | ToolLLaMA-Retreiver | **64**       | 64      | 60.5     | **81.5**     | 68.5     | 65       | 67.3    |
+|        | GPT4                | 60       | **71.5**    | **67**       | 79.5     | **77.5**     | **71**       | **71.1**    |
 
 
-**Win Rate:** (Reference model: ChatGPT-DFSDT)
-| model                  | I1-Inst. | I1-Tool. | I1-Cat. | I2-Inst. | I2-Cat. | I3-Inst. | Average |
-|------------------------|----------|----------|---------|----------|---------|----------|---------|
-| ChatGPT-DFSDT | **50**       | 50       | **50**      | 50       | **50**      | 50       | 50.0    |
-| ChatGPT-ReACT | 38       | 32       | 41      | 43       | 22      | 23       | 30.7    |
-| Text-Davinci-003-ReACT | 14       | 21       | 18      | 8       | 7      | 12       | 13.3    |
-| Text-Davinci-003-DFSDT | 38       | 34       | 43      | 25       | 20      | 28       | 31.3    |
-| ToolLLaMA              | **50**       | 45       | 45      | **59**       | 48      | 46       | 48.8    |
-| ToolLLaMA-LoRA              | 43       | 36.4       | 30      | 42       | 45      | 51       | 41.2    |
-| ToolLLaMA-API Retriever              | **51**       | 39       | 44      | 49       | 49      | **55**       | 47.8    |
-| ToolLLaMA-2              | 43       | 42       | 46      | 55       | 46      | 50       | 47.0    |
-| InternLM-7B-DFS              | **59**       | **57**       | **62**      | **57**       | 45      | **52**       | **55.3**    |
-| [InternLM-20B](https://github.com/InternLM/InternLM)              | **62**       | **63**       | **70**      | **56**       | **61**      | **58**       | **61.7**    |
+**Win Rate:** (Reference model: ChatGPT-ReACT)
+| Method | Model               | I1-Inst. | I1-Tool | I1-Cate. | I2-Inst. | I2-Cate. | I3-Inst. | Average |
+|--------|---------------------|----------|---------|----------|----------|----------|----------|---------|
+| ReACT  | Claude-2            | 31       | 27.8    | 33.8     | 35       | 31.5     | 47.5     | 34.4    |
+|        | Text-Davinci-003    | 28.5     | 35.3    | 31       | 29.8     | 29.8     | 45       | 33.2    |
+|        | ToolLLaMA           | 45       | 42      | 47.5     | 50.8     | 41.8     | 55       | 47      |
+|        | GPT4                | 60       | 58.8    | 63.5     | 65.8     | 60.3     | 78       | 64.4    |
+| DFSDT  | Claude-2            | 38       | 44.3    | 43.3     | 36.8     | 33.5     | 65       | 43.5    |
+|        | Text-Davinci-003    | 40.3     | 43.8    | 46.8     | 40.5     | 43.3     | 63       | 46.3    |
+|        | ChatGPT             | 60.5     | 62      | 57.3     | 72       | **64.8**     | 69       | 64.3    |
+|        | ToolLLaMA           | 55       | 55.3    | 54.5     | 68.5     | 58       | 69       | 60      |
+|        | ToolLLaMA-Retreiver | 62.3     | 59      | 55       | 68.5     | 60.8     | 73       | 63.1    |
+|        | GPT4                | **67.5**     | **67.8**    | **66.5**     | **73.3**     | 63.3     | **84**       | **70.4**    |
 
 
 ## TODO
-- [ ] Update ToolLLaMA results trained with updated data (data_0830 version).
 - [ ] ToolLLaMA will reach GPT-4's tool-use capability.
 
 ## Resources of Tool Learning
