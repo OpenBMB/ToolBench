@@ -74,7 +74,7 @@
     <div style="text-align: center;">
         <h4 >Win Rate of Methods vs.
             <div style="display: inline-block;"><select id="leaderboardBaseline" class="form-select">
-                <option value="ChatGPT-DFSDT">ChatGPT-DFSDT</option>
+                <option value="ChatGPT-ReACT">ChatGPT-ReACT</option>
                 <!-- <option value="Test">Test</option> -->
 
             </select></div>
@@ -85,7 +85,7 @@
         <h4>Win Rate of Methods vs.
             <div style="display: inline-block;">
                 <select id="radarBaseline" class="form-select">
-                <option value="ChatGPT-DFSDT">ChatGPT-DFSDT</option>
+                <option value="ChatGPT-ReACT">ChatGPT-ReACT</option>
                 <!-- <option value="Test">Test</option> -->
             </select></div>
             on Each Subsets</h4>
@@ -97,10 +97,14 @@
         <p>
             <a href="https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval">ToolEval</a>
             is an automatic evaluator build for tool learning.
-            We sample among three different methods (ChatGPT+ReACT, GPT4+ReACT, and ChatGPT+DFSDT) to obtain answer pairs for 600 test instructions.
-            Then we engage humans to annotate human preference for them (4 annotations for each answer pair, 2400 annotations in total).
-            Our automatic evaluator, developed using ChatGPT, demonstrates a significant correlation of 75.8% with human annotators.
-            We also obtain the agreement among different human annotators 83.54%, and the agreement between humans and our evaluator 80.21%.
+            which incorporates two evaluation metrics, Pass Rate and Win Rate(Preference). 
+            Pass Rate: Calculates the proportion of successfully completing an instruction within limited OpenAI API calls. 
+            Win Rate(Preference): Measured by comparing two answers (action sequences) for a given instruction. We pre-define a set of criteria for a better answer, which are organized as prompts for ChatGPT. We provide the test instruction and two candidate answers to the evaluator and obtain its preference. We evaluate each answer pair multiple times to improve the reliability of our system. Then we calculate the **Win Rate** (percentage of being preferred by the evaluator). 
+            More details can be found in our paper.
+        </p>
+        <p>
+            To validate the reliability of ChatGPT evaluator in both pass rate and win rate, we sample among four different methods (ChatGPT+ReACT, ChatGPT+DFSDT, ToolLLaMA+DFSDT and GPT4+DFSDT) to obtain solution pairs for 300 test instructions for each method. Then we engage humans to annotate the pass rate for ChatGPT+DFSDT, ToolLLaMA+DFSDT and GPT4+DFSDT, and the win rate among ChatGPT+ReACT and ChatGPT+DFSDT.
+            Our ChatGPT evaluator demonstrates a high agreement of **87.1%** in pass rate and **80.3%** in win rate with human annotators. This result shows that our evaluator generates highly similar evaluation results to humans and can be viewed as a credible evaluator who simulates human evaluation on pass rate and win rate.
         </p>
 
         <h2>Adding new methods or evaluators</h2>
@@ -123,7 +127,7 @@
     const leaderboardSelect = document.getElementById('leaderboardBaseline');
     const radarSelect = document.getElementById('radarBaseline')
     const records_urls={
-        'ChatGPT-DFSDT':'https://raw.githubusercontent.com/OpenBMB/ToolBench/master/toolbench/tooleval/results/leaderboard%23%23%23default_evalset%23%23%23tooleval_gpt-3.5-turbo_normalized%23%23%23ChatGPT-DFSDT.csv',
+        'ChatGPT-ReACT':'https://raw.githubusercontent.com/OpenBMB/ToolBench/master/toolbench/tooleval/results/leaderboard%23%23%23default_evalset%23%23%23tooleval_gpt-3.5-turbo_normalized%23%23%23ChatGPT-DFSDT.csv',
     }
     var myRadarChart = null;
     var myBarChart=null;
