@@ -36,11 +36,11 @@
 *Read this in [中文](README_ZH.md).*
 
 ## What's New
-- **[2023/9/29]** A new version **ToolEval** which is more stable and covers more models including GPT4! Please refer to [ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval) for more details.
+- **[2023/9/29]** A new version ToolEval which is more stable and covers more models including GPT4! Please refer to [**ToolEval**](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval) for more details. Besides, [**ToolLLaMA-2-7b-v2**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v2) is released with stronger tool-use capabilities. Please use the ToolLLaMA-2-7b-v2 model to reproduce our latest experimental results with the new version ToolEval.
 
-- **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data.zip` on [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J). *Notice that `data_0801` is the old version data.*
+- **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data.zip` on [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
 
-- **[2023/8/8]** No more hallucination! [**ToolLLaMA-2-7b**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
+- **[2023/8/8]** No more hallucination! [**ToolLLaMA-2-7b-v1**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v1) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
 
 - **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6). We will review it as soon as possible and send you the ToolBench key to get start on it! 
 
@@ -111,7 +111,7 @@ ToolBench contains both single-tool and multi-tool scenarios. The multi-tool sce
 
 ### Data Release
 
- Please download our dataset using the following link: [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/).
+ Please download our dataset using the following link: [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/). *Notice that `data_0801` is the old version data.*
 The file structure is as follows:
 ```
 ├── /data/
@@ -142,7 +142,7 @@ Here is some descriptions for the `data` directory:
 
 ## 🤖Model
 
-We release the [ToolLLaMA-7b](https://huggingface.co/ToolBench/ToolLLaMA-7b), [ToolLLaMA-7b-LoRA](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA) and [ToolLLaMA-2-7b](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) models, which are both trained on the released dataset in a multi-task fashion. We also release the [tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased) trained under our experimental setting.
+We release the [ToolLLaMA-2-7b-v2](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v2) which is trained on the latest version data, and [ToolLLaMA-7b-v1](https://huggingface.co/ToolBench/ToolLLaMA-7b-v1), [ToolLLaMA-7b-LoRA-v1](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA-v1) which are trained on the 0801 version data. All models are trained on the released dataset in a multi-task fashion. We also release the [tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased) trained under our experimental setting.
 
 ## 🚀Fine-tuning
 ### Install
@@ -609,7 +609,7 @@ Please refer to [ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/tool
 ### 📊 Model Experiments Results
 
 
-In our main experiments, ToolLLaMA demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions, which on a par with ChatGPT.
+In our main experiments, ToolLLaMA(v2) demonstrates a compelling capability to handle both single-tool and complex multi-tool instructions, which on a par with ChatGPT.
 Below are the main results. Win rate for each model is compared with ChatGPT-ReACT.
 
 

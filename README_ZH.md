@@ -36,11 +36,11 @@
 *英文[README](README.md)链接.*
 
 ## 最新支持
-- **[2023/9/29]** 更稳定的更新版本**ToolEval**， 加上更多模型比如GPT4的结果！更多细节请参考[ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval).
+- **[2023/9/29]** 更稳定的更新版本**ToolEval**， 加上更多模型比如GPT4的结果！更多细节请参考[ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval). 除此之外，工具使用能力更强的[**ToolLLaMA-2-7b-v2**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v2)模型已经开放，请使用这版模型和更新的tooleval来复现最新的实验结果。
 
-- **[2023/8/30]** 数据更新，拥有超过**12万**解路径标注和**完整的推理thoughts**！请在 [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) 上找到`data.zip`。*请注意：`data_0801.zip`是老版本数据。*
+- **[2023/8/30]** 数据更新，拥有超过**12万**解路径标注和**完整的推理thoughts**！请在 [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) 上找到`data.zip`。
 
-- **[2023/8/8]** 告别幻觉！[**ToolLLaMA-2-7b**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b) (从LLaMA-2-7b微调而来)模型已发布，比ChatGPT有着更少的API幻觉现象.
+- **[2023/8/8]** 告别幻觉！[**ToolLLaMA-2-7b-v1**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v1) (从LLaMA-2-7b微调而来)模型已发布，比ChatGPT有着更少的API幻觉现象.
 
 - **[2023/8/4]** 我们提供RapidAPI后端服务，以免您使用自己的RapidAPI私钥去订阅API。填写[表单](https://forms.gle/oCHHc8DQzhGfiT9r6)后，我们会尽快审核并给您发送ToolBench key去请求该后端服务! 
 
@@ -117,7 +117,7 @@ ToolBench包含单工具和多工具场景。多工具场景可以进一步分�
 
 ### 数据发布
 
- 请使用以下链接下载我们的数据集：[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)或者[清华云盘](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/).
+ 请使用以下链接下载我们的数据集：[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)或者[清华云盘](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/).*请注意：`data_0801.zip`是老版本数据。*
 文件结构如下:
 ```
 ├── /data/
@@ -145,7 +145,7 @@ ToolBench包含单工具和多工具场景。多工具场景可以进一步分�
 - `toolllama_G123_dfs_train.json` 和 `toolllama_G123_dfs_eval.json`：预处理数据，可用于直接训练 toolllama 并复现我们的结果。对于预处理细节，我们将 G1、G2 和 G3 数据分别分为训练、评估和测试部分，合并各数据集的训练数据进行训练。
 
 ## 🤖模型
-我们发布了全参数微调版本[ToolLLaMA-7b](https://huggingface.co/ToolBench/ToolLLaMA-7b)和lora版本[ToolLLaMA-7b-LoRA](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA)，都是在发布的数据集上以多任务方式训练的。我们也发布在实验设置下训练的[tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased).
+我们发布了在最新数据上全参数微调的[ToolLLaMA-2-7b-v2](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v2)，还有在0801版本数据上全参数微调的[ToolLLaMA-7b-v1](https://huggingface.co/ToolBench/ToolLLaMA-7b-v1)和lora版本[ToolLLaMA-7b-LoRA-v1](https://huggingface.co/ToolBench/ToolLLaMA-7b-LoRA-v1)，所有模型都是以多任务方式训练的。我们也发布在实验设置下训练的[tool retriever](https://huggingface.co/ToolBench/ToolBench_IR_bert_based_uncased).
 ## 🚀精调
 ### 安装
 克隆这个仓库并进入ToolBench文件夹。
