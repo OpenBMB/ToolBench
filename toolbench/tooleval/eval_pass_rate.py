@@ -173,7 +173,7 @@ if __name__ == "__main__":
             if label_cnt[query_id]["failed"] < label_cnt[query_id]["passed"]:
                 pass_rate += 1
             elif label_cnt[query_id]["failed"] == label_cnt[query_id]["passed"]:
-                if random.random < 0.5:
+                if random.random() < 0.5:
                     pass_rate += 1
         pass_rate /= len(label_cnt)
         print(f"Test set: {test_set}. Model: {reference_model}. Pass rate: {str(pass_rate)}")
