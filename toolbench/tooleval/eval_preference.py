@@ -175,6 +175,8 @@ if __name__=='__main__':
                 for qid in test_ids:
                     if qid not in prefer_dict:
                         prefer_dict[qid] = {reference_model: 0, output_model: 0, f"round_{i}": "incomplete"}
+                    elif f"round_{i}" not in prefer_dict[qid]:
+                        prefer_dict[qid][f"round_{i}"] = "incomplete"
                     elif prefer_dict[qid][f"round_{i}"] == "complete":
                         continue
                     if qid in ref_pass_result_dict and qid in output_pass_result_dict:
