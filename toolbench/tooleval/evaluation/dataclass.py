@@ -78,7 +78,7 @@ class ExecutionGraph(BaseModel):
                 all_visited_nodes.add(node.node_id)
                 node_json={
                     'role':node.role,
-                    'message':str(node.message)[:100] if node.role != 'system' else '',
+                    'message':node.message if node.role != 'system' and node.role !='user' else '',
                     'next':[]
                 }
                 for next_node in self.get_adjacent_node(node):
