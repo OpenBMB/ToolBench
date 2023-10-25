@@ -30,7 +30,7 @@ stream_handler = logging.StreamHandler()
 stream_handler.setLevel(logging.INFO)
 
 # 设置日志输出格式
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(formatter)
 stream_handler.setFormatter(formatter)
 
@@ -40,19 +40,19 @@ logger.addHandler(stream_handler)
 
 
 def compute_ndcg_for_query(query_tuple):
-    query_itr, query_id, top_hits, relevant_docs, corpus_ids, k = query_tuple
+    _, query_id, top_hits, relevant_docs, corpus_ids, k = query_tuple
     query_relevant_docs = relevant_docs[query_id]
 
     # Build the ground truth relevance scores and the model's predicted scores
     true_relevance = np.zeros(len(corpus_ids))
     predicted_scores = np.zeros(len(corpus_ids))
 
-    for hit in top_hits[:k]: # Limit to top k results
-        predicted_scores[corpus_ids.index(hit['corpus_id'])] = hit['score']
-        if hit['corpus_id'] in query_relevant_docs:
-            true_relevance[corpus_ids.index(hit['corpus_id'])] = 1
+    for hit in top_hits:
+        predicted_scores[corpus_ids.index(hit["corpus_id"])] = hit["score"]
+        if hit["corpus_id"] in query_relevant_docs:
+            true_relevance[corpus_ids.index(hit["corpus_id"])] = 1
 
-    return ndcg_score([true_relevance], [predicted_scores])
+    return ndcg_score([true_relevance], [predicted_scores], k)
 
 
 class APIEvaluator(SentenceEvaluator):
@@ -61,16 +61,17 @@ class APIEvaluator(SentenceEvaluator):
     Given a set of queries and a large corpus set. It will retrieve for each query the top-k most similar document.
     """
 
-    def __init__(self,
-             queries: Dict[str, str],  # qid => query
-             corpus: Dict[str, str],  # cid => doc
-             relevant_docs: Dict[str, Set[str]],  # qid => Set[cid]
-             corpus_chunk_size: int = 5,
-             show_progress_bar: bool = True,
-             batch_size: int = 1,
-             write_csv: bool = True,
-             score_function=cos_sim  # Score function, higher=more similar
-             ):
+    def __init__(
+        self,
+        queries: Dict[str, str],  # qid => query
+        corpus: Dict[str, str],  # cid => doc
+        relevant_docs: Dict[str, Set[str]],  # qid => Set[cid]
+        corpus_chunk_size: int = 5,
+        show_progress_bar: bool = True,
+        batch_size: int = 1,
+        write_csv: bool = True,
+        score_function=cos_sim,  # Score function, higher=more similar
+    ):
         self.queries_id = list(queries.keys())
         self.queries = [queries[qid] for qid in self.queries_id]
         self.corpus_ids = list(corpus.keys())
@@ -83,21 +84,39 @@ class APIEvaluator(SentenceEvaluator):
         self.score_function = score_function
 
         self.csv_file: str = "Information-Retrieval_evaluation_results.csv"
-        self.csv_headers = ["epoch", "steps", "Average NDCG@1", "Average NDCG@3", "Average NDCG@5"]
+        self.csv_headers = [
+            "epoch",
+            "steps",
+            "Average NDCG@1",
+            "Average NDCG@3",
+            "Average NDCG@5",
+        ]
 
         # for k in accuracy_at_k:
         #     self.csv_headers.append("Accuracy@{}".format(k))
 
-    def __call__(self, model, output_path: str = None, epoch: int = -1, steps: int = -1, *args, **kwargs) -> float:
+    def __call__(
+        self,
+        model,
+        output_path: str = None,
+        epoch: int = -1,
+        steps: int = -1,
+        *args,
+        **kwargs
+    ) -> float:
         if epoch != -1:
-            out_txt = " after epoch {}:".format(epoch) if steps == -1 else " in epoch {} after {} steps:".format(epoch, steps)
+            out_txt = (
+                " after epoch {}:".format(epoch)
+                if steps == -1
+                else " in epoch {} after {} steps:".format(epoch, steps)
+            )
         else:
             out_txt = ":"
         logger.info("Information Retrieval Evaluation" + out_txt)
 
-        #scores = self.compute_metrices(model)
+        # scores = self.compute_metrices(model)
         avg_ndcg = self.compute_metrices(model)
-        
+
         # Write results to disc
         if output_path is not None and self.write_csv:
             csv_path = os.path.join(output_path, self.csv_file)
@@ -118,19 +137,37 @@ class APIEvaluator(SentenceEvaluator):
             fOut.close()
 
         return min(avg_ndcg)
-    
+
     def compute_metrices(self, model) -> Dict[int, float]:
         # Compute embedding for the queries
-        query_embeddings = model.encode(self.queries, show_progress_bar=self.show_progress_bar, batch_size=self.batch_size, convert_to_tensor=True)
+        query_embeddings = model.encode(
+            self.queries,
+            show_progress_bar=self.show_progress_bar,
+            batch_size=self.batch_size,
+            convert_to_tensor=True,
+        )
 
         queries_result_list = [[] for _ in range(len(query_embeddings))]
 
         # Iterate over chunks of the corpus
-        for corpus_start_idx in trange(0, len(self.corpus), self.corpus_chunk_size, desc='Corpus Chunks', disable=not self.show_progress_bar):
-            corpus_end_idx = min(corpus_start_idx + self.corpus_chunk_size, len(self.corpus))
+        for corpus_start_idx in trange(
+            0,
+            len(self.corpus),
+            self.corpus_chunk_size,
+            desc="Corpus Chunks",
+            disable=not self.show_progress_bar,
+        ):
+            corpus_end_idx = min(
+                corpus_start_idx + self.corpus_chunk_size, len(self.corpus)
+            )
 
             # Encode chunk of corpus
-            sub_corpus_embeddings = model.encode(self.corpus[corpus_start_idx:corpus_end_idx], show_progress_bar=False, batch_size=self.batch_size, convert_to_tensor=True)
+            sub_corpus_embeddings = model.encode(
+                self.corpus[corpus_start_idx:corpus_end_idx],
+                show_progress_bar=False,
+                batch_size=self.batch_size,
+                convert_to_tensor=True,
+            )
 
             # Compute cosine similarites
             pair_scores = self.score_function(query_embeddings, sub_corpus_embeddings)
@@ -141,12 +178,20 @@ class APIEvaluator(SentenceEvaluator):
             for query_itr in range(len(query_embeddings)):
                 for sub_corpus_id, score in enumerate(pair_scores_list[query_itr]):
                     corpus_id = self.corpus_ids[corpus_start_idx + sub_corpus_id]
-                    queries_result_list[query_itr].append({'corpus_id': corpus_id, 'score': score})
+                    queries_result_list[query_itr].append(
+                        {"corpus_id": corpus_id, "score": score}
+                    )
 
         for query_itr in range(len(queries_result_list)):
             for doc_itr in range(len(queries_result_list[query_itr])):
-                score, corpus_id = queries_result_list[query_itr][doc_itr]['score'], queries_result_list[query_itr][doc_itr]['corpus_id']
-                queries_result_list[query_itr][doc_itr] = {'corpus_id': corpus_id, 'score': score}
+                score, corpus_id = (
+                    queries_result_list[query_itr][doc_itr]["score"],
+                    queries_result_list[query_itr][doc_itr]["corpus_id"],
+                )
+                queries_result_list[query_itr][doc_itr] = {
+                    "corpus_id": corpus_id,
+                    "score": score,
+                }
 
         logger.info("Queries: {}".format(len(self.queries)))
         logger.info("Corpus: {}\n".format(len(self.corpus)))
@@ -173,23 +218,33 @@ class APIEvaluator(SentenceEvaluator):
             query_tuples = []
             for query_itr in range(len(queries_result_list)):
                 query_id = self.queries_id[query_itr]
-                top_hits = sorted(queries_result_list[query_itr], key=lambda x: x['score'], reverse=True)
-                query_tuples.append((query_itr, query_id, top_hits, self.relevant_docs, self.corpus_ids, k))  # add 'k' to each tuple
-            
+                top_hits = sorted(
+                    queries_result_list[query_itr],
+                    key=lambda x: x["score"],
+                    reverse=True,
+                )
+                query_tuples.append(
+                    (
+                        query_itr,
+                        query_id,
+                        top_hits,
+                        self.relevant_docs,
+                        self.corpus_ids,
+                        k,
+                    )
+                )  # add 'k' to each tuple
+
             ndcg_scores.clear()  # clear the list for each 'k'
 
             with Pool() as p:
                 max_ = len(query_tuples)
                 with tqdm(total=max_) as pbar:
-                    for i, _ in tqdm(enumerate(p.imap(compute_ndcg_for_query, query_tuples))):
+                    for i, _ in tqdm(
+                        enumerate(p.imap(compute_ndcg_for_query, query_tuples))
+                    ):
                         pbar.update()
                         ndcg_scores.append(_)
             scores.append(np.mean(ndcg_scores))
 
         # Return the average NDCG@k of all queries for each 'k'
         return scores
-
-
-
-
-
