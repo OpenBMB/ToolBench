@@ -18,7 +18,7 @@
   <a href="#data">Data Release</a> •
   <a href="#web-ui">Web Demo</a> •
   <a href="#tool-eval">Tool Eval</a> •
-  <a href="assets/paper.pdf">Paper</a> •
+  <a href="https://arxiv.org/pdf/2307.16789.pdf">Paper</a> •
   <a href="#citation">Citation</a>
 
 </p>
