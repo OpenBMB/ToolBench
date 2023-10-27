@@ -130,7 +130,7 @@ The file structure is as follows:
 │  ├── ...
 │  └── /toolllama_dfs/
 ```
-Here is some descriptions for the `data` directory:
+Here are some descriptions for the `data` directory:
 - `instruction` and `answer`: The instruction data and solution path annotation data. `G1`,`G2`, `G3` refers to single-tool, intra-category multi-tool and intra-collection multi-tool data respectively. We also have an [Atlas Explorer](https://atlas.nomic.ai/map/58aca169-c29a-447a-8f01-0d418fc4d341/030ddad7-5305-461c-ba86-27e1ca79d899) for visualization.
 - `toolenv`: The tool environment related data, containing API jsons, API codes and API example responses.
 - `retrieval`: The data used for tool retrieval is included in this directory.
