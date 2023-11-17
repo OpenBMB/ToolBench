@@ -14,4 +14,4 @@ python eval_preference.py \
     --pass_rate_result_path ${PASS_TARE_PATH} \
     --max_eval_threads 20 \
     --use_pass_rate true \
-    --evaluate_times 4
+    --evaluate_times 7

@@ -577,7 +577,7 @@ python eval_pass_rate.py \
     --reference_model ${CANDIDATE_MODEL} \
     --test_ids ../../data/test_ids/ \
     --max_eval_threads 20 \
-    --evaluate_times 4
+    --evaluate_times 7
 
 ```
 The result files will be stored under the ${SAVE_PATH}.
@@ -600,7 +600,7 @@ python eval_preference.py \
     --pass_rate_result_path ${PASS_TARE_PATH} \
     --max_eval_threads 20 \
     --use_pass_rate true \
-    --evaluate_times 4
+    --evaluate_times 7
 ```
 The result files will be stored under the ${SAVE_PATH}.
 

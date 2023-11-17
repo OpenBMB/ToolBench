@@ -9,4 +9,4 @@ python eval_pass_rate.py \
     --reference_model ${CANDIDATE_MODEL} \
     --test_ids ../../data/test_query_ids/ \
     --max_eval_threads 20 \
-    --evaluate_times 4
+    --evaluate_times 7

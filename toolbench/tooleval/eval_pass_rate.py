@@ -170,11 +170,8 @@ if __name__ == "__main__":
         write_results(filename, reference_model, label_cnt)
         pass_rate = 0
         for query_id in label_cnt:
-            if label_cnt[query_id]["failed"] < label_cnt[query_id]["passed"]:
+            if label_cnt[query_id]["failed"] <= label_cnt[query_id]["passed"]:
                 pass_rate += 1
-            elif label_cnt[query_id]["failed"] == label_cnt[query_id]["passed"]:
-                if random.random() < 0.5:
-                    pass_rate += 1
         pass_rate /= len(label_cnt)
         print(f"Test set: {test_set}. Model: {reference_model}. Pass rate: {str(pass_rate)}")
         
