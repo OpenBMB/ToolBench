@@ -33,11 +33,11 @@ from toolbench.train.train import (
     make_supervised_data_module,
 )
 
-from toolbench.train.llama_flash_attn_monkey_patch import (
-    replace_llama_attn_with_flash_attn,
-)
+# from toolbench.train.llama_flash_attn_monkey_patch import (
+#     replace_llama_attn_with_flash_attn,
+# )
 from toolbench.train.llama_condense_monkey_patch import replace_llama_with_condense
-replace_llama_attn_with_flash_attn()
+# replace_llama_attn_with_flash_attn()
 
 
 @dataclass
@@ -110,7 +110,8 @@ def train():
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
-        device_map=device_map
+        device_map=device_map,
+        use_flash_attention_2=True,
     )
     lora_config = LoraConfig(
         r=lora_args.lora_r,

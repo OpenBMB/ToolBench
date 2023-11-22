@@ -276,7 +276,8 @@ def train():
     model = transformers.AutoModelForCausalLM.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
-        device_map=device_map
+        device_map=device_map,
+        use_flash_attention_2=True,
     )
     model.config.use_cache = False
     trainer = Trainer(
