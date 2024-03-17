@@ -36,6 +36,9 @@
 *Read this in [中文](README_ZH.md).*
 
 ## What's New
+- **[2024/3/17]** Welcome to **[StableToolBench](https://github.com/zhichengg/StableToolBench)**:
+A **stable and reliable** local toolbench server based on API response simulation. Dive deeper into the tech behind StableToolBench with [paper here](https://arxiv.org/pdf/2403.07714.pdf) and explore more on the [project homepage](https://zhichengg.github.io/stb.github.io/). Codes are available [here](https://github.com/zhichengg/StableToolBench).
+
 - **[2023/9/29]** A new version ToolEval which is more stable and covers more models including GPT4! Please refer to [**ToolEval**](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval) for more details. Besides, [**ToolLLaMA-2-7b-v2**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v2) is released with stronger tool-use capabilities. Please use the ToolLLaMA-2-7b-v2 model to reproduce our latest experimental results with the new version ToolEval.
 
 - **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data.zip` on [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
@@ -679,6 +682,17 @@ Feel free to cite us if you like ToolBench.
       author={Yujia Qin and Shengding Hu and Yankai Lin and Weize Chen and Ning Ding and Ganqu Cui and Zheni Zeng and Yufei Huang and Chaojun Xiao and Chi Han and Yi Ren Fung and Yusheng Su and Huadong Wang and Cheng Qian and Runchu Tian and Kunlun Zhu and Shihao Liang and Xingyu Shen and Bokai Xu and Zhen Zhang and Yining Ye and Bowen Li and Ziwei Tang and Jing Yi and Yuzhang Zhu and Zhenning Dai and Lan Yan and Xin Cong and Yaxi Lu and Weilin Zhao and Yuxiang Huang and Junxi Yan and Xu Han and Xian Sun and Dahai Li and Jason Phang and Cheng Yang and Tongshuang Wu and Heng Ji and Zhiyuan Liu and Maosong Sun},
       year={2023},
       eprint={2304.08354},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
+
+```bibtex
+@misc{guo2024stabletoolbench,
+      title={StableToolBench: Towards Stable Large-Scale Benchmarking on Tool Learning of Large Language Models},
+      author={Guo, Zhicheng and Cheng, Sijie and Wang, Hao and Liang, Shihao and Qin, Yujia and Li, Peng and Liu, Zhiyuan and Sun, Maosong and Liu, Yang},
+      year={2024},
+      eprint={2403.07714},
       archivePrefix={arXiv},
       primaryClass={cs.CL}
 }
