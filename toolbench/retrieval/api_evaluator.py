@@ -52,7 +52,7 @@ def compute_ndcg_for_query(query_tuple):
         if hit["corpus_id"] in query_relevant_docs:
             true_relevance[corpus_ids.index(hit["corpus_id"])] = 1
 
-    return ndcg_score([true_relevance], [predicted_scores], k)
+    return ndcg_score([true_relevance], [predicted_scores], k=k)
 
 
 class APIEvaluator(SentenceEvaluator):
