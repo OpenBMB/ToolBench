@@ -487,9 +487,7 @@ class pipeline_runner:
         if callbacks is None:
             if server: print("Warning: no callbacks are defined for server mode")
             callbacks = []
-        splits = output_dir_path.split("/")
-        os.makedirs("/".join(splits[:-1]),exist_ok=True)
-        os.makedirs("/".join(splits),exist_ok=True)
+        os.makedirs(output_dir_path ,exist_ok=True)
         output_file_path = os.path.join(output_dir_path,f"{query_id}_{method}.json")
         if (not server) and os.path.exists(output_file_path):
             return
