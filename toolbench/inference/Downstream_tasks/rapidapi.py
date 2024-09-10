@@ -61,7 +61,7 @@ class rapidapi_wrapper(base_env):
         self.rapidapi_key = args.rapidapi_key
         self.use_rapidapi_key = args.use_rapidapi_key
         self.api_customization = args.api_customization
-        self.service_url = "http://39.105.143.28:8080/rapidapi"
+        self.service_url = "http://8.130.32.149:8080/rapidapi"
         self.max_observation_length = args.max_observation_length
         self.observ_compress_method = args.observ_compress_method
         self.retriever = retriever
