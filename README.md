@@ -47,7 +47,7 @@ A **stable and reliable** local toolbench server based on API response simulatio
 
 - **[2023/8/8]** No more hallucination! [**ToolLLaMA-2-7b-v1**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v1) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
 
-- **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/oCHHc8DQzhGfiT9r6). We will review it as soon as possible and send you the ToolBench key to get start on it! 
+- **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form]([https://forms.gle/oCHHc8DQzhGfiT9r6](https://forms.gle/S4hqVLtnqeXcNTCJA)). We will review it as soon as possible and send you the ToolBench key to get start on it! 
 
 - **[2023/8/1]** Our [**paper**](https://arxiv.org/abs/2307.16789) is released.
 
