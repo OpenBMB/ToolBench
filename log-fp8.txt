@@ -1,0 +1,2034 @@
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 143384 got signal: 2
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh
+W1106 03:58:09.568000 143932 site-packages/torch/distributed/run.py:793]
+W1106 03:58:09.568000 143932 site-packages/torch/distributed/run.py:793] *****************************************
+W1106 03:58:09.568000 143932 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in def
+ault, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+W1106 03:58:09.568000 143932 site-packages/torch/distributed/run.py:793] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.38s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:17<00:00,  8.58s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:17<00:00,  8.61s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:17<00:00,  8.59s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.50s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:17<00:00,  8.57s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.01s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:17<00:00,  8.55s/it]
+  0%|                                                                                                                       | 0/5861 [00:00<?, ?it/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (4598 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5142 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5004 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4265 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4422 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Layer 0, Memory: 4261 MB
+Layer 1, Memory: 5782 MB
+Layer 2, Memory: 7239 MB
+Layer 3, Memory: 8696 MB
+Layer 4, Memory: 10153 MB
+Layer 5, Memory: 11610 MB
+Layer 6, Memory: 13067 MB
+Layer 7, Memory: 14524 MB
+Layer 8, Memory: 15981 MB
+Layer 9, Memory: 17438 MB
+Layer 10, Memory: 18895 MB
+Layer 11, Memory: 20353 MB
+Layer 12, Memory: 21810 MB
+Layer 13, Memory: 23267 MB
+Layer 14, Memory: 24724 MB
+Layer 15, Memory: 26181 MB
+Layer 16, Memory: 27638 MB
+Layer 17, Memory: 29095 MB
+Layer 18, Memory: 30552 MB
+Layer 19, Memory: 32009 MB
+Layer 20, Memory: 33466 MB
+Layer 21, Memory: 34923 MB
+Layer 22, Memory: 36380 MB
+Layer 23, Memory: 37837 MB
+Layer 24, Memory: 39294 MB
+Layer 25, Memory: 40751 MB
+Layer 26, Memory: 42208 MB
+Layer 27, Memory: 43666 MB
+Layer 28, Memory: 45123 MB
+Layer 29, Memory: 46580 MB
+Layer 30, Memory: 48037 MB
+Layer 31, Memory: 49494 MB
+^CW1106 03:59:00.989000 143932 site-packages/torch/distributed/elastic/agent/server/api.py:704] Received Signals.SIGINT death signal, shutting down w
+orkers
+W1106 03:59:00.990000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144010 closing signal SIGINT
+W1106 03:59:00.990000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144011 closing signal SIGINT
+W1106 03:59:00.991000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144012 closing signal SIGINT
+W1106 03:59:00.991000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144013 closing signal SIGINT
+W1106 03:59:00.992000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144014 closing signal SIGINT
+W1106 03:59:00.992000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144015 closing signal SIGINT
+W1106 03:59:00.993000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144016 closing signal SIGINT
+W1106 03:59:00.993000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144017 closing signal SIGINT
+^CW1106 03:59:01.202000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144010 closing signal SIGTERM
+W1106 03:59:01.202000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144011 closing signal SIGTERM
+W1106 03:59:01.203000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144012 closing signal SIGTERM
+W1106 03:59:01.204000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144013 closing signal SIGTERM
+W1106 03:59:01.205000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144014 closing signal SIGTERM
+W1106 03:59:01.205000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144015 closing signal SIGTERM
+W1106 03:59:01.206000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144016 closing signal SIGTERM
+W1106 03:59:01.206000 143932 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 144017 closing signal SIGTERM
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 696, in run
+    result = self._invoke_run(role)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 855, in _inv
+oke_run
+    time.sleep(monitor_interval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 143932 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", li
+ne 355, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 705, in run
+    self._shutdown(e.sigval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", l
+ine 365, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 572, in c
+lose
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 909, in _
+close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 143932 got signal: 2
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama_fp8.sh
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:02<00:00,  1.09s/it]
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/fsdp/_init_utils.py:444: UserWarning: FSDP is switching
+ to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+  0%|                                                                                                                      | 0/46885 [00:00<?, ?it/s]
+Layer 0, Memory: 26753 MB
+Layer 1, Memory: 28274 MB
+Layer 2, Memory: 29731 MB
+Layer 3, Memory: 31188 MB
+Layer 4, Memory: 32645 MB
+Layer 5, Memory: 34102 MB
+Layer 6, Memory: 35559 MB
+Layer 7, Memory: 37016 MB
+Layer 8, Memory: 38473 MB
+Layer 9, Memory: 39930 MB
+Layer 10, Memory: 41387 MB
+Layer 11, Memory: 42844 MB
+Layer 12, Memory: 44301 MB
+Layer 13, Memory: 45759 MB
+Layer 14, Memory: 47216 MB
+Layer 15, Memory: 48673 MB
+Layer 16, Memory: 50130 MB
+Layer 17, Memory: 51587 MB
+Layer 18, Memory: 53044 MB
+Layer 19, Memory: 54501 MB
+Layer 20, Memory: 55958 MB
+Layer 21, Memory: 57415 MB
+Layer 22, Memory: 58872 MB
+Layer 23, Memory: 60329 MB
+Layer 24, Memory: 61786 MB
+Layer 25, Memory: 63243 MB
+Layer 26, Memory: 64700 MB
+Layer 27, Memory: 66157 MB
+Layer 28, Memory: 67614 MB
+Layer 29, Memory: 69072 MB
+Layer 30, Memory: 70529 MB
+Layer 31, Memory: 71986 MB
+Layer 0, Memory: 52490 MB
+Layer 1, Memory: 54011 MB
+Layer 2, Memory: 55468 MB
+Layer 3, Memory: 56925 MB
+Layer 4, Memory: 58382 MB
+Layer 5, Memory: 59839 MB
+Layer 6, Memory: 61296 MB
+Layer 7, Memory: 62753 MB
+Layer 8, Memory: 64210 MB
+Layer 9, Memory: 65667 MB
+Layer 10, Memory: 67124 MB
+Layer 11, Memory: 68581 MB
+Layer 12, Memory: 70038 MB
+Layer 13, Memory: 71496 MB
+Layer 14, Memory: 72953 MB
+Layer 15, Memory: 74410 MB
+Layer 16, Memory: 75867 MB
+Layer 17, Memory: 77324 MB
+Layer 18, Memory: 78781 MB
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank0]:     train()
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 296, in train
+[rank0]:     trainer.train()
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 2052, in train
+[rank0]:     return inner_training_loop(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 2388, in _inner_training_
+loop
+[rank0]:     tr_loss_step = self.training_step(model, inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 3485, in training_step
+[rank0]:     loss = self.compute_loss(model, inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 3532, in compute_loss
+[rank0]:     outputs = model(**inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call
+_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 823, in forward
+[rank0]:     return model_forward(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 811, in __call__
+[rank0]:     return convert_to_fp32(self.model_forward(*args, **kwargs))
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autoca
+st
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py",
+line 864, in forward
+[rank0]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call
+_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 823, in forward
+[rank0]:     return model_forward(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 811, in __call__
+[rank0]:     return convert_to_fp32(self.model_forward(*args, **kwargs))
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autoca
+st
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1192,
+ in forward
+[rank0]:     outputs = self.model(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call
+_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1003,
+ in forward
+[rank0]:     layer_outputs = decoder_layer(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call
+_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py",
+line 864, in forward
+[rank0]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call
+_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 732,
+in forward
+[rank0]:     hidden_states, self_attn_weights, present_key_value = self.self_attn(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call
+_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 630,
+in forward
+[rank0]:     query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 277,
+in apply_rotary_pos_emb
+[rank0]:     q_embed = (q * cos) + (rotate_half(q) * sin)
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 64.00 MiB. GPU 0 has a total capacity of 79.10 GiB of which 16.00 MiB is free.
+ Including non-PyTorch memory, this process has 79.07 GiB memory in use. Of the allocated memory 77.37 GiB is allocated by PyTorch, and 582.61 MiB is
+ reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avo
+id fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|                                                                                                                      | 0/46885 [00:02<?, ?it/s]
+^CW1106 04:00:58.251000 144879 site-packages/torch/distributed/elastic/agent/server/api.py:704] Received Signals.SIGINT death signal, shutting down w
+orkers
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", li
+ne 355, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 696, in run
+    result = self._invoke_run(role)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 855, in _inv
+oke_run
+    time.sleep(monitor_interval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 144879 got signal: 2
+^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+bash scripts/train_toolllama.sh ^Cxihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama_fp8.sh q
+W1106 04:01:20.131000 145460 site-packages/torch/distributed/run.py:793]
+W1106 04:01:20.131000 145460 site-packages/torch/distributed/run.py:793] *****************************************
+W1106 04:01:20.131000 145460 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in def
+ault, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+W1106 04:01:20.131000 145460 site-packages/torch/distributed/run.py:793] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+[rank2]:     self._prepare_proxy(conn)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+[rank2]:     conn.connect()
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 710, in connect
+[rank2]:     self._tunnel()
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 262, in _tunnel
+[rank2]:     raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+[rank2]: OSError: Tunnel connection failed: 503 Service Unavailable
+
+[rank2]: The above exception was the direct cause of the following exception:
+
+[rank2]: urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable'))
+
+[rank2]: The above exception was the direct cause of the following exception:
+
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 667, in send
+[rank2]:     resp = conn.urlopen(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+[rank2]:     retries = retries.increment(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+[rank2]:     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[rank2]: urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-llama/Llama-2-7
+b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailabl
+e')))
+
+[rank2]: During handling of the above exception, another exception occurred:
+
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank2]:     train()
+[rank2]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 268, in train
+[rank2]:     tokenizer = transformers.AutoTokenizer.from_pretrained(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 844
+, in from_pretrained
+[rank2]:     tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 676
+, in get_tokenizer_config
+[rank2]:     resolved_config_file = cached_file(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+[rank2]:     resolved_file = hf_hub_download(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank2]:     return fn(*args, **kwargs)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1221, in hf_hub_
+download
+[rank2]:     return _hf_hub_download_to_cache_dir(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1282, in _hf_hub
+_download_to_cache_dir
+[rank2]:     (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1722, in _get_me
+tadata_or_catch_error
+[rank2]:     metadata = get_hf_file_metadata(url=url, proxies=proxies, timeout=etag_timeout, headers=headers)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank2]:     return fn(*args, **kwargs)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1645, in get_hf_
+file_metadata
+[rank2]:     r = _request_wrapper(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 372, in _request
+_wrapper
+[rank2]:     response = _request_wrapper(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 395, in _request
+_wrapper
+[rank2]:     response = get_session().request(method=method, url=url, **params)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[rank2]:     resp = self.send(prep, **send_kwargs)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[rank2]:     r = adapter.send(request, **kwargs)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 66, in send
+[rank2]:     return super().send(request, *args, **kwargs)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 694, in send
+[rank2]:     raise ProxyError(e, request=request)
+[rank2]: requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-l
+lama/Llama-2-7b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Serv
+ice Unavailable')))"), '(Request ID: a38b0250-31f1-4889-abe0-9aeb789e9ae2)')
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+[rank1]:     self._prepare_proxy(conn)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+[rank1]:     conn.connect()
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 710, in connect
+[rank1]:     self._tunnel()
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 262, in _tunnel
+[rank1]:     raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+[rank1]: OSError: Tunnel connection failed: 503 Service Unavailable
+
+[rank1]: The above exception was the direct cause of the following exception:
+
+[rank1]: urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable'))
+
+[rank1]: The above exception was the direct cause of the following exception:
+
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 667, in send
+[rank1]:     resp = conn.urlopen(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+[rank1]:     retries = retries.increment(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+[rank1]:     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[rank1]: urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-llama/Llama-2-7
+b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailabl
+e')))
+
+[rank1]: During handling of the above exception, another exception occurred:
+
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank1]:     train()
+[rank1]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 268, in train
+[rank1]:     tokenizer = transformers.AutoTokenizer.from_pretrained(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 844
+, in from_pretrained
+[rank1]:     tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 676
+, in get_tokenizer_config
+[rank1]:     resolved_config_file = cached_file(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+[rank1]:     resolved_file = hf_hub_download(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank1]:     return fn(*args, **kwargs)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1221, in hf_hub_
+download
+[rank1]:     return _hf_hub_download_to_cache_dir(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1282, in _hf_hub
+_download_to_cache_dir
+[rank1]:     (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1722, in _get_me
+tadata_or_catch_error
+[rank1]:     metadata = get_hf_file_metadata(url=url, proxies=proxies, timeout=etag_timeout, headers=headers)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank1]:     return fn(*args, **kwargs)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1645, in get_hf_
+file_metadata
+[rank1]:     r = _request_wrapper(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 372, in _request
+_wrapper
+[rank1]:     response = _request_wrapper(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 395, in _request
+_wrapper
+[rank1]:     response = get_session().request(method=method, url=url, **params)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[rank1]:     resp = self.send(prep, **send_kwargs)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[rank1]:     r = adapter.send(request, **kwargs)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 66, in send
+[rank1]:     return super().send(request, *args, **kwargs)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 694, in send
+[rank1]:     raise ProxyError(e, request=request)
+[rank1]: requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-l
+lama/Llama-2-7b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Serv
+ice Unavailable')))"), '(Request ID: 84d6307d-0e34-4249-9a3c-1bef83d09a57)')
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+[rank5]:     self._prepare_proxy(conn)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+[rank5]:     conn.connect()
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 710, in connect
+[rank5]:     self._tunnel()
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 262, in _tunnel
+[rank5]:     raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+[rank5]: OSError: Tunnel connection failed: 503 Service Unavailable
+
+[rank5]: The above exception was the direct cause of the following exception:
+
+[rank5]: urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable'))
+
+[rank5]: The above exception was the direct cause of the following exception:
+
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 667, in send
+[rank5]:     resp = conn.urlopen(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+[rank5]:     retries = retries.increment(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+[rank5]:     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[rank5]: urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-llama/Llama-2-7
+b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailabl
+e')))
+
+[rank5]: During handling of the above exception, another exception occurred:
+
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank5]:     train()
+[rank5]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 268, in train
+[rank5]:     tokenizer = transformers.AutoTokenizer.from_pretrained(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 844
+, in from_pretrained
+[rank5]:     tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 676
+, in get_tokenizer_config
+[rank5]:     resolved_config_file = cached_file(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+[rank5]:     resolved_file = hf_hub_download(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank5]:     return fn(*args, **kwargs)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1221, in hf_hub_
+download
+[rank5]:     return _hf_hub_download_to_cache_dir(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1282, in _hf_hub
+_download_to_cache_dir
+[rank5]:     (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1722, in _get_me
+tadata_or_catch_error
+[rank5]:     metadata = get_hf_file_metadata(url=url, proxies=proxies, timeout=etag_timeout, headers=headers)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank5]:     return fn(*args, **kwargs)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1645, in get_hf_
+file_metadata
+[rank5]:     r = _request_wrapper(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 372, in _request
+_wrapper
+[rank5]:     response = _request_wrapper(
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 395, in _request
+_wrapper
+[rank5]:     response = get_session().request(method=method, url=url, **params)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[rank5]:     resp = self.send(prep, **send_kwargs)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[rank5]:     r = adapter.send(request, **kwargs)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 66, in send
+[rank5]:     return super().send(request, *args, **kwargs)
+[rank5]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 694, in send
+[rank5]:     raise ProxyError(e, request=request)
+[rank5]: requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-l
+lama/Llama-2-7b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Serv
+ice Unavailable')))"), '(Request ID: 1d4a9eff-f487-4794-838e-cf9c7b4cae46)')
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+[rank0]:     self._prepare_proxy(conn)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+[rank0]:     conn.connect()
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 710, in connect
+[rank0]:     self._tunnel()
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 262, in _tunnel
+[rank0]:     raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+[rank0]: OSError: Tunnel connection failed: 503 Service Unavailable
+
+[rank0]: The above exception was the direct cause of the following exception:
+
+[rank0]: urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable'))
+
+[rank0]: The above exception was the direct cause of the following exception:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 667, in send
+[rank0]:     resp = conn.urlopen(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+[rank0]:     retries = retries.increment(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+[rank0]:     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[rank0]: urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-llama/Llama-2-7
+b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailabl
+e')))
+
+[rank0]: During handling of the above exception, another exception occurred:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank0]:     train()
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 268, in train
+[rank0]:     tokenizer = transformers.AutoTokenizer.from_pretrained(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 844
+, in from_pretrained
+[rank0]:     tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 676
+, in get_tokenizer_config
+[rank0]:     resolved_config_file = cached_file(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+[rank0]:     resolved_file = hf_hub_download(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1221, in hf_hub_
+download
+[rank0]:     return _hf_hub_download_to_cache_dir(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1282, in _hf_hub
+_download_to_cache_dir
+[rank0]:     (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1722, in _get_me
+tadata_or_catch_error
+[rank0]:     metadata = get_hf_file_metadata(url=url, proxies=proxies, timeout=etag_timeout, headers=headers)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1645, in get_hf_
+file_metadata
+[rank0]:     r = _request_wrapper(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 372, in _request
+_wrapper
+[rank0]:     response = _request_wrapper(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 395, in _request
+_wrapper
+[rank0]:     response = get_session().request(method=method, url=url, **params)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[rank0]:     resp = self.send(prep, **send_kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[rank0]:     r = adapter.send(request, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 66, in send
+[rank0]:     return super().send(request, *args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 694, in send
+[rank0]:     raise ProxyError(e, request=request)
+[rank0]: requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-l
+lama/Llama-2-7b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Serv
+ice Unavailable')))"), '(Request ID: e42e3ec8-18ab-40f8-9afe-3d1cf8b11a4b)')
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+[rank7]:     self._prepare_proxy(conn)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+[rank7]:     conn.connect()
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 710, in connect
+[rank7]:     self._tunnel()
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 262, in _tunnel
+[rank7]:     raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+[rank7]: OSError: Tunnel connection failed: 503 Service Unavailable
+
+[rank7]: The above exception was the direct cause of the following exception:
+
+[rank7]: urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable'))
+
+[rank7]: The above exception was the direct cause of the following exception:
+
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 667, in send
+[rank7]:     resp = conn.urlopen(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+[rank7]:     retries = retries.increment(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+[rank7]:     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[rank7]: urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-llama/Llama-2-7
+b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailabl
+e')))
+
+[rank7]: During handling of the above exception, another exception occurred:
+
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank7]:     train()
+[rank7]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 268, in train
+[rank7]:     tokenizer = transformers.AutoTokenizer.from_pretrained(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 844
+, in from_pretrained
+[rank7]:     tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 676
+, in get_tokenizer_config
+[rank7]:     resolved_config_file = cached_file(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+[rank7]:     resolved_file = hf_hub_download(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank7]:     return fn(*args, **kwargs)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1221, in hf_hub_
+download
+[rank7]:     return _hf_hub_download_to_cache_dir(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1282, in _hf_hub
+_download_to_cache_dir
+[rank7]:     (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1722, in _get_me
+tadata_or_catch_error
+[rank7]:     metadata = get_hf_file_metadata(url=url, proxies=proxies, timeout=etag_timeout, headers=headers)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank7]:     return fn(*args, **kwargs)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1645, in get_hf_
+file_metadata
+[rank7]:     r = _request_wrapper(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 372, in _request
+_wrapper
+[rank7]:     response = _request_wrapper(
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 395, in _request
+_wrapper
+[rank7]:     response = get_session().request(method=method, url=url, **params)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[rank7]:     resp = self.send(prep, **send_kwargs)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[rank7]:     r = adapter.send(request, **kwargs)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 66, in send
+[rank7]:     return super().send(request, *args, **kwargs)
+[rank7]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 694, in send
+[rank7]:     raise ProxyError(e, request=request)
+[rank7]: requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-l
+lama/Llama-2-7b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Serv
+ice Unavailable')))"), '(Request ID: 67098089-7354-466b-ad41-0db8a44d6baf)')
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+[rank6]:     self._prepare_proxy(conn)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+[rank6]:     conn.connect()
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 710, in connect
+[rank6]:     self._tunnel()
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 262, in _tunnel
+[rank6]:     raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+[rank6]: OSError: Tunnel connection failed: 503 Service Unavailable
+
+[rank6]: The above exception was the direct cause of the following exception:
+
+[rank6]: urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable'))
+
+[rank6]: The above exception was the direct cause of the following exception:
+
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 667, in send
+[rank6]:     resp = conn.urlopen(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+[rank6]:     retries = retries.increment(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+[rank6]:     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[rank6]: urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-llama/Llama-2-7
+b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailabl
+e')))
+
+[rank6]: During handling of the above exception, another exception occurred:
+
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank6]:     train()
+[rank6]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 268, in train
+[rank6]:     tokenizer = transformers.AutoTokenizer.from_pretrained(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 844
+, in from_pretrained
+[rank6]:     tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 676
+, in get_tokenizer_config
+[rank6]:     resolved_config_file = cached_file(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+[rank6]:     resolved_file = hf_hub_download(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank6]:     return fn(*args, **kwargs)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1221, in hf_hub_
+download
+[rank6]:     return _hf_hub_download_to_cache_dir(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1282, in _hf_hub
+_download_to_cache_dir
+[rank6]:     (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1722, in _get_me
+tadata_or_catch_error
+[rank6]:     metadata = get_hf_file_metadata(url=url, proxies=proxies, timeout=etag_timeout, headers=headers)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank6]:     return fn(*args, **kwargs)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1645, in get_hf_
+file_metadata
+[rank6]:     r = _request_wrapper(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 372, in _request
+_wrapper
+[rank6]:     response = _request_wrapper(
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 395, in _request
+_wrapper
+[rank6]:     response = get_session().request(method=method, url=url, **params)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[rank6]:     resp = self.send(prep, **send_kwargs)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[rank6]:     r = adapter.send(request, **kwargs)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 66, in send
+[rank6]:     return super().send(request, *args, **kwargs)
+[rank6]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 694, in send
+[rank6]:     raise ProxyError(e, request=request)
+[rank6]: requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-l
+lama/Llama-2-7b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Serv
+ice Unavailable')))"), '(Request ID: 727606eb-f405-4073-b8b5-e1c8c844809a)')
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+[rank4]:     self._prepare_proxy(conn)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+[rank4]:     conn.connect()
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 710, in connect
+[rank4]:     self._tunnel()
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 262, in _tunnel
+[rank4]:     raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+[rank4]: OSError: Tunnel connection failed: 503 Service Unavailable
+
+[rank4]: The above exception was the direct cause of the following exception:
+
+[rank4]: urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable'))
+
+[rank4]: The above exception was the direct cause of the following exception:
+
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 667, in send
+[rank4]:     resp = conn.urlopen(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+[rank4]:     retries = retries.increment(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+[rank4]:     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[rank4]: urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-llama/Llama-2-7
+b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailabl
+e')))
+
+[rank4]: During handling of the above exception, another exception occurred:
+
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank4]:     train()
+[rank4]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 268, in train
+[rank4]:     tokenizer = transformers.AutoTokenizer.from_pretrained(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 844
+, in from_pretrained
+[rank4]:     tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 676
+, in get_tokenizer_config
+[rank4]:     resolved_config_file = cached_file(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+[rank4]:     resolved_file = hf_hub_download(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank4]:     return fn(*args, **kwargs)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1221, in hf_hub_
+download
+[rank4]:     return _hf_hub_download_to_cache_dir(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1282, in _hf_hub
+_download_to_cache_dir
+[rank4]:     (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1722, in _get_me
+tadata_or_catch_error
+[rank4]:     metadata = get_hf_file_metadata(url=url, proxies=proxies, timeout=etag_timeout, headers=headers)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank4]:     return fn(*args, **kwargs)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1645, in get_hf_
+file_metadata
+[rank4]:     r = _request_wrapper(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 372, in _request
+_wrapper
+[rank4]:     response = _request_wrapper(
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 395, in _request
+_wrapper
+[rank4]:     response = get_session().request(method=method, url=url, **params)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[rank4]:     resp = self.send(prep, **send_kwargs)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[rank4]:     r = adapter.send(request, **kwargs)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 66, in send
+[rank4]:     return super().send(request, *args, **kwargs)
+[rank4]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 694, in send
+[rank4]:     raise ProxyError(e, request=request)
+[rank4]: requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-l
+lama/Llama-2-7b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Serv
+ice Unavailable')))"), '(Request ID: 5ef2eaba-f77e-4315-a3fd-23a1863d7282)')
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+[rank3]:     self._prepare_proxy(conn)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+[rank3]:     conn.connect()
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 710, in connect
+[rank3]:     self._tunnel()
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connection.py", line 262, in _tunnel
+[rank3]:     raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+[rank3]: OSError: Tunnel connection failed: 503 Service Unavailable
+
+[rank3]: The above exception was the direct cause of the following exception:
+
+[rank3]: urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable'))
+
+[rank3]: The above exception was the direct cause of the following exception:
+
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 667, in send
+[rank3]:     resp = conn.urlopen(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+[rank3]:     retries = retries.increment(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/urllib3/util/retry.py", line 519, in increment
+[rank3]:     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[rank3]: urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-llama/Llama-2-7
+b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailabl
+e')))
+
+[rank3]: During handling of the above exception, another exception occurred:
+
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 302, in <module>
+[rank3]:     train()
+[rank3]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_fp8.py", line 268, in train
+[rank3]:     tokenizer = transformers.AutoTokenizer.from_pretrained(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 844
+, in from_pretrained
+[rank3]:     tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 676
+, in get_tokenizer_config
+[rank3]:     resolved_config_file = cached_file(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+[rank3]:     resolved_file = hf_hub_download(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank3]:     return fn(*args, **kwargs)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1221, in hf_hub_
+download
+[rank3]:     return _hf_hub_download_to_cache_dir(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1282, in _hf_hub
+_download_to_cache_dir
+[rank3]:     (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1722, in _get_me
+tadata_or_catch_error
+[rank3]:     metadata = get_hf_file_metadata(url=url, proxies=proxies, timeout=etag_timeout, headers=headers)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inn
+er_fn
+[rank3]:     return fn(*args, **kwargs)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1645, in get_hf_
+file_metadata
+[rank3]:     r = _request_wrapper(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 372, in _request
+_wrapper
+[rank3]:     response = _request_wrapper(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 395, in _request
+_wrapper
+[rank3]:     response = get_session().request(method=method, url=url, **params)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[rank3]:     resp = self.send(prep, **send_kwargs)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[rank3]:     r = adapter.send(request, **kwargs)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 66, in send
+[rank3]:     return super().send(request, *args, **kwargs)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/requests/adapters.py", line 694, in send
+[rank3]:     raise ProxyError(e, request=request)
+[rank3]: requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /meta-l
+lama/Llama-2-7b-hf/resolve/main/tokenizer_config.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Serv
+ice Unavailable')))"), '(Request ID: a8ba4e4e-95b7-48f3-944c-d6cfa171fea0)')
+[rank0]:[W1106 04:01:32.684984628 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNC
+CL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this proces
+s. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always be
+en present,  but this warning has only been added since PyTorch 2.4 (function operator())
+W1106 04:01:33.165000 145460 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145538 closing signal SIGTERM
+W1106 04:01:33.166000 145460 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145539 closing signal SIGTERM
+W1106 04:01:33.166000 145460 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145540 closing signal SIGTERM
+W1106 04:01:33.166000 145460 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145541 closing signal SIGTERM
+W1106 04:01:33.166000 145460 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145542 closing signal SIGTERM
+W1106 04:01:33.167000 145460 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145543 closing signal SIGTERM
+E1106 04:01:34.059000 145460 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 145537) of
+binary: /data/home/xihaocheng/anaconda3/envs/toolbench/bin/python
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", li
+ne 355, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+toolbench/train/train_fp8.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2024-11-06_04:01:33
+  host      : g0288.para.ai
+  rank      : 7 (local_rank: 7)
+  exitcode  : 1 (pid: 145544)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-11-06_04:01:33
+  host      : g0288.para.ai
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 145537)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama_fp8.sh q
+^CTraceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 5, in <module>
+    from torch.distributed.run import main
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/__init__.py", line 2486, in <module>
+    from torch import _meta_registrations
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/_meta_registrations.py", line 10, in <module>
+    from torch._decomp import (
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/_decomp/__init__.py", line 250, in <module>
+    import torch._refs
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/_refs/__init__.py", line 1687, in <module>
+    def rsub(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/_decomp/__init__.py", line 191, in decomposition_decorator
+    pytree.tree_map_(register, aten_op)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/_pytree.py", line 995, in tree_map_
+    leaves, treespec = tree_flatten(tree, is_leaf=is_leaf)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/_pytree.py", line 874, in tree_flatten
+    spec = _tree_flatten_helper(tree, leaves, is_leaf=is_leaf)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/_pytree.py", line 850, in _tree_flatten_helper
+    if _is_leaf(tree, is_leaf=is_leaf):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/_pytree.py", line 673, in _is_leaf
+    return (is_leaf is not None and is_leaf(tree)) or _get_node_type(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/_pytree.py", line 666, in _get_node_type
+    if _is_namedtuple_instance(tree):
+KeyboardInterrupt
+
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama_fp8.sh
+W1106 04:01:46.878000 145821 site-packages/torch/distributed/run.py:793]
+W1106 04:01:46.878000 145821 site-packages/torch/distributed/run.py:793] *****************************************
+W1106 04:01:46.878000 145821 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in def
+ault, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+W1106 04:01:46.878000 145821 site-packages/torch/distributed/run.py:793] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.11s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.10s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.00s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:17<00:00,  8.58s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.19s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.44s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:16<00:00,  8.43s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:17<00:00,  8.50s/it]
+  0%|                                                                                                                       | 0/5861 [00:00<?, ?it/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (4598 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5142 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5004 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4265 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4422 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Layer 0, Memory: 4261 MB
+Layer 1, Memory: 5782 MB
+Layer 2, Memory: 7239 MB
+Layer 3, Memory: 8696 MB
+Layer 4, Memory: 10153 MB
+Layer 5, Memory: 11610 MB
+Layer 6, Memory: 13067 MB
+Layer 7, Memory: 14524 MB
+Layer 8, Memory: 15981 MB
+Layer 9, Memory: 17438 MB
+Layer 10, Memory: 18895 MB
+Layer 11, Memory: 20353 MB
+Layer 12, Memory: 21810 MB
+Layer 13, Memory: 23267 MB
+Layer 14, Memory: 24724 MB
+Layer 15, Memory: 26181 MB
+Layer 16, Memory: 27638 MB
+Layer 17, Memory: 29095 MB
+Layer 18, Memory: 30552 MB
+Layer 19, Memory: 32009 MB
+Layer 20, Memory: 33466 MB
+Layer 21, Memory: 34923 MB
+Layer 22, Memory: 36380 MB
+Layer 23, Memory: 37837 MB
+Layer 24, Memory: 39294 MB
+Layer 25, Memory: 40751 MB
+Layer 26, Memory: 42208 MB
+Layer 27, Memory: 43666 MB
+Layer 28, Memory: 45123 MB
+Layer 29, Memory: 46580 MB
+Layer 30, Memory: 48037 MB
+Layer 31, Memory: 49494 MB
+Token indices sequence length is longer than the specified maximum sequence length for this model (4315 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Layer 0, Memory: 17145 MB
+Layer 1, Memory: 18666 MB
+Layer 2, Memory: 20123 MB
+Layer 3, Memory: 21581 MB
+Layer 4, Memory: 23038 MB
+Layer 5, Memory: 24495 MB
+Layer 6, Memory: 25952 MB
+Layer 7, Memory: 27409 MB
+Layer 8, Memory: 28866 MB
+Layer 9, Memory: 30323 MB
+Layer 10, Memory: 31780 MB
+Layer 11, Memory: 33237 MB
+Layer 12, Memory: 34694 MB
+Layer 13, Memory: 36151 MB
+Layer 14, Memory: 37608 MB
+Layer 15, Memory: 39065 MB
+Layer 16, Memory: 40522 MB
+Layer 17, Memory: 41979 MB
+Layer 18, Memory: 43436 MB
+Layer 19, Memory: 44894 MB
+Layer 20, Memory: 46351 MB
+Layer 21, Memory: 47808 MB
+Layer 22, Memory: 49265 MB
+Layer 23, Memory: 50722 MB
+Layer 24, Memory: 52179 MB
+Layer 25, Memory: 53636 MB
+Layer 26, Memory: 55093 MB
+Layer 27, Memory: 56550 MB
+Layer 28, Memory: 58007 MB
+Layer 29, Memory: 59464 MB
+Layer 30, Memory: 60921 MB
+Layer 31, Memory: 62378 MB
+^CW1106 04:02:38.994000 145821 site-packages/torch/distributed/elastic/agent/server/api.py:704] Received Signals.SIGINT death signal, shutting down w
+orkers
+W1106 04:02:38.995000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145887 closing signal SIGINT
+W1106 04:02:38.995000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145888 closing signal SIGINT
+W1106 04:02:38.996000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145889 closing signal SIGINT
+W1106 04:02:38.996000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145890 closing signal SIGINT
+W1106 04:02:38.997000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145891 closing signal SIGINT
+W1106 04:02:38.997000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145892 closing signal SIGINT
+W1106 04:02:38.998000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145893 closing signal SIGINT
+W1106 04:02:38.998000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145894 closing signal SIGINT
+^CW1106 04:02:39.155000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145887 closing signal SIGTERM
+W1106 04:02:39.155000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145888 closing signal SIGTERM
+W1106 04:02:39.156000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145889 closing signal SIGTERM
+W1106 04:02:39.156000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145890 closing signal SIGTERM
+W1106 04:02:39.157000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145891 closing signal SIGTERM
+W1106 04:02:39.157000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145892 closing signal SIGTERM
+W1106 04:02:39.158000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145893 closing signal SIGTERM
+W1106 04:02:39.159000 145821 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 145894 closing signal SIGTERM
+^CTraceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 696, in run
+    result = self._invoke_run(role)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 855, in _inv
+oke_run
+    time.sleep(monitor_interval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 145821 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 705, in run
+    self._shutdown(e.sigval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", l
+ine 365, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 572, in c
+lose
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 909, in _
+close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 145821 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", li
+ne 355, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 710, in run
+    self._shutdown()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", l
+ine 365, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 572, in c
+lose
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 909, in _
+close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 145821 got signal: 2
+^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama_fp8.sh
+W1106 04:03:08.559000 146547 site-packages/torch/distributed/run.py:793]
+W1106 04:03:08.559000 146547 site-packages/torch/distributed/run.py:793] *****************************************
+W1106 04:03:08.559000 146547 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in def
+ault, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+W1106 04:03:08.559000 146547 site-packages/torch/distributed/run.py:793] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.42s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.40s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.45s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.45s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.45s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.46s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.45s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.40s/it]
+  0%|                                                                                                                       | 0/5861 [00:00<?, ?it/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (4598 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5142 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5004 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4265 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4422 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Layer 0, Memory: 4297 MB
+Layer 1, Memory: 5130 MB
+Layer 2, Memory: 5899 MB
+Layer 3, Memory: 6669 MB
+Layer 4, Memory: 7438 MB
+Layer 5, Memory: 8207 MB
+Layer 6, Memory: 8977 MB
+Layer 7, Memory: 9746 MB
+Layer 8, Memory: 10515 MB
+Layer 9, Memory: 11285 MB
+Layer 10, Memory: 12054 MB
+Layer 11, Memory: 12823 MB
+Layer 12, Memory: 13593 MB
+Layer 13, Memory: 14362 MB
+Layer 14, Memory: 15131 MB
+Layer 15, Memory: 15901 MB
+Layer 16, Memory: 16670 MB
+Layer 17, Memory: 17439 MB
+Layer 18, Memory: 18209 MB
+Layer 19, Memory: 18978 MB
+Layer 20, Memory: 19747 MB
+Layer 21, Memory: 20517 MB
+Layer 22, Memory: 21288 MB
+Layer 23, Memory: 22059 MB
+Layer 24, Memory: 22831 MB
+Layer 25, Memory: 23602 MB
+Layer 26, Memory: 24374 MB
+Layer 27, Memory: 25146 MB
+Layer 28, Memory: 25917 MB
+Layer 29, Memory: 26688 MB
+Layer 30, Memory: 27460 MB
+Layer 31, Memory: 28231 MB
+Token indices sequence length is longer than the specified maximum sequence length for this model (4315 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Layer 0, Memory: 17181 MB
+Layer 1, Memory: 18015 MB
+Layer 2, Memory: 18784 MB
+Layer 3, Memory: 19554 MB
+Layer 4, Memory: 20323 MB
+Layer 5, Memory: 21093 MB
+Layer 6, Memory: 21862 MB
+Layer 7, Memory: 22631 MB
+Layer 8, Memory: 23401 MB
+Layer 9, Memory: 24170 MB
+Layer 10, Memory: 24939 MB
+Layer 11, Memory: 25709 MB
+Layer 12, Memory: 26478 MB
+Layer 13, Memory: 27247 MB
+Layer 14, Memory: 28017 MB
+Layer 15, Memory: 28786 MB
+Layer 16, Memory: 29555 MB
+Layer 17, Memory: 30325 MB
+Layer 18, Memory: 31094 MB
+Layer 19, Memory: 31863 MB
+Layer 20, Memory: 32632 MB
+Layer 21, Memory: 33402 MB
+Layer 22, Memory: 34173 MB
+Layer 23, Memory: 34945 MB
+Layer 24, Memory: 35716 MB
+Layer 25, Memory: 36488 MB
+Layer 26, Memory: 37259 MB
+Layer 27, Memory: 38031 MB
+Layer 28, Memory: 38802 MB
+Layer 29, Memory: 39573 MB
+Layer 30, Memory: 40345 MB
+Layer 31, Memory: 41117 MB
+{'loss': 0.6549, 'grad_norm': 4.952426433563232, 'learning_rate': 2.1276595744680852e-07, 'epoch': 0.0}
+  0%|                                                                                                           | 1/5861 [01:16<124:42:18, 76.61s/it]
+Token indices sequence length is longer than the specified maximum sequence length for this model (4186 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Layer 0, Memory: 10755 MB
+Layer 1, Memory: 11591 MB
+Layer 2, Memory: 12363 MB
+Layer 3, Memory: 13135 MB
+Layer 4, Memory: 13907 MB
+Layer 5, Memory: 14679 MB
+Layer 6, Memory: 15451 MB
+Layer 7, Memory: 16222 MB
+Layer 8, Memory: 16994 MB
+Layer 9, Memory: 17765 MB
+Layer 10, Memory: 18534 MB
+Layer 11, Memory: 19304 MB
+Layer 12, Memory: 20074 MB
+Layer 13, Memory: 20843 MB
+Layer 14, Memory: 21612 MB
+Layer 15, Memory: 22382 MB
+Layer 16, Memory: 23151 MB
+Layer 17, Memory: 23920 MB
+Layer 18, Memory: 24690 MB
+Layer 19, Memory: 25462 MB
+Layer 20, Memory: 26231 MB
+Layer 21, Memory: 27001 MB
+Layer 22, Memory: 27772 MB
+Layer 23, Memory: 28542 MB
+Layer 24, Memory: 29313 MB
+Layer 25, Memory: 30083 MB
+Layer 26, Memory: 30854 MB
+Layer 27, Memory: 31625 MB
+Layer 28, Memory: 32396 MB
+Layer 29, Memory: 33165 MB
+Layer 30, Memory: 33936 MB
+Layer 31, Memory: 34707 MB
+Token indices sequence length is longer than the specified maximum sequence length for this model (4172 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Layer 0, Memory: 23608 MB
+Layer 1, Memory: 24443 MB
+Layer 2, Memory: 25215 MB
+Layer 3, Memory: 25987 MB
+Layer 4, Memory: 26759 MB
+Layer 5, Memory: 27532 MB
+Layer 6, Memory: 28303 MB
+Layer 7, Memory: 29075 MB
+Layer 8, Memory: 29846 MB
+Layer 9, Memory: 30618 MB
+Layer 10, Memory: 31387 MB
+Layer 11, Memory: 32157 MB
+Layer 12, Memory: 32926 MB
+Layer 13, Memory: 33695 MB
+Layer 14, Memory: 34465 MB
+Layer 15, Memory: 35234 MB
+Layer 16, Memory: 36004 MB
+Layer 17, Memory: 36773 MB
+Layer 18, Memory: 37543 MB
+Layer 19, Memory: 38314 MB
+Layer 20, Memory: 39084 MB
+Layer 21, Memory: 39854 MB
+Layer 22, Memory: 40624 MB
+Layer 23, Memory: 41395 MB
+Layer 24, Memory: 42165 MB
+Layer 25, Memory: 42936 MB
+Layer 26, Memory: 43707 MB
+Layer 27, Memory: 44478 MB
+Layer 28, Memory: 45248 MB
+Layer 29, Memory: 46018 MB
+Layer 30, Memory: 46789 MB
+Layer 31, Memory: 47559 MB
+{'loss': 0.6956, 'grad_norm': 5.022357940673828, 'learning_rate': 4.2553191489361704e-07, 'epoch': 0.0}
+  0%|                                                                                                            | 2/5861 [01:19<53:51:46, 33.10s/it]
+Layer 0, Memory: 10755 MB
+Layer 1, Memory: 11591 MB
+Layer 2, Memory: 12363 MB
+Layer 3, Memory: 13135 MB
+Layer 4, Memory: 13907 MB
+Layer 5, Memory: 14679 MB
+Layer 6, Memory: 15451 MB
+Layer 7, Memory: 16222 MB
+Layer 8, Memory: 16994 MB
+Layer 9, Memory: 17765 MB
+Layer 10, Memory: 18534 MB
+Layer 11, Memory: 19304 MB
+Layer 12, Memory: 20074 MB
+Layer 13, Memory: 20843 MB
+Layer 14, Memory: 21612 MB
+Layer 15, Memory: 22382 MB
+Layer 16, Memory: 23151 MB
+Layer 17, Memory: 23920 MB
+Layer 18, Memory: 24690 MB
+Layer 19, Memory: 25462 MB
+Layer 20, Memory: 26231 MB
+Layer 21, Memory: 27001 MB
+Layer 22, Memory: 27772 MB
+Layer 23, Memory: 28542 MB
+Layer 24, Memory: 29313 MB
+Layer 25, Memory: 30083 MB
+Layer 26, Memory: 30854 MB
+Layer 27, Memory: 31625 MB
+Layer 28, Memory: 32396 MB
+Layer 29, Memory: 33165 MB
+Layer 30, Memory: 33936 MB
+Layer 31, Memory: 34707 MB
+Layer 0, Memory: 23608 MB
+Layer 1, Memory: 24443 MB
+Layer 2, Memory: 25215 MB
+Layer 3, Memory: 25987 MB
+Layer 4, Memory: 26759 MB
+Layer 5, Memory: 27532 MB
+Layer 6, Memory: 28303 MB
+Layer 7, Memory: 29075 MB
+Layer 8, Memory: 29846 MB
+Layer 9, Memory: 30618 MB
+Layer 10, Memory: 31387 MB
+Layer 11, Memory: 32157 MB
+Layer 12, Memory: 32926 MB
+Layer 13, Memory: 33695 MB
+Layer 14, Memory: 34465 MB
+Layer 15, Memory: 35234 MB
+Layer 16, Memory: 36004 MB
+Layer 17, Memory: 36773 MB
+Layer 18, Memory: 37543 MB
+Layer 19, Memory: 38314 MB
+Layer 20, Memory: 39084 MB
+Layer 21, Memory: 39854 MB
+Layer 22, Memory: 40624 MB
+Layer 23, Memory: 41395 MB
+Layer 24, Memory: 42165 MB
+Layer 25, Memory: 42936 MB
+Layer 26, Memory: 43707 MB
+Layer 27, Memory: 44478 MB
+Layer 28, Memory: 45248 MB
+Layer 29, Memory: 46018 MB
+Layer 30, Memory: 46789 MB
+Layer 31, Memory: 47559 MB
+{'loss': 0.653, 'grad_norm': 3.953550100326538, 'learning_rate': 6.382978723404255e-07, 'epoch': 0.0}
+  0%|                                                                                                            | 3/5861 [01:21<31:12:32, 19.18s/it]
+Layer 0, Memory: 10691 MB
+Layer 1, Memory: 11527 MB
+Layer 2, Memory: 12299 MB
+Layer 3, Memory: 13071 MB
+Layer 4, Memory: 13843 MB
+Layer 5, Memory: 14614 MB
+Layer 6, Memory: 15385 MB
+Layer 7, Memory: 16157 MB
+Layer 8, Memory: 16929 MB
+Layer 9, Memory: 17701 MB
+Layer 10, Memory: 18470 MB
+Layer 11, Memory: 19240 MB
+Layer 12, Memory: 20009 MB
+Layer 13, Memory: 20778 MB
+Layer 14, Memory: 21548 MB
+Layer 15, Memory: 22318 MB
+Layer 16, Memory: 23087 MB
+Layer 17, Memory: 23856 MB
+Layer 18, Memory: 24626 MB
+Layer 19, Memory: 25395 MB
+Layer 20, Memory: 26165 MB
+Layer 21, Memory: 26935 MB
+Layer 22, Memory: 27706 MB
+Layer 23, Memory: 28477 MB
+Layer 24, Memory: 29248 MB
+Layer 25, Memory: 30019 MB
+Layer 26, Memory: 30789 MB
+Layer 27, Memory: 31558 MB
+Layer 28, Memory: 32328 MB
+Layer 29, Memory: 33098 MB
+Layer 30, Memory: 33868 MB
+Layer 31, Memory: 34638 MB
+^CW1106 04:05:10.477000 146547 site-packages/torch/distributed/elastic/agent/server/api.py:704] Received Signals.SIGINT death signal, shutting down w
+orkers
+W1106 04:05:10.478000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146623 closing signal SIGINT
+W1106 04:05:10.479000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146624 closing signal SIGINT
+W1106 04:05:10.480000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146625 closing signal SIGINT
+W1106 04:05:10.480000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146626 closing signal SIGINT
+W1106 04:05:10.480000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146627 closing signal SIGINT
+W1106 04:05:10.481000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146628 closing signal SIGINT
+W1106 04:05:10.481000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146629 closing signal SIGINT
+W1106 04:05:10.482000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146630 closing signal SIGINT
+^CW1106 04:05:10.666000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146623 closing signal SIGTERM
+W1106 04:05:10.667000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146624 closing signal SIGTERM
+W1106 04:05:10.668000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146625 closing signal SIGTERM
+W1106 04:05:10.669000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146626 closing signal SIGTERM
+W1106 04:05:10.669000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146627 closing signal SIGTERM
+W1106 04:05:10.670000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146628 closing signal SIGTERM
+W1106 04:05:10.670000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146629 closing signal SIGTERM
+W1106 04:05:10.671000 146547 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 146630 closing signal SIGTERM
+^CTraceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 696, in run
+    result = self._invoke_run(role)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 855, in _inv
+oke_run
+    time.sleep(monitor_interval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 146547 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 705, in run
+    self._shutdown(e.sigval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", l
+ine 365, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 572, in c
+lose
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 909, in _
+close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 146547 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", li
+ne 355, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 710, in run
+    self._shutdown()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", l
+ine 365, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 572, in c
+lose
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 909, in _
+close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 146547 got signal: 2
+^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama_fp8.sh
+W1106 04:05:33.628000 147538 site-packages/torch/distributed/run.py:793]
+W1106 04:05:33.628000 147538 site-packages/torch/distributed/run.py:793] *****************************************
+W1106 04:05:33.628000 147538 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in def
+ault, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+W1106 04:05:33.628000 147538 site-packages/torch/distributed/run.py:793] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy`
+is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transfor
+mer_layer_cls_to_wrap` is deprecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+Loading checkpoint shards:   0%|                                                                                               | 0/6 [00:00<?, ?it/s]
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:07<00:00,  1.20s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:07<00:00,  1.21s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:07<00:00,  1.21s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:07<00:00,  1.20s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:07<00:00,  1.28s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:07<00:00,  1.28s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:07<00:00,  1.25s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:08<00:00,  1.38s/it]
+  0%|                                                                                                                       | 0/5861 [00:00<?, ?it/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (4598 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5142 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5004 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4265 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4422 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4315 > 4096). Running this sequence through the mo
+del will result in indexing errors
+{'loss': 0.6549, 'grad_norm': 4.935761451721191, 'learning_rate': 2.1276595744680852e-07, 'epoch': 0.0}
+  0%|                                                                                                           | 1/5861 [01:16<125:09:54, 76.89s/it]
+Token indices sequence length is longer than the specified maximum sequence length for this model (4186 > 4096). Running this sequence through the mo
+del will result in indexing errors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4172 > 4096). Running this sequence through the mo
+del will result in indexing errors
+{'loss': 0.6956, 'grad_norm': 5.018577575683594, 'learning_rate': 4.2553191489361704e-07, 'epoch': 0.0}
+{'loss': 0.6534, 'grad_norm': 3.9959654808044434, 'learning_rate': 6.382978723404255e-07, 'epoch': 0.0}
+{'loss': 0.7125, 'grad_norm': 4.315911769866943, 'learning_rate': 8.510638297872341e-07, 'epoch': 0.0}
+{'loss': 0.6875, 'grad_norm': 3.943437337875366, 'learning_rate': 1.0638297872340427e-06, 'epoch': 0.0}
+{'loss': 0.7709, 'grad_norm': 4.324907302856445, 'learning_rate': 1.276595744680851e-06, 'epoch': 0.0}
+{'loss': 0.6766, 'grad_norm': 4.440351486206055, 'learning_rate': 1.4893617021276598e-06, 'epoch': 0.0}
+{'loss': 0.6065, 'grad_norm': 3.5292294025421143, 'learning_rate': 1.7021276595744682e-06, 'epoch': 0.0}
+{'loss': 0.6873, 'grad_norm': 3.6428630352020264, 'learning_rate': 1.9148936170212767e-06, 'epoch': 0.0}
+{'loss': 0.5625, 'grad_norm': 3.129380941390991, 'learning_rate': 2.1276595744680853e-06, 'epoch': 0.0}
+{'loss': 0.5655, 'grad_norm': 2.6582727432250977, 'learning_rate': 2.3404255319148935e-06, 'epoch': 0.0}
+{'loss': 0.679, 'grad_norm': 3.5835490226745605, 'learning_rate': 2.553191489361702e-06, 'epoch': 0.0}
+{'loss': 0.5917, 'grad_norm': 6.0667924880981445, 'learning_rate': 2.7659574468085106e-06, 'epoch': 0.0}
+{'loss': 0.5835, 'grad_norm': 2.7321624755859375, 'learning_rate': 2.9787234042553196e-06, 'epoch': 0.0}
+{'loss': 0.5981, 'grad_norm': 2.7353599071502686, 'learning_rate': 3.1914893617021277e-06, 'epoch': 0.0}
+{'loss': 0.5401, 'grad_norm': 3.1644558906555176, 'learning_rate': 3.4042553191489363e-06, 'epoch': 0.0}
+{'loss': 0.4859, 'grad_norm': 3.251669406890869, 'learning_rate': 3.6170212765957445e-06, 'epoch': 0.0}
+{'loss': 0.5718, 'grad_norm': 4.30430793762207, 'learning_rate': 3.8297872340425535e-06, 'epoch': 0.0}
+{'loss': 0.4978, 'grad_norm': 2.614189386367798, 'learning_rate': 4.0425531914893625e-06, 'epoch': 0.0}
+{'loss': 0.5276, 'grad_norm': 2.60111141204834, 'learning_rate': 4.255319148936171e-06, 'epoch': 0.0}
+{'loss': 0.4603, 'grad_norm': 2.5937254428863525, 'learning_rate': 4.468085106382979e-06, 'epoch': 0.0}
+{'loss': 0.5387, 'grad_norm': 2.5339677333831787, 'learning_rate': 4.680851063829787e-06, 'epoch': 0.0}
+{'loss': 0.5956, 'grad_norm': 2.59005069732666, 'learning_rate': 4.893617021276596e-06, 'epoch': 0.0}
+{'loss': 0.5205, 'grad_norm': 2.403287887573242, 'learning_rate': 5.106382978723404e-06, 'epoch': 0.0}
+{'loss': 0.4914, 'grad_norm': 2.2377402782440186, 'learning_rate': 5.319148936170213e-06, 'epoch': 0.0}
+{'loss': 0.5408, 'grad_norm': 2.4673407077789307, 'learning_rate': 5.531914893617021e-06, 'epoch': 0.0}
+{'loss': 0.5134, 'grad_norm': 2.650620937347412, 'learning_rate': 5.74468085106383e-06, 'epoch': 0.0}
+{'loss': 0.4677, 'grad_norm': 1.8881975412368774, 'learning_rate': 5.957446808510639e-06, 'epoch': 0.0}
+{'loss': 0.4787, 'grad_norm': 2.1626992225646973, 'learning_rate': 6.170212765957447e-06, 'epoch': 0.0}
+{'loss': 0.3599, 'grad_norm': 1.760040044784546, 'learning_rate': 6.3829787234042555e-06, 'epoch': 0.01}
+{'loss': 0.4806, 'grad_norm': 2.080944299697876, 'learning_rate': 6.595744680851064e-06, 'epoch': 0.01}
+{'loss': 0.4611, 'grad_norm': 2.0447356700897217, 'learning_rate': 6.808510638297873e-06, 'epoch': 0.01}
+{'loss': 0.4774, 'grad_norm': 1.8599845170974731, 'learning_rate': 7.021276595744682e-06, 'epoch': 0.01}
+{'loss': 0.4741, 'grad_norm': 2.004214286804199, 'learning_rate': 7.234042553191489e-06, 'epoch': 0.01}
+{'loss': 0.3745, 'grad_norm': 1.8884469270706177, 'learning_rate': 7.446808510638298e-06, 'epoch': 0.01}
+{'loss': 0.4102, 'grad_norm': 1.8383328914642334, 'learning_rate': 7.659574468085107e-06, 'epoch': 0.01}
+{'loss': 0.5057, 'grad_norm': 2.3377389907836914, 'learning_rate': 7.872340425531916e-06, 'epoch': 0.01}
+{'loss': 0.4448, 'grad_norm': 2.0536880493164062, 'learning_rate': 8.085106382978725e-06, 'epoch': 0.01}
+{'loss': 0.481, 'grad_norm': 2.2708637714385986, 'learning_rate': 8.297872340425532e-06, 'epoch': 0.01}
+{'loss': 0.3961, 'grad_norm': 1.5955677032470703, 'learning_rate': 8.510638297872341e-06, 'epoch': 0.01}
+{'loss': 0.4198, 'grad_norm': 1.9726121425628662, 'learning_rate': 8.72340425531915e-06, 'epoch': 0.01}
+{'loss': 0.4508, 'grad_norm': 1.8690645694732666, 'learning_rate': 8.936170212765958e-06, 'epoch': 0.01}
+{'loss': 0.4403, 'grad_norm': 1.9763416051864624, 'learning_rate': 9.148936170212767e-06, 'epoch': 0.01}
+{'loss': 0.4327, 'grad_norm': 1.9543505907058716, 'learning_rate': 9.361702127659574e-06, 'epoch': 0.01}
+{'loss': 0.5778, 'grad_norm': 2.0520105361938477, 'learning_rate': 9.574468085106383e-06, 'epoch': 0.01}
+{'loss': 0.3893, 'grad_norm': 1.5587406158447266, 'learning_rate': 9.787234042553192e-06, 'epoch': 0.01}
+{'loss': 0.3817, 'grad_norm': 1.6940828561782837, 'learning_rate': 1e-05, 'epoch': 0.01}
+{'loss': 0.4382, 'grad_norm': 2.014474868774414, 'learning_rate': 1.0212765957446808e-05, 'epoch': 0.01}
+{'loss': 0.4143, 'grad_norm': 1.7106069326400757, 'learning_rate': 1.0425531914893617e-05, 'epoch': 0.01}
+{'loss': 0.4703, 'grad_norm': 1.8463664054870605, 'learning_rate': 1.0638297872340426e-05, 'epoch': 0.01}
+{'loss': 0.5173, 'grad_norm': 2.3762006759643555, 'learning_rate': 1.0851063829787235e-05, 'epoch': 0.01}
+{'loss': 0.3652, 'grad_norm': 1.9676134586334229, 'learning_rate': 1.1063829787234042e-05, 'epoch': 0.01}
+{'loss': 0.4125, 'grad_norm': 1.773787021636963, 'learning_rate': 1.1276595744680851e-05, 'epoch': 0.01}
+{'loss': 0.4196, 'grad_norm': 2.0174198150634766, 'learning_rate': 1.148936170212766e-05, 'epoch': 0.01}
+{'loss': 0.4284, 'grad_norm': 1.985109567642212, 'learning_rate': 1.170212765957447e-05, 'epoch': 0.01}
+{'loss': 0.4104, 'grad_norm': 1.8744603395462036, 'learning_rate': 1.1914893617021278e-05, 'epoch': 0.01}
+{'loss': 0.4428, 'grad_norm': 1.825451374053955, 'learning_rate': 1.2127659574468086e-05, 'epoch': 0.01}
+{'loss': 0.359, 'grad_norm': 1.3559592962265015, 'learning_rate': 1.2340425531914895e-05, 'epoch': 0.01}
+{'loss': 0.4384, 'grad_norm': 1.5921356678009033, 'learning_rate': 1.2553191489361702e-05, 'epoch': 0.01}
+{'loss': 0.4761, 'grad_norm': 2.0787570476531982, 'learning_rate': 1.2765957446808511e-05, 'epoch': 0.01}
+{'loss': 0.443, 'grad_norm': 1.9417113065719604, 'learning_rate': 1.2978723404255318e-05, 'epoch': 0.01}
+{'loss': 0.4228, 'grad_norm': 2.466062545776367, 'learning_rate': 1.3191489361702127e-05, 'epoch': 0.01}
+{'loss': 0.4265, 'grad_norm': 2.2079150676727295, 'learning_rate': 1.3404255319148936e-05, 'epoch': 0.01}
+{'loss': 0.3964, 'grad_norm': 1.6927505731582642, 'learning_rate': 1.3617021276595745e-05, 'epoch': 0.01}
+{'loss': 0.45, 'grad_norm': 1.8894939422607422, 'learning_rate': 1.3829787234042554e-05, 'epoch': 0.01}
+{'loss': 0.4387, 'grad_norm': 2.534773349761963, 'learning_rate': 1.4042553191489363e-05, 'epoch': 0.01}
+{'loss': 0.4019, 'grad_norm': 1.5668916702270508, 'learning_rate': 1.4255319148936172e-05, 'epoch': 0.01}
+{'loss': 0.3926, 'grad_norm': 1.6164541244506836, 'learning_rate': 1.4468085106382978e-05, 'epoch': 0.01}
+{'loss': 0.4433, 'grad_norm': 3.4468822479248047, 'learning_rate': 1.4680851063829787e-05, 'epoch': 0.01}
+{'loss': 0.4292, 'grad_norm': 1.6620901823043823, 'learning_rate': 1.4893617021276596e-05, 'epoch': 0.01}
+{'loss': 0.4594, 'grad_norm': 2.031921863555908, 'learning_rate': 1.5106382978723405e-05, 'epoch': 0.01}
+{'loss': 0.4174, 'grad_norm': 1.6421695947647095, 'learning_rate': 1.5319148936170214e-05, 'epoch': 0.01}
+{'loss': 0.3481, 'grad_norm': 1.4093040227890015, 'learning_rate': 1.5531914893617023e-05, 'epoch': 0.01}
+{'loss': 0.3905, 'grad_norm': 1.401186227798462, 'learning_rate': 1.5744680851063832e-05, 'epoch': 0.01}
+{'loss': 0.3719, 'grad_norm': 1.7265549898147583, 'learning_rate': 1.595744680851064e-05, 'epoch': 0.01}
+{'loss': 0.4229, 'grad_norm': 1.8740689754486084, 'learning_rate': 1.617021276595745e-05, 'epoch': 0.01}
+{'loss': 0.4355, 'grad_norm': 1.965277075767517, 'learning_rate': 1.6382978723404255e-05, 'epoch': 0.01}
+{'loss': 0.4478, 'grad_norm': 1.9756325483322144, 'learning_rate': 1.6595744680851064e-05, 'epoch': 0.01}
+{'loss': 0.4471, 'grad_norm': 1.9650251865386963, 'learning_rate': 1.6808510638297873e-05, 'epoch': 0.01}
+{'loss': 0.5411, 'grad_norm': 1.8930257558822632, 'learning_rate': 1.7021276595744682e-05, 'epoch': 0.01}
+{'loss': 0.5051, 'grad_norm': 2.713395833969116, 'learning_rate': 1.723404255319149e-05, 'epoch': 0.01}
+{'loss': 0.4545, 'grad_norm': 1.909016728401184, 'learning_rate': 1.74468085106383e-05, 'epoch': 0.01}
+{'loss': 0.4849, 'grad_norm': 1.7247291803359985, 'learning_rate': 1.7659574468085106e-05, 'epoch': 0.01}
+{'loss': 0.4632, 'grad_norm': 1.4880489110946655, 'learning_rate': 1.7872340425531915e-05, 'epoch': 0.01}
+{'loss': 0.4528, 'grad_norm': 1.5646916627883911, 'learning_rate': 1.8085106382978724e-05, 'epoch': 0.01}
+{'loss': 0.39, 'grad_norm': 1.710200548171997, 'learning_rate': 1.8297872340425533e-05, 'epoch': 0.01}
+{'loss': 0.5029, 'grad_norm': 1.7343720197677612, 'learning_rate': 1.851063829787234e-05, 'epoch': 0.01}
+{'loss': 0.441, 'grad_norm': 1.7364654541015625, 'learning_rate': 1.8723404255319148e-05, 'epoch': 0.02}
+{'loss': 0.4687, 'grad_norm': 1.5981085300445557, 'learning_rate': 1.8936170212765957e-05, 'epoch': 0.02}
+{'loss': 0.4773, 'grad_norm': 1.740176796913147, 'learning_rate': 1.9148936170212766e-05, 'epoch': 0.02}
+{'loss': 0.4589, 'grad_norm': 1.776871919631958, 'learning_rate': 1.9361702127659575e-05, 'epoch': 0.02}
+{'loss': 0.396, 'grad_norm': 1.6342798471450806, 'learning_rate': 1.9574468085106384e-05, 'epoch': 0.02}
+{'loss': 0.44, 'grad_norm': 1.6546486616134644, 'learning_rate': 1.9787234042553193e-05, 'epoch': 0.02}
+{'loss': 0.4632, 'grad_norm': 1.6440634727478027, 'learning_rate': 2e-05, 'epoch': 0.02}
+{'loss': 0.4764, 'grad_norm': 1.8444886207580566, 'learning_rate': 2.0212765957446807e-05, 'epoch': 0.02}
+{'loss': 0.4675, 'grad_norm': 1.6107468605041504, 'learning_rate': 2.0425531914893616e-05, 'epoch': 0.02}
+{'loss': 0.4497, 'grad_norm': 1.6208646297454834, 'learning_rate': 2.0638297872340425e-05, 'epoch': 0.02}
+{'loss': 0.4498, 'grad_norm': 1.6653424501419067, 'learning_rate': 2.0851063829787234e-05, 'epoch': 0.02}
+{'loss': 0.4528, 'grad_norm': 1.6564385890960693, 'learning_rate': 2.1063829787234043e-05, 'epoch': 0.02}
+{'loss': 0.4848, 'grad_norm': 1.7796576023101807, 'learning_rate': 2.1276595744680852e-05, 'epoch': 0.02}
+  2%|█▊                                                                                                         | 100/5861 [05:37<4:12:23,  2.63s/it]
+^CW1106 04:11:53.232000 147538 site-packages/torch/distributed/elastic/agent/server/api.py:704] Received Signals.SIGINT death signal, shutting down w
+orkers
+W1106 04:11:53.234000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147615 closing signal SIGINT
+W1106 04:11:53.234000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147616 closing signal SIGINT
+W1106 04:11:53.235000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147617 closing signal SIGINT
+W1106 04:11:53.235000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147618 closing signal SIGINT
+W1106 04:11:53.236000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147619 closing signal SIGINT
+W1106 04:11:53.236000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147620 closing signal SIGINT
+W1106 04:11:53.236000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147621 closing signal SIGINT
+W1106 04:11:53.237000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147622 closing signal SIGINT
+^CW1106 04:11:53.394000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147615 closing signal SIGTERM
+W1106 04:11:53.395000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147616 closing signal SIGTERM
+W1106 04:11:53.396000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147617 closing signal SIGTERM
+W1106 04:11:53.396000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147618 closing signal SIGTERM
+W1106 04:11:53.397000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147619 closing signal SIGTERM
+W1106 04:11:53.397000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147620 closing signal SIGTERM
+W1106 04:11:53.398000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147621 closing signal SIGTERM
+W1106 04:11:53.398000 147538 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 147622 closing signal SIGTERM
+^CTraceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 696, in run
+    result = self._invoke_run(role)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 855, in _inv
+oke_run
+    time.sleep(monitor_interval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 147538 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 705, in run
+    self._shutdown(e.sigval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", l
+ine 365, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 572, in c
+lose
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 909, in _
+close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 147538 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", li
+ne 355, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 710, in run
+    self._shutdown()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", l
+ine 365, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 572, in c
+lose
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 909, in _
+close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _t
+erminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 147538 got signal: 2
+^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ tmux capture-pane -S -
+

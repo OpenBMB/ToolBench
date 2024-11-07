@@ -1,0 +1,1303 @@
+^CW1105 12:22:28.680000 23248026928960 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4164004 closing signal SIGTERM
+^CTraceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 680, in run
+    result = self._invoke_run(role)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 835, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4163936 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 689, in run
+    self._shutdown(e.sigval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 868, in _close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4163936 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 694, in run
+    self._shutdown()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 868, in _close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4163936 got signal: 2
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████████████| 4/4 [00:03<00:00,  1.25it/s]
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/fsdp/_init_utils.py:440: UserWarning: FSDP is switching to use `NO_SHARD` instead of
+ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+  0%|                                                                                                               | 0/46884 [00:00<?, ?it/s]WARNING: tokenization mismatch: 2613
+vs. 2614. (ignored)
+WARNING: tokenization mismatch: 2015 vs. 2016. (ignored)
+WARNING: tokenization mismatch: 1560 vs. 1562. (ignored)
+WARNING: tokenization mismatch: 2295 vs. 2296. (ignored)
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [64,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [65,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [66,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [67,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [68,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [69,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [70,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [71,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [72,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [73,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [74,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [75,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [76,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [77,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [78,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [79,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [80,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [81,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [82,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [83,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [84,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [85,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [86,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [87,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [88,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [89,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [90,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [91,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [92,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [93,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [94,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [120,0,0], thread: [95,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [0,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [1,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [2,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [3,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [4,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [5,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [6,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [7,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [8,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [9,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [10,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [11,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [12,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [13,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [14,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [15,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [16,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [17,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [18,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [19,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [20,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [21,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [22,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [23,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [24,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [25,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [26,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [27,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [28,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [29,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [30,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [384,0,0], thread: [31,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [64,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [65,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [66,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [67,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [68,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [69,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [70,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [71,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [72,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [73,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [74,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [75,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [76,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [77,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [78,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [79,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [80,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [81,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [82,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [83,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [84,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [85,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [86,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [87,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [88,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [89,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [90,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [91,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [92,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [93,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [94,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [524,0,0], thread: [95,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [32,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [33,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [34,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [35,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [36,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [37,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [38,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [39,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [40,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [41,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [42,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [43,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [44,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [45,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [46,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [47,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [48,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [49,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [50,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [51,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [52,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [53,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [54,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [55,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [56,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [57,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [58,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [59,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [60,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [61,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [62,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [253,0,0], thread: [63,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [96,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [97,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [98,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [99,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [100,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [101,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [102,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [103,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [104,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [105,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [106,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [107,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [108,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [109,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [110,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [111,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [112,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [113,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [114,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [115,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [116,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [117,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [118,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [119,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [120,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [121,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [122,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [123,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [124,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [125,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [126,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [127,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [96,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [97,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [98,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [99,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [100,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [101,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [102,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [103,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [104,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [105,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [106,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [107,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [108,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [109,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [110,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [111,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [112,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [113,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [114,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [115,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [116,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [117,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [118,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [119,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [120,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [121,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [122,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [123,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [124,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [125,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [126,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [385,0,0], thread: [127,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [0,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [1,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [2,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [3,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [4,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [5,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [6,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [7,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [8,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [9,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [10,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [11,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [12,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [13,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [14,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [15,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [16,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [17,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [18,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [19,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [20,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [21,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [22,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [23,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [24,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [25,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [26,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [27,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [28,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [29,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [30,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [31,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [32,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [33,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [34,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [35,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [36,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [37,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [38,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [39,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [40,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [41,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [42,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [43,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [44,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [45,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [46,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [47,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [48,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [49,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [50,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [51,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [52,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [53,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [54,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [55,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [56,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [57,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [58,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [59,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [60,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [61,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [62,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [252,0,0], thread: [63,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [96,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [97,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [98,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [99,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [100,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [101,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [102,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [103,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [104,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [105,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [106,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [107,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [108,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [109,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [110,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [111,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [112,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [113,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [114,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [115,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [116,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [117,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [118,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [119,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [120,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [121,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [122,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [123,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [124,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [125,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [126,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [121,0,0], thread: [127,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_mem.py", line 13, in <module>
+[rank0]:     train()
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train.py", line 290, in train
+[rank0]:     trainer.train()
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 2052, in train
+[rank0]:     return inner_training_loop(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 2388, in _inner_training_loop
+[rank0]:     tr_loss_step = self.training_step(model, inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 3485, in training_step
+[rank0]:     loss = self.compute_loss(model, inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 3532, in compute_loss
+[rank0]:     outputs = model(**inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 823, in forward
+[rank0]:     return model_forward(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 811, in __call__
+[rank0]:     return convert_to_fp32(self.model_forward(*args, **kwargs))
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 43, in decorate_autocast
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 863, in forward
+[rank0]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 823, in forward
+[rank0]:     return model_forward(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 811, in __call__
+[rank0]:     return convert_to_fp32(self.model_forward(*args, **kwargs))
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 43, in decorate_autocast
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1189, in forward
+[rank0]:     outputs = self.model(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 964, in forward
+[rank0]:     cache_position = torch.arange(
+[rank0]: RuntimeError: CUDA error: device-side assert triggered
+[rank0]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank0]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank0]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+  0%|                                                                                                               | 0/46884 [00:00<?, ?it/s]
+E1105 12:25:15.806000 22754105358144 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 0 (pid: 4167537) of binary: /data/home/xihaocheng/anaco
+nda3/envs/toolbench/bin/python
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+toolbench/train/train_mem.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-11-05_12:25:15
+  host      : g0288.para.ai
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 4167537)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh nvidia-s^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ nvidia-smi
+Tue Nov  5 12:25:45 2024
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA H100 80GB HBM3          On  |   00000000:18:00.0 Off |                    0 |
+| N/A   31C    P0            100W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA H100 80GB HBM3          On  |   00000000:3A:00.0 Off |                    0 |
+| N/A   25C    P0             69W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA H100 80GB HBM3          On  |   00000000:4C:00.0 Off |                    0 |
+| N/A   28C    P0             69W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA H100 80GB HBM3          On  |   00000000:5D:00.0 Off |                    0 |
+| N/A   25C    P0             69W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA H100 80GB HBM3          On  |   00000000:9A:00.0 Off |                    0 |
+| N/A   31C    P0            103W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA H100 80GB HBM3          On  |   00000000:BA:00.0 Off |                    0 |
+| N/A   25C    P0             69W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA H100 80GB HBM3          On  |   00000000:CB:00.0 Off |                    0 |
+| N/A   29C    P0             70W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA H100 80GB HBM3          On  |   00000000:DB:00.0 Off |                    0 |
+| N/A   25C    P0             69W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+^[[A(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_mem.py", line 13, in <module>
+[rank0]:     train()
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train.py", line 272, in train
+[rank0]:     model.config.pad_token_id = tokenizer.pad_token_id
+[rank0]: UnboundLocalError: local variable 'model' referenced before assignment
+[rank0]:[W1105 12:25:59.160507553 ProcessGroupNCCL.cpp:1168] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, th
+e application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and
+ block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+E1105 12:25:59.614000 22970976339776 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 0 (pid: 4168434) of binary: /data/home/xihaocheng/anaco
+nda3/envs/toolbench/bin/python
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+toolbench/train/train_mem.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-11-05_12:25:59
+  host      : g0288.para.ai
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 4168434)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████████████| 4/4 [00:02<00:00,  1.50it/s]
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/fsdp/_init_utils.py:440: UserWarning: FSDP is switching to use `NO_SHARD` instead of
+ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+  0%|                                                                                                               | 0/46884 [00:00<?, ?it/s]WARNING: tokenization mismatch: 2613
+vs. 2614. (ignored)
+WARNING: tokenization mismatch: 2015 vs. 2016. (ignored)
+WARNING: tokenization mismatch: 1560 vs. 1562. (ignored)
+WARNING: tokenization mismatch: 2295 vs. 2296. (ignored)
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [0,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [1,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [2,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [3,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [4,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [5,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [6,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [7,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [8,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [9,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [10,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [11,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [12,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [13,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [14,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [15,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [16,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [17,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [18,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [19,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [20,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [21,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [22,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [23,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [24,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [25,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [26,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [27,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [28,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [29,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [30,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [303,0,0], thread: [31,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [0,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [1,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [2,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [3,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [4,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [5,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [6,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [7,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [8,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [9,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [10,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [11,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [12,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [13,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [14,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [15,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [16,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [17,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [18,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [19,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [20,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [21,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [22,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [23,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [24,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [25,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [26,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [27,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [28,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [29,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [30,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+../aten/src/ATen/native/cuda/Indexing.cu:1284: indexSelectLargeIndex: block: [31,0,0], thread: [31,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_mem.py", line 13, in <module>
+[rank0]:     train()
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train.py", line 292, in train
+[rank0]:     trainer.train()
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 2052, in train
+[rank0]:     return inner_training_loop(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 2388, in _inner_training_loop
+[rank0]:     tr_loss_step = self.training_step(model, inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 3485, in training_step
+[rank0]:     loss = self.compute_loss(model, inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/trainer.py", line 3532, in compute_loss
+[rank0]:     outputs = model(**inputs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 823, in forward
+[rank0]:     return model_forward(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 811, in __call__
+[rank0]:     return convert_to_fp32(self.model_forward(*args, **kwargs))
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 43, in decorate_autocast
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 863, in forward
+[rank0]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 823, in forward
+[rank0]:     return model_forward(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/operations.py", line 811, in __call__
+[rank0]:     return convert_to_fp32(self.model_forward(*args, **kwargs))
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 43, in decorate_autocast
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1189, in forward
+[rank0]:     outputs = self.model(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 964, in forward
+[rank0]:     cache_position = torch.arange(
+[rank0]: RuntimeError: CUDA error: device-side assert triggered
+[rank0]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank0]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank0]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+  0%|                                                                                                               | 0/46884 [00:00<?, ?it/s]
+E1105 12:27:15.144000 23402178500416 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 0 (pid: 4168850) of binary: /data/home/xihaocheng/anaco
+nda3/envs/toolbench/bin/python
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+toolbench/train/train_mem.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-11-05_12:27:15
+  host      : g0288.para.ai
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 4168850)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ cd ..
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng$ git clone https://github.com/OpenBMB/ToolBench.git
+Cloning into 'ToolBench'...
+remote: Enumerating objects: 1254, done.
+remote: Counting objects: 100% (449/449), done.
+remote: Compressing objects: 100% (187/187), done.
+remote: Total 1254 (delta 338), reused 271 (delta 262), pack-reused 805 (from 1)
+Receiving objects: 100% (1254/1254), 58.94 MiB | 4.91 MiB/s, done.
+Resolving deltas: 100% (722/722), done.
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng$ cd ToolBench
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh
+W1105 12:30:48.449000 22509851195200 torch/distributed/run.py:779]
+W1105 12:30:48.449000 22509851195200 torch/distributed/run.py:779] *****************************************
+W1105 12:30:48.449000 22509851195200 torch/distributed/run.py:779] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being ove
+rloaded, please further tune the variable for optimal performance in your application as needed.
+W1105 12:30:48.449000 22509851195200 torch/distributed/run.py:779] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_mem.py", line 13, in <module>
+[rank1]:     train()
+[rank1]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train.py", line 276, in train
+[rank1]:     model = transformers.AutoModelForCausalLM.from_pretrained(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+[rank1]:     return model_class.from_pretrained(
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3886, in from_pretrained
+[rank1]:     model = cls(config, *model_args, **model_kwargs)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1110, in __init__
+[rank1]:     self.model = LlamaModel(config)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 898, in __init__
+[rank1]:     [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 898, in <listcomp>
+[rank1]:     [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 684, in __init__
+[rank1]:     self.self_attn = LLAMA_ATTENTION_CLASSES[config._attn_implementation](config=config, layer_idx=layer_idx)
+[rank1]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 358, in __init__
+[rank1]:     self.rotary_emb = LlamaRotaryEmbedding(config=self.config)
+[rank1]: TypeError: CondenseRotaryEmbedding.__init__() got an unexpected keyword argument 'config'
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_mem.py", line 13, in <module>
+[rank0]:     train()
+[rank0]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train.py", line 276, in train
+[rank0]:     model = transformers.AutoModelForCausalLM.from_pretrained(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+[rank0]:     return model_class.from_pretrained(
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/modeling_utils.py", line 3886, in from_pretrained
+[rank0]:     model = cls(config, *model_args, **model_kwargs)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1110, in __init__
+[rank0]:     self.model = LlamaModel(config)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 898, in __init__
+[rank0]:     [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 898, in <listcomp>
+[rank0]:     [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 684, in __init__
+[rank0]:     self.self_attn = LLAMA_ATTENTION_CLASSES[config._attn_implementation](config=config, layer_idx=layer_idx)
+[rank0]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 358, in __init__
+[rank0]:     self.rotary_emb = LlamaRotaryEmbedding(config=self.config)
+[rank0]: TypeError: CondenseRotaryEmbedding.__init__() got an unexpected keyword argument 'config'
+W1105 12:31:04.980000 22509851195200 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4170454 closing signal SIGTERM
+E1105 12:31:05.194000 22509851195200 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 0 (pid: 4170453) of binary: /data/home/xihaocheng/anaco
+nda3/envs/toolbench/bin/python
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+toolbench/train/train_mem.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-11-05_12:31:04
+  host      : g0288.para.ai
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 4170453)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh
+W1105 12:31:28.049000 22606073358144 torch/distributed/run.py:779]
+W1105 12:31:28.049000 22606073358144 torch/distributed/run.py:779] *****************************************
+W1105 12:31:28.049000 22606073358144 torch/distributed/run.py:779] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being ove
+rloaded, please further tune the variable for optimal performance in your application as needed.
+W1105 12:31:28.049000 22606073358144 torch/distributed/run.py:779] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████| 2/2 [00:15<00:00,  7.68s/it]
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████| 2/2 [00:15<00:00,  7.74s/it]
+generation_config.json: 100%|████████████████████████████████████████████████████████████████████████| 188/188 [00:00<00:00, 786kB/s]
+  0%|                                                                                                      | 0/11720 [00:00<?, ?it/s]/data/home/xihaocheng/anaconda3/envs/toolbench
+/lib/python3.10/site-packages/torch/utils/checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instea
+d.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please u
+se `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+Token indices sequence length is longer than the specified maximum sequence length for this model (4598 > 4096). Running this sequence through the model will result in indexing er
+rors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5142 > 4096). Running this sequence through the model will result in indexing er
+rors
+{'loss': 0.6501, 'grad_norm': 4.976648330688477, 'learning_rate': 1.0660980810234542e-07, 'epoch': 0.0}
+{'loss': 0.6912, 'grad_norm': 5.062431812286377, 'learning_rate': 2.1321961620469084e-07, 'epoch': 0.0}
+{'loss': 0.6769, 'grad_norm': 4.125220775604248, 'learning_rate': 3.1982942430703626e-07, 'epoch': 0.0}
+  0%|                                                                                                                                         | 3/11720 [00:49<52:47:58, 16.22s/it]
+^CW1105 12:32:57.516000 22606073358144 torch/distributed/elastic/agent/server/api.py:688] Received Signals.SIGINT death signal, shutting down workers
+W1105 12:32:57.516000 22606073358144 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4170794 closing signal SIGINT
+W1105 12:32:57.517000 22606073358144 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4170795 closing signal SIGINT
+^CW1105 12:32:57.722000 22606073358144 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4170794 closing signal SIGTERM
+W1105 12:32:57.723000 22606073358144 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4170795 closing signal SIGTERM
+^CTraceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 680, in run
+    result = self._invoke_run(role)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 835, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4170706 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 689, in run
+    self._shutdown(e.sigval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 868, in _close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4170706 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 694, in run
+    self._shutdown()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 868, in _close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4170706 got signal: 2
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh
+W1105 12:33:24.644000 23055436207936 torch/distributed/run.py:779]
+W1105 12:33:24.644000 23055436207936 torch/distributed/run.py:779] *****************************************
+W1105 12:33:24.644000 23055436207936 torch/distributed/run.py:779] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being ove
+rloaded, please further tune the variable for optimal performance in your application as needed.
+W1105 12:33:24.644000 23055436207936 torch/distributed/run.py:779] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards:   0%|                                                                                                                             | 0/2 [00:00<?, ?it/s]
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_mem.py", line 13, in <module>
+[rank2]:     train()
+[rank2]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train.py", line 276, in train
+[rank2]:     model = transformers.AutoModelForCausalLM.from_pretrained(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+[rank2]:     return model_class.from_pretrained(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4014, in from_pretrained
+[rank2]:     ) = cls._load_pretrained_model(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4502, in _load_pretrained_model
+[rank2]:     new_error_msgs, offload_index, state_dict_index = _load_state_dict_into_meta_model(
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/modeling_utils.py", line 973, in _load_state_dict_into_meta_model
+[rank2]:     set_module_tensor_to_device(model, param_name, param_device, **set_module_kwargs)
+[rank2]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/modeling.py", line 329, in set_module_tensor_to_device
+[rank2]:     new_value = value.to(device)
+[rank2]: RuntimeError: CUDA error: invalid device ordinal
+[rank2]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank2]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank2]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Loading checkpoint shards:   0%|                                                                                                                             | 0/2 [00:00<?, ?it/s]
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train_mem.py", line 13, in <module>
+[rank3]:     train()
+[rank3]:   File "/ssd/data/xihaocheng/ToolBench/toolbench/train/train.py", line 276, in train
+[rank3]:     model = transformers.AutoModelForCausalLM.from_pretrained(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+[rank3]:     return model_class.from_pretrained(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4014, in from_pretrained
+[rank3]:     ) = cls._load_pretrained_model(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4502, in _load_pretrained_model
+[rank3]:     new_error_msgs, offload_index, state_dict_index = _load_state_dict_into_meta_model(
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/modeling_utils.py", line 973, in _load_state_dict_into_meta_model
+[rank3]:     set_module_tensor_to_device(model, param_name, param_device, **set_module_kwargs)
+[rank3]:   File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/accelerate/utils/modeling.py", line 329, in set_module_tensor_to_device
+[rank3]:     new_value = value.to(device)
+[rank3]: RuntimeError: CUDA error: invalid device ordinal
+[rank3]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank3]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank3]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+W1105 12:33:42.382000 23055436207936 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171654 closing signal SIGTERM
+W1105 12:33:42.383000 23055436207936 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171655 closing signal SIGTERM
+W1105 12:33:42.383000 23055436207936 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171657 closing signal SIGTERM
+E1105 12:33:42.949000 23055436207936 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 2 (pid: 4171656) of binary: /data/home/xihaocheng/anaco
+nda3/envs/toolbench/bin/python
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+toolbench/train/train_mem.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-11-05_12:33:42
+  host      : g0288.para.ai
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 4171656)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ bash scripts/train_toolllama.sh
+W1105 12:33:56.817000 23130989336384 torch/distributed/run.py:779]
+W1105 12:33:56.817000 23130989336384 torch/distributed/run.py:779] *****************************************
+W1105 12:33:56.817000 23130989336384 torch/distributed/run.py:779] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being ove
+rloaded, please further tune the variable for optimal performance in your application as needed.
+W1105 12:33:56.817000 23130989336384 torch/distributed/run.py:779] *****************************************
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1545: FutureWarning: `evaluation_strategy` is deprecated and will be remo
+ved in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+When using FSDP full shard, instead of using `gradient_checkpointing` in TrainingArguments, please use `activation_checkpointing` in `fsdp_config`. The former introduces a redunda
+nt AllGather operation in backward pass. Reference: https://github.com/huggingface/transformers/issues/30404
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/transformers/training_args.py:1886: FutureWarning: using `--fsdp_transformer_layer_cls_to_wrap` is depr
+ecated. Use fsdp_config instead
+  warnings.warn(
+Loading data...
+#train 187542, #eval 762
+Formatting inputs...Skip in lazy mode
+Formatting inputs...Skip in lazy mode
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:14<00:00,  7.35s/it]
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:15<00:00,  7.78s/it]
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:15<00:00,  7.58s/it]
+Loading checkpoint shards: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:15<00:00,  7.56s/it]
+  0%|                                                                                                                                                     | 0/5861 [00:00<?, ?it/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (5142 > 4096). Running this sequence through the model will result in indexing er
+rors
+Token indices sequence length is longer than the specified maximum sequence length for this model (5004 > 4096). Running this sequence through the model will result in indexing er
+rors
+Token indices sequence length is longer than the specified maximum sequence length for this model (4265 > 4096). Running this sequence through the model will result in indexing er
+rors
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please u
+se `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please u
+se `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please u
+se `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/utils/checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please u
+se `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+Token indices sequence length is longer than the specified maximum sequence length for this model (4315 > 4096). Running this sequence through the model will result in indexing er
+rors
+{'loss': 0.648, 'grad_norm': 4.777557373046875, 'learning_rate': 2.1276595744680852e-07, 'epoch': 0.0}
+{'loss': 0.6681, 'grad_norm': 4.581974983215332, 'learning_rate': 4.2553191489361704e-07, 'epoch': 0.0}
+{'loss': 0.6822, 'grad_norm': 4.172884464263916, 'learning_rate': 6.382978723404255e-07, 'epoch': 0.0}
+{'loss': 0.6577, 'grad_norm': 3.830845832824707, 'learning_rate': 8.510638297872341e-07, 'epoch': 0.0}
+{'loss': 0.6397, 'grad_norm': 3.8591549396514893, 'learning_rate': 1.0638297872340427e-06, 'epoch': 0.0}
+{'loss': 0.7852, 'grad_norm': 4.817326068878174, 'learning_rate': 1.276595744680851e-06, 'epoch': 0.0}
+{'loss': 0.6418, 'grad_norm': 4.128666400909424, 'learning_rate': 1.4893617021276598e-06, 'epoch': 0.0}
+{'loss': 0.5792, 'grad_norm': 3.4295883178710938, 'learning_rate': 1.7021276595744682e-06, 'epoch': 0.0}
+{'loss': 0.6274, 'grad_norm': 3.3375275135040283, 'learning_rate': 1.9148936170212767e-06, 'epoch': 0.0}
+{'loss': 0.5535, 'grad_norm': 3.1008825302124023, 'learning_rate': 2.1276595744680853e-06, 'epoch': 0.0}
+{'loss': 0.5501, 'grad_norm': 2.5638480186462402, 'learning_rate': 2.3404255319148935e-06, 'epoch': 0.0}
+{'loss': 0.6262, 'grad_norm': 3.2819833755493164, 'learning_rate': 2.553191489361702e-06, 'epoch': 0.0}
+{'loss': 0.5703, 'grad_norm': 2.79776930809021, 'learning_rate': 2.7659574468085106e-06, 'epoch': 0.0}
+{'loss': 0.5613, 'grad_norm': 2.492375373840332, 'learning_rate': 2.9787234042553196e-06, 'epoch': 0.0}
+{'loss': 0.5913, 'grad_norm': 2.7577013969421387, 'learning_rate': 3.1914893617021277e-06, 'epoch': 0.0}
+{'loss': 0.5138, 'grad_norm': 2.9221973419189453, 'learning_rate': 3.4042553191489363e-06, 'epoch': 0.0}
+{'loss': 0.5149, 'grad_norm': 3.1726365089416504, 'learning_rate': 3.6170212765957445e-06, 'epoch': 0.0}
+{'loss': 0.49, 'grad_norm': 2.6389176845550537, 'learning_rate': 3.8297872340425535e-06, 'epoch': 0.0}
+{'loss': 0.4479, 'grad_norm': 2.473980188369751, 'learning_rate': 4.0425531914893625e-06, 'epoch': 0.0}
+{'loss': 0.503, 'grad_norm': 2.5291194915771484, 'learning_rate': 4.255319148936171e-06, 'epoch': 0.0}
+{'loss': 0.4198, 'grad_norm': 2.2200405597686768, 'learning_rate': 4.468085106382979e-06, 'epoch': 0.0}
+{'loss': 0.5302, 'grad_norm': 2.526285171508789, 'learning_rate': 4.680851063829787e-06, 'epoch': 0.0}
+{'loss': 0.5753, 'grad_norm': 2.9983913898468018, 'learning_rate': 4.893617021276596e-06, 'epoch': 0.0}
+{'loss': 0.5089, 'grad_norm': 2.279369354248047, 'learning_rate': 5.106382978723404e-06, 'epoch': 0.0}
+{'loss': 0.4877, 'grad_norm': 2.2970457077026367, 'learning_rate': 5.319148936170213e-06, 'epoch': 0.0}
+{'loss': 0.5123, 'grad_norm': 2.1563668251037598, 'learning_rate': 5.531914893617021e-06, 'epoch': 0.0}
+{'loss': 0.5068, 'grad_norm': 2.5714871883392334, 'learning_rate': 5.74468085106383e-06, 'epoch': 0.0}
+{'loss': 0.4525, 'grad_norm': 1.7340303659439087, 'learning_rate': 5.957446808510639e-06, 'epoch': 0.0}
+{'loss': 0.4699, 'grad_norm': 2.120647668838501, 'learning_rate': 6.170212765957447e-06, 'epoch': 0.0}
+{'loss': 0.3636, 'grad_norm': 1.7641124725341797, 'learning_rate': 6.3829787234042555e-06, 'epoch': 0.01}
+{'loss': 0.4685, 'grad_norm': 2.0092408657073975, 'learning_rate': 6.595744680851064e-06, 'epoch': 0.01}
+{'loss': 0.4511, 'grad_norm': 1.9902839660644531, 'learning_rate': 6.808510638297873e-06, 'epoch': 0.01}
+{'loss': 0.4675, 'grad_norm': 2.0774383544921875, 'learning_rate': 7.021276595744682e-06, 'epoch': 0.01}
+{'loss': 0.4187, 'grad_norm': 1.757843017578125, 'learning_rate': 7.234042553191489e-06, 'epoch': 0.01}
+{'loss': 0.3509, 'grad_norm': 1.672926425933838, 'learning_rate': 7.446808510638298e-06, 'epoch': 0.01}
+{'loss': 0.4251, 'grad_norm': 2.1448683738708496, 'learning_rate': 7.659574468085107e-06, 'epoch': 0.01}
+{'loss': 0.4957, 'grad_norm': 2.370600461959839, 'learning_rate': 7.872340425531916e-06, 'epoch': 0.01}
+{'loss': 0.4464, 'grad_norm': 1.9623953104019165, 'learning_rate': 8.085106382978725e-06, 'epoch': 0.01}
+{'loss': 0.4623, 'grad_norm': 2.012556552886963, 'learning_rate': 8.297872340425532e-06, 'epoch': 0.01}
+{'loss': 0.3802, 'grad_norm': 1.5448670387268066, 'learning_rate': 8.510638297872341e-06, 'epoch': 0.01}
+{'loss': 0.4026, 'grad_norm': 1.9908534288406372, 'learning_rate': 8.72340425531915e-06, 'epoch': 0.01}
+{'loss': 0.4319, 'grad_norm': 1.792803168296814, 'learning_rate': 8.936170212765958e-06, 'epoch': 0.01}
+{'loss': 0.4227, 'grad_norm': 1.6460561752319336, 'learning_rate': 9.148936170212767e-06, 'epoch': 0.01}
+{'loss': 0.4371, 'grad_norm': 1.89119553565979, 'learning_rate': 9.361702127659574e-06, 'epoch': 0.01}
+{'loss': 0.5431, 'grad_norm': 1.9078614711761475, 'learning_rate': 9.574468085106383e-06, 'epoch': 0.01}
+{'loss': 0.3701, 'grad_norm': 1.417663335800171, 'learning_rate': 9.787234042553192e-06, 'epoch': 0.01}
+{'loss': 0.3956, 'grad_norm': 1.8250480890274048, 'learning_rate': 1e-05, 'epoch': 0.01}
+{'loss': 0.4244, 'grad_norm': 1.8354734182357788, 'learning_rate': 1.0212765957446808e-05, 'epoch': 0.01}
+{'loss': 0.3797, 'grad_norm': 1.5401140451431274, 'learning_rate': 1.0425531914893617e-05, 'epoch': 0.01}
+{'loss': 0.4641, 'grad_norm': 1.7442936897277832, 'learning_rate': 1.0638297872340426e-05, 'epoch': 0.01}
+{'loss': 0.509, 'grad_norm': 2.3648147583007812, 'learning_rate': 1.0851063829787235e-05, 'epoch': 0.01}
+{'loss': 0.3565, 'grad_norm': 1.9373877048492432, 'learning_rate': 1.1063829787234042e-05, 'epoch': 0.01}
+{'loss': 0.4324, 'grad_norm': 1.8102633953094482, 'learning_rate': 1.1276595744680851e-05, 'epoch': 0.01}
+{'loss': 0.3878, 'grad_norm': 1.7063758373260498, 'learning_rate': 1.148936170212766e-05, 'epoch': 0.01}
+{'loss': 0.4255, 'grad_norm': 1.8243333101272583, 'learning_rate': 1.170212765957447e-05, 'epoch': 0.01}
+{'loss': 0.3969, 'grad_norm': 1.7734309434890747, 'learning_rate': 1.1914893617021278e-05, 'epoch': 0.01}
+{'loss': 0.4414, 'grad_norm': 1.752323031425476, 'learning_rate': 1.2127659574468086e-05, 'epoch': 0.01}
+{'loss': 0.358, 'grad_norm': 1.3267320394515991, 'learning_rate': 1.2340425531914895e-05, 'epoch': 0.01}
+{'loss': 0.4546, 'grad_norm': 1.7544080018997192, 'learning_rate': 1.2553191489361702e-05, 'epoch': 0.01}
+{'loss': 0.4687, 'grad_norm': 2.078535318374634, 'learning_rate': 1.2765957446808511e-05, 'epoch': 0.01}
+{'loss': 0.4511, 'grad_norm': 1.997618317604065, 'learning_rate': 1.2978723404255318e-05, 'epoch': 0.01}
+{'loss': 0.3901, 'grad_norm': 1.6018767356872559, 'learning_rate': 1.3191489361702127e-05, 'epoch': 0.01}
+{'loss': 0.4127, 'grad_norm': 3.143921375274658, 'learning_rate': 1.3404255319148936e-05, 'epoch': 0.01}
+{'loss': 0.3906, 'grad_norm': 1.602890133857727, 'learning_rate': 1.3617021276595745e-05, 'epoch': 0.01}
+{'loss': 0.4355, 'grad_norm': 1.7881160974502563, 'learning_rate': 1.3829787234042554e-05, 'epoch': 0.01}
+{'loss': 0.4013, 'grad_norm': 1.6131584644317627, 'learning_rate': 1.4042553191489363e-05, 'epoch': 0.01}
+{'loss': 0.398, 'grad_norm': 1.5174388885498047, 'learning_rate': 1.4255319148936172e-05, 'epoch': 0.01}
+{'loss': 0.4145, 'grad_norm': 1.7864307165145874, 'learning_rate': 1.4468085106382978e-05, 'epoch': 0.01}
+{'loss': 0.4449, 'grad_norm': 1.9508494138717651, 'learning_rate': 1.4680851063829787e-05, 'epoch': 0.01}
+{'loss': 0.424, 'grad_norm': 1.7309476137161255, 'learning_rate': 1.4893617021276596e-05, 'epoch': 0.01}
+{'loss': 0.4589, 'grad_norm': 1.8772059679031372, 'learning_rate': 1.5106382978723405e-05, 'epoch': 0.01}
+{'loss': 0.3939, 'grad_norm': 1.6124494075775146, 'learning_rate': 1.5319148936170214e-05, 'epoch': 0.01}
+{'loss': 0.3359, 'grad_norm': 1.5047991275787354, 'learning_rate': 1.5531914893617023e-05, 'epoch': 0.01}
+{'loss': 0.3744, 'grad_norm': 1.4553611278533936, 'learning_rate': 1.5744680851063832e-05, 'epoch': 0.01}
+{'loss': 0.3492, 'grad_norm': 1.6112773418426514, 'learning_rate': 1.595744680851064e-05, 'epoch': 0.01}
+{'loss': 0.4085, 'grad_norm': 1.7488882541656494, 'learning_rate': 1.617021276595745e-05, 'epoch': 0.01}
+{'loss': 0.4318, 'grad_norm': 1.9030760526657104, 'learning_rate': 1.6382978723404255e-05, 'epoch': 0.01}
+  1%|█▊                                                                                                                                1%|█▏
+                                                  | 78/5861 [10:01<12:17:46,  7.65s/it]{'loss': 0.4625, 'grad_norm': 2.0305347442626953, 'learning_rate': 1.6595744680851064e-05, '
+epoch': 0.01}
+  1%|█▏                                                                                         | 78/5861  1%|▊                                                              | 79/5
+861 [10:09<12:18:51,  7.67s/it]{'loss': 0.402, 'grad_norm': 1.5892592668533325, 'learning_rate': 1.6808510638297873e-05, 'epoch': 0.01}
+{'loss': 0.5429, 'grad_norm': 1.8415769338607788, 'learning_rate': 1.7021276595744682e-05, 'epoch': 0.01}
+{'loss': 0.5275, 'grad_norm': 4.551961421966553, 'learning_rate': 1.723404255319149e-05, 'epoch': 0.01}
+{'loss': 0.4276, 'grad_norm': 1.7030518054962158, 'learning_rate': 1.74468085106383e-05, 'epoch': 0.01}
+{'loss': 0.4682, 'grad_norm': 1.744939923286438, 'learning_rate': 1.7659574468085106e-05, 'epoch': 0.01}
+{'loss': 0.4345, 'grad_norm': 1.4099394083023071, 'learning_rate': 1.7872340425531915e-05, 'epoch': 0.01}
+{'loss': 0.4419, 'grad_norm': 1.5921783447265625, 'learning_rate': 1.8085106382978724e-05, 'epoch': 0.01}
+{'loss': 0.3778, 'grad_norm': 1.6338698863983154, 'learning_rate': 1.8297872340425533e-05, 'epoch': 0.01}
+{'loss': 0.4781, 'grad_norm': 1.818259358406067, 'learning_rate': 1.851063829787234e-05, 'epoch': 0.01}
+{'loss': 0.5029, 'grad_norm': 1.9208561182022095, 'learning_rate': 1.8723404255319148e-05, 'epoch': 0.02}
+{'loss': 0.4222, 'grad_norm': 1.4910552501678467, 'learning_rate': 1.8936170212765957e-05, 'epoch': 0.02}
+{'loss': 0.4582, 'grad_norm': 1.7809935808181763, 'learning_rate': 1.9148936170212766e-05, 'epoch': 0.02}
+{'loss': 0.4546, 'grad_norm': 1.6915278434753418, 'learning_rate': 1.9361702127659575e-05, 'epoch': 0.02}
+{'loss': 0.3645, 'grad_norm': 1.5768535137176514, 'learning_rate': 1.9574468085106384e-05, 'epoch': 0.02}
+{'loss': 0.4415, 'grad_norm': 1.667724370956421, 'learning_rate': 1.9787234042553193e-05, 'epoch': 0.02}
+{'loss': 0.4568, 'grad_norm': 1.6695183515548706, 'learning_rate': 2e-05, 'epoch': 0.02}
+{'loss': 0.4604, 'grad_norm': 1.858593463897705, 'learning_rate': 2.0212765957446807e-05, 'epoch': 0.02}
+{'loss': 0.4609, 'grad_norm': 1.6148351430892944, 'learning_rate': 2.0425531914893616e-05, 'epoch': 0.02}
+{'loss': 0.4588, 'grad_norm': 1.599363923072815, 'learning_rate': 2.0638297872340425e-05, 'epoch': 0.02}
+{'loss': 0.4408, 'grad_norm': 1.5716689825057983, 'learning_rate': 2.0851063829787234e-05, 'epoch': 0.02}
+{'loss': 0.4411, 'grad_norm': 1.6363863945007324, 'learning_rate': 2.1063829787234043e-05, 'epoch': 0.02}
+{'loss': 0.4666, 'grad_norm': 1.7489491701126099, 'learning_rate': 2.1276595744680852e-05, 'epoch': 0.02}
+  2%|██▎                                                                                                                                     | 100/5861 [12:51<12:22:41,  7.73s/it]
+^CW1105 12:47:27.905000 23130989336384 torch/distributed/elastic/agent/server/api.py:688] Received Signals.SIGINT death signal, shutting down workers
+W1105 12:47:27.907000 23130989336384 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171942 closing signal SIGINT
+W1105 12:47:27.907000 23130989336384 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171943 closing signal SIGINT
+W1105 12:47:27.907000 23130989336384 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171944 closing signal SIGINT
+W1105 12:47:27.907000 23130989336384 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171945 closing signal SIGINT
+^CW1105 12:47:28.192000 23130989336384 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171942 closing signal SIGTERM
+W1105 12:47:28.192000 23130989336384 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171943 closing signal SIGTERM
+W1105 12:47:28.193000 23130989336384 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171944 closing signal SIGTERM
+W1105 12:47:28.193000 23130989336384 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 4171945 closing signal SIGTERM
+^CTraceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 680, in run
+    result = self._invoke_run(role)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 835, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4171860 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 689, in run
+    self._shutdown(e.sigval)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 868, in _close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4171860 got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 694, in run
+    self._shutdown()
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 868, in _close
+    handler.proc.wait(time_to_wait)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/data/home/xihaocheng/anaconda3/envs/toolbench/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 4171860 got signal: 2
+^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ ^C
+(toolbench) xihaocheng@g0288:/ssd/data/xihaocheng/ToolBench$ tmux capture-pane -S -
+

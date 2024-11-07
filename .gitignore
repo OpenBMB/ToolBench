@@ -8,3 +8,6 @@ run.bash
 
 *.pyc
 **/__pycache__
+wandb/
+converted_models/
+data/
