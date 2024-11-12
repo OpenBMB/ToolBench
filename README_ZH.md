@@ -42,7 +42,7 @@
 
 - **[2023/8/8]** 告别幻觉！[**ToolLLaMA-2-7b-v1**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v1) (从LLaMA-2-7b微调而来)模型已发布，比ChatGPT有着更少的API幻觉现象.
 
-- **[2023/8/4]** 我们提供RapidAPI后端服务，以免您使用自己的RapidAPI私钥去订阅API。填写[表单](https://forms.gle/oCHHc8DQzhGfiT9r6)后，我们会尽快审核并给您发送ToolBench key去请求该后端服务! 
+- **[2023/8/4]** 我们提供RapidAPI后端服务，以免您使用自己的RapidAPI私钥去订阅API。填写[表单](https://forms.gle/S4hqVLtnqeXcNTCJA)后，我们会尽快审核并给您发送ToolBench key去请求该后端服务! 
 
 - **[2023/8/1]** 我们的[论文](https://arxiv.org/abs/2307.16789)正式发布.
 
