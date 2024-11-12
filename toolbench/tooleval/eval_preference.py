@@ -175,22 +175,28 @@ if __name__=='__main__':
                 for qid in test_ids:
                     if qid not in prefer_dict:
                         prefer_dict[qid] = {reference_model: 0, output_model: 0, f"round_{i}": "incomplete"}
+                    elif f"round_{i}" not in prefer_dict[qid]:
+                        prefer_dict[qid][f"round_{i}"] = "incomplete"
                     elif prefer_dict[qid][f"round_{i}"] == "complete":
                         continue
                     if qid in ref_pass_result_dict and qid in output_pass_result_dict:
                         if ref_pass_result_dict[qid]["machine_label"] == "passed" and output_pass_result_dict[qid]["machine_label"] == "failed":
                             prefer_dict[qid][reference_model] += 1
+                            prefer_dict[qid][f"round_{i}"] = "complete"
                             continue
                         elif ref_pass_result_dict[qid]["machine_label"] == "failed" and output_pass_result_dict[qid]["machine_label"] == "passed":
                             prefer_dict[qid][output_model] += 1
+                            prefer_dict[qid][f"round_{i}"] = "complete"
                             continue
                     
                     if qid not in reference_examples:
                         prefer_dict[qid][output_model] += 1
+                        prefer_dict[qid][f"round_{i}"] = "complete"
                         continue
                     if qid not in output_examples:
                         print(f"Query {qid} not in output model converted answers!")
                         prefer_dict[qid][reference_model] += 1
+                        prefer_dict[qid][f"round_{i}"] = "complete"
                         continue
 
                     ref_example = reference_examples[qid]
