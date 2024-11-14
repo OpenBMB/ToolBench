@@ -47,7 +47,7 @@ A **stable and reliable** local toolbench server based on API response simulatio
 
 - **[2023/8/8]** No more hallucination! [**ToolLLaMA-2-7b-v1**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v1) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
 
-- **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form]([https://forms.gle/oCHHc8DQzhGfiT9r6](https://forms.gle/S4hqVLtnqeXcNTCJA)). We will review it as soon as possible and send you the ToolBench key to get start on it! 
+- **[2023/8/4]** We provide **RapidAPI backend service** to free you from using your own RapidAPI key and subscribing the APIs. Please fill out our [form](https://forms.gle/S4hqVLtnqeXcNTCJA). We will review it as soon as possible and send you the ToolBench key to get start on it! 
 
 - **[2023/8/1]** Our [**paper**](https://arxiv.org/abs/2307.16789) is released.
 
@@ -271,7 +271,7 @@ deepspeed --master_port=20001 toolbench/train/train_lora.py \
 
 
 ## Inference With Our RapidAPI Server
-Please fill out the [form](https://forms.gle/oCHHc8DQzhGfiT9r6) first and after reviewing we will send you the toolbench key. Then prepare your toolbench key by:
+Please fill out the [form](https://forms.gle/S4hqVLtnqeXcNTCJA) first and after reviewing we will send you the toolbench key. Then prepare your toolbench key by:
 ```bash
 export TOOLBENCH_KEY="your_toolbench_key"
 ```
