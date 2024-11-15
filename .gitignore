@@ -2,6 +2,10 @@ data/
 data.zip
 *.DS_store
 
+.idea/
+.venv/
+.python-version
+
 __MACOSX/
 
 run.bash
