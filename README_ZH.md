@@ -278,7 +278,7 @@ deepspeed --master_port=20001 toolbench/train/train_lora.py \
 
 
 ## 用我们的RapidAPI服务进行推理
-请先填写[问卷](https://forms.gle/oCHHc8DQzhGfiT9r6)，我们会尽快审核然后给您发送toolbench key。然后初始化您的toolbench key:
+请先填写[问卷](https://forms.gle/S4hqVLtnqeXcNTCJA)，我们会尽快审核然后给您发送toolbench key。然后初始化您的toolbench key:
 ```bash
 export TOOLBENCH_KEY="your_toolbench_key"
 ```
