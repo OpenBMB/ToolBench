@@ -199,7 +199,11 @@ You have access of the following tools:\n'''
         map_type = {
             "NUMBER": "integer",
             "STRING": "string",
-            "BOOLEAN": "boolean"
+            "BOOLEAN": "boolean",
+            "ARRAY": "array",
+            "integer": "integer",
+            "number": "number",
+            "array": "array",
         }
 
         pure_api_name = change_name(standardize(api_json["api_name"]))
@@ -219,10 +223,6 @@ You have access of the following tools:\n'''
                     param_type = map_type[para["type"]]
                 else:
                     param_type = "string"
-                prompt = {
-                    "type":param_type,
-                    "description":para["description"][:description_max_length],
-                }
 
                 default_value = para['default']
                 if len(str(default_value)) != 0:    
@@ -236,6 +236,9 @@ You have access of the following tools:\n'''
                         "type":param_type,
                         "description":para["description"][:description_max_length]
                     }
+
+                if "items" in para:
+                    prompt["items"] = para["items"]
 
                 templete["parameters"]["properties"][name] = prompt
                 templete["parameters"]["required"].append(name)
