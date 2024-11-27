@@ -103,13 +103,15 @@ class ToolLLaMALoRA:
         self.time = time.time()
         conversation_history = self.conversation_history
         prompt = ''
+        prompt_parts = []
         for message in conversation_history:
             role = roles[message['role']]
             content = message['content']
             if role == "System" and functions != []:
                 content = process_system_message(content, functions)
-            prompt += f"{role}: {content}\n"
-        prompt += "Assistant:\n"
+            prompt_parts.append(f"{role}: {content}")
+        prompt = '\n'.join(prompt_parts) + "\nAssistant:\n"
+
         if functions != []:
             predictions = self.prediction(prompt)
         else:
