@@ -43,7 +43,7 @@ A **stable and reliable** local toolbench server based on API response simulatio
 
 - **[2023/9/29]** A new version ToolEval which is more stable and covers more models including GPT4! Please refer to [**ToolEval**](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval) for more details. Besides, [**ToolLLaMA-2-7b-v2**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v2) is released with stronger tool-use capabilities. Please use the ToolLLaMA-2-7b-v2 model to reproduce our latest experimental results with the new version ToolEval.
 
-- **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data.zip` on [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J).
+- **[2023/8/30]** Data updation, with more than **120,000** solution path annotations and **intact reasoning thoughts**! Please find `data.zip` on [Google Drive](https://drive.google.com/drive/folders/1TysbSWYpP8EioFu9xPJtpbJZMLLmwAmL?usp=drive_link).
 
 - **[2023/8/8]** No more hallucination! [**ToolLLaMA-2-7b-v1**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v1) (fine-tuned from LLaMA-2-7b) is released with lower API hallucination than ChatGPT.
 
@@ -116,7 +116,7 @@ ToolBench contains both single-tool and multi-tool scenarios. The multi-tool sce
 
 ### Data Release
 
- Please download our dataset using the following link: [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/). *Notice that `data_0801` is the old version data.*
+ Please download our dataset using the following link: [Google Drive](https://drive.google.com/drive/folders/1TysbSWYpP8EioFu9xPJtpbJZMLLmwAmL?usp=drive_link) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/). *Notice that `data_0801` is the old version data.*
 The file structure is as follows:
 ```
 ├── /data/
@@ -170,7 +170,6 @@ Prepare the data and tool environment:
 wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1XFjDxVZdUY7TXYF2yvzx3pJlS2fy78jk&confirm=yes' -O data.zip
 unzip data.zip
 ```
-https://drive.google.com/file/d/1XFjDxVZdUY7TXYF2yvzx3pJlS2fy78jk/view?usp=drive_link
 
 ### Training Retriever
 - Data preprocessing:
@@ -521,7 +520,7 @@ pip install -r requirements.txt
 ```
 
 #### Evaluation
-*If you want to reproduce the official results, download the reproduction data `reproduction_data.zip` through [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J), unzip it and put the `reproduction_data` under `ToolBench/data/`, and skip the data preparation process.*
+*If you want to reproduce the official results, download the reproduction data `reproduction_data.zip` through [Google Drive](), unzip it and put the `reproduction_data` under `ToolBench/data/`, and skip the data preparation process.*
 - Data preparation. To evaluate your own model and method using ToolEval, first you need to prepare all the model predictions for the six test subsets. Create a directory naming with your model and method, e.g. `chatgpt_cot` then put each test set's predictions under the directory. The file sturcture of the directory should be:
 ```
 ├── /chatgpt_cot/

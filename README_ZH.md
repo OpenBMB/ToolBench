@@ -38,7 +38,7 @@
 ## 最新支持
 - **[2023/9/29]** 更稳定的更新版本**ToolEval**， 加上更多模型比如GPT4的结果！更多细节请参考[ToolEval](https://github.com/OpenBMB/ToolBench/tree/master/toolbench/tooleval). 除此之外，工具使用能力更强的[**ToolLLaMA-2-7b-v2**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v2)模型已经开放，请使用这版模型和更新的tooleval来复现最新的实验结果。
 
-- **[2023/8/30]** 数据更新，拥有超过**12万**解路径标注和**完整的推理thoughts**！请在 [Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J) 上找到`data.zip`。
+- **[2023/8/30]** 数据更新，拥有超过**12万**解路径标注和**完整的推理thoughts**！请在 [Google Drive](https://drive.google.com/drive/folders/1TysbSWYpP8EioFu9xPJtpbJZMLLmwAmL?usp=drive_link) 上找到`data.zip`。
 
 - **[2023/8/8]** 告别幻觉！[**ToolLLaMA-2-7b-v1**](https://huggingface.co/ToolBench/ToolLLaMA-2-7b-v1) (从LLaMA-2-7b微调而来)模型已发布，比ChatGPT有着更少的API幻觉现象.
 
@@ -117,7 +117,7 @@ ToolBench包含单工具和多工具场景。多工具场景可以进一步分�
 
 ### 数据发布
 
- 请使用以下链接下载我们的数据集：[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)或者[清华云盘](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/).*请注意：`data_0801.zip`是老版本数据。*
+ 请使用以下链接下载我们的数据集：[Google Drive](https://drive.google.com/drive/folders/1TysbSWYpP8EioFu9xPJtpbJZMLLmwAmL?usp=drive_link)或者[清华云盘](https://cloud.tsinghua.edu.cn/f/c9e50625743b40bfbe10/).*请注意：`data_0801.zip`是老版本数据。*
 文件结构如下:
 ```
 ├── /data/
@@ -523,7 +523,7 @@ This server will be available on `http://localhost:5000/`. To start a request, c
 
 
 ### Evaluation with ToolEval
-*若要复现结果，直接通过[Google Drive](https://drive.google.com/drive/folders/1yBUQ732mPu-KclJnuQELEhtKakdXFc3J)下载我们的`reproduction_data.zip`，解压后置`reproduction_data`于`ToolBench/data/`下即可，可以跳过数据准备流程。*
+*若要复现结果，直接通过[Google Drive](https://drive.google.com/drive/folders/1TysbSWYpP8EioFu9xPJtpbJZMLLmwAmL?usp=drive_link)下载我们的`reproduction_data.zip`，解压后置`reproduction_data`于`ToolBench/data/`下即可，可以跳过数据准备流程。*
 - 数据准备。若要使用 ToolEval 评估您自己的模型和方法，首先需要为六个测试子集准备所有的模型预测。创建一个以您的模型和方法命名的目录，例如 `chatgpt_cot`，然后将每个测试集的预测放在该目录下。目录的文件结构应如下：
 ```
 ├── /chatgpt_cot/
