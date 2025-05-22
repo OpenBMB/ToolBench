@@ -21,10 +21,10 @@ peft==0.3.0
 langchain==0.0.229
 deepspeed==0.9.2
 sentence_transformers==2.2.2
+openai==0.28.0
+huggingface-hub==0.25.2
 tensorboard
-openai
 scipy
 termcolor
 flask
 flask_cors
-sentence_transformers

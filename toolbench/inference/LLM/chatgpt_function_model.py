@@ -6,8 +6,11 @@ import time
 import random
 
 
+OAI_MODEL = "gpt-3.5-turbo-0125"
+
+
 @retry(wait=wait_random_exponential(min=1, max=40), stop=stop_after_attempt(3))
-def chat_completion_request(key, messages, functions=None,function_call=None,key_pos=None, model="gpt-3.5-turbo-16k-0613",stop=None,process_id=0, **args):
+def chat_completion_request(key, messages, functions=None,function_call=None,key_pos=None, model=OAI_MODEL,stop=None,process_id=0, **args):
     use_messages = []
     for message in messages:
         if not("valid" in message.keys() and message["valid"] == False):
@@ -29,7 +32,7 @@ def chat_completion_request(key, messages, functions=None,function_call=None,key
         json_data.update({"function_call": function_call})
     
     try:
-        if model == "gpt-3.5-turbo-16k-0613":
+        if model == OAI_MODEL:
             openai.api_key = key
         else:
             raise NotImplementedError
@@ -45,7 +48,7 @@ def chat_completion_request(key, messages, functions=None,function_call=None,key
         return e
 
 class ChatGPTFunction:
-    def __init__(self, model="gpt-3.5-turbo-16k-0613", openai_key=""):
+    def __init__(self, model=OAI_MODEL, openai_key=""):
         self.model = model
         self.conversation_history = []
         self.openai_key = openai_key
