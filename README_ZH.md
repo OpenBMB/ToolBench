@@ -175,7 +175,7 @@ unzip data.zip
 export PYTHONPATH=./
 python preprocess/preprocess_retriever_data.py \
     --query_file data/instruction/G1_query.json \
-    --index_file data/test_query_ids/G1_instruction_test_query_ids.json \
+    --index_file data/retrieval_test_query_ids/G1_test_query_ids.json \
     --dataset_name G1 \
     --output_dir data/retrieval/G1
 ```
