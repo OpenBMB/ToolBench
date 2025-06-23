@@ -91,6 +91,10 @@ class Model:
         parser.add_argument('--rapidapi_key', type=str, default="",required=False, help='your rapidapi key to request rapidapi service')
         parser.add_argument('--use_rapidapi_key', action="store_true", help="To use customized rapidapi service or not.")
         parser.add_argument('--api_customization', action="store_true", help="To use customized api or not.")
+        parser.add_argument('--max_source_sequence_length', type=int, default=4096, required=False,
+                            help='original maximum model sequence length')
+        parser.add_argument('--max_sequence_length', type=int, default=8192, required=False,
+                            help='maximum model sequence length')
 
         args = parser.parse_args()
         return args
