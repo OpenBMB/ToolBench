@@ -37,7 +37,7 @@ def process_error(response):
     if "The request to the API has timed out. Please try again later, or if the issue persists" in str(response):
         return_dict = {"error": "API temporarily not working error...", "response": response}
 
-    if "Your Client (working) ---> Gateway (working) ---> API (not working)" in str(response):
+    elif "Your Client (working) ---> Gateway (working) ---> API (not working)" in str(response):
         return_dict = {"error": "API not working error...", "response": response}
         
     elif "Unauthorized" in str(response) or "unauthorized" in str(response):
