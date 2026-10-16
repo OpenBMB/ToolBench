@@ -1,4 +1,5 @@
 import dataclasses
+import glob
 import os
 
 import torch
@@ -28,11 +29,19 @@ class CLinear(nn.Module):
 
     def __init__(self, weight=None, bias=None, device=None):
         super().__init__()
-        self.weight = weight
+        if isinstance(weight, torch.Tensor):
+            self.weight = compress(weight.detach().to(device), default_compression_config)
+        else:
+            # Sharded model loading already supplies packed weights.
+            self.weight = weight
         self.bias = bias
 
     def forward(self, input):
-        return F.linear(input.to(self.weight.dtype), self.weight, self.bias)
+        weight = decompress(self.weight, default_compression_config)
+        bias = self.bias
+        if bias is not None:
+            bias = bias.to(device=weight.device, dtype=weight.dtype)
+        return F.linear(input.to(weight.dtype), weight, bias)
 
 
 def compress_module(module, target_device):
@@ -43,15 +52,17 @@ def compress_module(module, target_device):
                 name,
                 CLinear(child.weight, child.bias, target_device),
             )
+        else:
             compress_module(child, target_device)
 
 
 def get_compressed_list(module, prefix=""):
     compressed_list = []
     for name, child in module.named_children():
+        full_name = f"{prefix}.{name}" if prefix else name
         if isinstance(child, nn.Linear):
-            full_name = f"{prefix}.{name}.weight" if prefix else f"{name}.weight"
-            compressed_list.append(full_name)
+            compressed_list.append(f"{full_name}.weight")
+        else:
             compressed_list.extend(
                 get_compressed_list(child, full_name)
             )
@@ -60,15 +71,16 @@ def get_compressed_list(module, prefix=""):
 
 def apply_compressed_weight(module, compressed_state_dict, target_device, prefix=""):
     for name, child in module.named_children():
+        full_name = f"{prefix}.{name}" if prefix else name
         if isinstance(child, nn.Linear):
-            full_name = f"{prefix}.{name}.weight" if prefix else f"{name}.weight"
             setattr(
                 module,
                 name,
                 CLinear(
-                    compressed_state_dict[full_name], child.bias, target_device
+                    compressed_state_dict[f"{full_name}.weight"], child.bias, target_device
                 ),
             )
+        else:
             apply_compressed_weight(child, compressed_state_dict, target_device, full_name)
 
 
@@ -132,7 +144,7 @@ def compress(tensor, config):
     )
 
     # Pad
-    pad_len = group_size - original_shape[group_dim] % group_size
+    pad_len = (-original_shape[group_dim]) % group_size
     if pad_len != 0:
         pad_shape = (
             original_shape[:group_dim] + (pad_len,) + original_shape[group_dim + 1 :]
@@ -185,7 +197,7 @@ def decompress(packed_data, config):
         data += mn
 
     # Unpad
-    pad_len = group_size - original_shape[group_dim] % group_size
+    pad_len = (-original_shape[group_dim]) % group_size
     if pad_len:
         padded_original_shape = (
             original_shape[:group_dim]
@@ -194,6 +206,6 @@ def decompress(packed_data, config):
         )
         data = data.reshape(padded_original_shape)
         indices = [slice(0, x) for x in original_shape]
-        return data[indices].contiguous()
+        return data[tuple(indices)].contiguous()
     else:
         return data.view(original_shape)
